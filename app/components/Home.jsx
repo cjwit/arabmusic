@@ -6,19 +6,23 @@ var RecentDiscussions = require('./RecentDiscussions.jsx');
 module.exports = React.createClass({
     render: function() {
         return (
-            <div className = 'row'>
-                <div className = 'col-md-8 col-md-offset-2'>
-                    <About />
+            <div>
+                <div id = 'head' className = 'row'>
+                    <div className = 'col-md-8 col-md-offset-2'>
+                        <About />
+                    </div>
                 </div>
-            </div>
+                <div className = 'container'>
+                    <div className = 'row'>
+                        <div className = 'col-md-6'>
+                            <RecentDiscussions discussions = { this.props.discussions } />
+                        </div>
+                        <div className = 'col-md-6'>
+                            <UpcomingEvents events = { this.props.events } />
+                        </div>
+                    </div>
+                </div>
 
-            <div className = 'row'>
-                <div className = 'col-md-6'>
-                    <RecentDiscussions discussions = { this.props.discussions } />
-                </div>
-                <div className = 'col-md-6'>
-                    <UpcomingEvents events = { this.props.events } />
-                </div>
             </div>
         )
     }

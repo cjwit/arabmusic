@@ -3,10 +3,20 @@ body {
   color: #253c34;
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
+  padding-top: 40px;
   line-height: 1.7; }
   @media screen and (min-width: 768px) {
     body {
       font-size: 16px; } }
+
+#head {
+  background-image: url("./images/pattern1-dark.jpg");
+  background-size: cover;
+  color: white; }
+
+#footer {
+  background-color: #e8e7d2;
+  padding: 50px; }
 
 strong {
   font-weight: 400; }
@@ -14,8 +24,12 @@ strong {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Dancing Script', sans-serif;
   font-weight: 400;
-  border-bottom: 1px solid #253c34;
+  border-bottom: 1px solid;
   padding-bottom: 10px; }
+
+.nav {
+  margin: 0 auto;
+  padding: 0; }
 
 .navbar {
   background-color: #e8e7d2;
@@ -30,7 +44,7 @@ a {
   font-weight: 400; }
 
 a:visited {
-  color: #539664; }
+  color: #253c34; }
 
 .holder {
   padding: 20px; }
