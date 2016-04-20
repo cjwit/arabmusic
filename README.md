@@ -2,6 +2,8 @@
 
 ### Written in React.js using Node.js, Express.js, and MongoDB
 
+Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
+
 Things to do next:
 * Nav bar items pull right on mobile
 * Change active state navbar background color
