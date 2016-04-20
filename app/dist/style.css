@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Dancing+Script:700);
+body {
+  color: #5b6762;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200; }
+
+strong {
+  font-weight: 400; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Dancing Script', sans-serif;
+  font-weight: 400; }
+
+.navbar {
+  background-color: #e8e7d2;
+  color: #396c52; }
+
+.navbar-brand {
+  font-family: 'Dancing Script', sans-serif; }
+
+a {
+  color: #396c52;
+  text-decoration: none;
+  font-weight: 400; }
+
+a:visited {
+  color: #539664; }
