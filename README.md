@@ -6,8 +6,8 @@ Things to do next:
 * Nav bar items pull right on mobile
 * Change active state navbar background color
 * Body padding is too much on mobile
-* Fixed background for <About />?
-* Write content for <About />
+* Fixed background for About?
+* Write content for About
 * Pages for individual events
 * Pages for individual discussions
 * Resource page, pages for individual resource collections
