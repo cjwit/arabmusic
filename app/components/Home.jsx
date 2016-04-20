@@ -1,6 +1,7 @@
 var React = require('react');
 var About = require('./About.jsx');
 var UpcomingEvents = require('./UpcomingEvents.jsx');
+var RecentDiscussions = require('./RecentDiscussions.jsx');
 
 module.exports = React.createClass({
     render: function() {
@@ -8,6 +9,7 @@ module.exports = React.createClass({
             <div className = 'row'>
                 <div className = 'col-md-6'>
                     <About />
+                    <RecentDiscussions discussions = { this.props.discussions } />
                 </div>
                 <div className = 'col-md-6'>
                     <UpcomingEvents events = { this.props.events } />

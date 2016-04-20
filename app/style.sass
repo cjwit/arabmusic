@@ -5,7 +5,7 @@ $small: 768px
 $medium: 992px
 $large: 1200px
 
-$darkgreen: rgb(57, 108, 82)
+$darkgreen: rgb(17, 78, 38)
 $green: rgb(83, 150, 100)
 $cream: rgb(232, 231, 210)
 $text: rgb(37, 60, 52)
@@ -45,10 +45,12 @@ a:visited
 .holder
   padding: 20px
 
+/* events */
 .event-name
   text-transform: uppercase
   font-weight: 400
   padding-top: 20px
+  color: $darkgreen
   display: inline-block
 
 .event-name:first-child
@@ -78,3 +80,55 @@ a:visited
   max-height: 3.6
   @media screen and (min-width: $small)
     padding-left: 20px
+
+/* discussions */
+.discussion
+  padding-bottom: 20px
+
+.discussion-title
+  text-transform: uppercase
+  font-weight: 400
+  color: $darkgreen
+  display: inline-block
+
+.discussion-author
+  font-weight: 400
+  color: $darkgreen
+
+.discussion-date
+  font-weight: 400
+  color: $darkgreen
+
+.discussion-content
+  font-size: 0.8em
+  overflow: hidden
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 2
+  line-height: 1.2
+  max-height: 2.4
+  @media screen and (min-width: $small)
+    padding-left: 20px
+
+/* comments */
+.comment
+  font-size: 0.8em
+  overflow: hidden
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 2
+  line-height: 1.2
+  max-height: 2.4
+  padding-top: 10px
+  @media screen and (min-width: $small)
+    padding-left: 20px
+
+.comment-author
+  font-weight: 400
+  color: $darkgreen
+
+.comment-date
+  font-weight: 400
+  color: $darkgreen

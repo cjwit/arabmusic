@@ -19,13 +19,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar {
   background-color: #e8e7d2;
-  color: #396c52; }
+  color: #114e26; }
 
 .navbar-brand {
   font-family: 'Dancing Script', sans-serif; }
 
 a {
-  color: #396c52;
+  color: #114e26;
   text-decoration: none;
   font-weight: 400; }
 
@@ -35,10 +35,12 @@ a:visited {
 .holder {
   padding: 20px; }
 
+/* events */
 .event-name {
   text-transform: uppercase;
   font-weight: 400;
   padding-top: 20px;
+  color: #114e26;
   display: inline-block; }
 
 .event-name:first-child {
@@ -70,3 +72,57 @@ a:visited {
   @media screen and (min-width: 768px) {
     .event-description {
       padding-left: 20px; } }
+
+/* discussions */
+.discussion {
+  padding-bottom: 20px; }
+
+.discussion-title {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #114e26;
+  display: inline-block; }
+
+.discussion-author {
+  font-weight: 400;
+  color: #114e26; }
+
+.discussion-date {
+  font-weight: 400;
+  color: #114e26; }
+
+.discussion-content {
+  font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
+  max-height: 2.4; }
+  @media screen and (min-width: 768px) {
+    .discussion-content {
+      padding-left: 20px; } }
+
+/* comments */
+.comment {
+  font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
+  max-height: 2.4;
+  padding-top: 10px; }
+  @media screen and (min-width: 768px) {
+    .comment {
+      padding-left: 20px; } }
+
+.comment-author {
+  font-weight: 400;
+  color: #114e26; }
+
+.comment-date {
+  font-weight: 400;
+  color: #114e26; }
