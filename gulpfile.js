@@ -29,7 +29,11 @@ gulp.task('watch-sass', function() {
 
 // moves the static files into app/dist
 gulp.task('copy', ['bundle'], function() {
-    return gulp.src(['app/index.html', 'app/lib/bootstrap-css/css/bootstrap.min.css', 'app/style.css'])
+    return gulp.src(['app/index.html',
+                     'app/lib/bootstrap/dist/css/bootstrap.min.css',
+                     'app/lib/bootstrap/js/collapse.js',
+                     'app/lib/jquery/dist/jquery.min.js',
+                     'app/style.css'])
         .pipe(gulp.dest('app/dist'));
 });
 

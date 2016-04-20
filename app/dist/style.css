@@ -1,15 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Dancing+Script:700);
 body {
-  color: #5b6762;
+  color: #253c34;
   font-family: 'Raleway', sans-serif;
-  font-weight: 200; }
+  font-weight: 200;
+  line-height: 1.7; }
+  @media screen and (min-width: 768px) {
+    body {
+      font-size: 16px; } }
 
 strong {
   font-weight: 400; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Dancing Script', sans-serif;
-  font-weight: 400; }
+  font-weight: 400;
+  border-bottom: 1px solid #253c34;
+  padding-bottom: 10px; }
 
 .navbar {
   background-color: #e8e7d2;
@@ -25,3 +31,42 @@ a {
 
 a:visited {
   color: #539664; }
+
+.holder {
+  padding: 20px; }
+
+.event-name {
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-top: 20px;
+  display: inline-block; }
+
+.event-name:first-child {
+  padding-top: 0px; }
+
+.event-place {
+  font-weight: 400; }
+
+.event-date {
+  font-weight: 400; }
+
+.event-contact {
+  font-weight: 400;
+  font-size: 0.8em;
+  display: block; }
+  @media screen and (min-width: 768px) {
+    .event-contact {
+      padding-left: 20px; } }
+
+.event-description {
+  font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 1.2;
+  max-height: 3.6; }
+  @media screen and (min-width: 768px) {
+    .event-description {
+      padding-left: 20px; } }

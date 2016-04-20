@@ -1,14 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Dancing+Script:700)
 
+$xsmall: 450px
+$small: 768px
+$medium: 992px
+$large: 1200px
+
 $darkgreen: rgb(57, 108, 82)
 $green: rgb(83, 150, 100)
 $cream: rgb(232, 231, 210)
-$text: rgb(91, 103, 98)
+$text: rgb(37, 60, 52)
 
 body
   color: $text
   font-family: 'Raleway', sans-serif
   font-weight: 200
+  line-height: 1.7
+  @media screen and (min-width: $small)
+    font-size: 16px
 
 strong
   font-weight: 400
@@ -16,6 +24,8 @@ strong
 h1, h2, h3, h4, h5, h6
   font-family: 'Dancing Script', sans-serif
   font-weight: 400
+  border-bottom: 1px solid $text
+  padding-bottom: 10px
 
 .navbar
   background-color: $cream
@@ -31,3 +41,40 @@ a
 
 a:visited
   color: $green
+
+.holder
+  padding: 20px
+
+.event-name
+  text-transform: uppercase
+  font-weight: 400
+  padding-top: 20px
+  display: inline-block
+
+.event-name:first-child
+  padding-top: 0px
+
+.event-place
+  font-weight: 400
+
+.event-date
+  font-weight: 400
+
+.event-contact
+  font-weight: 400
+  font-size: 0.8em
+  display: block
+  @media screen and (min-width: $small)
+    padding-left: 20px
+
+.event-description
+  font-size: 0.8em
+  overflow: hidden
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 3
+  line-height: 1.2
+  max-height: 3.6
+  @media screen and (min-width: $small)
+    padding-left: 20px
