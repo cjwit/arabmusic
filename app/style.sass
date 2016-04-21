@@ -1,14 +1,30 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Dancing+Script:700)
+@import url(https://fonts.googleapis.com/css?family=Raleway:200,400,700|Dancing+Script:700)
 
 $xsmall: 450px
 $small: 768px
 $medium: 992px
 $large: 1200px
 
-$darkgreen: rgb(17, 78, 38)
-$green: rgb(83, 150, 100)
-$cream: rgb(232, 231, 210)
-$text: rgb(37, 60, 52)
+$textlight: white // or #edf9ed
+$text: #001A00 // Darkest green
+
+$green: #318D31;	// Main Primary color */
+$green1: #8DCF8D
+$green2: #5AAF5A
+$green3: #156C15
+$green4: #024A02
+
+$brown: #B06C3E	// Main Secondary color (1) */
+$lightbrown: #FFCEAD
+$color-secondary-1-2: #DA9B70
+$color-secondary-1-3: #88461A
+$darkbrown: #5C2602
+
+$color-secondary-2-0: #933361	// Main Secondary color (2) */
+$lightred: #D792B3
+$color-secondary-2-2: #B65E88
+$color-secondary-2-3: #711541
+$darkred: #4D0225
 
 body
   color: $text
@@ -16,17 +32,32 @@ body
   font-weight: 200
   padding-top: 40px
   line-height: 1.7
+  font-size: 16px
   @media screen and (min-width: $small)
-    font-size: 16px
+    font-size: 18px
 
 #head
   background-image: url('./images/pattern1-dark.jpg')
   background-size: cover
-  color: white
+  color: $textlight
+  @media screen and (max-width: $small)
+    font-weight: 400
+    background-attachment: scroll
+  @media screen and (min-width: $small)
+    background-attachment: fixed
 
 #footer
-  background-color: $cream
-  padding: 50px
+  background-color: $green4
+  color: $textlight
+  padding: 20px
+  a, a:visited, a:hover
+    color: $textlight
+  .arabic
+    font-weight: 200
+    font-style: italic
+  #webmaster
+    font-size: .8em
+    font-weight: 200
 
 strong
   font-weight: 400
@@ -37,34 +68,66 @@ h1, h2, h3, h4, h5, h6
   border-bottom: 1px solid
   padding-bottom: 10px
 
-.nav
-  margin: 0 auto
-  padding: 0
+/* navbar */
+.navbar-default
+  background-color: $green4
+  border-color: transparent
 
-.navbar
-  background-color: $cream
-  color: $darkgreen
-
-.navbar-brand
+/* title */
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:focus
+  color: $textlight
   font-family: 'Dancing Script', sans-serif
 
+.navbar-default .navbar-brand:hover
+  background-color: $green3
+  color: $textlight
+
+/* link */
+.navbar-default .navbar-nav > li > a
+  color: $textlight
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus
+  color: $textlight
+  background-color: $green3
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus
+  color: $textlight
+  background-color: $green3
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus
+  color: $textlight
+  background-color: $green3
+
+/* caret */
+.navbar-default .navbar-nav > .dropdown > a .caret
+  border-top-color: #777
+  border-bottom-color: #777
+
 a
-  color: $darkgreen
+  color: $darkred
   text-decoration: none
   font-weight: 400
 
 a:visited
-  color: $text
+  color: $lightred
 
 .holder
-  padding: 20px
+  padding: 70px 0 70px 0
+  @media screen and (min-width: $small)
+    padding-left: 20px
 
 /* events */
 .event-name
   text-transform: uppercase
-  font-weight: 400
+  font-weight: 700
   padding-top: 20px
-  color: $darkgreen
+  color: $darkred
   display: inline-block
 
 .event-name:first-child
@@ -101,17 +164,17 @@ a:visited
 
 .discussion-title
   text-transform: uppercase
-  font-weight: 400
-  color: $darkgreen
+  font-weight: 700
+  color: $darkred
   display: inline-block
 
 .discussion-author
   font-weight: 400
-  color: $darkgreen
+  color: $darkred
 
 .discussion-date
   font-weight: 400
-  color: $darkgreen
+  color: $darkred
 
 .discussion-content
   font-size: 0.8em
@@ -141,8 +204,8 @@ a:visited
 
 .comment-author
   font-weight: 400
-  color: $darkgreen
+  color: $darkred
 
 .comment-date
   font-weight: 400
-  color: $darkgreen
+  color: $darkred

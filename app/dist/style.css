@@ -1,22 +1,39 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Dancing+Script:700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:200,400,700|Dancing+Script:700);
 body {
-  color: #253c34;
+  color: #001A00;
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
   padding-top: 40px;
-  line-height: 1.7; }
+  line-height: 1.7;
+  font-size: 16px; }
   @media screen and (min-width: 768px) {
     body {
-      font-size: 16px; } }
+      font-size: 18px; } }
 
 #head {
   background-image: url("./images/pattern1-dark.jpg");
   background-size: cover;
   color: white; }
+  @media screen and (max-width: 768px) {
+    #head {
+      font-weight: 400;
+      background-attachment: scroll; } }
+  @media screen and (min-width: 768px) {
+    #head {
+      background-attachment: fixed; } }
 
 #footer {
-  background-color: #e8e7d2;
-  padding: 50px; }
+  background-color: #024A02;
+  color: white;
+  padding: 20px; }
+  #footer a, #footer a:visited, #footer a:hover {
+    color: white; }
+  #footer .arabic {
+    font-weight: 200;
+    font-style: italic; }
+  #footer #webmaster {
+    font-size: .8em;
+    font-weight: 200; }
 
 strong {
   font-weight: 400; }
@@ -27,34 +44,67 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid;
   padding-bottom: 10px; }
 
-.nav {
-  margin: 0 auto;
-  padding: 0; }
+/* navbar */
+.navbar-default {
+  background-color: #024A02;
+  border-color: transparent; }
 
-.navbar {
-  background-color: #e8e7d2;
-  color: #114e26; }
-
-.navbar-brand {
+/* title */
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:focus {
+  color: white;
   font-family: 'Dancing Script', sans-serif; }
 
+.navbar-default .navbar-brand:hover {
+  background-color: #156C15;
+  color: white; }
+
+/* link */
+.navbar-default .navbar-nav > li > a {
+  color: white; }
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: white;
+  background-color: #156C15; }
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #156C15; }
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: white;
+  background-color: #156C15; }
+
+/* caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+  border-top-color: #777;
+  border-bottom-color: #777; }
+
 a {
-  color: #114e26;
+  color: #4D0225;
   text-decoration: none;
   font-weight: 400; }
 
 a:visited {
-  color: #253c34; }
+  color: #D792B3; }
 
 .holder {
-  padding: 20px; }
+  padding: 70px 0 70px 0; }
+  @media screen and (min-width: 768px) {
+    .holder {
+      padding-left: 20px; } }
 
 /* events */
 .event-name {
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 700;
   padding-top: 20px;
-  color: #114e26;
+  color: #4D0225;
   display: inline-block; }
 
 .event-name:first-child {
@@ -93,17 +143,17 @@ a:visited {
 
 .discussion-title {
   text-transform: uppercase;
-  font-weight: 400;
-  color: #114e26;
+  font-weight: 700;
+  color: #4D0225;
   display: inline-block; }
 
 .discussion-author {
   font-weight: 400;
-  color: #114e26; }
+  color: #4D0225; }
 
 .discussion-date {
   font-weight: 400;
-  color: #114e26; }
+  color: #4D0225; }
 
 .discussion-content {
   font-size: 0.8em;
@@ -135,8 +185,8 @@ a:visited {
 
 .comment-author {
   font-weight: 400;
-  color: #114e26; }
+  color: #4D0225; }
 
 .comment-date {
   font-weight: 400;
-  color: #114e26; }
+  color: #4D0225; }
