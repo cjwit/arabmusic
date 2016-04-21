@@ -23,6 +23,9 @@ body {
     #head {
       background-attachment: fixed; } }
 
+#addEventForm {
+  padding-top: 70px; }
+
 #footer {
   background-color: #024A02;
   color: white;
@@ -110,6 +113,9 @@ a:visited {
   color: red; }
 
 /* events */
+.event {
+  padding-bottom: 20px; }
+
 .event-name {
   text-transform: uppercase;
   font-weight: 700;

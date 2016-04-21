@@ -34,14 +34,14 @@ var randomEmail = function() {
 
 // build events list
 var events = [];
+// EVENTS WILL ALSO NEED OWNERS
 for (var i = 0; i < 10; i++) {
     var event =
         {
             name: eventNames[Math.floor(Math.random() * eventNames.length)],
             place: locations[Math.floor(Math.random() * locations.length)],
             description: descriptions[Math.floor(Math.random() * descriptions.length)] + fillerText,
-            date: dateMaker(),
-            contact: randomEmail()
+            date: dateMaker()
         }
     events.push(event);
 }

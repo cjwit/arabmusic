@@ -10,7 +10,7 @@ module.exports = React.createClass({
     render: function() {
         var event = this.props.info;
         return (
-            <div>
+            <div className = 'event'>
                 <span className = 'event-name'>
                     { event.name }:&nbsp;
                 </span>
@@ -29,8 +29,6 @@ module.exports = React.createClass({
                 <div className = 'event-description'>
                     { event.description }
                 </div>
-
-                { event.contact ? <span className = 'event-contact'>For more information: { event.contact }</span> : null }
             </div>
             )
     }
