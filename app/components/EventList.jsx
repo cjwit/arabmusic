@@ -7,12 +7,10 @@ module.exports = React.createClass({
         this.props.events.map(function (event, index) {
             eventList.push(<Event info = { event } key = { "event" + index } />)
         });
-
         return (
-            <div className = 'holder'>
-                <h1>Upcoming Arabic Music Events</h1>
+            <div>
                 { eventList }
             </div>
-            )
+        )
     }
 })

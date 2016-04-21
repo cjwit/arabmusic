@@ -1,9 +1,15 @@
 var React = require('react');
 var About = require('./About.jsx');
-var UpcomingEvents = require('./UpcomingEvents.jsx');
-var RecentDiscussions = require('./RecentDiscussions.jsx');
+var EventList = require('./EventList.jsx');
+var DiscussionList = require('./DiscussionList.jsx');
 
 module.exports = React.createClass({
+    getInitialState: function() {
+        return {
+            loggedIn: this.props.login
+        }
+    },
+
     render: function() {
         return (
             <div>
@@ -15,10 +21,16 @@ module.exports = React.createClass({
                 <div className = 'container'>
                     <div className = 'row'>
                         <div className = 'col-md-6'>
-                            <RecentDiscussions discussions = { this.props.discussions } />
+                            <div className = 'holder'>
+                                <h1>Recent Activity</h1>
+                                <DiscussionList discussions = { this.props.discussions } />
+                            </div>
                         </div>
                         <div className = 'col-md-6'>
-                            <UpcomingEvents events = { this.props.events } />
+                            <div className = 'holder'>
+                                <h1>Upcoming Arabic Music Events</h1>
+                                    <EventList events = { this.props.events } />
+                            </div>
                         </div>
                     </div>
                 </div>
