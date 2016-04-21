@@ -20,9 +20,9 @@ var EventStore = function() {
 
     var deleteEvent = function(event) {
         var _index;
-        var eventID = event.title + event.date.getTime();
+        var eventID = event.name + event.date.getTime();
         events.map(function(e, index) {
-            var eID = e.title + e.date.getTime();
+            var eID = e.name + e.date.getTime();
             if (eID === eventID) {
                 _index = index;
             }
@@ -42,10 +42,10 @@ var EventStore = function() {
         if (split[0] === 'event') {
             switch (split[1]) {
                 case "addEvent":
-                    addEvent(payload.event);
+                    addEvent(payload.object);
                     break;
                 case "deleteEvent":
-                    deleteEvent(payload.event);
+                    deleteEvent(payload.object);
                     break;
             }
         }

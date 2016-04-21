@@ -1,6 +1,7 @@
 var dispatcher = require('../dispatcher');
 
 module.exports = {
+    // called from the EventForm
     addEvent: function(event) {
         dispatcher.dispatch({
             object: event,

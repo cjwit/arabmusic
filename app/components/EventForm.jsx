@@ -6,10 +6,18 @@ module.exports = React.createClass({
         return {
             name: "",
             location: "",
-            date: "",
+            date: new Date(Date.now()),
             description: "",
             owner: ""
         };
+    },
+
+    componentDidMount: function () {
+        $(function () {
+            $('#date').datetimepicker({
+                format: "MM/DD/YYYY"
+            })
+        });
     },
 
     addEvent: function(e) {
@@ -20,8 +28,15 @@ module.exports = React.createClass({
     handleInputChange: function(e) {
         e.preventDefault();
         var name = e.target.name;
+        if (name === 'date') {
+            var value = new Date(e.target.value);
+        } else {
+            var value = e.target.value;
+        }
+
         var state = this.state;
-        state[name] = e.target.value;
+        state[name] = value;
+
         this.setState(state);
     },
 
@@ -31,7 +46,7 @@ module.exports = React.createClass({
 
                 <div className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
-                        <form>
+                        <form onSubmit = { this.addEvent }>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="name">Title of the event</label>
                                 <input type="text" className="form-control"
@@ -43,23 +58,21 @@ module.exports = React.createClass({
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="location">City, State or Province, and Country</label>
-                                <p className="help-block">You can give more specific information in the details below</p>
                                 <input type="text" className="form-control"
                                        id="location"
                                        name = 'location'
                                        placeholder="City"
                                        value = { this.state.location }
                                        onChange = { this.handleInputChange } />
+                                <p className="help-block">Use the description to provide more details</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="date">Date of the event</label>
                                 <input type="text" className="form-control"
                                        id="date"
                                        name = 'date'
-                                       placeholder="Date"
-                                       value = { this.state.date }
                                        onChange = { this.handleInputChange } />
-
+                                <p className="help-block">Use the description to provide times</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="description">Some information, including a contact for anyone who has more questions</label>

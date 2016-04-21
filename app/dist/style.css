@@ -100,6 +100,15 @@ a:visited {
     .holder {
       padding-left: 20px; } }
 
+.delete-button {
+  font-weight: 700;
+  color: #4D0225;
+  padding: 5px; }
+
+.delete-button:hover,
+.delete-button:focus {
+  color: red; }
+
 /* events */
 .event-name {
   text-transform: uppercase;

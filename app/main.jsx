@@ -5,11 +5,17 @@ var Events = require('./components/Events.jsx');
 var eventsStore = require('./stores/eventsStore');
 var Dummy = require('./dummycontent.js');
 
-// Get content
+// Get content from stores
 var events = eventsStore.getEvents().sort(function(a, b) {
     return a.date - b.date;
 });
 
+eventsStore.onChange(function(_events) {
+    events = _events;
+    renderEvents();
+})
+
+// REPLACE: get content from dummy
 var discussions = Dummy.discussions.sort(function(a, b) {
     return b.date - a.date;
 });

@@ -31,8 +31,11 @@ gulp.task('watch-sass', function() {
 gulp.task('copy', ['bundle'], function() {
     return gulp.src(['app/index.html',
                      'app/lib/bootstrap/dist/css/bootstrap.min.css',
-                     'app/lib/bootstrap/js/collapse.js',
+                     'app/lib/bootstrap/dist/js/bootstrap.min.js',
                      'app/lib/jquery/dist/jquery.min.js',
+                     'app/lib/moment/moment.js',
+                     'app/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                     'app/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
                      'app/style.css'])
         .pipe(gulp.dest('app/dist'));
 });
