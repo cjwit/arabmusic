@@ -5,16 +5,14 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Things to do next:
-* Nav bar items pull right on mobile
-* Change active state navbar background color
-* Body padding is too much on mobile
-* Fixed background for About?
 * Write content for About
+* Listing page for discussions, resources
+* Funnel news to SAMR list?
+* Resource page, pages for individual resource collections
+* Add/remove/edit events, discussions, comments, resources
 * Pages for individual events
 * Pages for individual discussions
-* Resource page, pages for individual resource collections
-* Finish footer
-* Add/remove/edit events, discussions, comments, resources
+* Work out tag system (geographic, language groups, academic, topical)
 
 Once the framework is set
 * Set up data flow
