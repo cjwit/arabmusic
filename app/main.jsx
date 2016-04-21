@@ -2,12 +2,14 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Home = require('./components/Home.jsx');
 var Events = require('./components/Events.jsx');
-var Dummy = require('./dummycontent.jsx');
+var eventsStore = require('./stores/eventsStore');
+var Dummy = require('./dummycontent.js');
 
 // Get content
-var events = Dummy.events.sort(function(a, b) {
+var events = eventsStore.getEvents().sort(function(a, b) {
     return a.date - b.date;
 });
+
 var discussions = Dummy.discussions.sort(function(a, b) {
     return b.date - a.date;
 });
