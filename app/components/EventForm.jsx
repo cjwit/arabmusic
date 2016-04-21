@@ -45,7 +45,7 @@ module.exports = React.createClass({
             <div className = 'container'>
 
                 <div className = 'row'>
-                    <div className = 'col-md-8 col-md-offset-2 holder'>
+                    <div className = 'col-md-8 col-md-offset-2'>
                         <form onSubmit = { this.addEvent }>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="name">Title of the event</label>
