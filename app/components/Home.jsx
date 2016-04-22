@@ -11,6 +11,10 @@ module.exports = React.createClass({
     },
 
     render: function() {
+        var events = this.props.events.filter(function(event) {
+            return moment(event.date).isSameOrAfter(new Date(Date.now()));
+        }).splice(0, 5);
+
         return (
             <div>
                 <div id = 'head' className = 'row'>
@@ -29,7 +33,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>Upcoming Arabic Music Events</h1>
-                                    <EventList events = { this.props.events } />
+                                    <EventList events = { events } />
                             </div>
                         </div>
                     </div>

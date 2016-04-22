@@ -12,8 +12,7 @@ var events = eventsStore.getEvents().sort(function(a, b) {
 
 eventsStore.onChange(function(_events) {
     events = _events;
-    console.log(events);
-    renderEvents();
+    renderPage();
 })
 
 // REPLACE: get content from dummy
@@ -26,11 +25,7 @@ var loggedIn = true;
 // set render options
 function renderHome() {
     ReactDOM.render(<Home
-        events = {
-                events.filter(function(event) {
-                    return moment(event.date).isSameOrAfter(new Date(Date.now()));
-                }).splice(0, 5)
-        }
+        events = { events }
         discussions = {
             discussions.splice(0,5)
         }
@@ -47,25 +42,25 @@ $('#login').click(function(e) {
     e.preventDefault()
     loggedIn = !loggedIn;
     if (loggedIn) {
-        $('#login').text('Logged In');
+        $('#login>a').text('Logged In');
     } else {
-        $('#login').text('Logged Out');
+        $('#login>a').text('Logged Out');
     }
-})
-
-$('.navbar-brand').click(function(e) {
-    e.preventDefault()
-    $('.navlink').removeClass('active');
-    renderHome();
 })
 
 $('.navlink').click(function(e) {
     e.preventDefault()
     $('.navlink').removeClass('active');
     $(this).addClass('active');
-    var target = e.target.id;
-    if (target === 'events') return renderEvents();
+    renderPage();
 });
 
+function renderPage() {
+    var active = document.getElementsByClassName('active');
+    var target = active[0].id;
+    if (target === 'home') return renderHome();
+    if (target === 'events') return renderEvents();
+    console.log('page is not set up yet')
+}
 // initial rendering
 renderHome();
