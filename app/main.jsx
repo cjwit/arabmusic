@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Home = require('./components/Home.jsx');
-var Events = require('./components/Events.jsx');
+var Page = require('./components/Page.jsx');
 var eventsStore = require('./stores/eventsStore');
+var pageStore = require('./stores/pageStore');
 var Dummy = require('./dummycontent.js');
 
 // Get content from stores
@@ -15,27 +15,32 @@ eventsStore.onChange(function(_events) {
     renderPage();
 })
 
+var target = pageStore.getTarget();
+pageStore.onChange(function(_target) {
+    target = _target;
+    renderPage();
+})
+
 // REPLACE: get content from dummy
 var discussions = Dummy.discussions.sort(function(a, b) {
     return b.date - a.date;
 });
 
-var loggedIn = true;
+var login = true;
 
-// set render options
-function renderHome() {
-    ReactDOM.render(<Home
-        events = { events }
-        discussions = {
-            discussions.splice(0,5)
-        }
-        login = { loggedIn }
-    />, document.getElementById('container'));
+function renderPage() {
+    var active = document.getElementsByClassName('active') || null;
+    if (active.length > 0) target = active[0].id;
+    console.log('from renderPage():', target)
+    // render, send target
+    ReactDOM.render(<Page events = { events }
+                          discussions = { discussions }
+                          login = { login }
+                          target = { target }
+                          />, document.getElementById('container'));
 }
-
-function renderEvents() {
-    ReactDOM.render(<Events events = { events } login = { loggedIn }/>, document.getElementById('container'));
-}
+// initial rendering
+renderPage();
 
 // Navbar navigations: add links or prevent defaults later
 $('#login').click(function(e) {
@@ -54,13 +59,3 @@ $('.navlink').click(function(e) {
     $(this).addClass('active');
     renderPage();
 });
-
-function renderPage() {
-    var active = document.getElementsByClassName('active');
-    var target = active[0].id;
-    if (target === 'home') return renderHome();
-    if (target === 'events') return renderEvents();
-    console.log('page is not set up yet')
-}
-// initial rendering
-renderHome();
