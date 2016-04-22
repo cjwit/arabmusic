@@ -25,6 +25,7 @@ module.exports = React.createClass({
         })
     },
 
+    /*
     componentDidMount: function() {
         // get info on the form position
         var form = $('#addPostForm'),
@@ -54,6 +55,7 @@ module.exports = React.createClass({
             }
         })
     },
+    */
 
     handleInputChange: function(e) {
         e.preventDefault();

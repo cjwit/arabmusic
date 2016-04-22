@@ -8,6 +8,11 @@ module.exports = React.createClass({
         actions.deletePost(this.props.info)
     },
 
+    editPost: function(e) {
+        e.preventDefault();
+        // actions.editPost(this.props.info)
+    },
+
     render: function() {
         var info = this.props.info;
         var comments = [];
@@ -22,10 +27,14 @@ module.exports = React.createClass({
                 <span className = 'discussion-title'>
                     { info.title }:&nbsp;
                 </span>
-                <span className = 'pull-right text-uppercase delete-button'
-                      onClick = { this.deletePost }>
-                    &times;
-                </span>
+                <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                    <button onClick = { this.editPost } type = 'button' className = 'btn btn-default'>
+                        <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <button onClick = { this.deletePost } type = 'button' className = 'btn btn-default'>
+                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
                 <br />
                 <span className = 'discussion-author'>
                     { info.author },&nbsp;

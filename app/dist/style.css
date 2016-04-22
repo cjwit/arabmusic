@@ -119,11 +119,13 @@ a:visited {
 .delete-button {
   font-weight: 700;
   color: #4D0225;
-  padding: 5px; }
+  padding: 0px 5px 0px 5px;
+  border: 1px solid #4D0225;
+  border-radius: 3px; }
 
 .delete-button:hover,
 .delete-button:focus {
-  color: red; }
+  color: #B65E88; }
 
 /* events */
 .event {

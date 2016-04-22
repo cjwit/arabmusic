@@ -8,21 +8,21 @@ $large: 1200px
 $textlight: white // or #edf9ed
 $text: #001A00 // Darkest green
 
-$green: #318D31;	// Main Primary color */
+$green: #318D31
 $green1: #8DCF8D
 $green2: #5AAF5A
 $green3: #156C15
 $green4: #024A02
 
-$brown: #B06C3E	// Main Secondary color (1) */
+$brown: #B06C3E
 $lightbrown: #FFCEAD
 $color-secondary-1-2: #DA9B70
 $color-secondary-1-3: #88461A
 $darkbrown: #5C2602
 
-$color-secondary-2-0: #933361	// Main Secondary color (2) */
+$red: #933361
 $lightred: #D792B3
-$color-secondary-2-2: #B65E88
+$red2: #B65E88
 $red3: #711541
 $darkred: #4D0225
 
@@ -140,11 +140,13 @@ a:visited
 .delete-button
   font-weight: 700
   color: $darkred
-  padding: 5px
+  padding: 0px 5px 0px 5px
+  border: 1px solid $darkred
+  border-radius: 3px
 
 .delete-button:hover,
 .delete-button:focus
-  color: red
+  color: $red2
 
 /* events */
 .event
