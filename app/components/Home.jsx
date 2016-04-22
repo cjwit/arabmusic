@@ -4,16 +4,13 @@ var EventList = require('./EventList.jsx');
 var DiscussionList = require('./DiscussionList.jsx');
 
 module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-            loggedIn: this.props.login
-        }
-    },
-
     render: function() {
+        var login = this.props.login;
         var events = this.props.events.filter(function(event) {
-            return moment(event.date).isSameOrAfter(new Date(Date.now()));
-        }).splice(0, 5);
+            return moment(event.date)
+
+            //ADD BACK AFTER DEBUG .isSameOrAfter(new Date(Date.now()));
+        // }).splice(0, 5);
 
         return (
             <div>
@@ -27,13 +24,13 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>Recent Activity</h1>
-                                <DiscussionList discussions = { this.props.discussions } />
+                                <DiscussionList discussions = { this.props.discussions } login = { login } />
                             </div>
                         </div>
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>Upcoming Arabic Music Events</h1>
-                                    <EventList events = { events } />
+                                    <EventList events = { events } login = { login } />
                             </div>
                         </div>
                     </div>
