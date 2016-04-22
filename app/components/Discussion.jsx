@@ -1,7 +1,13 @@
 var React = require('react');
 var Comment = require('./Comment.jsx');
+var actions = require('../actions/PostActions');
 
 module.exports = React.createClass({
+    deletePost: function(e) {
+        e.preventDefault();
+        actions.deletePost(this.props.info)
+    },
+
     render: function() {
         var info = this.props.info;
         var comments = [];
@@ -15,7 +21,12 @@ module.exports = React.createClass({
             <div className = 'discussion'>
                 <span className = 'discussion-title'>
                     { info.title }:&nbsp;
-                </span><br />
+                </span>
+                <span className = 'pull-right text-uppercase delete-button'
+                      onClick = { this.deletePost }>
+                    &times;
+                </span>
+                <br />
                 <span className = 'discussion-author'>
                     { info.author },&nbsp;
                 </span>
