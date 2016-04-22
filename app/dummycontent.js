@@ -48,7 +48,7 @@ for (var i = 0; i < 10; i++) {
 
 // build discussions list
 var discussions = [];
-for (i = 0; i < Math.floor(Math.random() * 8) + 1; i++) {
+for (i = 0; i < Math.floor(Math.random() * 8) + 5; i++) {
     var discussion = {
         title: discussionTitles[Math.floor(Math.random() * discussionTitles.length)],
         author: randomName(),
