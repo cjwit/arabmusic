@@ -7,5 +7,13 @@ module.exports = {
             object: target,
             type: "page:changePage"
         });
+    },
+
+    // receiving correct object from Discussions
+    openDiscussion: function(discussionObject) {
+        dispatcher.dispatch({
+            object: discussionObject,
+            type: 'page:openDiscussion'
+        })
     }
 }

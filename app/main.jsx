@@ -18,13 +18,13 @@ eventsStore.onChange(function(_events) {
 
 var target = pageStore.getTarget();
 pageStore.onChange(function(_target) {
+    console.log('from pageStore.onChange in main, _target: ', _target)
     target = _target;
     renderPage();
+    console.log('from pageStore.onChange in main, target page: ', target.page, 'target object', target.content)
 })
 
-// REPLACE: get content from dummy
 var discussions = postsStore.getPosts();
-
 postsStore.onChange(function(_discussions) {
     discussions = _discussions;
     renderPage();
@@ -35,6 +35,7 @@ var login = true;
 function renderPage() {
     var active = document.getElementsByClassName('active') || null;
     if (active.length > 0) target = active[0].id;
+    console.log('from main, target type: ', target.page, 'target content ', target.content)
     // render, send target
     ReactDOM.render(<Page events = { events }
                           discussions = { discussions }

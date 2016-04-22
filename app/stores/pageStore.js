@@ -2,7 +2,10 @@ var dispatcher = require('../dispatcher.js');
 
 var PageStore = function() {
     var listeners = [];             // collection of functions
-    var target = 'home';
+    var target = {
+        page: 'home',
+        content: null
+    };
 
     var getTarget = function() {
         return target;
@@ -13,13 +16,23 @@ var PageStore = function() {
     }
 
     var changePage = function(_target) {
-        target = _target;
+        target.page = _target;
+        target.content = null;
         triggerListeners();
     }
 
+    // recieving the correct object from PageActions
+    var openDiscussion = function(object) {
+        target.page = 'openDiscussion';
+        target.content = object;
+        console.log('from pageStore, page: ', target.page, 'content: ', target.content)
+        triggerListeners();
+    }
+
+    // SOMETHING HERE FIXED IT BEFORE...
     var triggerListeners = function() {
         listeners.forEach(function(listener) {
-            listener(events);
+            listener(target);
         })
     }
 
@@ -29,6 +42,9 @@ var PageStore = function() {
             switch (split[1]) {
                 case "changePage":
                     changePage(payload.object);
+                    break;
+                case "openDiscussion":
+                    openDiscussion(payload.object);
                     break;
             }
         }

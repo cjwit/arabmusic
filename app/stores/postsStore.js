@@ -20,9 +20,9 @@ var PostStore = function() {
 
     var deletePost = function(post) {
         var _index;
-        var postID = post.title + post.date.getTime();
+        var postID = post.author + post.date.getTime();
         posts.map(function(p, index) {
-            var pID = p.title + p.date.getTime();
+            var pID = p.author + p.date.getTime();
             if (pID === postID) {
                 _index = index;
             }
