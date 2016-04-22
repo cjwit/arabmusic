@@ -12,6 +12,7 @@ var events = eventsStore.getEvents().sort(function(a, b) {
 
 eventsStore.onChange(function(_events) {
     events = _events;
+    console.log(events);
     renderEvents();
 })
 
