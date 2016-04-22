@@ -72,6 +72,17 @@ h1, h2, h3, h4, h5, h6
   border-bottom: 1px solid
   padding-bottom: 10px
 
+.spacer
+  @media screen and (max-width: $medium)
+    display: none
+  @media screen and (min-width: $medium)
+    border-bottom: none
+
+.sticky
+  @media screen and (min-width: $medium)
+    position: fixed
+    top: 100px
+
 /* navbar */
 .navbar-default
   background-color: $green4
@@ -138,7 +149,7 @@ a:visited
 /* events */
 .event
   padding-bottom: 20px
-  
+
 .event-name
   text-transform: uppercase
   font-weight: 700

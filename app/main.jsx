@@ -35,7 +35,6 @@ var login = true;
 function renderPage() {
     var active = document.getElementsByClassName('active') || null;
     if (active.length > 0) target = active[0].id;
-    console.log('from renderPage():', target)
     // render, send target
     ReactDOM.render(<Page events = { events }
                           discussions = { discussions }

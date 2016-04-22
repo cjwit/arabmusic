@@ -25,6 +25,36 @@ module.exports = React.createClass({
         })
     },
 
+    componentDidMount: function() {
+        // get info on the form position
+        var form = $('#addPostForm'),
+            formContainer = $('#addPostContainer'),
+            footer = $('#footer'),
+            startPosition = form.offset().top,
+            footerHeight = footer.offset().top,
+            width = formContainer.width(),
+            height = form.height();
+
+        $(window).resize(function () {
+            width = formContainer.width(),
+            footerHeight = footer.offset().top;
+        })
+
+        // at bottom of the page, form goes back to the top!
+        $(window).on('scroll', function() {
+            var scrollPosition = $(window).scrollTop(),
+                atTop = startPosition - 100 > scrollPosition,
+                atBottom = scrollPosition + height + 150 > footerHeight;
+
+            if (!atTop && !atBottom) {
+                form.addClass('sticky')
+                form.css({'width': width })
+            } else {
+                form.removeClass('sticky')
+            }
+        })
+    },
+
     handleInputChange: function(e) {
         e.preventDefault();
         var name = e.target.name;
@@ -36,9 +66,8 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            <div id = 'addPostContainer'>
-                <div id = 'fixedDiv'>
-                <form onSubmit = { this.addPost } id = 'addPostForm'>
+            <div id = 'addPostForm'>
+                <form onSubmit = { this.addPost } >
                     <div className="form-group">
                         <label className = 'control-label' HTMLfor="title">Title or Subject</label>
                         <input type="text" className="form-control"
@@ -69,7 +98,6 @@ module.exports = React.createClass({
                     </div>
                     <button type="submit" className="btn btn-default">Submit</button>
                 </form>
-            </div>
             </div>
         )
     }

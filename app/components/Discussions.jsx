@@ -24,7 +24,11 @@ module.exports = React.createClass({
                 <div className = 'container'>
                     <div className = 'row holder'>
                         <div className = 'col-md-4'>
-                            <PostForm login = { this.props.login } />
+                            <h1 className = 'spacer'>&nbsp;</h1>
+                            <div id = "addPostContainer">
+                                <PostForm login = { this.props.login } />
+                            </div>
+
                         </div>
                         <div className = 'col-md-8'>
                             <h1>Recent Posts</h1>

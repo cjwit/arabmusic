@@ -48,6 +48,19 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid;
   padding-bottom: 10px; }
 
+@media screen and (max-width: 992px) {
+  .spacer {
+    display: none; } }
+
+@media screen and (min-width: 992px) {
+  .spacer {
+    border-bottom: none; } }
+
+@media screen and (min-width: 992px) {
+  .sticky {
+    position: fixed;
+    top: 100px; } }
+
 /* navbar */
 .navbar-default {
   background-color: #024A02;

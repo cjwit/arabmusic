@@ -11,7 +11,6 @@ module.exports = React.createClass({
         var login = this.props.login;
         var events = this.props.events;
         var discussions = this.props.discussions;
-        console.log(this.props.target);
         switch (this.props.target) {
             case "home":
                 body = <Home events = { events } discussions = { discussions } login = { login } />;
