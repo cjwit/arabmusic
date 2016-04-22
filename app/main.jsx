@@ -16,7 +16,9 @@ eventsStore.onChange(function(_events) {
 })
 
 // REPLACE: get content from dummy
-var discussions = Dummy.discussions
+var discussions = Dummy.discussions.sort(function(a, b) {
+    return b.date - a.date;
+});
 
 var loggedIn = true;
 
