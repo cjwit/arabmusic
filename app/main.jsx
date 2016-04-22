@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Page = require('./components/Page.jsx');
 var eventsStore = require('./stores/eventsStore');
 var pageStore = require('./stores/pageStore');
+var postsStore = require('./stores/postsStore');
 var Dummy = require('./dummycontent.js');
 
 // Get content from stores
@@ -22,9 +23,14 @@ pageStore.onChange(function(_target) {
 })
 
 // REPLACE: get content from dummy
-var discussions = Dummy.discussions.sort(function(a, b) {
+var discussions = postsStore.getPosts().sort(function(a, b) {
     return b.date - a.date;
 });
+
+postsStore.onChange(function(_discussions) {
+    discussions = _discussions;
+    renderPage();
+})
 
 var login = true;
 

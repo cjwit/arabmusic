@@ -8,7 +8,7 @@ module.exports = React.createClass({
             location: "",
             date: new Date(Date.now()),
             description: "",
-            owner: ""
+            owner: ""           // get from login
         };
     },
 
@@ -23,6 +23,12 @@ module.exports = React.createClass({
     addEvent: function(e) {
         e.preventDefault();
         actions.addEvent(this.state);
+        this.setState({
+            name: "",
+            location: "",
+            date: new Date(Date.now()),
+            description: ""
+        })
     },
 
     handleInputChange: function(e) {
