@@ -7,10 +7,10 @@ module.exports = React.createClass({
     render: function() {
         var login = this.props.login;
         var events = this.props.events.filter(function(event) {
-            return moment(event.date)
-
-            //ADD BACK AFTER DEBUG .isSameOrAfter(new Date(Date.now()));
-        // }).splice(0, 5);
+            return moment(event.date).isSameOrAfter(new Date(Date.now()));
+        }).sort(function(a, b) {
+            return a.date - b.date;
+        }).splice(0, 5);
 
         return (
             <div>
@@ -30,7 +30,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>Upcoming Arabic Music Events</h1>
-                                    <EventList events = { events } login = { login } />
+                                <EventList events = { events } login = { login } />
                             </div>
                         </div>
                     </div>
