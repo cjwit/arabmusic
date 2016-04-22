@@ -20,9 +20,13 @@ module.exports = React.createClass({
         var today = new Date(Date.now());
         var upcoming = events.filter(function(event) {
             return event.date > today;
+        }).sort(function(a, b) {
+            return a.date - b.date;
         })
         var past = events.filter(function(event) {
             return event.date < today;
+        }).sort(function(a, b) {
+            return b.date - a.date;
         })
         return (
             <div>

@@ -71,7 +71,7 @@ module.exports = React.createClass({
                                 <input type="text" className="form-control"
                                        id="date"
                                        name = 'date'
-                                       onChange = { this.handleInputChange } />
+                                       onBlur = { this.handleInputChange } />
                                 <p className="help-block">Use the description to provide times</p>
                             </div>
                             <div className="form-group">

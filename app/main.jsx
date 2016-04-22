@@ -27,7 +27,7 @@ function renderHome() {
     ReactDOM.render(<Home
         events = {
                 events.filter(function(event) {
-                    return event.date > new Date(Date.now());
+                    return moment(event.date).isSameOrAfter(new Date(Date.now()));
                 }).splice(0, 5)
         }
         discussions = {
