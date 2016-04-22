@@ -19,6 +19,9 @@ module.exports = React.createClass({
             case "events":
                 body = <Events events = { events } login = { login }/>;
                 break;
+            case "discussions":
+                body = <Discussions discussions = { discussions } login = { login }/>;
+                break;
             default:
                 console.log('page is not set up yet')
 
