@@ -23,9 +23,7 @@ pageStore.onChange(function(_target) {
 })
 
 // REPLACE: get content from dummy
-var discussions = postsStore.getPosts().sort(function(a, b) {
-    return b.date - a.date;
-});
+var discussions = postsStore.getPosts();
 
 postsStore.onChange(function(_discussions) {
     discussions = _discussions;
