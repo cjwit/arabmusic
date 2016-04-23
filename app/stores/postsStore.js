@@ -40,12 +40,6 @@ var PostStore = function() {
             var id = post.author + post.date.getTime()
             if (discussionID === id) {
                 post.comments.push(comment);
-
-                // working here
-                if (comment.author === "Tester's Big Brother") {
-                    console.log('from postsStore.addComment', comment);
-                }
-
             }
         })
         triggerListeners();

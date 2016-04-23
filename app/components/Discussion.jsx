@@ -32,9 +32,6 @@ module.exports = React.createClass({
             return b.date.getTime() - a.date.getTime();
         }).map(function(comment, index) {
             comments.push(<Comment info = { comment } key = { index } />)
-            if (comment.author === "Tester's Big Brother") {
-                console.log('from Discussion', comment);
-            }
         });
 
         return (
