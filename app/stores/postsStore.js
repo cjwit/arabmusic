@@ -35,7 +35,6 @@ var PostStore = function() {
     var addComment = function(commentObject) {
         var discussionID = commentObject.discussionID;
         var comment = commentObject.comment;
-        console.log(discussionID, comment)
         posts.forEach(function(post) {
             var id = post.author + post.date.getTime()
             if (discussionID === id) {
@@ -43,17 +42,6 @@ var PostStore = function() {
             }
         })
         triggerListeners();
-
-        // test again
-        posts.forEach(function(post) {
-            post.comments.forEach(function(comment) {
-                // working here
-                if (comment.author === "Tester's Big Brother") {
-                    console.log('from postsStore.addComment, after triggerListeners', comment);
-                }
-            })
-        })
-
     }
 
     var triggerListeners = function() {

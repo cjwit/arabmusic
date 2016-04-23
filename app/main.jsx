@@ -25,16 +25,6 @@ pageStore.onChange(function(_target) {
 var discussions = postsStore.getPosts();
 postsStore.onChange(function(_discussions) {
     discussions = _discussions;
-
-    // works here
-    discussions.forEach(function(post) {
-        post.comments.forEach(function(comment) {
-            if (comment.author === "Tester's Big Brother") {
-                console.log('from main', comment);
-            }
-        })
-    })
-
     renderPage();
 })
 

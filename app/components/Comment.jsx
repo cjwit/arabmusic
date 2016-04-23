@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
         var info = this.props.info;
-        console.log(info.content)
+        if (info.author === "Tester's Big Brother") { console.log('   From Comment:', info.content) }
         return (
             <div className = 'comment'>
                 <span className = 'comment-author'>
