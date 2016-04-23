@@ -7,7 +7,6 @@ module.exports = React.createClass({
             page: e.target.parentElement.id,
             content: null
         }
-        console.log('from Navbar, sending newTarget to actions, newTarget.page: ', newTarget.page, 'content: ', newTarget.content)
         actions.changePage(newTarget);
     },
 

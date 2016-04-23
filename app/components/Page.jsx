@@ -12,7 +12,6 @@ module.exports = React.createClass({
         var login = this.props.login;
         var events = this.props.events;
         var discussions = this.props.discussions;
-        console.log('from Page: target.page ', this.props.target.page, 'target.content ', this.props.target.content)
         switch (this.props.target.page) {
             case "home":
                 body = <Home events = { events } discussions = { discussions } login = { login } />;
@@ -24,7 +23,6 @@ module.exports = React.createClass({
                 body = <Discussions discussions = { discussions } login = { login }/>;
                 break;
             case "openDiscussion":
-                console.log('from Page: target.content ', this.props.target.content)
                 body = <DiscussionPage info = { this.props.target.content } login = { login }/>;
                 break;
             default:
