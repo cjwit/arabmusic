@@ -1,6 +1,7 @@
 var React = require('react');
 var Comment = require('./Comment.jsx');
-var actions = require('../actions/PageActions');
+var pageActions = require('../actions/PageActions');
+var postActions = require('../actions/PostActions');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -11,17 +12,17 @@ module.exports = React.createClass({
 
     deletePost: function(e) {
         e.preventDefault();
-        actions.deletePost(this.props.info)
+        postActions.deletePost(this.props.info)
     },
 
     editPost: function(e) {
         e.preventDefault();
-        // actions.editPost(this.props.info)
+        // postActions.editPost(this.props.info)
     },
 
     openDiscussion: function(e) {
         e.preventDefault();
-        actions.openDiscussion(this.props.info)
+        pageActions.openDiscussion(this.props.info)
     },
 
     render: function() {
@@ -34,8 +35,8 @@ module.exports = React.createClass({
         });
 
         return (
-            <div className = 'discussion' id = { this.state.id } onClick = { this.openDiscussion }>
-                <span className = 'discussion-title'>
+            <div className = 'discussion' id = { this.state.id }>
+                <span className = 'discussion-title' onClick = { this.openDiscussion }>
                     { info.title }:&nbsp;
                 </span>
                 <div className = 'btn-group pull-right' role = 'group' aria-label='...'>

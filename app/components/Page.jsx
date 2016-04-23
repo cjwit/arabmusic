@@ -12,6 +12,7 @@ module.exports = React.createClass({
         var login = this.props.login;
         var events = this.props.events;
         var discussions = this.props.discussions;
+        var target = this.props.target;
         switch (this.props.target.page) {
             case "home":
                 body = <Home events = { events } discussions = { discussions } login = { login } />;
@@ -23,7 +24,8 @@ module.exports = React.createClass({
                 body = <Discussions discussions = { discussions } login = { login }/>;
                 break;
             case "openDiscussion":
-                body = <DiscussionPage info = { this.props.target.content } login = { login }/>;
+                body = <DiscussionPage info = { target.content } login = { login }/>;
+                target.page = 'discussions';
                 break;
             default:
                 console.log('page is not set up yet')
@@ -33,7 +35,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <div>
-                    <Navbar active = { this.props.target } />
+                    <Navbar active = { target.page } />
                 </div>
                 <div>
                     { body }
