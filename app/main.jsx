@@ -33,8 +33,6 @@ postsStore.onChange(function(_discussions) {
 var login = true;
 
 function renderPage() {
-//    var active = document.getElementsByClassName('active') || null;
-//    if (active.length > 0) target.page = active[0].id;
     console.log('from main renderPage, target page: ', target.page, 'target content ', target.content)
     // render, send target
     ReactDOM.render(<Page events = { events }
