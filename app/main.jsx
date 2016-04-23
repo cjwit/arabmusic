@@ -25,12 +25,33 @@ pageStore.onChange(function(_target) {
 var discussions = postsStore.getPosts();
 postsStore.onChange(function(_discussions) {
     discussions = _discussions;
+
+    // works here
+    discussions.forEach(function(post) {
+        post.comments.forEach(function(comment) {
+            if (comment.author === "Tester's Big Brother") {
+                console.log('from main')
+                console.log(comment.content);
+            }
+        })
+    })
+
     renderPage();
 })
 
 var login = true;
 
 function renderPage() {
+    // works here
+    discussions.forEach(function(post) {
+        post.comments.forEach(function(comment) {
+            if (comment.author === "Tester's Big Brother") {
+                console.log('from renderPage() on main')
+                console.log(comment.content);
+            }
+        })
+    })
+
     // render, send target
     ReactDOM.render(<Page events = { events }
                           discussions = { discussions }
@@ -38,6 +59,7 @@ function renderPage() {
                           target = { target }
                           />, document.getElementById('container'));
 }
+
 // initial rendering
 renderPage();
 

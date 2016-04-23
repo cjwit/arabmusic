@@ -12,6 +12,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
+        var id = info.author + info.date.getTime()
 
         return (
             <div>
@@ -31,7 +32,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-4'>
                             <h1 className = 'spacer'>&nbsp;</h1>
                             <div id = "addCommentContainer">
-                                <CommentForm login = { this.props.login } />
+                                <CommentForm id = { id } login = { this.props.login } />
                             </div>
 
                         </div>

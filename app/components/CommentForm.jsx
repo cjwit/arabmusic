@@ -4,63 +4,34 @@ var actions = require('../actions/PostActions');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            author: "Tester's Big Brother", // Grab from username
-            date: new Date(Date.now()),
-            content: ""
+            discussionID: this.props.id,
+            comment: {
+                author: "Tester's Big Brother", // Grab from username
+                date: new Date(Date.now()),
+                content: ""
+            }
         };
     },
 
     addComment: function(e) {
         e.preventDefault();
-        this.setState({
-            date: new Date(Date.now())
-        })
+        comment = this.state.comment
+        comment.date = new Date(Date.now());
+        this.setState({ comment: comment })
         actions.addComment(this.state);
-        this.setState({
-            date: new Date(Date.now()),
-            content: ""
-        })
+
+        // reset form
+        comment.content = ''
+        this.setState({ comment: comment })
     },
-
-    /*
-    componentDidMount: function() {
-        // get info on the form position
-        var form = $('#addPostForm'),
-            formContainer = $('#addPostContainer'),
-            footer = $('#footer'),
-            startPosition = form.offset().top,
-            footerHeight = footer.offset().top,
-            width = formContainer.width(),
-            height = form.height();
-
-        $(window).resize(function () {
-            width = formContainer.width(),
-            footerHeight = footer.offset().top;
-        })
-
-        // at bottom of the page, form goes back to the top!
-        $(window).on('scroll', function() {
-            var scrollPosition = $(window).scrollTop(),
-                atTop = startPosition - 100 > scrollPosition,
-                atBottom = scrollPosition + height + 150 > footerHeight;
-
-            if (!atTop && !atBottom) {
-                form.addClass('sticky')
-                form.css({'width': width })
-            } else {
-                form.removeClass('sticky')
-            }
-        })
-    },
-    */
 
     handleInputChange: function(e) {
         e.preventDefault();
         var name = e.target.name;
         var value = e.target.value;
-        var state = this.state;
-        state[name] = value;
-        this.setState(state);
+        var comment = this.state.comment;
+        comment[name] = value;
+        this.setState({comment: comment});
     },
 
     render: function() {
@@ -73,7 +44,7 @@ module.exports = React.createClass({
                                id="author"
                                name = 'author'
                                placeholder="Author"
-                               value = { this.state.author }
+                               value = { this.state.comment.author }
                                onChange = { this.handleInputChange }
                                disabled />
                         <p className="help-block">Log out and back in again to change authorship.</p>
@@ -83,7 +54,7 @@ module.exports = React.createClass({
                                   id="content"
                                   name = 'content'
                                   placeholder="You can change the size of this box by dragging the lower-right corner."
-                                  value = { this.state.content }
+                                  value = { this.state.comment.content }
                                   onChange = { this.handleInputChange } />
                     </div>
                     <button type="submit" className="btn btn-default">Submit</button>

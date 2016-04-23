@@ -12,6 +12,17 @@ module.exports = React.createClass({
         var login = this.props.login;
         var events = this.props.events;
         var discussions = this.props.discussions;
+
+        // LOSING CONTENT HERE! 
+        this.props.discussions.forEach(function(post) {
+            post.comments.forEach(function(comment) {
+                if (comment.author === "Tester's Big Brother") {
+                    console.log('from Page')
+                    console.log(comment.content);
+                }
+            })
+        })
+
         var target = this.props.target;
         switch (this.props.target.page) {
             case "home":
@@ -28,7 +39,7 @@ module.exports = React.createClass({
                 target.page = 'discussions';
                 break;
             default:
-                console.log('page is not set up yet')
+                body = <div className = 'holder'>This page is not yet set up.</div>
 
         }
 

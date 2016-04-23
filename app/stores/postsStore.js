@@ -31,6 +31,39 @@ var PostStore = function() {
         triggerListeners();
     }
 
+    // object: { discussionID, commentInfo }
+    var addComment = function(commentObject) {
+        var discussionID = commentObject.discussionID;
+        var comment = commentObject.comment;
+        console.log(discussionID, comment)
+        posts.forEach(function(post) {
+            var id = post.author + post.date.getTime()
+            if (discussionID === id) {
+                post.comments.push(comment);
+
+                // working here
+                if (comment.author === "Tester's Big Brother") {
+                    console.log('from postsStore.addComment')
+                    console.log(comment.content);
+                }
+
+            }
+        })
+        triggerListeners();
+
+        // test again
+        posts.forEach(function(post) {
+            post.comments.forEach(function(comment) {
+                // working here
+                if (comment.author === "Tester's Big Brother") {
+                    console.log('from postsStore.addComment, after triggerListeners')
+                    console.log(comment.content);
+                }
+            })
+        })
+
+    }
+
     var triggerListeners = function() {
         listeners.forEach(function(listener) {
             listener(posts);
@@ -46,6 +79,9 @@ var PostStore = function() {
                     break;
                 case "deletePost":
                     deletePost(payload.object);
+                    break;
+                case "addComment":
+                    addComment(payload.object);
                     break;
             }
         }

@@ -13,7 +13,6 @@ module.exports = React.createClass({
 
     render: function() {
         var active = this.props.active;
-        console.log(active);
         return (
             <div className="navbar navbar-fixed-top navbar-default">
                 <div className="container-fluid">

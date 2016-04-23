@@ -3,6 +3,11 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
         var info = this.props.info;
+        if (info.author === "Tester's Big Brother") {
+            console.log('from Comment')
+            console.log(info.content);
+        }
+
 
         return (
             <div className = 'comment'>

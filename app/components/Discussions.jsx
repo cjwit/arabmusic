@@ -32,7 +32,7 @@ module.exports = React.createClass({
                         </div>
                         <div className = 'col-md-8'>
                             <h1>Recent Posts</h1>
-                            <DiscussionList discussions = { this.props.discussions } />
+                            <DiscussionList discussions = { discussions } />
                         </div>
                     </div>
                 </div>
