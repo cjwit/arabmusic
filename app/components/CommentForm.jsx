@@ -68,7 +68,7 @@ module.exports = React.createClass({
             <div id = 'addCommentForm'>
                 <form onSubmit = { this.addComment } >
                     <div className="form-group">
-                        <label className = 'control-label' HTMLfor="author">Author</label>
+                        <label className = 'control-label' HTMLfor="author">Comment</label>
                         <input type="text" className="form-control"
                                id="author"
                                name = 'author'

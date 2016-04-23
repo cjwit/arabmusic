@@ -16,8 +16,9 @@ var PageStore = function() {
     }
 
     var changePage = function(_target) {
-        target.page = _target;
+        target.page = _target.page;
         target.content = null;
+        console.log('from pageStore.changePage, page: ', target.page, 'content: ', target.content)
         triggerListeners();
     }
 
@@ -25,7 +26,7 @@ var PageStore = function() {
     var openDiscussion = function(object) {
         target.page = 'openDiscussion';
         target.content = object;
-        console.log('from pageStore, page: ', target.page, 'content: ', target.content)
+        console.log('from pageStore.openDiscussion, page: ', target.page, 'content: ', target.content)
         triggerListeners();
     }
 

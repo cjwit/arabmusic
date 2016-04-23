@@ -3,7 +3,11 @@ var actions = require('../actions/PageActions.js');
 
 module.exports = React.createClass({
     onClick: function(e) {
-        var newTarget = e.target.parentElement.id;
+        var newTarget = {
+            page: e.target.parentElement.id,
+            content: null
+        }
+        console.log('from Navbar, sending newTarget to actions, newTarget.page: ', newTarget.page, 'content: ', newTarget.content)
         actions.changePage(newTarget);
     },
 
