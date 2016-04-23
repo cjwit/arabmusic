@@ -30,8 +30,7 @@ postsStore.onChange(function(_discussions) {
     discussions.forEach(function(post) {
         post.comments.forEach(function(comment) {
             if (comment.author === "Tester's Big Brother") {
-                console.log('from main')
-                console.log(comment.content);
+                console.log('from main', comment);
             }
         })
     })
@@ -46,8 +45,7 @@ function renderPage() {
     discussions.forEach(function(post) {
         post.comments.forEach(function(comment) {
             if (comment.author === "Tester's Big Brother") {
-                console.log('from renderPage() on main')
-                console.log(comment.content);
+                console.log('from renderPage() on main', comment);
             }
         })
     })

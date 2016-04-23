@@ -43,8 +43,7 @@ var PostStore = function() {
 
                 // working here
                 if (comment.author === "Tester's Big Brother") {
-                    console.log('from postsStore.addComment')
-                    console.log(comment.content);
+                    console.log('from postsStore.addComment', comment);
                 }
 
             }
@@ -56,8 +55,7 @@ var PostStore = function() {
             post.comments.forEach(function(comment) {
                 // working here
                 if (comment.author === "Tester's Big Brother") {
-                    console.log('from postsStore.addComment, after triggerListeners')
-                    console.log(comment.content);
+                    console.log('from postsStore.addComment, after triggerListeners', comment);
                 }
             })
         })

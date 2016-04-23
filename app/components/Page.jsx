@@ -13,12 +13,11 @@ module.exports = React.createClass({
         var events = this.props.events;
         var discussions = this.props.discussions;
 
-        // LOSING CONTENT HERE! 
+        // LOSING CONTENT HERE!
         this.props.discussions.forEach(function(post) {
             post.comments.forEach(function(comment) {
                 if (comment.author === "Tester's Big Brother") {
-                    console.log('from Page')
-                    console.log(comment.content);
+                    console.log('from Page', comment);
                 }
             })
         })

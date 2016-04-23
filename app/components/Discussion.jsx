@@ -29,12 +29,11 @@ module.exports = React.createClass({
         var info = this.props.info;
         var comments = [];
         info.comments.sort(function(a, b) {
-            return b.date - a.date;
+            return b.date.getTime() - a.date.getTime();
         }).map(function(comment, index) {
             comments.push(<Comment info = { comment } key = { index } />)
             if (comment.author === "Tester's Big Brother") {
-                console.log('from Discussion')
-                console.log(comment.content);
+                console.log('from Discussion', comment);
             }
         });
 

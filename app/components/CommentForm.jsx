@@ -1,5 +1,6 @@
 var React = require('react');
-var actions = require('../actions/PostActions');
+var postActions = require('../actions/PostActions');
+var pageActions = require('../actions/PageActions');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -18,7 +19,8 @@ module.exports = React.createClass({
         comment = this.state.comment
         comment.date = new Date(Date.now());
         this.setState({ comment: comment })
-        actions.addComment(this.state);
+        postActions.addComment(this.state);
+        pageActions.openDiscussion(this.props.info);
 
         // reset form
         comment.content = ''

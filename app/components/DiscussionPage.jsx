@@ -32,7 +32,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-4'>
                             <h1 className = 'spacer'>&nbsp;</h1>
                             <div id = "addCommentContainer">
-                                <CommentForm id = { id } login = { this.props.login } />
+                                <CommentForm id = { id } info = { info } login = { this.props.login } />
                             </div>
 
                         </div>
