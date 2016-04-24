@@ -39,3 +39,6 @@ jspm_packages
 
 # DB info
 config.js
+
+# Bower library
+app/lib
