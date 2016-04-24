@@ -1,5 +1,7 @@
 var React = require('react');
 var Event = require('./Event.jsx');
+var Navbar = require('./Navbar.jsx');
+var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
     getInitialState: function() {

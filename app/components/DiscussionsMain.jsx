@@ -1,6 +1,8 @@
 var React = require('react');
 var DiscussionList = require('./DiscussionList.jsx');
 var PostForm = require('./PostForm.jsx');
+var Navbar = require('./Navbar.jsx');
+var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -15,6 +17,7 @@ module.exports = React.createClass({
 
         return (
             <div>
+                <Navbar active = 'discussions' />
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
                         <h1>Questions and Answers</h1>
@@ -37,7 +40,7 @@ module.exports = React.createClass({
                         </div>
                     </div>
                 </div>
-
+                <Footer />
             </div>
         )
     }

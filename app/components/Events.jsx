@@ -1,6 +1,8 @@
 var React = require('react');
 var EventList = require('./EventList.jsx');
 var EventForm = require('./EventForm.jsx');
+var Navbar = require('./Navbar.jsx');
+var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -30,6 +32,7 @@ module.exports = React.createClass({
         })
         return (
             <div>
+                <Navbar active = 'events' />
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
                         <h1>Arab Music Events</h1>
@@ -66,7 +69,7 @@ module.exports = React.createClass({
                         </div>
                     </div>
                 </div>
-
+                <Footer />
             </div>
         )
     }
