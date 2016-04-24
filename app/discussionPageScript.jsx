@@ -23,14 +23,3 @@ function render() {
 
 // initial rendering
 render();
-
-// Navbar navigations: add links or prevent defaults later
-$('#login').click(function(e) {
-    e.preventDefault()
-    loggedIn = !loggedIn;
-    if (loggedIn) {
-        $('#login>a').text('Logged In');
-    } else {
-        $('#login>a').text('Logged Out');
-    }
-})

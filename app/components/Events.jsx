@@ -8,7 +8,7 @@ module.exports = React.createClass({
     getInitialState: function() {
         return {
             showForm: false,
-            loggedIn: this.props.login
+            login: this.props.login
         };
     },
 
@@ -32,7 +32,7 @@ module.exports = React.createClass({
         })
         return (
             <div>
-                <Navbar active = 'events' />
+                <Navbar active = 'events' login = { this.state.login }/>
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
                         <h1>Arab Music Events</h1>

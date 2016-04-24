@@ -7,7 +7,7 @@ var Footer = require('./Footer.jsx');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            loggedIn: this.props.login
+            login: this.props.login
         };
     },
 
@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Navbar active = 'discussions' />
+                <Navbar active = 'discussions' login = { this.state.login }/>
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
                         <h1>Questions and Answers</h1>

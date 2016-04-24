@@ -3,6 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
         var active = this.props.active;
+        var login = this.props.login;
         return (
             <div className="navbar navbar-fixed-top navbar-default">
                 <div className="container-fluid">
@@ -22,7 +23,7 @@ module.exports = React.createClass({
                         <li className= { active === 'events' ? 'navlink active' : 'navlink' } id = 'events'><a href="events.html">Events</a></li>
                         <li className= { active === 'news' ? 'navlink active' : 'navlink' } id = 'news'><a href="news.html">News</a></li>
                         <li className= { active === 'resources' ? 'navlink active' : 'navlink' } id = 'resources'><a href="resources.html">Resources</a></li>
-                        <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="login.html">Sign Up / Login</a></li>
+                        <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="login.html">{ login ? 'Log Out' : 'Sign Up / Login' }</a></li>
                       </ul>
                     </div>
                 </div>

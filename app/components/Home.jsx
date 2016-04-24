@@ -6,17 +6,23 @@ var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
+    getInitialState: function() {
+        return {
+            login: this.props.login
+        }
+    },
+
     render: function() {
-        var login = this.props.login;
         var events = this.props.events.filter(function(event) {
             return moment(event.date).isSameOrAfter(new Date(Date.now()));
         }).sort(function(a, b) {
             return a.date - b.date;
         }).splice(0, 5);
+        var login = this.state.login;
 
         return (
             <div>
-                <Navbar active = 'home' />
+                <Navbar active = 'home' login = { this.state.login }/>
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2'>
                         <About />
