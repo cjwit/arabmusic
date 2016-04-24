@@ -26,6 +26,17 @@ gulp.task('bundle-discussions', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
+// creates discussions.js
+gulp.task('bundle-discussionPage', function() {
+    return browserify({
+        entries: './app/discussionPageScript.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('discussionPageScript.js'))
+        .pipe(gulp.dest('app/dist'))
+})
+
 // creates events.js
 gulp.task('bundle-events', function() {
     return browserify({
@@ -50,10 +61,11 @@ gulp.task('watch-sass', function() {
 });
 
 // moves the static files into app/dist
-gulp.task('copy', ['bundle'], function() {
+gulp.task('copy', function() {
     return gulp.src(['app/index.html',
                      'app/discussions.html',
                      'app/events.html',
+                     'app/discussionPage.html',
                      'app/lib/bootstrap/dist/css/bootstrap.min.css',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
                      'app/lib/jquery/dist/jquery.min.js',
@@ -64,6 +76,6 @@ gulp.task('copy', ['bundle'], function() {
         .pipe(gulp.dest('app/dist'));
 });
 
-gulp.task('default', ['copy'], function() {
+gulp.task('default', ['copy', 'bundle', 'bundle-discussions', 'bundle-events', 'bundle-discussionPage'], function() {
     console.log('Gulp completed...');
 });

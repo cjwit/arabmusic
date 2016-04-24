@@ -14,9 +14,7 @@ app.get('/discussions', function(req, res) {
 })
 
 app.get('/discussions/:id', function(req, res) {
-    var id = req.params.id;
-    res.end(id);
-    res.sendFile(path.join(__dirname, '../app/dist/discussionPage.html'));
+    res.sendFile(path.join(__dirname, '../app/dist/discussionPage.html')); // render? 
 })
 
 app.get('/events', function(req, res) {
