@@ -13,30 +13,38 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var event = this.props.info;
+        var info = this.props.info;
+        var id = info.name + info.date.getTime();
+        var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
+
         return (
-            <div className = 'event'>
+            <div className = 'event' id = { id }>
                 <span className = 'event-name'>
-                    { event.name }:&nbsp;
+                    { info.name }:&nbsp;
                 </span>
 
-                { event.place ? <span className = 'event-place'>{ event.place },&nbsp;</span> : null }
+                { info.place ? <span className = 'event-place'>{ info.place },&nbsp;</span> : null }
 
                 <span className = 'event-date'>
-                    { event.date.toLocaleDateString() }
+                    { info.date.toLocaleDateString() }
                 </span>
                 <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                    <button onClick = { this.editEvent } type = 'button' className = 'btn btn-default'>
+                    { !eventPage ?
+                        <a href = { '/events/' + id } role = 'button' className = 'btn btn-default'>
+                            <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                        </a> : null
+                    }
+                    <a onClick = { this.editEvent } role = 'button' className = 'btn btn-default'>
                         <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </button>
-                    <button onClick = { this.deleteEvent } type = 'button' className = 'btn btn-default'>
+                    </a>
+                    <a onClick = { this.deleteEvent } role = 'button' className = 'btn btn-default'>
                         <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
+                    </a>
                 </div>
                 <br />
 
                 <div className = 'event-description'>
-                    { event.description }
+                    { info.description }
                 </div>
             </div>
             )

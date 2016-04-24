@@ -177,13 +177,6 @@ a:visited
 
 .event-description
   font-size: 0.8em
-  overflow: hidden
-  text-overflow: ellipsis
-  display: -webkit-box
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: 3
-  line-height: 1.2
-  max-height: 3.6
   @media screen and (min-width: $small)
     padding-left: 20px
 
@@ -207,26 +200,12 @@ a:visited
 
 .discussion-content
   font-size: 0.8em
-  overflow: hidden
-  text-overflow: ellipsis
-  display: -webkit-box
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: 2
-  line-height: 1.2
-  max-height: 2.4
   @media screen and (min-width: $small)
     padding-left: 20px
 
 /* comments */
 .comment
   font-size: 0.8em
-  overflow: hidden
-  text-overflow: ellipsis
-  display: -webkit-box
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: 2
-  line-height: 1.2
-  max-height: 2.4
   padding-top: 10px
   @media screen and (min-width: $small)
     padding-left: 20px
@@ -238,3 +217,23 @@ a:visited
 .comment-date
   font-weight: 400
   color: $darkred
+
+.list
+  .event-description,
+  .discussion-content
+    overflow: hidden
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 3
+    line-height: 1.2
+    max-height: 3.6
+
+  .comment
+    overflow: hidden
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+    line-height: 1.2
+    max-height: 2.4

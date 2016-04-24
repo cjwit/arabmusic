@@ -3,12 +3,6 @@ var Comment = require('./Comment.jsx');
 var postActions = require('../actions/PostActions');
 
 module.exports = React.createClass({
-    getInitialState: function() {
-        return ({
-            id: this.props.info.author + this.props.info.date.getTime()
-        })
-    },
-
     deletePost: function(e) {
         e.preventDefault();
         postActions.deletePost(this.props.info)
@@ -21,22 +15,23 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
+        var id = this.props.info.author + this.props.info.date.getTime()
         var comments = [];
         info.comments.sort(function(a, b) {
             return b.date.getTime() - a.date.getTime();
         }).map(function(comment, index) {
             comments.push(<Comment info = { comment } key = { index } />)
         });
-        var discussionPage = Boolean(window.location.pathname.match(/^\/discussions/));
+        var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\//));
 
         return (
-            <div className = 'discussion' id = { this.state.id }>
+            <div className = 'discussion' id = { id }>
                 <span className = 'discussion-title'>
                     { info.title }:&nbsp;
                 </span>
                 <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
                     { !discussionPage ?
-                        <a href= { 'discussions/' + this.state.id } className = 'btn btn-default'>
+                        <a href= { 'discussions/' + id } className = 'btn btn-default'>
                             <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                         </a>
                         : null

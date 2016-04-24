@@ -14,11 +14,15 @@ app.get('/discussions', function(req, res) {
 })
 
 app.get('/discussions/:id', function(req, res) {
-    res.sendFile(path.join(__dirname, '../app/dist/discussionPage.html')); // render? 
+    res.sendFile(path.join(__dirname, '../app/dist/discussionPage.html')); // render?
 })
 
 app.get('/events', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/events.html'));
+})
+
+app.get('/events/:id', function(req, res) {
+    res.sendFile(path.join(__dirname, '../app/dist/eventPage.html')); // render?
 })
 
 app.listen(port, function() {

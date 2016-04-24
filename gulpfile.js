@@ -37,6 +37,17 @@ gulp.task('bundle-discussionPage', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
+// creates eventPage.js
+gulp.task('bundle-eventPage', function() {
+    return browserify({
+        entries: './app/eventPageScript.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('eventPageScript.js'))
+        .pipe(gulp.dest('app/dist'))
+})
+
 // creates events.js
 gulp.task('bundle-events', function() {
     return browserify({
@@ -65,6 +76,7 @@ gulp.task('copy', function() {
     return gulp.src(['app/index.html',
                      'app/discussions.html',
                      'app/events.html',
+                     'app/eventPage.html',
                      'app/discussionPage.html',
                      'app/lib/bootstrap/dist/css/bootstrap.min.css',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
@@ -76,6 +88,6 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('app/dist'));
 });
 
-gulp.task('default', ['copy', 'bundle', 'bundle-discussions', 'bundle-events', 'bundle-discussionPage'], function() {
+gulp.task('default', ['copy', 'bundle', 'bundle-discussions', 'bundle-events', 'bundle-eventPage', 'bundle-discussionPage'], function() {
     console.log('Gulp completed...');
 });

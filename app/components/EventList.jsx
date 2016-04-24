@@ -8,7 +8,7 @@ module.exports = React.createClass({
             eventList.push(<Event info = { event } key = { "event" + index } />)
         });
         return (
-            <div>
+            <div className = 'list'>
                 { eventList }
             </div>
         )
