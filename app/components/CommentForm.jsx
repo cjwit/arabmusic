@@ -19,11 +19,6 @@ module.exports = React.createClass({
         comment.date = new Date(Date.now());
         this.setState({ comment: comment })
         postActions.addComment(this.state);
-
-        console.log('clicked comment form')
-        ReactDOM.render(<DiscussionPage
-            info = { this.props.info }
-            />, document.getElementById('subContainer'));
     },
 
     handleInputChange: function(e) {
