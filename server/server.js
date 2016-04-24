@@ -13,6 +13,12 @@ app.get('/discussions', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/discussions.html'));
 })
 
+app.get('/discussions/:id', function(req, res) {
+    var id = req.params.id;
+    res.end(id);
+    res.sendFile(path.join(__dirname, '../app/dist/discussionPage.html'));
+})
+
 app.get('/events', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/events.html'));
 })

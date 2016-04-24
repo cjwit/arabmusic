@@ -22,7 +22,7 @@ module.exports = React.createClass({
                     </div>
                 </div>
 
-                <div className = 'container'>
+                <div id = 'subContainer' className = 'container'>
                     <div className = 'row holder'>
                         <div className = 'col-md-4'>
                             <h1 className = 'spacer'>&nbsp;</h1>

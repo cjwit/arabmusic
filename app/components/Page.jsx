@@ -1,5 +1,4 @@
 var React = require('react');
-var Events = require('./Events.jsx');
 var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
 
@@ -21,9 +20,6 @@ module.exports = React.createClass({
 
         var target = this.props.target;
         switch (this.props.target.page) {
-            case "events":
-                body = <Events events = { events } login = { login }/>;
-                break;
             case "openDiscussion":
                 body = <DiscussionPage info = { target.content } login = { login }/>;
                 target.page = 'discussions';

@@ -16,7 +16,7 @@ gulp.task('bundle', function() {
 })
 
 // creates discussions.js
-gulp.task('bundle', function() {
+gulp.task('bundle-discussions', function() {
     return browserify({
         entries: './app/discussions.jsx',
         debug: true
@@ -27,7 +27,7 @@ gulp.task('bundle', function() {
 })
 
 // creates events.js
-gulp.task('bundle', function() {
+gulp.task('bundle-events', function() {
     return browserify({
         entries: './app/events.jsx',
         debug: true

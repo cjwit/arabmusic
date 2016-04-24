@@ -1,6 +1,5 @@
 var React = require('react');
 var Comment = require('./Comment.jsx');
-var pageActions = require('../actions/PageActions');
 var postActions = require('../actions/PostActions');
 
 module.exports = React.createClass({
@@ -20,11 +19,6 @@ module.exports = React.createClass({
         // postActions.editPost(this.props.info)
     },
 
-    openDiscussion: function(e) {
-        e.preventDefault();
-        pageActions.openDiscussion(this.props.info)
-    },
-
     render: function() {
         var info = this.props.info;
         var comments = [];
@@ -36,10 +30,15 @@ module.exports = React.createClass({
 
         return (
             <div className = 'discussion' id = { this.state.id }>
-                <span className = 'discussion-title' onClick = { this.openDiscussion }>
+                <span className = 'discussion-title'>
                     { info.title }:&nbsp;
                 </span>
                 <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                    <button type = 'button' className = 'btn btn-default'>
+                        <a href= { 'discussions/' + this.state.id }>
+                            <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                        </a>
+                    </button>
                     <button onClick = { this.editPost } type = 'button' className = 'btn btn-default'>
                         <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </button>
