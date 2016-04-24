@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Home = require('./components/Home.jsx');
+var DiscussionsMain = require('./components/DiscussionsMain.jsx');
 var eventsStore = require('./stores/eventsStore');
 var pageStore = require('./stores/pageStore');
 var postsStore = require('./stores/postsStore');
@@ -32,8 +32,7 @@ var login = Dummy.login;
 
 function render() {
     // render, send target
-    ReactDOM.render(<Home
-        events = { events }
+    ReactDOM.render(<DiscussionsMain
         discussions = { discussions }
         login = { login }
         />, document.getElementById('container'));

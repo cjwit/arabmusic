@@ -71,5 +71,6 @@ for (i = 0; i < Math.floor(Math.random() * 8) + 5; i++) {
 var content = {};
 content.events = events;
 content.discussions = discussions;
+content.login = true;
 
 module.exports = content;

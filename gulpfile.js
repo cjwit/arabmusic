@@ -15,6 +15,17 @@ gulp.task('bundle', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
+// creates discussions.js
+gulp.task('bundle', function() {
+    return browserify({
+        entries: './app/discussions.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('discussions.js'))
+        .pipe(gulp.dest('app/dist'))
+})
+
 // convert sass to css
 gulp.task('styles', function() {
     gulp.src('app/*.sass')
@@ -30,6 +41,7 @@ gulp.task('watch-sass', function() {
 // moves the static files into app/dist
 gulp.task('copy', ['bundle'], function() {
     return gulp.src(['app/index.html',
+                     'app/discussions.html',
                      'app/lib/bootstrap/dist/css/bootstrap.min.css',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
                      'app/lib/jquery/dist/jquery.min.js',

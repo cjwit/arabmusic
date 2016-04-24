@@ -11,6 +11,7 @@ module.exports = React.createClass({
 
     render: function() {
         var discussions = this.props.discussions;
+        console.log('Discussions')
 
         return (
             <div>
