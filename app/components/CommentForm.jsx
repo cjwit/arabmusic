@@ -19,6 +19,10 @@ module.exports = React.createClass({
         comment.date = new Date(Date.now());
         this.setState({ comment: comment })
         postActions.addComment(this.state);
+
+        // RESETS THE COMMENT!!!
+        comment.content = "";
+        this.setState({ comment: comment })
     },
 
     handleInputChange: function(e) {

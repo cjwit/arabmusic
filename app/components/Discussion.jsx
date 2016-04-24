@@ -27,6 +27,7 @@ module.exports = React.createClass({
         }).map(function(comment, index) {
             comments.push(<Comment info = { comment } key = { index } />)
         });
+        var discussionPage = Boolean(window.location.pathname.match(/^\/discussions/));
 
         return (
             <div className = 'discussion' id = { this.state.id }>
@@ -34,17 +35,18 @@ module.exports = React.createClass({
                     { info.title }:&nbsp;
                 </span>
                 <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                    <button type = 'button' className = 'btn btn-default'>
-                        <a href= { 'discussions/' + this.state.id }>
+                    { !discussionPage ?
+                        <a href= { 'discussions/' + this.state.id } className = 'btn btn-default'>
                             <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                         </a>
-                    </button>
-                    <button onClick = { this.editPost } type = 'button' className = 'btn btn-default'>
+                        : null
+                    }
+                    <a onClick = { this.editPost } className = 'btn btn-default'>
                         <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </button>
-                    <button onClick = { this.deletePost } type = 'button' className = 'btn btn-default'>
+                    </a>
+                    <a onClick = { this.deletePost } className = 'btn btn-default'>
                         <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
+                    </a>
                 </div>
                 <br />
                 <span className = 'discussion-author'>

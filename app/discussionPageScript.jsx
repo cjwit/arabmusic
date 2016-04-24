@@ -12,8 +12,6 @@ postsStore.onChange(function(_discussions) {
     render();
 })
 
-console.log('path: ', window.location.pathname)
-
 var login = Dummy.login;
 
 function render() {
