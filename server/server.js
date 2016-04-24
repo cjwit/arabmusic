@@ -13,6 +13,10 @@ app.get('/discussions', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/discussions.html'));
 })
 
+app.get('/events', function(req, res) {
+    res.sendFile(path.join(__dirname, '../app/dist/events.html'));
+})
+
 app.listen(port, function() {
     console.log("Listening on port ", port, "...");
 });

@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Home = require('./components/Home.jsx');
+var Events = require('./components/Events.jsx');
 var eventsStore = require('./stores/eventsStore');
-var postsStore = require('./stores/postsStore');
 var Dummy = require('./dummycontent.js');
 
 // Get content from stores
@@ -15,19 +14,12 @@ eventsStore.onChange(function(_events) {
     render();
 })
 
-var discussions = postsStore.getPosts();
-postsStore.onChange(function(_discussions) {
-    discussions = _discussions;
-    render();
-})
-
 var login = Dummy.login;
 
 function render() {
     // render, send target
-    ReactDOM.render(<Home
+    ReactDOM.render(<Events
         events = { events }
-        discussions = { discussions }
         login = { login }
         />, document.getElementById('container'));
 }

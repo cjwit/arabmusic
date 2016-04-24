@@ -26,6 +26,17 @@ gulp.task('bundle', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
+// creates events.js
+gulp.task('bundle', function() {
+    return browserify({
+        entries: './app/events.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('events.js'))
+        .pipe(gulp.dest('app/dist'))
+})
+
 // convert sass to css
 gulp.task('styles', function() {
     gulp.src('app/*.sass')
@@ -42,6 +53,7 @@ gulp.task('watch-sass', function() {
 gulp.task('copy', ['bundle'], function() {
     return gulp.src(['app/index.html',
                      'app/discussions.html',
+                     'app/events.html',
                      'app/lib/bootstrap/dist/css/bootstrap.min.css',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
                      'app/lib/jquery/dist/jquery.min.js',
