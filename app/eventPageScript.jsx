@@ -4,21 +4,30 @@ var EventPage = require('./components/EventPage.jsx');
 var eventsStore = require('./stores/eventsStore');
 var Dummy = require('./dummycontent.js');
 
-// Get content from stores
-var events = eventsStore.getEvents().sort(function(a, b) {
-    return a.date - b.date;
-});
-
-eventsStore.onChange(function(_events) {
+// Get content from database
+var events = [];
+var getEventsCallback = function(_events) {
     events = _events;
     render();
-})
+}
+
+eventsStore.onChange(getEventsCallback);
 
 var login = Dummy.login;
 
 function render() {
+    // give events Date objects
+    var id = window.location.pathname.replace("/events/", "");
+    var thisEvent;
+    events.map(function(event) {
+        event.date = new Date(event.date);
+        if (event._id === id) {
+            thisEvent = event;
+        }
+    })
+    console.log(events);
     ReactDOM.render(<EventPage
-        info = { events[0] }
+        info = { thisEvent }
         login = { login }
         />, document.getElementById('container'));
 }

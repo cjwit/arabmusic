@@ -14,8 +14,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
-        var id = info.name + info.date.getTime();
-        console.log('crated id', id, 'inherited id', info._id)
+        var id = info._id;
         var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
 
         return (
@@ -24,7 +23,7 @@ module.exports = React.createClass({
                     { info.name }:&nbsp;
                 </span>
 
-                { info.place ? <span className = 'event-place'>{ info.place },&nbsp;</span> : null }
+                { info.location ? <span className = 'event-place'>{ info.location },&nbsp;</span> : null }
 
                 <span className = 'event-date'>
                     { info.date.toLocaleDateString() }

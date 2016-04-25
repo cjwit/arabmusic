@@ -12,7 +12,6 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
-        var id = info.name + info.date.getTime()
 
         return (
             <div>

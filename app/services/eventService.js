@@ -1,6 +1,6 @@
 var $ = require('jquery');
 var promise = require('es6-promise');
-var resourceURL = 'http://localhost:8080/api/events';   // update to variable
+var resourceURL = 'http://localhost:8080/api/events/';   // update to variable
 
 module.exports = {
     addEvent: function (event) {
