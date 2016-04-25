@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));
 })
 
-app.get('/discussions', function(req, res) {
+app.get('/discussions/', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/discussions.html'));
 })
 
@@ -25,7 +25,7 @@ app.get('/discussions/:id', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/discussionPage.html')); // render?
 })
 
-app.get('/events', function(req, res) {
+app.get('/events/', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/events.html'));
 })
 

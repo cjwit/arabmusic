@@ -30,8 +30,6 @@ module.exports = React.createClass({
         }).sort(function(a, b) {
             return b.date - a.date;
         })
-        console.log('from Events component: events', events, 'past', past, 'upcoming', upcoming)
-
 
         var login = this.props.login;
 

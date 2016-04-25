@@ -25,7 +25,6 @@ function render() {
             thisEvent = event;
         }
     })
-    console.log(events);
     ReactDOM.render(<EventPage
         info = { thisEvent }
         login = { login }
