@@ -43,9 +43,11 @@ app.listen(port, function() {
 });
 
 // connect to database
-var config = require('./config');
+var dblogin = process.env.DBLOGIN;
+var dbpassword = process.env.DBPASSWORD;
+
 var dburl = 'mongodb://<dbuser>:<dbpassword>@ds019481.mlab.com:19481/arabmusictest'
-    .replace("<dbuser>", config.dblogin)
-    .replace('<dbpassword>', config.dbpassword);
+    .replace("<dbuser>", dblogin)
+    .replace('<dbpassword>', dbpassword);
 console.log(dburl);
 mongoose.connect(dburl)

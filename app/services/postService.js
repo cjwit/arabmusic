@@ -1,6 +1,6 @@
 var $ = require('jquery');
 var promise = require('es6-promise');
-var resourceURL = 'http://localhost:8080/api/posts/';   // update to variable
+var resourceURL = location.protocol + '//' + location.host + '/api/posts/';
 
 module.exports = {
     addPost: function (post) {
