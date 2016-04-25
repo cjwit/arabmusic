@@ -4,20 +4,22 @@ var Events = require('./components/Events.jsx');
 var eventsStore = require('./stores/eventsStore');
 var Dummy = require('./dummycontent.js');
 
-// Get content from stores
-var events = eventsStore.getEvents().sort(function(a, b) {
-    return a.date - b.date;
-});
-
-eventsStore.onChange(function(_events) {
+// Get content from database
+var events = [];
+var getEventsCallback = function(_events) {
     events = _events;
     render();
-})
+}
+
+eventsStore.onChange(getEventsCallback);
 
 var login = Dummy.login;
 
 function render() {
-    // render, send target
+    // give events Date objects
+    events.map(function(event) {
+        event.date = new Date(event.date);
+    })
     ReactDOM.render(<Events
         events = { events }
         login = { login }

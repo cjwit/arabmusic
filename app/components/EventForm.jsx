@@ -8,7 +8,7 @@ module.exports = React.createClass({
             location: "",
             date: new Date(Date.now()),
             description: "",
-            owner: ""           // get from login
+            owner: "Evan the Event Adder"           // get from login
         };
     },
 

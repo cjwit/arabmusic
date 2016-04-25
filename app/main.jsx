@@ -5,16 +5,15 @@ var eventsStore = require('./stores/eventsStore');
 var postsStore = require('./stores/postsStore');
 var Dummy = require('./dummycontent.js');
 
-// Get content from stores
-var events = eventsStore.getEvents().sort(function(a, b) {
-    return a.date - b.date;
-});
-
-eventsStore.onChange(function(_events) {
+// Get content from database
+var events = [];
+var getEventsCallback = function(_events) {
     events = _events;
     render();
-})
+}
+eventsStore.onChange(getEventsCallback);
 
+// still using dummy content
 var discussions = postsStore.getPosts();
 postsStore.onChange(function(_discussions) {
     discussions = _discussions;
@@ -24,7 +23,11 @@ postsStore.onChange(function(_discussions) {
 var login = Dummy.login;
 
 function render() {
-    // render, send target
+    // give events Date objects
+    events.map(function(event) {
+        event.date = new Date(event.date);
+    })
+    
     ReactDOM.render(<Home
         events = { events }
         discussions = { discussions }

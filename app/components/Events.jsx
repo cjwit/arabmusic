@@ -7,8 +7,7 @@ var Footer = require('./Footer.jsx');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            showForm: false,
-            login: this.props.login
+            showForm: false
         };
     },
 
@@ -19,9 +18,10 @@ module.exports = React.createClass({
 
     render: function() {
         var events = this.props.events;
+
         var today = new Date(Date.now());
         var upcoming = events.filter(function(event) {
-            return event.date > today;
+            return event.date >= today;
         }).sort(function(a, b) {
             return a.date - b.date;
         })
@@ -30,15 +30,20 @@ module.exports = React.createClass({
         }).sort(function(a, b) {
             return b.date - a.date;
         })
+        console.log('from Events component: events', events, 'past', past, 'upcoming', upcoming)
+
+
+        var login = this.props.login;
+
         return (
             <div>
-                <Navbar active = 'events' login = { this.state.login }/>
+                <Navbar active = 'events' login = { login }/>
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
                         <h1>Arab Music Events</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                        { this.state.loggedIn ?
+                        { login ?
                             <button id = 'addEventFormToggle'
                                 className = 'btn btn-default'
                                 onClick = { this.toggleForm } >Add an Event

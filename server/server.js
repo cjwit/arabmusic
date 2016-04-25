@@ -1,10 +1,18 @@
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+// controllers
+var eventController = require('./controllers/eventController');
+
+// requests
 var app = express();
-var port = process.env.PORT || 8080;
-
 app.use(express.static(path.join(__dirname, "../app/dist")));
+app.use(bodyParser.json());
+app.use("/api", eventController);
 
+// page routing
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));
 })
@@ -25,6 +33,16 @@ app.get('/events/:id', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/eventPage.html')); // render?
 })
 
+// listen
+var port = process.env.PORT || 8080;
 app.listen(port, function() {
     console.log("Listening on port ", port, "...");
 });
+
+// connect to database
+var config = require('./config');
+var dburl = 'mongodb://<dbuser>:<dbpassword>@ds019481.mlab.com:19481/arabmusictest'
+    .replace("<dbuser>", config.dblogin)
+    .replace('<dbpassword>', config.dbpassword);
+console.log(dburl);
+mongoose.connect(dburl)

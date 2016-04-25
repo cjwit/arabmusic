@@ -1,40 +1,40 @@
 var dispatcher = require('../dispatcher.js');
-var Dummy = require('../dummycontent.js');
+var eventService = require('../services/eventService.js');
 
 var EventStore = function() {
     var listeners = [];             // collection of functions
-    var events = Dummy.events;
 
-    var getEvents = function() {
-        return events;
+    var getEvents = function(cb) {
+        eventService.getEvents().then(function (res) {
+            cb(res);
+        })
     }
 
     var onChange = function(listener) {
+        getEvents(listener);
         listeners.push(listener);
     }
 
     var addEvent = function(event) {
-        events.push(event);
-        triggerListeners();
+        eventService.addEvent(event).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
     }
 
     var deleteEvent = function(event) {
-        var _index;
-        var eventID = event.name + event.date.getTime();
-        events.map(function(e, index) {
-            var eID = e.name + e.date.getTime();
-            if (eID === eventID) {
-                _index = index;
-            }
+        eventService.deleteEvent(event).then(function(res) {
+            console.log(res);
+            triggerListeners();
         });
-        events.splice(_index, 1);
-        triggerListeners();
     }
 
     var triggerListeners = function() {
-        listeners.forEach(function(listener) {
-            listener(events);
-        })
+        getEvents(function (res) {
+            listeners.forEach(function(listener) {
+                listener(res);
+            });
+        });
     }
 
     dispatcher.register(function (payload) {
@@ -53,7 +53,6 @@ var EventStore = function() {
 
     // create the object for export
     return {
-        getEvents: getEvents,
         onChange: onChange
     }
 }
