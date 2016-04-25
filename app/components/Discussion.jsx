@@ -6,6 +6,7 @@ module.exports = React.createClass({
     deletePost: function(e) {
         e.preventDefault();
         postActions.deletePost(this.props.info)
+        window.location.href = '/discussions.html';
     },
 
     editPost: function(e) {
@@ -15,7 +16,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
-        var id = this.props.info.author + this.props.info.date.getTime()
+        var id = info._id;
         var comments = [];
         info.comments.sort(function(a, b) {
             return b.date.getTime() - a.date.getTime();

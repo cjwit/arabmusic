@@ -20,11 +20,11 @@ function render() {
     var id = window.location.pathname.replace("/events/", "");
     var thisEvent;
     events.map(function(event) {
-        event.date = new Date(event.date);
         if (event._id === id) {
             thisEvent = event;
         }
     })
+    thisEvent.date = new Date(thisEvent.date);
     ReactDOM.render(<EventPage
         info = { thisEvent }
         login = { login }

@@ -4,19 +4,29 @@ var DiscussionPage = require('./components/DiscussionPage.jsx');
 var postsStore = require('./stores/postsStore');
 var Dummy = require('./dummycontent.js');
 
-// Get content from stores
-
-var discussions = postsStore.getPosts();
-postsStore.onChange(function(_discussions) {
+// Get content from database
+var discussions = [];
+var getPostsCallback = function(_discussions) {
     discussions = _discussions;
     render();
-})
+}
+postsStore.onChange(getPostsCallback);
 
 var login = Dummy.login;
 
 function render() {
+    // give events Date objects
+    var id = window.location.pathname.replace("/discussions/", "");
+    var thisPost;
+    discussions.map(function(post) {
+        if (post._id === id) {
+            thisPost = post;
+        }
+    })
+    thisPost.date = new Date(thisPost.date);
+
     ReactDOM.render(<DiscussionPage
-        info = { discussions[0] }
+        info = { thisPost }
         login = { login }
         />, document.getElementById('container'));
 }
