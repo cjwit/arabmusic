@@ -15,6 +15,7 @@ module.exports = React.createClass({
     render: function() {
         var info = this.props.info;
         var id = info.name + info.date.getTime();
+        console.log('crated id', id, 'inherited id', info._id)
         var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
 
         return (
