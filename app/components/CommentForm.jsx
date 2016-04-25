@@ -4,7 +4,7 @@ var postActions = require('../actions/PostActions');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            discussionID: this.props.id,
+            discussionID: this.props.info._id,
             comment: {
                 author: "Tester's Big Brother", // Grab from username
                 date: new Date(Date.now()),

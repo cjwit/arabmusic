@@ -42,5 +42,21 @@ module.exports = {
                 error: reject
             });
         });
+    },
+
+    // object {discussionID, comment}
+    addComment: function (commentObject) {
+        var Promise = promise.Promise;
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: resourceURL + 'comments/' + commentObject.discussionID,
+                data: JSON.stringify(commentObject),
+                method: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: resolve,
+                error: reject
+            });
+        });
     }
 }

@@ -17,6 +17,8 @@ module.exports = React.createClass({
     render: function() {
         var info = this.props.info;
         var id = info._id;
+        var login = this.props.login;
+        
         var comments = [];
         info.comments.sort(function(a, b) {
             return b.date.getTime() - a.date.getTime();

@@ -4,6 +4,7 @@ var _ = require('underscore');
 
 var router = require('express').Router();
 router.route('/:id?').get(getPosts).post(addPost).delete(deletePost);
+router.route('/comments/:id?').post(addComment);
 
 function getPosts(req, res) {
     Post.find(function (err, posts) {
@@ -26,6 +27,18 @@ function deletePost(req, res) {
         if (err) res.send(err);
         else res.json(removed);
     });
+}
+
+function addComment(req, res) {
+    var id = req.params.id;
+    var comment = req.body;
+    console.log('postController.addComment', id, comment)
+    var query = { _id: id },
+        update = { $push: { comments: comment }}
+    Post.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
+    })
 }
 
 module.exports = router;

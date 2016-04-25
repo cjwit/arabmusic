@@ -6,19 +6,12 @@ var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-            login: this.props.login
-        };
-    },
-
     render: function() {
         var info = this.props.info;
-        var id = info.author + info.date.getTime()
-
+        var login = this.props.login;
         return (
             <div>
-                <Navbar active = 'discussions' login = { this.state.login }/>
+                <Navbar active = 'discussions' login = { login } />
                 <div id = 'head' className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2 holder'>
                         <h1>Questions and Answers</h1>
@@ -29,12 +22,12 @@ module.exports = React.createClass({
                     <div className = 'row holder'>
                         <div className = 'col-md-8'>
                             <h1>Post Details</h1>
-                            <Discussion info = { info } />
+                            <Discussion info = { info } login = { login } />
                         </div>
                         <div className = 'col-md-4'>
                             <h1 className = 'spacer'>&nbsp;</h1>
                             <div id = "addCommentContainer">
-                                <CommentForm id = { id } info = { info } login = { this.props.login } />
+                                <CommentForm info = { info } login = { login } />
                             </div>
 
                         </div>

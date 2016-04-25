@@ -32,15 +32,10 @@ var PostStore = function() {
     // object: { discussionID, commentInfo }
     // STILL TO FIX
     var addComment = function(commentObject) {
-        var discussionID = commentObject.discussionID;
-        var comment = commentObject.comment;
-        posts.forEach(function(post) {
-            var id = post.author + post.date.getTime()
-            if (discussionID === id) {
-                post.comments.push(comment);
-            }
-        })
-        triggerListeners();
+        postService.addComment(commentObject).then(function(res) {
+            console.log(res);
+            triggerListeners();
+        });
     }
 
     var triggerListeners = function() {
