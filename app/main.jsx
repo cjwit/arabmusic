@@ -13,12 +13,14 @@ var getEventsCallback = function(_events) {
 }
 eventsStore.onChange(getEventsCallback);
 
-// still using dummy content
-var discussions = postsStore.getPosts();
-postsStore.onChange(function(_discussions) {
+// Get content from database
+var discussions = [];
+var getPostsCallback = function(_discussions) {
     discussions = _discussions;
     render();
-})
+}
+postsStore.onChange(getPostsCallback);
+
 
 var login = Dummy.login;
 
@@ -27,7 +29,11 @@ function render() {
     events.map(function(event) {
         event.date = new Date(event.date);
     })
-    
+
+    discussions.map(function(post) {
+        post.date = new Date(post.date);
+    })
+
     ReactDOM.render(<Home
         events = { events }
         discussions = { discussions }

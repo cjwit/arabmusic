@@ -3,7 +3,7 @@ var Event = require('../data/event');
 var _ = require('underscore');
 
 var router = require('express').Router();
-router.route('/events/:id?').get(getEvents).post(addEvent).delete(deleteEvent);
+router.route('/:id?').get(getEvents).post(addEvent).delete(deleteEvent);
 
 function getEvents(req, res) {
     Event.find(function (err, events) {

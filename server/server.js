@@ -5,12 +5,15 @@ var mongoose = require('mongoose');
 
 // controllers
 var eventController = require('./controllers/eventController');
+var postController = require('./controllers/postController');
 
 // requests
 var app = express();
 app.use(express.static(path.join(__dirname, "../app/dist")));
 app.use(bodyParser.json());
-app.use("/api", eventController);
+app.use("/api/events", eventController);
+app.use("/api/posts", postController);
+
 
 // page routing
 app.get('/', function(req, res) {

@@ -4,17 +4,21 @@ var DiscussionsMain = require('./components/DiscussionsMain.jsx');
 var postsStore = require('./stores/postsStore');
 var Dummy = require('./dummycontent.js');
 
-// Get content from stores
-
-var discussions = postsStore.getPosts();
-postsStore.onChange(function(_discussions) {
+// Get content from database
+var discussions = [];
+var getPostsCallback = function(_discussions) {
     discussions = _discussions;
     render();
-})
+}
+postsStore.onChange(getPostsCallback);
 
 var login = Dummy.login;
 
 function render() {
+    discussions.map(function(post) {
+        post.date = new Date(post.date);
+    })
+
     // render, send target
     ReactDOM.render(<DiscussionsMain
         discussions = { discussions }

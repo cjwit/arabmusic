@@ -1,37 +1,36 @@
 var dispatcher = require('../dispatcher.js');
-var Dummy = require('../dummycontent.js');
+var postService = require('../services/postService.js');
 
 var PostStore = function() {
     var listeners = [];
-    var posts = Dummy.discussions;
 
-    var getPosts = function() {
-        return posts;
+    var getPosts = function(cb) {
+        postService.getPosts().then(function (res) {
+            cb(res);
+        });
     }
 
     var onChange = function(listener) {
+        getPosts(listener);
         listeners.push(listener);
     }
 
     var addPost = function(post) {
-        posts.push(post);
-        triggerListeners();
+        postService.addPost(post).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        });
     }
 
     var deletePost = function(post) {
-        var _index;
-        var postID = post.author + post.date.getTime();
-        posts.map(function(p, index) {
-            var pID = p.author + p.date.getTime();
-            if (pID === postID) {
-                _index = index;
-            }
+        postService.deletePost(post).then(function(res) {
+            console.log(res);
+            triggerListeners();
         });
-        posts.splice(_index, 1);
-        triggerListeners();
     }
 
     // object: { discussionID, commentInfo }
+    // STILL TO FIX
     var addComment = function(commentObject) {
         var discussionID = commentObject.discussionID;
         var comment = commentObject.comment;
@@ -45,9 +44,11 @@ var PostStore = function() {
     }
 
     var triggerListeners = function() {
-        listeners.forEach(function(listener) {
-            listener(posts);
-        })
+        getPosts(function (res) {
+            listeners.forEach(function(listener) {
+                listener(res);
+            });
+        });
     }
 
     dispatcher.register(function (payload) {
@@ -69,7 +70,6 @@ var PostStore = function() {
 
     // create the object for export
     return {
-        getPosts: getPosts,
         onChange: onChange
     }
 }
