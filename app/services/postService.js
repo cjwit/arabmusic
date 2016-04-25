@@ -19,6 +19,7 @@ module.exports = {
     },
 
     getPosts: function() {
+        console.log('postService.getPosts()')
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -49,7 +50,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + 'comments/' + commentObject.discussionID,
+                url: resourceURL + 'comments/',
                 data: JSON.stringify(commentObject),
                 method: "POST",
                 dataType: 'json',

@@ -18,7 +18,9 @@ module.exports = React.createClass({
         var info = this.props.info;
         var id = info._id;
         var login = this.props.login;
-        
+
+        console.log('discussion id', id, info, info.comments)
+
         var comments = [];
         info.comments.sort(function(a, b) {
             return b.date.getTime() - a.date.getTime();
@@ -26,6 +28,7 @@ module.exports = React.createClass({
             comments.push(<Comment info = { comment } key = { index } />)
         });
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\//));
+        console.log('     rendering Discussion', id, 'with comments', comments)
 
         return (
             <div className = 'discussion' id = { id }>

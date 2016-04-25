@@ -7,9 +7,9 @@ module.exports = React.createClass({
         this.props.discussions.sort(function(a, b) {
             return b.date - a.date;
         }).map(function (discussion, index) {
-            discussionList.push(<Discussion info = { discussion } key = { "discussion" + index } />)
+            discussionList.push(<Discussion info = { discussion } key = { discussion._id } />)
         });
-
+        console.log('--> rendering DiscussionList with', discussionList)
         return (
             <div className = 'list'>
                 { discussionList }
