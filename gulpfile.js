@@ -26,7 +26,7 @@ gulp.task('bundle-discussions', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
-// creates discussions.js
+// creates discussion page script
 gulp.task('bundle-discussionPage', function() {
     return browserify({
         entries: './app/discussionPageScript.jsx',
@@ -37,6 +37,27 @@ gulp.task('bundle-discussionPage', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
+// creates resource page
+gulp.task('bundle-resources', function() {
+    return browserify({
+        entries: './app/resources.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('resources.js'))
+        .pipe(gulp.dest('app/dist'))
+})
+
+// creates resource page script
+gulp.task('bundle-resourcePage', function() {
+    return browserify({
+        entries: './app/resourcePageScript.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('resourcePageScript.js'))
+        .pipe(gulp.dest('app/dist'))
+})
 // creates eventPage.js
 gulp.task('bundle-eventPage', function() {
     return browserify({
@@ -75,6 +96,8 @@ gulp.task('watch-sass', function() {
 gulp.task('copy', function() {
     return gulp.src(['app/index.html',
                      'app/discussions.html',
+                     'app/resources.html',
+                     'app/resourcePage.html',
                      'app/events.html',
                      'app/eventPage.html',
                      'app/discussionPage.html',
@@ -88,6 +111,13 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('app/dist'));
 });
 
-gulp.task('default', ['copy', 'bundle', 'bundle-discussions', 'bundle-events', 'bundle-eventPage', 'bundle-discussionPage'], function() {
+gulp.task('default', ['copy',
+                      'bundle',
+                      'bundle-discussions',
+                      'bundle-events',
+                      'bundle-eventPage',
+                      'bundle-resources',
+                      'bundle-resourcePage',
+                      'bundle-discussionPage'], function() {
     console.log('Gulp completed...');
 });

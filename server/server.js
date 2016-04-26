@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 // controllers
 var eventController = require('./controllers/eventController');
 var postController = require('./controllers/postController');
+var resourceController = require('./controllers/resourceController');
 
 // requests
 var app = express();
@@ -13,7 +14,7 @@ app.use(express.static(path.join(__dirname, "../app/dist")));
 app.use(bodyParser.json());
 app.use("/api/events", eventController);
 app.use("/api/posts", postController);
-
+app.use("/api/resources", resourceController);
 
 // page routing
 app.get('/', function(req, res) {
@@ -34,6 +35,14 @@ app.get('/events/', function(req, res) {
 
 app.get('/events/:id', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/eventPage.html')); // render?
+})
+
+app.get('/resources/', function(req, res) {
+    res.sendFile(path.join(__dirname, '../app/dist/resources.html'));
+})
+
+app.get('/resources/:id', function(req, res) {
+    res.sendFile(path.join(__dirname, '../app/dist/resourcePage.html')); // render?
 })
 
 // listen

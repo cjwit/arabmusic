@@ -5,7 +5,8 @@ $small: 768px
 $medium: 992px
 $large: 1200px
 
-$textlight: white // or #edf9ed
+$textlight: white
+$greenlightest: #edf9ed
 $text: #001A00 // Darkest green
 
 $green: #318D31
@@ -47,7 +48,8 @@ body
   @media screen and (min-width: $small)
     background-attachment: fixed
 
-#addEventForm
+#addEventForm,
+#addCollectionForm
   padding-top: 70px
 
 #footer
@@ -144,73 +146,51 @@ a:visited
   border: 1px solid $darkred
   border-radius: 3px
 
-.delete-button:hover,
-.delete-button:focus
-  color: $red2
-
-/* events */
-.event
+/* lists */
+.event,
+.discussion,
+.collection
   padding-bottom: 20px
 
-.event-name
+.event-name,
+.discussion-title,
+.collection-title
   text-transform: uppercase
   font-weight: 700
   padding-top: 20px
   color: $darkred
   display: inline-block
 
-.event-name:first-child
+.event-name:first-child,
+.discussion-title:first-child,
+.collection-title
   padding-top: 0px
 
-.event-place
-  font-weight: 400
-
-.event-date
-  font-weight: 400
-
-.event-contact
-  font-weight: 400
-  font-size: 0.8em
-  display: block
-  @media screen and (min-width: $small)
-    padding-left: 20px
-
-.event-description
-  font-size: 0.8em
-  @media screen and (min-width: $small)
-    padding-left: 20px
-
-/* discussions */
-.discussion
-  padding-bottom: 20px
-
-.discussion-title
-  text-transform: uppercase
-  font-weight: 700
-  color: $darkred
-  display: inline-block
-
+.event-place,
+.event-date,
 .discussion-author
   font-weight: 400
   color: $darkred
 
-.discussion-date
-  font-weight: 400
-  color: $darkred
 
-.discussion-content
+.event-description,
+.discussion-content,
+.collection-description
   font-size: 0.8em
-  @media screen and (min-width: $small)
-    padding-left: 20px
+  padding-bottom: 10px
 
 /* comments */
-.comment
+.comment,
+.item
   font-size: 0.8em
-  padding-top: 10px
+  padding-top: 15px
+  padding-right: 10px
+  padding-left: 8px
   @media screen and (min-width: $small)
     padding-left: 20px
 
-.comment-author
+.comment-author,
+.item-title
   font-weight: 400
   color: $darkred
 
@@ -220,7 +200,8 @@ a:visited
 
 .list
   .event-description,
-  .discussion-content
+  .discussion-content,
+  .collection-description
     overflow: hidden
     text-overflow: ellipsis
     display: -webkit-box
@@ -229,7 +210,8 @@ a:visited
     line-height: 1.2
     max-height: 3.6
 
-  .comment
+  .comment,
+  .item
     overflow: hidden
     text-overflow: ellipsis
     display: -webkit-box
@@ -237,3 +219,4 @@ a:visited
     -webkit-line-clamp: 2
     line-height: 1.2
     max-height: 2.4
+    padding-top: 5px

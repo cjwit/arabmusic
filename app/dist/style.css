@@ -23,7 +23,8 @@ body {
     #head {
       background-attachment: fixed; } }
 
-#addEventForm {
+#addEventForm,
+#addCollectionForm {
   padding-top: 70px; }
 
 #footer {
@@ -123,77 +124,52 @@ a:visited {
   border: 1px solid #4D0225;
   border-radius: 3px; }
 
-.delete-button:hover,
-.delete-button:focus {
-  color: #B65E88; }
-
-/* events */
-.event {
+/* lists */
+.event,
+.discussion,
+.collection {
   padding-bottom: 20px; }
 
-.event-name {
+.event-name,
+.discussion-title,
+.collection-title {
   text-transform: uppercase;
   font-weight: 700;
   padding-top: 20px;
   color: #4D0225;
   display: inline-block; }
 
-.event-name:first-child {
+.event-name:first-child,
+.discussion-title:first-child,
+.collection-title {
   padding-top: 0px; }
 
-.event-place {
-  font-weight: 400; }
-
-.event-date {
-  font-weight: 400; }
-
-.event-contact {
-  font-weight: 400;
-  font-size: 0.8em;
-  display: block; }
-  @media screen and (min-width: 768px) {
-    .event-contact {
-      padding-left: 20px; } }
-
-.event-description {
-  font-size: 0.8em; }
-  @media screen and (min-width: 768px) {
-    .event-description {
-      padding-left: 20px; } }
-
-/* discussions */
-.discussion {
-  padding-bottom: 20px; }
-
-.discussion-title {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #4D0225;
-  display: inline-block; }
-
+.event-place,
+.event-date,
 .discussion-author {
   font-weight: 400;
   color: #4D0225; }
 
-.discussion-date {
-  font-weight: 400;
-  color: #4D0225; }
-
-.discussion-content {
-  font-size: 0.8em; }
-  @media screen and (min-width: 768px) {
-    .discussion-content {
-      padding-left: 20px; } }
+.event-description,
+.discussion-content,
+.collection-description {
+  font-size: 0.8em;
+  padding-bottom: 10px; }
 
 /* comments */
-.comment {
+.comment,
+.item {
   font-size: 0.8em;
-  padding-top: 10px; }
+  padding-top: 15px;
+  padding-right: 10px;
+  padding-left: 8px; }
   @media screen and (min-width: 768px) {
-    .comment {
+    .comment,
+    .item {
       padding-left: 20px; } }
 
-.comment-author {
+.comment-author,
+.item-title {
   font-weight: 400;
   color: #4D0225; }
 
@@ -202,7 +178,8 @@ a:visited {
   color: #4D0225; }
 
 .list .event-description,
-.list .discussion-content {
+.list .discussion-content,
+.list .collection-description {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -211,11 +188,13 @@ a:visited {
   line-height: 1.2;
   max-height: 3.6; }
 
-.list .comment {
+.list .comment,
+.list .item {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-height: 1.2;
-  max-height: 2.4; }
+  max-height: 2.4;
+  padding-top: 5px; }

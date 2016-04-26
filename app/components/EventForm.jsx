@@ -49,7 +49,6 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div className = 'container'>
-
                 <div className = 'row'>
                     <div className = 'col-md-8 col-md-offset-2'>
                         <form onSubmit = { this.addEvent } id = 'addEventForm'>
