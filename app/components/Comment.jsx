@@ -3,7 +3,8 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
         var info = this.props.info;
-        if (info.author === "Tester's Big Brother") { console.log('   From Comment:', info.content) }
+        info.date = new Date(info.date);
+        console.log(info);
         return (
             <div className = 'comment'>
                 <span className = 'comment-author'>

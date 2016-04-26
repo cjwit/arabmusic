@@ -17,18 +17,18 @@ module.exports = React.createClass({
     render: function() {
         var info = this.props.info;
         var id = info._id;
-        var login = this.props.login;
-        var comments = [];
-        info.comments.sort(function(a, b) {
-            return b.date.getTime() - a.date.getTime();
-        }).map(function(comment, index) {
-            comments.push(<Comment info = { comment } key = { index } />)
-        });
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\//));
-        console.log('   discussion id', id, info, 'comments', info.comments)
+
+        var comments = [];
+        if (info.comments.length > 0) {
+            console.log(info.comments);
+            info.comments.forEach(function(c, index) {
+                comments.push(<Comment info = { c.comment } key = { 'comment' + index }/>)
+            });
+        }
 
         return (
-            <div className = 'discussion'>
+            <div className = 'discussion' id = { id }>
                 <span className = 'discussion-title'>
                     { info.title }:&nbsp;
                 </span>
@@ -59,7 +59,6 @@ module.exports = React.createClass({
                 </div>
 
                 { comments }
-
             </div>
         )
     }

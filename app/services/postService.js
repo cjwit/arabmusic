@@ -19,7 +19,6 @@ module.exports = {
     },
 
     getPosts: function() {
-        console.log('postService.getPosts()')
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
