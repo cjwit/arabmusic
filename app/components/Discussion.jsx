@@ -6,7 +6,7 @@ module.exports = React.createClass({
     deletePost: function(e) {
         e.preventDefault();
         postActions.deletePost(this.props.info)
-        window.location.href = '/discussions.html';
+        // window.location.href = '/discussions.html';
     },
 
     editPost: function(e) {
@@ -18,9 +18,6 @@ module.exports = React.createClass({
         var info = this.props.info;
         var id = info._id;
         var login = this.props.login;
-
-        console.log('discussion id', id, info, info.comments)
-
         var comments = [];
         info.comments.sort(function(a, b) {
             return b.date.getTime() - a.date.getTime();
@@ -28,10 +25,10 @@ module.exports = React.createClass({
             comments.push(<Comment info = { comment } key = { index } />)
         });
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\//));
-        console.log('     rendering Discussion', id, 'with comments', comments)
+        console.log('   discussion id', id, info, 'comments', info.comments)
 
         return (
-            <div className = 'discussion' id = { id }>
+            <div className = 'discussion'>
                 <span className = 'discussion-title'>
                     { info.title }:&nbsp;
                 </span>
@@ -49,13 +46,14 @@ module.exports = React.createClass({
                         <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </a>
                 </div>
-                <br />
-                <span className = 'discussion-author'>
-                    { info.author },&nbsp;
-                </span>
-                <span className = 'discussion-date'>
-                    { info.date.toLocaleDateString() }
-                </span><br />
+                <p>
+                    <span className = 'discussion-author'>
+                        { info.author },&nbsp;
+                    </span>
+                    <span className = 'discussion-date'>
+                        { info.date.toLocaleDateString() }
+                    </span>
+                </p>
                 <div className = 'discussion-content'>
                     { info.content }
                 </div>

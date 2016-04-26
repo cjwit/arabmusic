@@ -7,7 +7,6 @@ router.route('/comments/').post(addComment);
 router.route('/:id?').get(getPosts).post(addPost).delete(deletePost);
 
 function getPosts(req, res) {
-    console.log('postController.getPosts()')
     Post.find(function (err, posts) {
         if (err) res.send(err);
         else res.json(posts);
