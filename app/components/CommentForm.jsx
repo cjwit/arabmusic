@@ -21,8 +21,8 @@ module.exports = React.createClass({
         postActions.addComment(this.state);
 
         // RESETS THE COMMENT!!!
-        // comment.content = "";
-        // this.setState({ comment: comment })
+        comment.content = "";
+        this.setState({ comment: comment })
     },
 
     handleInputChange: function(e) {
