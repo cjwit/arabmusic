@@ -11,5 +11,4 @@ Things to do next:
 * Work out tag system (geographic, language groups, academic, topical)
 
 Next
-* Build addComment functionality
 * Review what pages we need, edit navigation bar in HTML files

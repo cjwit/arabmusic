@@ -28,19 +28,23 @@ module.exports = React.createClass({
                 <span className = 'event-date'>
                     { info.date.toLocaleDateString() }
                 </span>
-                <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
                     { !eventPage ?
+                    <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+
                         <a href = { '/events/' + id } role = 'button' className = 'btn btn-default'>
                             <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-                        </a> : null
-                    }
-                    <a onClick = { this.editEvent } role = 'button' className = 'btn btn-default'>
-                        <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a>
-                    <a onClick = { this.deleteEvent } role = 'button' className = 'btn btn-default'>
-                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                        :
+                    <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                        <a onClick = { this.editEvent } role = 'button' className = 'btn btn-default'>
+                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a onClick = { this.deleteEvent } role = 'button' className = 'btn btn-default'>
+                            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                }
                 <br />
 
                 <div className = 'event-description'>

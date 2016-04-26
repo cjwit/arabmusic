@@ -31,20 +31,22 @@ module.exports = React.createClass({
                 <span className = 'discussion-title'>
                     { info.title }:&nbsp;
                 </span>
-                <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                    { !discussionPage ?
+                { !discussionPage ?
+                    <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
                         <a href= { 'discussions/' + id } className = 'btn btn-default'>
                             <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                         </a>
-                        : null
-                    }
-                    <a onClick = { this.editPost } className = 'btn btn-default'>
-                        <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a>
-                    <a onClick = { this.deletePost } className = 'btn btn-default'>
-                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </a>
-                </div>
+                    </div>
+                        :
+                    <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                        <a onClick = { this.editPost } className = 'btn btn-default'>
+                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a onClick = { this.deletePost } className = 'btn btn-default'>
+                            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                }
                 <p>
                     <span className = 'discussion-author'>
                         { info.author },&nbsp;
