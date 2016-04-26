@@ -4,6 +4,7 @@ var _ = require('underscore');
 
 var router = require('express').Router();
 router.route('/comments/').post(addComment);
+router.route('/comments/delete/').post(deleteComment);
 router.route('/:id?').get(getPosts).post(addPost).delete(deletePost);
 
 function getPosts(req, res) {
@@ -30,10 +31,28 @@ function deletePost(req, res) {
 }
 
 function addComment(req, res) {
-    var comment = req.body.comment;
     var id = req.body.discussionID;
     var query = { _id: id },
         update = { $push: { comments: req.body }}
+    Post.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
+    })
+}
+
+function deleteComment(req, res) {
+    var body = {
+        discussionID: req.body.discussionID,
+        comment: {
+            author: req.body.comment.author,
+            date: req.body.comment.date,
+            content: req.body.comment.content
+        }
+    }
+    var id = req.body.discussionID;
+    var query = { _id: id },
+        update = { $pull: { comments: body }}
+
     Post.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);

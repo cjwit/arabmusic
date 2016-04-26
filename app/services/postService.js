@@ -59,5 +59,23 @@ module.exports = {
                 error: reject
             });
         });
+    },
+
+    // object {discussionID, comment}
+    deleteComment: function (commentObject) {
+        var Promise = promise.Promise;
+        var commentURL = resourceURL + 'comments/delete/'
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: commentURL,
+                data: JSON.stringify(commentObject),
+                method: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: resolve,
+                error: reject
+            });
+        });
     }
+
 }

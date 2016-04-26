@@ -21,9 +21,8 @@ module.exports = React.createClass({
 
         var comments = [];
         if (info.comments.length > 0) {
-            console.log(info.comments);
             info.comments.forEach(function(c, index) {
-                comments.push(<Comment info = { c.comment } key = { 'comment' + index }/>)
+                comments.push(<Comment info = { c.comment } discussionID = { id } key = { 'comment' + index }/>)
             });
         }
 

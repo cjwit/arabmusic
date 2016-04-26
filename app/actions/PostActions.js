@@ -21,5 +21,12 @@ module.exports = {
             object: comment,
             type: 'post:addComment'
         });
+    },
+
+    deleteComment: function(comment) {
+        dispatcher.dispatch({
+            object: comment,
+            type: "post:deleteComment"
+        });
     }
 }
