@@ -49,5 +49,4 @@ var dbpassword = process.env.DBPASSWORD;
 var dburl = 'mongodb://<dbuser>:<dbpassword>@ds019481.mlab.com:19481/arabmusictest'
     .replace("<dbuser>", dblogin)
     .replace('<dbpassword>', dbpassword);
-console.log(dburl);
 mongoose.connect(dburl)

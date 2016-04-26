@@ -47,9 +47,10 @@ module.exports = {
     // object {discussionID, comment}
     addComment: function (commentObject) {
         var Promise = promise.Promise;
+        var commentURL = resourceURL + 'comments/'
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + 'comments/',
+                url: commentURL,
                 data: JSON.stringify(commentObject),
                 method: "POST",
                 dataType: 'json',

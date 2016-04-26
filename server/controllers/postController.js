@@ -30,11 +30,10 @@ function deletePost(req, res) {
 }
 
 function addComment(req, res) {
-    var id = req.params.id;
-    var comment = req.body;
-    console.log('postController.addComment', id, comment)
+    var comment = req.body.comment;
+    var id = req.body.discussionID;
     var query = { _id: id },
-        update = { $push: { comments: comment }}
+        update = { $push: { comments: req.body }}
     Post.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
