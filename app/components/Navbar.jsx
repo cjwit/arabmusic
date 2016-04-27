@@ -22,6 +22,7 @@ module.exports = React.createClass({
                         <li className= { active === 'discussions' ? 'navlink active' : 'navlink' } id = 'discussions' ><a href="/discussions">Talk</a></li>
                         <li className= { active === 'events' ? 'navlink active' : 'navlink' } id = 'events'><a href="/events">Events</a></li>
                         <li className= { active === 'resources' ? 'navlink active' : 'navlink' } id = 'resources'><a href="/resources">Resources</a></li>
+                        <li className= { active === 'directory' ? 'navlink active' : 'navlink' } id = 'directory'><a href="/directory">Directory</a></li>
                         <li className= { active === 'samr' ? 'navlink active' : 'navlink' } id = 'samr'><a href="/samr">SAMR</a></li>
                         <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="/login">{ login ? 'Log Out' : 'Sign Up / Login' }</a></li>
                       </ul>

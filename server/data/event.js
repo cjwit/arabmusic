@@ -4,6 +4,7 @@ var eventSchema = mongoose.Schema({
     location: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: Date, required: true },
+    tags: Array,
     owner: { type: String, required: true }
 });
 

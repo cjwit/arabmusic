@@ -1,5 +1,6 @@
 var React = require('react');
 var actions = require('../actions/EventActions');
+var tags = require('../tags.js');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -8,6 +9,7 @@ module.exports = React.createClass({
             location: "",
             date: new Date(Date.now()),
             description: "",
+            tags: [],
             owner: "Evan the Event Adder"           // get from login
         };
     },
@@ -18,6 +20,10 @@ module.exports = React.createClass({
                 format: "MM/DD/YYYY"
             })
         });
+        var toggleTag = this.toggleTag;
+        $('#tags :input').change(function() {
+            toggleTag(this.name);
+        })
     },
 
     addEvent: function(e) {
@@ -27,7 +33,8 @@ module.exports = React.createClass({
             name: "",
             location: "",
             date: new Date(Date.now()),
-            description: ""
+            description: "",
+            tags: []
         })
     },
 
@@ -46,7 +53,30 @@ module.exports = React.createClass({
         this.setState(state);
     },
 
+    toggleTag: function(name) {
+        var tags = this.state.tags;
+        var index = tags.indexOf(name)
+        if (index === -1) {
+            tags.push(name);
+        } else {
+            tags.splice(index, 1);
+        }
+        console.log(name, tags);
+        this.setState({
+            tags: tags
+        })
+    },
+
     render: function() {
+        var tagButtons = [];
+        var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+        allTags.map(function(tag, index) {
+            tagButtons.push(
+                <label className = 'tag btn btn-default btn-xs' onChange = { this.toggleTag } key = { 'check' + tag }>
+                    <input type = 'checkbox' name = { tag } autocomplete='off' /> { tag }
+                </label>)
+        });
+
         return (
             <div className = 'container'>
                 <div className = 'row'>
@@ -88,6 +118,13 @@ module.exports = React.createClass({
                                           value = { this.state.description }
                                           onChange = { this.handleInputChange } />
                             </div>
+                            <div className="form-group">
+                                <label className = 'control-label'>Select Tags</label>
+                                <div id = 'tags' class = 'btn-group' data-toggle='buttons'>
+                                    { tagButtons }
+                                </div>
+                            </div>
+
                             <button type="submit" className="btn btn-default">Submit</button>
                         </form>
                     </div>

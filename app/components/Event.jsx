@@ -26,6 +26,14 @@ module.exports = React.createClass({
         var info = this.props.info;
         var id = info._id;
         var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
+        var tagString = '';
+        info.tags.map(function(tag, index) {
+            if (index === info.tags.length - 1) {
+                tagString += tag;
+            } else {
+                tagString += tag + ', ';
+            }
+        })
 
         return (
             <div className = 'event' id = { id }>
@@ -60,6 +68,13 @@ module.exports = React.createClass({
                 <div className = 'event-description'>
                     { info.description }
                 </div>
+                { info.tags.length > 0 ?
+                    <div className = 'event-tags'>
+                        <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;
+                        { tagString }
+                    </div>
+                    : null
+                }
             </div>
             )
     }
