@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var compress = require('compression');
 
 // controllers
 var eventController = require('./controllers/eventController');
@@ -10,6 +11,7 @@ var resourceController = require('./controllers/resourceController');
 
 // requests
 var app = express();
+app.use(compress())
 app.use(express.static(path.join(__dirname, "../app/dist")));
 app.use(bodyParser.json());
 app.use("/api/events", eventController);
