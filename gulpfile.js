@@ -28,14 +28,18 @@ gulp.task('watch-sass', function() {
 });
 
 // moves the static files into app/dist
-gulp.task('copy', function() {
-    return gulp.src(['app/index.html',
-                     'app/lib/bootstrap/dist/css/bootstrap.min.css',
+gulp.task('copy-libraries', function() {
+    return gulp.src(['app/lib/bootstrap/dist/css/bootstrap.min.css',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
                      'app/lib/jquery/dist/jquery.min.js',
                      'app/lib/moment/moment.js',
                      'app/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
-                     'app/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                     'app/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'])
+        .pipe(gulp.dest('app/dist'));
+});
+
+gulp.task('copy', function() {
+    return gulp.src(['app/index.html',
                      'app/style.css'])
         .pipe(gulp.dest('app/dist'));
 });
