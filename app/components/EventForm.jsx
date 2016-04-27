@@ -61,7 +61,6 @@ module.exports = React.createClass({
         } else {
             tags.splice(index, 1);
         }
-        console.log(name, tags);
         this.setState({
             tags: tags
         })
