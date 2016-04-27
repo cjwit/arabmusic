@@ -40,6 +40,19 @@ resourceStore.onChange(getResourcesCallback);
 
 var login = Dummy.login;
 
+// functions to manipulate data
+function dateEvents() {
+    events.map(function(event) {
+        event.date = new Date(event.date);
+    })
+}
+
+function dateDiscussions() {
+    discussions.map(function(post) {
+        post.date = new Date(post.date);
+    })
+}
+
 function render() {
     var path = window.location.pathname;
     var split = path.split('/')
@@ -77,13 +90,8 @@ function render() {
 }
 
 function renderHome() {
-    events.map(function(event) {
-        event.date = new Date(event.date);
-    })
-    discussions.map(function(post) {
-        post.date = new Date(post.date);
-    })
-
+    dateEvents();
+    dateDiscussions();
     ReactDOM.render(<Home
         events = { events }
         discussions = { discussions }
@@ -92,10 +100,7 @@ function renderHome() {
 }
 
 function renderDiscussions() {
-    discussions.map(function(post) {
-        post.date = new Date(post.date);
-    })
-
+    dateDiscussions();
     ReactDOM.render(<DiscussionsMain
         discussions = { discussions }
         login = { login }
@@ -118,9 +123,7 @@ function renderDiscussionPage(id) {
 }
 
 function renderEvents() {
-    events.map(function(event) {
-        event.date = new Date(event.date);
-    })
+    dateEvents();
     ReactDOM.render(<Events
         events = { events }
         login = { login }
