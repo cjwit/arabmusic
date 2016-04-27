@@ -164,6 +164,9 @@ a:visited
   color: $darkred
   display: inline-block
 
+.btn-group
+  margin-bottom: 5px
+
 .event-name:first-child,
 .discussion-title:first-child,
 .collection-title
@@ -182,10 +185,17 @@ a:visited
   font-size: 0.8em
   padding-bottom: 10px
 
-.event-tags
-  font-size: 0.8em
+.event-tags,
+.discussion-tags,
+.resource-tags
+  font-size: 0.6em
   font-weight: 400
   color: $green3
+  background: $greenlightest
+  padding: 5px
+  margin-bottom: 5px
+  display: inline-block
+  border-radius: 5px
 
 /* comments */
 .comment,
@@ -217,6 +227,11 @@ a:visited
     -webkit-line-clamp: 3
     line-height: 1.2
     max-height: 3.6
+
+  .event-tags,
+  .discussion-tags,
+  .resource-tags
+    margin-bottom: 10px
 
   .comment,
   .item

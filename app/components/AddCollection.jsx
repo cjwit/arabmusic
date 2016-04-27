@@ -1,13 +1,22 @@
 var React = require('react');
 var actions = require('../actions/ResourceActions');
+var tags = require('../tags.js');
 
 module.exports = React.createClass({
     getInitialState: function() {
         return {
             title: "",
             description: "",
+            tags: [],
             items: []
         };
+    },
+
+    componentDidMount: function () {
+        var toggleTag = this.toggleTag;
+        $('#tags :input').change(function() {
+            toggleTag(this.name);
+        })
     },
 
     addCollection: function(e) {
@@ -15,41 +24,10 @@ module.exports = React.createClass({
         actions.addCollection(this.state);
         this.setState({
             title: "",
-            description: ""
+            description: "",
+            tags: []
         })
     },
-
-    /*
-    componentDidMount: function() {
-        // get info on the form position
-        var form = $('#addPostForm'),
-            formContainer = $('#addPostContainer'),
-            footer = $('#footer'),
-            startPosition = form.offset().top,
-            footerHeight = footer.offset().top,
-            width = formContainer.width(),
-            height = form.height();
-
-        $(window).resize(function () {
-            width = formContainer.width(),
-            footerHeight = footer.offset().top;
-        })
-
-        // at bottom of the page, form goes back to the top!
-        $(window).on('scroll', function() {
-            var scrollPosition = $(window).scrollTop(),
-                atTop = startPosition - 100 > scrollPosition,
-                atBottom = scrollPosition + height + 150 > footerHeight;
-
-            if (!atTop && !atBottom) {
-                form.addClass('sticky')
-                form.css({'width': width })
-            } else {
-                form.removeClass('sticky')
-            }
-        })
-    },
-    */
 
     handleInputChange: function(e) {
         e.preventDefault();
@@ -60,7 +38,30 @@ module.exports = React.createClass({
         this.setState(state);
     },
 
+    toggleTag: function(name) {
+        var tags = this.state.tags;
+        var index = tags.indexOf(name)
+        if (index === -1) {
+            tags.push(name);
+        } else {
+            tags.splice(index, 1);
+        }
+        console.log(name, tags);
+        this.setState({
+            tags: tags
+        })
+    },
+
     render: function() {
+        var tagButtons = [];
+        var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+        allTags.map(function(tag, index) {
+            tagButtons.push(
+                <label className = 'tag btn btn-default btn-xs' onChange = { this.toggleTag } key = { 'check' + tag }>
+                    <input type = 'checkbox' name = { tag } autocomplete='off' /> { tag }
+                </label>)
+        });
+
         return (
             <div className = 'container'>
 
@@ -86,6 +87,13 @@ module.exports = React.createClass({
                                 <p className="help-block">What types of items should this collection contain?</p>
 
                             </div>
+                            <div className="form-group">
+                                <label className = 'control-label'>Select Tags</label>
+                                <div id = 'tags' class = 'btn-group' data-toggle='buttons'>
+                                    { tagButtons }
+                                </div>
+                            </div>
+
                             <button type="submit" className="btn btn-default">Submit</button>
                         </form>
                     </div>

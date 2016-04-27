@@ -33,6 +33,14 @@ module.exports = React.createClass({
                 comments.push(<Comment info = { c.comment } discussionID = { id } key = { 'comment' + index }/>)
             });
         }
+        var tagString = '';
+        info.tags.map(function(tag, index) {
+            if (index === info.tags.length - 1) {
+                tagString += tag;
+            } else {
+                tagString += tag + ', ';
+            }
+        })
 
         return (
             <div className = 'discussion' id = { id }>
@@ -66,6 +74,13 @@ module.exports = React.createClass({
                 <div className = 'discussion-content'>
                     { info.content }
                 </div>
+                { info.tags.length > 0 ?
+                    <div className = 'discussion-tags'>
+                        <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;
+                        { tagString }
+                    </div>
+                    : null
+                }
 
                 { comments }
             </div>

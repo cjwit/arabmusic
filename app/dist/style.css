@@ -142,6 +142,9 @@ a:visited {
   color: #4D0225;
   display: inline-block; }
 
+.btn-group {
+  margin-bottom: 5px; }
+
 .event-name:first-child,
 .discussion-title:first-child,
 .collection-title {
@@ -159,10 +162,17 @@ a:visited {
   font-size: 0.8em;
   padding-bottom: 10px; }
 
-.event-tags {
-  font-size: 0.8em;
+.event-tags,
+.discussion-tags,
+.resource-tags {
+  font-size: 0.6em;
   font-weight: 400;
-  color: #156C15; }
+  color: #156C15;
+  background: #edf9ed;
+  padding: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  border-radius: 5px; }
 
 /* comments */
 .comment,
@@ -195,6 +205,11 @@ a:visited {
   -webkit-line-clamp: 3;
   line-height: 1.2;
   max-height: 3.6; }
+
+.list .event-tags,
+.list .discussion-tags,
+.list .resource-tags {
+  margin-bottom: 10px; }
 
 .list .comment,
 .list .item {

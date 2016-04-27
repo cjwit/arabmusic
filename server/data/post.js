@@ -4,6 +4,7 @@ var postSchema = mongoose.Schema({
     author: { type: String, required: true },
     content: { type: String, required: true },
     date: { type: Date, required: true },
+    tags: Array,
     comments: Array
 });
 
