@@ -6,7 +6,15 @@ module.exports = React.createClass({
     deletePost: function(e) {
         e.preventDefault();
         postActions.deletePost(this.props.info)
-        // window.location.href = '/discussions.html';
+
+        // redirect if on detail page
+        var path = window.location.pathname;
+        var split = path.split('/')
+        var folder = split[1]
+        var id = split[2] || null
+        if (id != null) {
+            window.location.href = '/' + folder;
+        }
     },
 
     editPost: function(e) {

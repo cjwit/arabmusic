@@ -5,8 +5,17 @@ var resourceActions = require('../actions/ResourceActions');
 module.exports = React.createClass({
     deleteCollection: function(e) {
         e.preventDefault();
-        postActions.deleteCollection(this.props.info)
-        // window.location.href = '/discussions.html';
+        resourceActions.deleteCollection(this.props.info)
+
+        // redirect if on detail page
+        var path = window.location.pathname;
+        var split = path.split('/')
+        var folder = split[1]
+        var id = split[2] || null
+        if (id != null) {
+            window.location.href = '/' + folder;
+        }
+
     },
 
     editCollection: function(e) {

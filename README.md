@@ -7,10 +7,8 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 Next Up
 * Review what pages we need, edit navigation bar in HTML files
 * Create individual components for headers on each page
-* Merge the html and jsx files to grab locations based on routing, limit gulp process time
 * Write content for About
 * SAMR page with link to email list
-* Delete from detail pages should redirect
 
 Eventually:
 * Pagination for lists

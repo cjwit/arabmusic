@@ -5,6 +5,16 @@ module.exports = React.createClass({
     deleteEvent: function(e) {
         e.preventDefault();
         actions.deleteEvent(this.props.info)
+
+        // redirect if on detail page
+        var path = window.location.pathname;
+        var split = path.split('/')
+        var folder = split[1]
+        var id = split[2] || null
+        if (id != null) {
+            window.location.href = '/' + folder;
+        }
+
     },
 
     editEvent: function(e) {
