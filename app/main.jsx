@@ -53,6 +53,19 @@ function dateDiscussions() {
     })
 }
 
+function findItem(list, id) {
+    var item;
+    list.map(function(i) {
+        if (i._id === id) {
+            item = i;
+        }
+    })
+    if (item.hasOwnProperty('date')) {
+        item.date = new Date(item.date);
+    }
+    return item
+}
+
 function render() {
     var path = window.location.pathname;
     var split = path.split('/')
@@ -108,16 +121,9 @@ function renderDiscussions() {
 }
 
 function renderDiscussionPage(id) {
-    var thisPost;
-    discussions.map(function(post) {
-        if (post._id === id) {
-            thisPost = post;
-        }
-    })
-    thisPost.date = new Date(thisPost.date);
-
+    var post = findItem(discussions, id);
     ReactDOM.render(<DiscussionPage
-        info = { thisPost }
+        info = { post }
         login = { login }
         />, document.getElementById('container'));
 }
@@ -131,15 +137,9 @@ function renderEvents() {
 }
 
 function renderEventPage(id) {
-    var thisEvent;
-    events.map(function(event) {
-        if (event._id === id) {
-            thisEvent = event;
-        }
-    })
-    thisEvent.date = new Date(thisEvent.date);
+    var event = findItem(events, id);
     ReactDOM.render(<EventPage
-        info = { thisEvent }
+        info = { event }
         login = { login }
         />, document.getElementById('container'));
 }
@@ -152,14 +152,9 @@ function renderResources() {
 }
 
 function renderResourcePage(id) {
-    var thisCollection;
-    resources.map(function(collection) {
-        if (collection._id === id) {
-            thisCollection = collection;
-        }
-    })
+    var collection = findItem(resources, id);
     ReactDOM.render(<ResourcePage
-        info = { thisCollection }
+        info = { collection }
         login = { login }
         />, document.getElementById('container'));
 }
