@@ -15,71 +15,6 @@ gulp.task('bundle', function() {
         .pipe(gulp.dest('app/dist'))
 })
 
-// creates discussions.js
-gulp.task('bundle-discussions', function() {
-    return browserify({
-        entries: './app/discussions.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('discussions.js'))
-        .pipe(gulp.dest('app/dist'))
-})
-
-// creates discussion page script
-gulp.task('bundle-discussionPage', function() {
-    return browserify({
-        entries: './app/discussionPageScript.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('discussionPageScript.js'))
-        .pipe(gulp.dest('app/dist'))
-})
-
-// creates resource page
-gulp.task('bundle-resources', function() {
-    return browserify({
-        entries: './app/resources.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('resources.js'))
-        .pipe(gulp.dest('app/dist'))
-})
-
-// creates resource page script
-gulp.task('bundle-resourcePage', function() {
-    return browserify({
-        entries: './app/resourcePageScript.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('resourcePageScript.js'))
-        .pipe(gulp.dest('app/dist'))
-})
-// creates eventPage.js
-gulp.task('bundle-eventPage', function() {
-    return browserify({
-        entries: './app/eventPageScript.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('eventPageScript.js'))
-        .pipe(gulp.dest('app/dist'))
-})
-
-// creates events.js
-gulp.task('bundle-events', function() {
-    return browserify({
-        entries: './app/events.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('events.js'))
-        .pipe(gulp.dest('app/dist'))
-})
-
 // convert sass to css
 gulp.task('styles', function() {
     gulp.src('app/*.sass')
@@ -95,12 +30,6 @@ gulp.task('watch-sass', function() {
 // moves the static files into app/dist
 gulp.task('copy', function() {
     return gulp.src(['app/index.html',
-                     'app/discussions.html',
-                     'app/resources.html',
-                     'app/resourcePage.html',
-                     'app/events.html',
-                     'app/eventPage.html',
-                     'app/discussionPage.html',
                      'app/lib/bootstrap/dist/css/bootstrap.min.css',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
                      'app/lib/jquery/dist/jquery.min.js',
@@ -112,12 +41,6 @@ gulp.task('copy', function() {
 });
 
 gulp.task('default', ['copy',
-                      'bundle',
-                      'bundle-discussions',
-                      'bundle-events',
-                      'bundle-eventPage',
-                      'bundle-resources',
-                      'bundle-resourcePage',
-                      'bundle-discussionPage'], function() {
+                      'bundle'], function() {
     console.log('Gulp completed...');
 });

@@ -10,6 +10,7 @@ Next Up
 * Merge the html and jsx files to grab locations based on routing, limit gulp process time
 * Write content for About
 * SAMR page with link to email list
+* Delete from detail pages should redirect
 
 Eventually:
 * Pagination for lists
