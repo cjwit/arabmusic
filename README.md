@@ -9,11 +9,11 @@ Next Up
 * Create individual components for headers on each page
 * Write content for About
 * SAMR page with link to email list
+* Items should have authors
 
 Eventually:
 * Pagination for lists
 * Edit functionality
-* Work out tag system (geographic, language groups, academic, topical)
 * Login functionality
 * Member info pages
 * Medium blog?
