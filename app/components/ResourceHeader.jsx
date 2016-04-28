@@ -6,7 +6,15 @@ module.exports = React.createClass({
             <div id = 'head' className = 'row'>
                 <div className = 'col-md-8 col-md-offset-2 holder'>
                     <h1>Arab Music Resources</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>
+                        One goal for this site is to provide resources for performers, scholars, and
+                        fans of Arab music. To that end, you can create collaborative collections of
+                        books, recordings, websites, or anything else that you find to be useful.
+                    </p>
+                    <p>
+                        Log in to add a collection. Be sure to tag it and provide clear details as to what
+                        you hope it will contain. Visit other collections and add your favorite resources.
+                    </p>
                 </div>
             </div>
         )

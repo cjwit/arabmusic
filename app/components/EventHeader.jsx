@@ -6,7 +6,14 @@ module.exports = React.createClass({
             <div id = 'head' className = 'row'>
                 <div className = 'col-md-8 col-md-offset-2 holder'>
                     <h1>Arab Music Events</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>
+                        Share news on events that are happening in your area. Add information and
+                        be sure to include details so anyone who wants to come can find out more.
+                    </p>
+                    <p>
+                        Events can include any gathering that may interest the community. This might be
+                        concerts, workshops, conferences, courses, etc.
+                    </p>
                 </div>
             </div>
         )
