@@ -1,6 +1,7 @@
 var React = require('react');
 var EventList = require('./EventList.jsx');
 var EventForm = require('./EventForm.jsx');
+var EventHeader = require('./EventHeader.jsx');
 var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
 
@@ -36,23 +37,21 @@ module.exports = React.createClass({
         return (
             <div>
                 <Navbar active = 'events' login = { login }/>
-                <div id = 'head' className = 'row'>
-                    <div className = 'col-md-8 col-md-offset-2 holder'>
-                        <h1>Arab Music Events</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <EventHeader />
 
-                        { login ?
-                            <button id = 'addEventFormToggle'
-                                className = 'btn btn-default'
-                                onClick = { this.toggleForm } >Add an Event
-                            </button> :
-                            <p className = 'pull-right'>
-                                Login to add an event
-                            </p>
-                        }
-
+                { login ?
+                    <div className = 'holder text-center'>
+                        <button id = 'addEventFormToggle'
+                            className = 'btn btn-default'
+                            onClick = { this.toggleForm } >Add an Event
+                        </button>
+                    </div> :
+                    <div className = 'holder'>
+                        <p className = 'text-center'>
+                            Login to add an event
+                        </p>
                     </div>
-                </div>
+                }
 
                 { this.state.showForm ? <EventForm /> : null }
 

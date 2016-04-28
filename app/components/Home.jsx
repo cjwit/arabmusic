@@ -23,11 +23,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <Navbar active = 'home' login = { this.state.login }/>
-                <div id = 'head' className = 'row'>
-                    <div className = 'col-md-8 col-md-offset-2'>
-                        <About />
-                    </div>
-                </div>
+                <About />
                 <div className = 'container'>
                     <div className = 'row'>
                         <div className = 'col-md-6'>
