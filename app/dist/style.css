@@ -30,6 +30,9 @@ body {
 .tag {
   margin-right: 5px; }
 
+.help-block {
+  font-size: 0.7em; }
+
 #footer {
   background-color: #024A02;
   color: white;

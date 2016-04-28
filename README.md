@@ -5,11 +5,7 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Items should have authors
-* Comment buttons collide in Safari
-* Lighten tag background?
-* Smaller font for form label info (not labels, the `<p>` underneath the inputs)
-* Overflow containers for content is not rendering properly (probably related to `margin` or `padding`)
+* Items should have authors and dates
 * Create individual components for headers on each page
 * Write content for About
 * Process images for different header backgrounds
