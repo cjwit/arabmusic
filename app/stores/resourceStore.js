@@ -22,6 +22,13 @@ var ResourceStore = function() {
         });
     }
 
+    var editCollection = function(collection) {
+        resourceService.editCollection(collection).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var deleteCollection = function(collection) {
         resourceService.deleteCollection(collection).then(function(res) {
             console.log(res);
@@ -57,6 +64,9 @@ var ResourceStore = function() {
             switch (split[1]) {
                 case "addCollection":
                     addCollection(payload.object);
+                    break;
+                case "editCollection":
+                    editCollection(payload.object);
                     break;
                 case "deleteCollection":
                     deleteCollection(payload.object);

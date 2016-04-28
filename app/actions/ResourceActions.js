@@ -16,6 +16,13 @@ module.exports = {
         });
     },
 
+    editCollection: function(collection) {
+        dispatcher.dispatch({
+            object: collection,
+            type: "resource:editCollection"
+        });
+    },
+
     addItem: function(item) {
         dispatcher.dispatch({
             object: item,

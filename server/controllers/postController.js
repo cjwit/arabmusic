@@ -8,7 +8,6 @@ router.route('/comments/delete/').post(deleteComment);
 router.route('/:id').post(editPost).delete(deletePost);
 router.route('/').get(getPosts).post(addPost);
 
-
 function getPosts(req, res) {
     Post.find(function (err, posts) {
         if (err) res.send(err);

@@ -19,7 +19,6 @@ module.exports = React.createClass({
         })
     },
 
-
     editPost: function(e) {
         e.preventDefault();
         actions.editPost(this.state.info);
@@ -65,7 +64,7 @@ module.exports = React.createClass({
             info: info
         })
     },
-//
+
     deletePost: function(e) {
         e.preventDefault();
         actions.deletePost(this.state.info)

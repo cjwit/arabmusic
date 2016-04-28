@@ -29,7 +29,6 @@ module.exports = React.createClass({
                             <div id = "addCommentContainer">
                                 <CommentForm info = { info } login = { login } />
                             </div>
-
                         </div>
                     </div>
                 </div>
