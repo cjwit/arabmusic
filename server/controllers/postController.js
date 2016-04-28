@@ -5,7 +5,9 @@ var _ = require('underscore');
 var router = require('express').Router();
 router.route('/comments/').post(addComment);
 router.route('/comments/delete/').post(deleteComment);
-router.route('/:id?').get(getPosts).post(addPost).delete(deletePost);
+router.route('/:id').post(editPost).delete(deletePost);
+router.route('/').get(getPosts).post(addPost);
+
 
 function getPosts(req, res) {
     Post.find(function (err, posts) {
@@ -19,6 +21,23 @@ function addPost(req, res) {
     post.save(function (err) {
         if (err) res.send(err);
         else res.json(post);
+    });
+}
+
+function editPost(req, res) {
+    var id = req.params.id;
+    var info = req.body;
+    console.log('editPost', id, info);
+    var query = { _id: id },
+        update = { $set: {
+            title: info.title,
+            content: info.content,
+            tags: info.tags,
+            comments: info.comments
+        }};
+    Post.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
     });
 }
 

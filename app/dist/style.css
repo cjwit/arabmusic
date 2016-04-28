@@ -14,7 +14,7 @@ body {
   background-image: url("./images/pattern1-dark.jpg");
   background-size: cover;
   color: white;
-  padding: 20px; }
+  padding: 0px 20px 70px 20px; }
   @media screen and (max-width: 768px) {
     #head {
       font-weight: 400;
@@ -26,6 +26,13 @@ body {
 #addEventForm,
 #addCollectionForm {
   padding-top: 70px; }
+
+#editPostForm {
+  padding: 20px;
+  border: 1px solid #024A02;
+  color: #024A02;
+  background: #edf9ed;
+  border-radius: 5px; }
 
 .tag {
   margin-right: 5px; }

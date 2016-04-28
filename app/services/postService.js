@@ -3,6 +3,19 @@ var promise = require('es6-promise');
 var resourceURL = location.protocol + '//' + location.host + '/api/posts/';
 
 module.exports = {
+    getPosts: function() {
+        var Promise = promise.Promise;
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: resourceURL,
+                method: "GET",
+                dataType: 'json',
+                success: resolve,
+                error: reject
+            });
+        });
+    },
+
     addPost: function (post) {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
@@ -18,13 +31,15 @@ module.exports = {
         });
     },
 
-    getPosts: function() {
+    editPost: function (post) {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL,
-                method: "GET",
+                url: resourceURL + post.id,
+                data: JSON.stringify(post),
+                method: "POST",
                 dataType: 'json',
+                contentType: 'application/json',
                 success: resolve,
                 error: reject
             });

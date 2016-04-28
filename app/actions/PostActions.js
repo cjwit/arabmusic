@@ -16,6 +16,13 @@ module.exports = {
         });
     },
 
+    editPost: function(post) {
+        dispatcher.dispatch({
+            object: post,
+            type: "post:editPost"
+        });
+    },
+
     addComment: function(comment) {
         dispatcher.dispatch({
             object: comment,

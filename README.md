@@ -10,6 +10,7 @@ Next Up
 * Write content for About
 * Process images for different header backgrounds
 * Prettify footer
+* Add event copies info, but fixes on refresh
 
 Eventually:
 * Edit functionality

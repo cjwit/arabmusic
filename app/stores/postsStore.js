@@ -22,6 +22,13 @@ var PostStore = function() {
         });
     }
 
+    var editPost = function(post) {
+        postService.editPost(post).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var deletePost = function(post) {
         postService.deletePost(post).then(function(res) {
             console.log(res);
@@ -62,6 +69,9 @@ var PostStore = function() {
                     break;
                 case "deletePost":
                     deletePost(payload.object);
+                    break;
+                case "editPost":
+                    editPost(payload.object);
                     break;
                 case "addComment":
                     addComment(payload.object);
