@@ -10,15 +10,16 @@ module.exports = React.createClass({
             info: {
                 title: this.props.info.title,
                 description: this.props.info.description,
-                tags: this.props.info.tags,
-                items: this.props.info.items,
+                tags: this.props.info.tags
             }
         })
     },
 
     editCollection: function(e) {
         e.preventDefault();
-        actions.editCollection(this.state.info);
+        var info = this.state.info;
+        info.items = this.props.info.items;
+        actions.editCollection(info);
         this.setState({ editing: false });
     },
 
@@ -81,6 +82,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.state.info;
+        info.items = this.props.info.items;
         var id = this.props.info._id;
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
