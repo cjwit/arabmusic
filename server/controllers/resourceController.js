@@ -63,7 +63,8 @@ function deleteItem(req, res) {
         collectionID: req.body.collectionID,
         item: {
             title: req.body.item.title,
-            description: req.body.item.description
+            description: req.body.item.description,
+            author: req.body.item.author
         }
     }
     var id = req.body.collectionID;

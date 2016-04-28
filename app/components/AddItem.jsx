@@ -1,5 +1,5 @@
 var React = require('react');
-var resourceActions = require('../actions/ResourceActions');
+var actions = require('../actions/ResourceActions');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -7,7 +7,8 @@ module.exports = React.createClass({
             collectionID: this.props.info._id,
             item: {
                 title: "",
-                description: ""
+                description: "",
+                author: "Tester McTestFace"      // get from login
             }
         };
     },
@@ -16,7 +17,7 @@ module.exports = React.createClass({
         e.preventDefault();
         item = this.state.item
         this.setState({ item: item })
-        resourceActions.addItem(this.state);
+        actions.addItem(this.state);
 
         // RESETS THE FORM
         item.title = "";
@@ -45,6 +46,17 @@ module.exports = React.createClass({
                                placeholder="Title"
                                value = { this.state.item.title }
                                onChange = { this.handleInputChange } />
+                    </div>
+                    <div className="form-group">
+                        <label className = 'control-label' HTMLfor="author">Author</label>
+                        <input type="text" className="form-control"
+                               id="author"
+                               name = 'author'
+                               placeholder="Author"
+                               value = { this.state.item.author }
+                               onChange = { this.handleInputChange }
+                               disabled />
+                        <p className="help-block">Log out and back in again to change authorship.</p>
                     </div>
                     <div className="form-group">
                         <textarea className="form-control" rows = "3"

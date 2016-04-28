@@ -12,7 +12,6 @@ module.exports = React.createClass({
                 description: this.props.info.description,
                 tags: this.props.info.tags,
                 items: this.props.info.items,
-                id: this.props.info._id
             }
         })
     },
@@ -82,8 +81,8 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.state.info;
-        var id = info.id;
-        var collectionPage = Boolean(window.location.pathname.match(/^\/resources\//));
+        var id = this.props.info._id;
+        var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         var items = [];
         if (info.items.length > 0) {
@@ -110,7 +109,7 @@ module.exports = React.createClass({
 
                     { !collectionPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a href= { 'resources/' + id } className = 'btn btn-default'>
+                            <a href= { '/resources/' + id } className = 'btn btn-default'>
                                 <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                             </a>
                         </div>
