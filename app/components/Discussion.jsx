@@ -12,16 +12,16 @@ module.exports = React.createClass({
                 author: this.props.info.author,
                 content: this.props.info.content,
                 date: new Date(this.props.info.date),
-                tags: this.props.info.tags,
-                comments: this.props.info.comments,
-                id: this.props.info._id
+                tags: this.props.info.tags
             }
         })
     },
 
     editPost: function(e) {
         e.preventDefault();
-        actions.editPost(this.state.info);
+        var info = this.state.info;
+        info.comments = this.props.info.comments;
+        actions.editPost(info);
         this.setState({ editing: false });
     },
 
@@ -98,8 +98,9 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.state.info;
-        var id = info.id;
-        var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\//));
+        info.comments = this.props.info.comments;
+        var id = this.props.info._id;
+        var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
 
         var comments = [];
         if (info.comments.length > 0) {
@@ -125,7 +126,7 @@ module.exports = React.createClass({
                     </span>
                     { !discussionPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a href= { 'discussions/' + id } className = 'btn btn-default'>
+                            <a href= { '/discussions/' + id } className = 'btn btn-default'>
                                 <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                             </a>
                         </div>

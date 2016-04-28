@@ -43,6 +43,12 @@ module.exports = React.createClass({
                     { info.description }
                 </span>
 
+                { info.author !== '' ?
+                    <span className = 'item-author'>
+                        &nbsp;(Added by { info.author })
+                    </span> : null
+                }
+
             </div>
         )
     }

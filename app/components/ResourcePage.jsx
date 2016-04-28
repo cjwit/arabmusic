@@ -7,7 +7,6 @@ var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
     render: function() {
-        console.log('rendering resource page')
         var info = this.props.info;
         var login = this.props.login;
         return (

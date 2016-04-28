@@ -193,6 +193,9 @@ a:visited {
     .item {
       padding-left: 20px; } }
 
+.item-author {
+  font-weight: 400; }
+
 .comment-author,
 .item-title {
   font-weight: 400;
