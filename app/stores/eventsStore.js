@@ -22,6 +22,13 @@ var EventStore = function() {
         })
     }
 
+    var editEvent = function(event) {
+        eventService.editEvent(event).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var deleteEvent = function(event) {
         eventService.deleteEvent(event).then(function(res) {
             console.log(res);
@@ -46,6 +53,9 @@ var EventStore = function() {
                     break;
                 case "deleteEvent":
                     deleteEvent(payload.object);
+                    break;
+                case "editEvent":
+                    editEvent(payload.object);
                     break;
             }
         }

@@ -16,10 +16,10 @@ module.exports = {
         });
     },
 
-    updateEvent: function(event) {
+    editEvent: function(event) {
         dispatcher.dispatch({
             object: event,
-            type: "event:updateEvent"
+            type: "event:editEvent"
         });
     }
 }

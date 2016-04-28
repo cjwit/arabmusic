@@ -32,6 +32,12 @@ module.exports = React.createClass({
         }
     },
 
+    editEvent: function(e) {
+        e.preventDefault();
+        actions.editEvent(this.state.info);
+        this.setState({ editing: false });
+    },
+
     openForm: function() {
         this.setState({ editing: true })
         var info = this.state.info
@@ -57,11 +63,9 @@ module.exports = React.createClass({
     closeForm: function(e) {
         e.preventDefault();
         this.setState({ editing: false });
-        console.log('editing state', this.state.editing)
     },
 
     toggleTag: function(name) {
-        console.log(name)
         var info = this.state.info;
         var index = info.tags.indexOf(name)
         if (index === -1) {
@@ -89,12 +93,6 @@ module.exports = React.createClass({
         this.setState({
             info: info
         });
-    },
-
-    editEvent: function(e) {
-        e.preventDefault();
-        console.log('edit', this.state.info);
-        // actions.editEvent(this.props.info)
     },
 
     render: function() {
@@ -159,7 +157,6 @@ module.exports = React.createClass({
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
             allTags.map(function(tag, index) {
                 var preChecked = (info.tags.indexOf(tag) !== -1)
-                if (preChecked) console.log(preChecked, tag);
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
                            onChange = { this.toggleTag }

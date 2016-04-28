@@ -3,7 +3,8 @@ var Event = require('../data/event');
 var _ = require('underscore');
 
 var router = require('express').Router();
-router.route('/:id?').get(getEvents).post(addEvent).delete(deleteEvent);
+router.route('/:id').post(editEvent).delete(deleteEvent);
+router.route('/').get(getEvents).post(addEvent);
 
 function getEvents(req, res) {
     Event.find(function (err, events) {
@@ -17,6 +18,24 @@ function addEvent(req, res) {
     event.save(function (err) {
         if (err) res.send(err);
         else res.json(event);
+    });
+}
+
+function editEvent(req, res) {
+    var id = req.params.id;
+    var info = req.body;
+    console.log('editEvent', id, info);
+    var query = { _id: id },
+        update = { $set: {
+            name: info.name,
+            location: info.location,
+            description: info.description,
+            date: new Date(info.date),
+            tags: info.tags
+        }};
+    Event.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
     });
 }
 
