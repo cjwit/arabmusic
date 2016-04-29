@@ -31,14 +31,13 @@ body
   color: $text
   font-family: 'Raleway', sans-serif
   font-weight: 200
-  padding-top: 40px
+  padding-top: 20px
   line-height: 1.7
   font-size: 16px
   @media screen and (min-width: $small)
     font-size: 18px
 
-#head
-  background-image: url('./images/pattern1-dark.jpg')
+.head
   background-size: cover
   color: $textlight
   padding: 0px 20px 70px 20px
@@ -47,6 +46,18 @@ body
     background-attachment: scroll
   @media screen and (min-width: $small)
     background-attachment: fixed
+
+#about-header
+  background-image: url('./images/pattern1-dark.jpg')
+
+#discussion-header
+  background-image: url('./images/ghita-dark.jpg')
+
+#event-header
+  background-image: url('./images/incense-dark.jpg')
+
+#resource-header
+  background-image: url('./images/ud-dark.jpg')
 
 #addEventForm,
 #addCollectionForm
@@ -69,8 +80,14 @@ body
 #footer
   background-color: $green4
   color: $textlight
-  padding: 20px
+  padding: 50px
   margin-top: 70px
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+
   a, a:visited, a:hover
     color: $textlight
   .arabic
@@ -79,6 +96,22 @@ body
   #webmaster
     font-size: .8em
     font-weight: 200
+
+#footer-image
+  display: inline-block
+  display: inline-block
+  padding: 30px
+  width: 100%
+  max-width: 300px
+
+#footer-text
+  padding: 30px
+  @media screen and (min-width: $small)
+    text-align: left
+    display: inline-block
+  @media screen and (max-width: $small)
+    text-align: center
+    display: block
 
 strong
   font-weight: 400
@@ -216,7 +249,7 @@ a:visited
 
 .item-author
   font-weight: 400
-  
+
 .comment-author,
 .item-title
   font-weight: 400

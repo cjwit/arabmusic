@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
         return (
-            <div id = 'head' className = 'row'>
+            <div id = 'event-header' className = 'head row'>
                 <div className = 'col-md-8 col-md-offset-2 holder'>
                     <h1>Arab Music Events</h1>
                     <p>
