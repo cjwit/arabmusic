@@ -11,11 +11,6 @@ module.exports = React.createClass({
         postActions.deleteComment(payload)
     },
 
-    editComment: function(e) {
-        e.preventDefault();
-        // postActions.editPost(this.props.info)
-    },
-
     render: function() {
         var info = this.props.info;
         info.date = new Date(info.date);
@@ -33,16 +28,13 @@ module.exports = React.createClass({
                 { discussionPage ?
 
                     <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                        <a onClick = { this.editComment } className = 'btn btn-default'>
-                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </a>
                         <a onClick = { this.deleteComment } className = 'btn btn-default'>
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                     </div>
                     : null
                 }
-                
+
                 <span className = 'comment-content'>
                     { info.content }
                 </span>

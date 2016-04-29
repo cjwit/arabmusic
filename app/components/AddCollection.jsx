@@ -22,11 +22,7 @@ module.exports = React.createClass({
     addCollection: function(e) {
         e.preventDefault();
         actions.addCollection(this.state);
-        this.setState({
-            title: "",
-            description: "",
-            tags: []
-        })
+        window.location.href = '/resources/'
     },
 
     handleInputChange: function(e) {

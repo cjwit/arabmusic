@@ -11,14 +11,9 @@ module.exports = React.createClass({
         resourceActions.deleteItem(payload)
     },
 
-    editItem: function(e) {
-        e.preventDefault();
-        // resourceActions.editItem(this.props.info)
-    },
-
     render: function() {
         var info = this.props.info;
-        var resourcePage = Boolean(window.location.pathname.match(/^\/resources\//));
+        var resourcePage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         return (
             <div className = 'item'>
@@ -29,9 +24,6 @@ module.exports = React.createClass({
                 { resourcePage ?
 
                     <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                        <a onClick = { this.editItem } className = 'btn btn-default'>
-                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </a>
                         <a onClick = { this.deleteItem } className = 'btn btn-default'>
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
