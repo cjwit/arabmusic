@@ -26,7 +26,6 @@ function addCollection(req, res) {
 function editCollection(req, res) {
     var id = req.params.id;
     var info = req.body;
-    console.log('editCollection', id, info);
     var query = { _id: id },
         update = { $set: {
             title: info.title,

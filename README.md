@@ -6,10 +6,10 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Edit functionality for comments, items
-* Create individual components for headers on each page
-* Write content for About
-* Process images for different header backgrounds
-* Prettify footer
+* Link to items: if there, connect to item title
+* Resource collection and discussion edits do not persist (events do)
+* Put the add event/collection button somewhere better
+* Footer flexbox not working in Safari
 
 Eventually:
 * Review what pages we need, edit navigation bar in HTML files
@@ -21,3 +21,4 @@ Eventually:
 * Member info pages that collect authored materials
 * Blog on Medium
 * Concat and uglify CSS and JS libraries
+* Make images responsive

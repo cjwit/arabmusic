@@ -26,7 +26,6 @@ function addPost(req, res) {
 function editPost(req, res) {
     var id = req.params.id;
     var info = req.body;
-    console.log('editPost', id, info);
     var query = { _id: id },
         update = { $set: {
             title: info.title,

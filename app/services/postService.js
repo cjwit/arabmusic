@@ -50,7 +50,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + post._id,
+                url: resourceURL + post.id,
                 method: "DELETE",
                 dataType: 'json',
                 success: resolve,

@@ -21,6 +21,7 @@ module.exports = React.createClass({
         e.preventDefault();
         var info = this.state.info;
         info.comments = this.props.info.comments;
+        info.id = this.props.info._id;
         actions.editPost(info);
         this.setState({ editing: false });
     },
@@ -67,7 +68,9 @@ module.exports = React.createClass({
 
     deletePost: function(e) {
         e.preventDefault();
-        actions.deletePost(this.state.info)
+        var info = this.state.info;
+        info.id = this.props.info._id;
+        actions.deletePost(info)
 
         // redirect if on detail page
         var path = window.location.pathname;

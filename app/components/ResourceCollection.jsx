@@ -10,7 +10,8 @@ module.exports = React.createClass({
             info: {
                 title: this.props.info.title,
                 description: this.props.info.description,
-                tags: this.props.info.tags
+                tags: this.props.info.tags,
+
             }
         })
     },
@@ -19,6 +20,7 @@ module.exports = React.createClass({
         e.preventDefault();
         var info = this.state.info;
         info.items = this.props.info.items;
+        info.id = this.props.info._id;
         actions.editCollection(info);
         this.setState({ editing: false });
     },
@@ -57,7 +59,9 @@ module.exports = React.createClass({
 
     deleteCollection: function(e) {
         e.preventDefault();
-        resourceActions.deleteCollection(this.props.info)
+        var info = this.state.info;
+        info.id = this.props.info._id;
+        actions.deleteCollection(info)
 
         // redirect if on detail page
         var path = window.location.pathname;
