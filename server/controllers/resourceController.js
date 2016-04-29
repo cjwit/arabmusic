@@ -57,6 +57,16 @@ function addItem(req, res) {
     })
 }
 
+function editItem(req, res) {
+    var id = req.body.collectionID;
+    var query = { _id: id },
+        update = { $push: { items: req.body }}
+    Resource.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
+    })
+}
+
 function deleteItem(req, res) {
     var body = {
         collectionID: req.body.collectionID,

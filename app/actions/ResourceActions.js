@@ -30,6 +30,13 @@ module.exports = {
         });
     },
 
+    editItem: function(item) {
+        dispatcher.dispatch({
+            object: item,
+            type: "resource:editItem"
+        });
+    },
+
     deleteItem: function(item) {
         dispatcher.dispatch({
             object: item,

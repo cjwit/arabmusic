@@ -39,7 +39,8 @@ body {
   padding-top: 70px; }
 
 #editPostForm,
-#editCollectionForm {
+#editCollectionForm,
+#editItemForm {
   padding: 20px;
   border: 1px solid #024A02;
   color: #024A02;
