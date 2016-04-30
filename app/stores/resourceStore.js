@@ -43,6 +43,13 @@ var ResourceStore = function() {
         });
     }
 
+    var editItem = function(item) {
+        resourceService.editItem(item).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var deleteItem = function(itemObject) {
         resourceService.deleteItem(itemObject).then(function(res) {
             console.log(res);
@@ -76,6 +83,9 @@ var ResourceStore = function() {
                     break;
                 case "deleteItem":
                     deleteItem(payload.object);
+                    break;
+                case "editItem":
+                    editItem(payload.object);
                     break;
             }
         }

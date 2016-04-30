@@ -76,6 +76,21 @@ module.exports = {
         });
     },
 
+    editItem: function (item) {
+        var Promise = promise.Promise;
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: resourceURL + 'items/edit/',
+                data: JSON.stringify(item),
+                method: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: resolve,
+                error: reject
+            });
+        });
+    },
+
     // object {collectionID, item}
     deleteItem: function (commentObject) {
         var Promise = promise.Promise;

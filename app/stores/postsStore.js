@@ -36,7 +36,6 @@ var PostStore = function() {
         });
     }
 
-    // object: { discussionID, commentInfo }
     var addComment = function(commentObject) {
         postService.addComment(commentObject).then(function(res) {
             console.log(res);
@@ -44,7 +43,13 @@ var PostStore = function() {
         });
     }
 
-    // object: { discussionID, commentInfo }
+    var editComment = function(commentObject) {
+        postService.editComment(commentObject).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var deleteComment = function(commentObject) {
         postService.deleteComment(commentObject).then(function(res) {
             console.log(res);
@@ -75,6 +80,9 @@ var PostStore = function() {
                     break;
                 case "addComment":
                     addComment(payload.object);
+                    break;
+                case "editComment":
+                    editComment(payload.object);
                     break;
                 case "deleteComment":
                     deleteComment(payload.object);

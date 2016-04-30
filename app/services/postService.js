@@ -76,7 +76,21 @@ module.exports = {
         });
     },
 
-    // object {discussionID, comment}
+    editComment: function (commentObject) {
+        var Promise = promise.Promise;
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: resourceURL + 'comments/edit/',
+                data: JSON.stringify(commentObject),
+                method: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: resolve,
+                error: reject
+            });
+        });
+    },
+
     deleteComment: function (commentObject) {
         var Promise = promise.Promise;
         var commentURL = resourceURL + 'comments/delete/'

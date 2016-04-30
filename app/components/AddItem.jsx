@@ -1,5 +1,6 @@
 var React = require('react');
 var actions = require('../actions/ResourceActions');
+var Guid = require('guid');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -8,6 +9,7 @@ module.exports = React.createClass({
             item: {
                 title: "",
                 description: "",
+                link: "http://",
                 author: "Tester McTestFace"      // get from login
             }
         };
@@ -15,14 +17,23 @@ module.exports = React.createClass({
 
     addItem: function(e) {
         e.preventDefault();
-        item = this.state.item
-        this.setState({ item: item })
-        actions.addItem(this.state);
+        info = this.state
+        info.item.id = Guid.raw();
 
-        // RESETS THE FORM
-        item.title = "";
-        item.description = "";
-        this.setState({ item: item })
+        // check link format
+        if (info.item.link === "http://") {
+            info.item.link = ""
+        } else if (!info.item.link.match(/^http/)) {
+            info.item.link = 'http://' + info.item.link;
+        }
+
+        actions.addItem(info);
+
+        // reset the item form
+        info.item.title = "";
+        info.item.description = "";
+        info.item.link = "http://";
+        this.setState({ item: info.item })
     },
 
     handleInputChange: function(e) {
@@ -45,6 +56,14 @@ module.exports = React.createClass({
                                name = 'title'
                                placeholder="Title"
                                value = { this.state.item.title }
+                               onChange = { this.handleInputChange } />
+                    </div>
+                    <div className="form-group">
+                        <label className = 'control-label' HTMLfor="title">Link</label>
+                        <input type="text" className="form-control"
+                               id="link"
+                               name = 'link'
+                               value = { this.state.item.link }
                                onChange = { this.handleInputChange } />
                     </div>
                     <div className="form-group">

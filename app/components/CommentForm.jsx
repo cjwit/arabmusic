@@ -1,5 +1,6 @@
 var React = require('react');
 var postActions = require('../actions/PostActions');
+var Guid = require('guid');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -17,10 +18,11 @@ module.exports = React.createClass({
         e.preventDefault();
         comment = this.state.comment
         comment.date = new Date(Date.now());
+        comment.id = Guid.raw();
         this.setState({ comment: comment })
         postActions.addComment(this.state);
 
-        // RESETS THE COMMENT!!!
+        // reset the comment form
         comment.content = "";
         this.setState({ comment: comment })
     },

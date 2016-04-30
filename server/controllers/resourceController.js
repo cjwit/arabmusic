@@ -5,6 +5,7 @@ var _ = require('underscore');
 var router = require('express').Router();
 router.route('/items/').post(addItem);
 router.route('/items/delete/').post(deleteItem);
+router.route('/items/edit/').post(editItem);
 router.route('/:id').post(editCollection).delete(deleteCollection);
 router.route('/').get(getResources).post(addCollection);
 
@@ -57,13 +58,28 @@ function addItem(req, res) {
     })
 }
 
+function editItem(req, res) {
+    var query = { '_id': req.body.collectionID,
+                  'items.item.id': req.body.item.id };
+    var update = { $set: {
+                   'items.$.item.title': req.body.item.title,
+                   'items.$.item.link': req.body.item.link,
+                   'items.$.item.description': req.body.item.description }}
+    Resource.findOneAndUpdate(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
+    })
+}
+
 function deleteItem(req, res) {
     var body = {
         collectionID: req.body.collectionID,
         item: {
             title: req.body.item.title,
             description: req.body.item.description,
-            author: req.body.item.author
+            author: req.body.item.author,
+            id: req.body.item.id,
+            link: req.body.item.link
         }
     }
     var id = req.body.collectionID;

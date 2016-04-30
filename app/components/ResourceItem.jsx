@@ -1,47 +1,131 @@
 var React = require('react');
-var resourceActions = require('../actions/ResourceActions');
+var actions = require('../actions/ResourceActions');
 
 module.exports = React.createClass({
+    getInitialState: function() {
+        return ({
+            editing: false,
+            info: this.props.info
+        })
+    },
+
     deleteItem: function(e) {
         e.preventDefault();
         var payload = {
             collectionID: this.props.collectionID,
-            item: this.props.info
+            item: this.state.info
         }
-        resourceActions.deleteItem(payload)
+        actions.deleteItem(payload)
+    },
+
+    openForm: function(e) {
+        e.preventDefault();
+        this.setState({ editing: true })
+    },
+
+    closeForm: function(e) {
+        e.preventDefault();
+        this.setState({ editing: false });
+    },
+
+    editItem: function(e) {
+        e.preventDefault();
+        var payload = {
+            collectionID: this.props.collectionID,
+            item: this.state.info
+        }
+        console.log(payload);
+        actions.editItem(payload)
+        this.setState({ editing: false });
+    },
+
+    handleInputChange: function(e) {
+        e.preventDefault();
+        var name = e.target.name;
+        var value = e.target.value;
+        var info = this.state.info;
+        info[name] = value;
+        this.setState({info: info});
     },
 
     render: function() {
         var info = this.props.info;
         var resourcePage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
-        return (
-            <div className = 'item'>
-                <span className = 'item-title'>
-                    { info.title }:&nbsp;
-                </span>
-
-                { resourcePage ?
-
-                    <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                        <a onClick = { this.deleteItem } className = 'btn btn-default'>
-                            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        if (this.state.editing) {
+            return (
+                <div className = 'item'>
+                    <form onSubmit = { this.editItem } id = 'editItemForm'>
+                        <div className="form-group">
+                            <label className = 'control-label' HTMLfor="title">Edit Your Item</label>
+                            <input type="text" className="form-control"
+                                   id="title"
+                                   name = 'title'
+                                   placeholder="Title"
+                                   defaultValue = { info.title }
+                                   onChange = { this.handleInputChange } />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" className="form-control"
+                                   id="link"
+                                   name = 'link'
+                                   placeholder="Link"
+                                   defaultValue = { info.link || 'http://' }
+                                   onChange = { this.handleInputChange } />
+                        </div>
+                        <div className="form-group">
+                            <textarea className="form-control" rows = "3"
+                                      id="description"
+                                      name = 'description'
+                                      defaultValue = { info.description }
+                                      onChange = { this.handleInputChange } />
+                        </div>
+                        <button type="submit" className="btn btn-default">Submit</button>&nbsp;
+                        <button className="btn btn-danger" onClick = { this.closeForm }>Cancel</button>
+                    </form>
+                </div>
+            )
+        } else {
+            return (
+                <div className = 'item'>
+                    { info.link === "" ?
+                        <span className = 'item-title'>
+                            { info.title }:&nbsp;
+                        </span>
+                        :
+                        <a href = { info.link} target = "_blank">
+                            <span className = 'item-title'>
+                                { info.title }:&nbsp;
+                            </span>
                         </a>
-                    </div>
-                    : null
-                }
+                    }
 
-                <span className = 'item-content'>
-                    { info.description }
-                </span>
+                    {
+                        collectionPage ?
+                            <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                                <a onClick = { this.openForm } className = 'btn btn-default'>
+                                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </a>
+                                <a onClick = { this.deleteItem } className = 'btn btn-default'>
+                                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        :
+                            null
+                    }
 
-                { info.author !== '' ?
-                    <span className = 'item-author'>
-                        &nbsp;(Added by { info.author })
-                    </span> : null
-                }
+                    <span className = 'item-content'>
+                        { info.description }
+                    </span>
 
-            </div>
-        )
+                    { info.author !== '' ?
+                        <span className = 'item-author'>
+                            &nbsp;(Added by { info.author })
+                        </span> : null
+                    }
+
+                </div>
+            )
+        }
     }
 })
