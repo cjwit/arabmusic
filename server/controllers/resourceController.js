@@ -72,20 +72,8 @@ function editItem(req, res) {
 }
 
 function deleteItem(req, res) {
-    var body = {
-        collectionID: req.body.collectionID,
-        item: {
-            title: req.body.item.title,
-            description: req.body.item.description,
-            author: req.body.item.author,
-            id: req.body.item.id,
-            link: req.body.item.link
-        }
-    }
-    var id = req.body.collectionID;
-    var query = { _id: id },
-        update = { $pull: { items: body }}
-
+    var query = { _id: req.body.collectionID },
+        update = { $pull: { items: {'item.id': req.body.item.id }}}
     Resource.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);

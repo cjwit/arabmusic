@@ -34,7 +34,6 @@ module.exports = React.createClass({
             collectionID: this.props.collectionID,
             item: this.state.info
         }
-        console.log(payload);
         actions.editItem(payload)
         this.setState({ editing: false });
     },
@@ -50,7 +49,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
-        var resourcePage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
+        var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         if (this.state.editing) {
             return (
