@@ -9,6 +9,7 @@ module.exports = React.createClass({
             item: {
                 title: "",
                 description: "",
+                link: "http://",
                 author: "Tester McTestFace"      // get from login
             }
         };
@@ -18,12 +19,17 @@ module.exports = React.createClass({
         e.preventDefault();
         info = this.state
         info.item.id = Guid.raw();
-        console.log(info);
+        if (info.item.link === "http://") {
+            info.item.link = ""
+        } else if (!info.item.link.match(/^http/)) {
+            info.item.link = 'http://' + info.item.link;
+        }
         actions.addItem(info);
 
         // RESETS THE FORM
         info.item.title = "";
         info.item.description = "";
+        info.item.link = "http://";
         this.setState({ item: info.item })
     },
 
@@ -47,6 +53,14 @@ module.exports = React.createClass({
                                name = 'title'
                                placeholder="Title"
                                value = { this.state.item.title }
+                               onChange = { this.handleInputChange } />
+                    </div>
+                    <div className="form-group">
+                        <label className = 'control-label' HTMLfor="title">Link</label>
+                        <input type="text" className="form-control"
+                               id="link"
+                               name = 'link'
+                               value = { this.state.item.link }
                                onChange = { this.handleInputChange } />
                     </div>
                     <div className="form-group">

@@ -66,6 +66,14 @@ module.exports = React.createClass({
                                    onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
+                            <input type="text" className="form-control"
+                                   id="link"
+                                   name = 'link'
+                                   placeholder="Link"
+                                   defaultValue = { info.link || 'http://' }
+                                   onChange = { this.handleInputChange } />
+                        </div>
+                        <div className="form-group">
                             <textarea className="form-control" rows = "3"
                                       id="description"
                                       name = 'description'
@@ -80,9 +88,17 @@ module.exports = React.createClass({
         } else {
             return (
                 <div className = 'item'>
-                    <span className = 'item-title'>
-                        { info.title }:&nbsp;
-                    </span>
+                    { info.link === "" ?
+                        <span className = 'item-title'>
+                            { info.title }:&nbsp;
+                        </span>
+                        :
+                        <a href = { info.link} target = "_blank">
+                            <span className = 'item-title'>
+                                { info.title }:&nbsp;
+                            </span>
+                        </a>
+                    }
 
                     { collectionPage ?
 

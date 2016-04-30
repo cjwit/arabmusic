@@ -59,14 +59,12 @@ function addItem(req, res) {
 }
 
 function editItem(req, res) {
-    var collectionID = req.body.collectionID;
-    var itemID = req.body.item.id;
-    var title = req.body.item.title;
-    var description = req.body.item.description;
-    console.log(title, description);
-
-    var query = { '_id': collectionID, 'items.item.id': itemID };
-    var update = { $set: { 'items.$.item.title': title, 'items.$.item.description': description }}
+    var query = { '_id': req.body.collectionID,
+                  'items.item.id': req.body.item.id };
+    var update = { $set: {
+                   'items.$.item.title': req.body.item.title,
+                   'items.$.item.link': req.body.item.link,
+                   'items.$.item.description': req.body.item.description }}
     Resource.findOneAndUpdate(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
@@ -79,7 +77,9 @@ function deleteItem(req, res) {
         item: {
             title: req.body.item.title,
             description: req.body.item.description,
-            author: req.body.item.author
+            author: req.body.item.author,
+            id: req.body.item.id,
+            link: req.body.item.link
         }
     }
     var id = req.body.collectionID;
