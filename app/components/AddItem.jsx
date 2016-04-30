@@ -19,14 +19,17 @@ module.exports = React.createClass({
         e.preventDefault();
         info = this.state
         info.item.id = Guid.raw();
+
+        // check link format
         if (info.item.link === "http://") {
             info.item.link = ""
         } else if (!info.item.link.match(/^http/)) {
             info.item.link = 'http://' + info.item.link;
         }
+
         actions.addItem(info);
 
-        // RESETS THE FORM
+        // reset the item form
         info.item.title = "";
         info.item.description = "";
         info.item.link = "http://";

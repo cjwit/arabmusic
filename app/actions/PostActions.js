@@ -30,6 +30,13 @@ module.exports = {
         });
     },
 
+    editComment: function(comment) {
+        dispatcher.dispatch({
+            object: comment,
+            type: "post:editComment"
+        });
+    },
+
     deleteComment: function(comment) {
         dispatcher.dispatch({
             object: comment,
