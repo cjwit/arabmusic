@@ -80,7 +80,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + 'items/' + item.collectionID,
+                url: resourceURL + 'items/edit/',
                 data: JSON.stringify(item),
                 method: "POST",
                 dataType: 'json',

@@ -5,11 +5,7 @@ module.exports = React.createClass({
     getInitialState: function() {
         return ({
             editing: false,
-            info: {
-                title: this.props.info.title,
-                author: this.props.info.author,
-                description: this.props.info.description
-            }
+            info: this.props.info
         })
     },
 
@@ -38,8 +34,18 @@ module.exports = React.createClass({
             collectionID: this.props.collectionID,
             item: this.state.info
         }
+        console.log(payload);
         actions.editItem(payload)
         this.setState({ editing: false });
+    },
+
+    handleInputChange: function(e) {
+        e.preventDefault();
+        var name = e.target.name;
+        var value = e.target.value;
+        var info = this.state.info;
+        info[name] = value;
+        this.setState({info: info});
     },
 
     render: function() {

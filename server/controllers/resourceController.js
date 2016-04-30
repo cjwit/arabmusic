@@ -5,6 +5,7 @@ var _ = require('underscore');
 var router = require('express').Router();
 router.route('/items/').post(addItem);
 router.route('/items/delete/').post(deleteItem);
+router.route('/items/edit/').post(editItem);
 router.route('/:id').post(editCollection).delete(deleteCollection);
 router.route('/').get(getResources).post(addCollection);
 
@@ -58,10 +59,15 @@ function addItem(req, res) {
 }
 
 function editItem(req, res) {
-    var id = req.body.collectionID;
-    var query = { _id: id },
-        update = { $push: { items: req.body }}
-    Resource.update(query, update, function (err, updated) {
+    var collectionID = req.body.collectionID;
+    var itemID = req.body.item.id;
+    var title = req.body.item.title;
+    var description = req.body.item.description;
+    console.log(title, description);
+
+    var query = { '_id': collectionID, 'items.item.id': itemID };
+    var update = { $set: { 'items.$.item.title': title, 'items.$.item.description': description }}
+    Resource.findOneAndUpdate(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
     })

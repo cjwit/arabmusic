@@ -1,5 +1,6 @@
 var React = require('react');
 var actions = require('../actions/ResourceActions');
+var Guid = require('guid');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -15,14 +16,15 @@ module.exports = React.createClass({
 
     addItem: function(e) {
         e.preventDefault();
-        item = this.state.item
-        this.setState({ item: item })
-        actions.addItem(this.state);
+        info = this.state
+        info.item.id = Guid.raw();
+        console.log(info);
+        actions.addItem(info);
 
         // RESETS THE FORM
-        item.title = "";
-        item.description = "";
-        this.setState({ item: item })
+        info.item.title = "";
+        info.item.description = "";
+        this.setState({ item: info.item })
     },
 
     handleInputChange: function(e) {
