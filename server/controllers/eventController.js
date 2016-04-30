@@ -24,7 +24,6 @@ function addEvent(req, res) {
 function editEvent(req, res) {
     var id = req.params.id;
     var info = req.body;
-    console.log('editEvent', id, info);
     var query = { _id: id },
         update = { $set: {
             name: info.name,
