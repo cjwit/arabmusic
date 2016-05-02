@@ -40,7 +40,8 @@ gulp.task('copy-libraries', function() {
 
 gulp.task('copy', function() {
     return gulp.src(['app/index.html',
-                     'app/style.css'])
+                     'app/style.css',
+                     'app/social.css'])
         .pipe(gulp.dest('app/dist'));
 });
 
