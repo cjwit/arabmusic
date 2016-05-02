@@ -20,8 +20,8 @@ module.exports = React.createClass({
     editCollection: function(e) {
         e.preventDefault();
         var info = this.state.info;
-        info.items = this.props.info.items;
         info.id = this.props.info._id;
+        info.items = this.props.info.items;
         info.edited = true;
         info.editDate = new Date(Date.now());
         actions.editCollection(info);
@@ -89,13 +89,14 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.state.info;
-        info.items = this.props.info.items;
         var id = this.props.info._id;
+        info.items = this.props.info.items;
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         var items = [];
         if (info.items.length > 0) {
             info.items.forEach(function(item, index) {
+                console.log('ResourceCollection', item.item)
                 items.push(<ResourceItem info = { item.item } collectionID = { id } key = { 'item' + index }/>)
             });
         }

@@ -5,15 +5,24 @@ module.exports = React.createClass({
     getInitialState: function() {
         return ({
             editing: false,
-            info: this.props.info
+            info: {
+                title: this.props.info.title,
+                link: this.props.info.link,
+                author: this.props.info.author,
+                description: this.props.info.description
+            }
         })
     },
 
     deleteItem: function(e) {
         e.preventDefault();
+        var info = this.state.info;
+        info.edited = this.props.info.edited;
+        info.editDate = new Date(this.props.info.editDate);
+
         var payload = {
             collectionID: this.props.collectionID,
-            item: this.state.info
+            item: info
         }
         actions.deleteItem(payload)
     },
@@ -32,11 +41,14 @@ module.exports = React.createClass({
         e.preventDefault();
         var info = this.state.info;
         info.edited = true;
+        info.date = new Date(this.props.info.date);
         info.editDate = new Date(Date.now());
+        info.id = this.props.info.id;
         var payload = {
             collectionID: this.props.collectionID,
             item: info
         }
+        console.log('ResourceItem editItem payload edited', payload.item.edited)
         actions.editItem(payload)
         this.setState({ editing: false });
     },
@@ -51,9 +63,12 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var info = this.props.info;
-        info.editDate = new Date(info.editDate);
+        var info = this.state.info;
+        info.edited = this.props.info.edited,
+        info.editDate = new Date(this.props.info.editDate)
+
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
+        console.log('ResourceItem render', info);
 
         if (this.state.editing) {
             return (
@@ -117,20 +132,20 @@ module.exports = React.createClass({
                             null
                     }
 
+
                     <span className = 'item-content'>
                         { info.description }
+                        { info.author !== '' ?
+                            <span className = 'item-author'>
+                                &nbsp;(Added by { info.author })
+                            </span> : null
+                        }
+
                         { info.edited ?
                             <p>(Edited on { info.editDate.toLocaleDateString() })</p>
                             : null
                         }
                     </span>
-
-                    { info.author !== '' ?
-                        <span className = 'item-author'>
-                            &nbsp;(Added by { info.author })
-                        </span> : null
-                    }
-
                 </div>
             )
         }

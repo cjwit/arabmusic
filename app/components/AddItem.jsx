@@ -17,28 +17,28 @@ module.exports = React.createClass({
 
     addItem: function(e) {
         e.preventDefault();
-        info = this.state
-        info.item.id = Guid.raw();
+        item = this.state.item
+        item.id = Guid.raw();
+        item.edited = false;
+        var now = new Date(Date.now());
+        item.editDate = now;
+        item.date = now;
 
         // check link format
-        if (info.item.link === "http://") {
-            info.item.link = ""
-        } else if (!info.item.link.match(/^http/)) {
-            info.item.link = 'http://' + info.item.link;
+        if (item.link === "http://") {
+            item.link = ""
+        } else if (!item.link.match(/^http/)) {
+            item.link = 'http://' + item.link;
         }
 
-        info.edited = false;
-        var now = new Date(Date.now());
-        info.editDate = now;
-        info.date = now;
-
-        actions.addItem(info);
+        this.setState({ item: item })
+        actions.addItem(this.state);
 
         // reset the item form
-        info.item.title = "";
-        info.item.description = "";
-        info.item.link = "http://";
-        this.setState({ item: info.item })
+        item.title = "";
+        item.description = "";
+        item.link = "http://";
+        this.setState({ item: item })
     },
 
     handleInputChange: function(e) {

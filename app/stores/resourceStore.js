@@ -44,6 +44,7 @@ var ResourceStore = function() {
     }
 
     var editItem = function(item) {
+        console.log('resourceStore', item.item.edited)
         resourceService.editItem(item).then(function (res) {
             console.log(res);
             triggerListeners();
@@ -85,6 +86,7 @@ var ResourceStore = function() {
                     deleteItem(payload.object);
                     break;
                 case "editItem":
+                    console.log('dispatcher', payload.object.item.edited)
                     editItem(payload.object);
                     break;
             }

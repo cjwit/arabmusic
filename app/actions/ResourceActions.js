@@ -31,6 +31,7 @@ module.exports = {
     },
 
     editItem: function(item) {
+        console.log('resourceActions', item.item.edited)
         dispatcher.dispatch({
             object: item,
             type: "resource:editItem"

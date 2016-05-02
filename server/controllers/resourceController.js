@@ -65,11 +65,20 @@ function editItem(req, res) {
                   'items.item.id': req.body.item.id };
     var update = { $set: {
                    'items.$.item.title': req.body.item.title,
+                   'items.$.item.author': req.body.item.author,
                    'items.$.item.link': req.body.item.link,
-                   'items.$.item.description': req.body.item.description }}
-    Resource.findOneAndUpdate(query, update, function (err, updated) {
+                   'items.$.item.description': req.body.item.description,
+                   'items.$.item.edited': req.body.item.edited,
+                   'items.$.item.date': req.body.item.date,
+                   'items.$.item.editDate': req.body.item.editDate }}
+    console.log(query, update);
+    console.log('resourceController update', req.body.item.edited)
+    Resource.findOneAndUpdate(query, update, { upsert: true, 'new': true }, function (err, updated) {
         if (err) res.send(err);
-        else res.json(updated);
+        else {
+            console.log('resourceController result', updated)
+            res.json(updated);
+        }
     })
 }
 

@@ -66,7 +66,7 @@ function editComment(req, res) {
     var update = { $set: {
                    'comments.$.comment.content': req.body.comment.content,
                    'comments.$.comment.edited': req.body.comment.edited,
-                   'comments.$.comment.editDate': req.body.comment.editDate,}}
+                   'comments.$.comment.editDate': req.body.comment.editDate }}
     Post.findOneAndUpdate(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
@@ -74,20 +74,9 @@ function editComment(req, res) {
 }
 
 function deleteComment(req, res) {
-    var body = {
-        discussionID: req.body.discussionID,
-        comment: {
-            author: req.body.comment.author,
-            date: req.body.comment.date,
-            content: req.body.comment.content,
-            id: req.body.comment.id,
-            edited: req.body.comment.edited,
-            editDate: req.body.comment.editDate
-        }
-    }
     var id = req.body.discussionID;
     var query = { _id: id },
-        update = { $pull: { comments: body }}
+        update = { $pull: { comments: {'comment.id': req.body.comment.id }}}
     Post.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
