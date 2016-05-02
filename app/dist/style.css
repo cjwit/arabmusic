@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:200,400,700|Dancing+Script:700);
 body {
-  color: #001A00;
+  color: #1c272e;
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
   padding-top: 20px;
@@ -43,9 +43,9 @@ body {
 #editItemForm,
 #editCommentForm {
   padding: 20px;
-  border: 1px solid #024A02;
-  color: #024A02;
-  background: #edf9ed;
+  border: 1px solid #2c3e45;
+  color: #2c3e45;
+  background: #8aa7b4;
   border-radius: 5px; }
 
 .tag {
@@ -55,7 +55,7 @@ body {
   font-size: 0.7em; }
 
 #footer {
-  background-color: #024A02;
+  background-color: #2c3e45;
   color: white;
   padding: 50px;
   margin-top: 70px;
@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* navbar */
 .navbar-default {
-  background-color: #024A02;
+  background-color: #2c3e45;
   border-color: transparent; }
 
 /* title */
@@ -125,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Dancing Script', sans-serif; }
 
 .navbar-default .navbar-brand:hover {
-  background-color: #156C15;
+  background-color: #405964;
   color: white; }
 
 /* link */
@@ -135,19 +135,19 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: white;
-  background-color: #156C15; }
+  background-color: #405964; }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
-  background-color: #156C15; }
+  background-color: #405964; }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   color: white;
-  background-color: #156C15; }
+  background-color: #405964; }
 
 /* caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {
@@ -155,12 +155,12 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: #777; }
 
 a {
-  color: #4D0225;
+  color: #183334;
   text-decoration: none;
   font-weight: 400; }
 
 a:visited {
-  color: #B06C3E; }
+  color: #926e39; }
 
 .holder {
   padding-top: 70px; }
@@ -180,7 +180,7 @@ a:visited {
   text-transform: uppercase;
   font-weight: 700;
   padding-top: 0px;
-  color: #4D0225;
+  color: #183334;
   display: inline-block; }
 
 .btn-group {
@@ -196,7 +196,7 @@ a:visited {
 .event-date,
 .discussion-author {
   font-weight: 400;
-  color: #4D0225; }
+  color: #183334; }
 
 .event-description,
 .discussion-content,
@@ -209,8 +209,8 @@ a:visited {
 .resource-tags {
   font-size: 0.6em;
   font-weight: 400;
-  color: #156C15;
-  background: #edf9ed;
+  color: #2c3e45;
+  background: #8aa7b4;
   padding: 5px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -235,11 +235,11 @@ a:visited {
 .comment-author,
 .item-title {
   font-weight: 400;
-  color: #4D0225; }
+  color: #183334; }
 
 .comment-date {
   font-weight: 400;
-  color: #4D0225; }
+  color: #183334; }
 
 .list .event-description,
 .list .discussion-content,
