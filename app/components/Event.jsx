@@ -103,7 +103,6 @@ module.exports = React.createClass({
     render: function() {
         var info = this.state.info;
         var id = info.id;
-        console.log(info.edited, info.editDate)
         var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
         var tagString = '';
         info.tags.map(function(tag, index) {

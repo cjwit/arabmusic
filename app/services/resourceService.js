@@ -77,7 +77,6 @@ module.exports = {
     },
 
     editItem: function (item) {
-        console.log('resourceService', item.item)
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({

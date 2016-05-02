@@ -71,12 +71,9 @@ function editItem(req, res) {
                    'items.$.item.edited': req.body.item.edited,
                    'items.$.item.date': req.body.item.date,
                    'items.$.item.editDate': req.body.item.editDate }}
-    console.log(query, update);
-    console.log('resourceController update', req.body.item.edited)
     Resource.findOneAndUpdate(query, update, { upsert: true, 'new': true }, function (err, updated) {
         if (err) res.send(err);
         else {
-            console.log('resourceController result', updated)
             res.json(updated);
         }
     })

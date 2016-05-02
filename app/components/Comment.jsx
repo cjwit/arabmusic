@@ -44,7 +44,6 @@ module.exports = React.createClass({
             discussionID: this.props.discussionID,
             comment: info
         }
-        console.log(payload);
         actions.editComment(payload)
         this.setState({ editing: false });
     },
@@ -60,7 +59,6 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.state.info;
-        console.log(info);
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
 
         if (this.state.editing) {
