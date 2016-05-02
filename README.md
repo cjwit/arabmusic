@@ -5,7 +5,6 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Editing triggers a flag (Edited [by author] on [date])
 * EventForm and AddCollection currently redirect, it would be better if they just forced render (probably a state/props issue)
 * Put the add event/collection button somewhere better
 * CFP/Notices section on resources page
