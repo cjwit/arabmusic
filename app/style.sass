@@ -86,11 +86,15 @@ body
   color: white
   padding: 50px
   margin-top: 70px
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: center
-  align-items: center
+
+  @media screen and (max-width: $small)
+    display: block
+
+  @media screen and (min-width: $small)
+    display: -webkit-flex
+    -webkit-justify-content: center
+    display: flex
+    justify-content: center
 
   a, a:visited, a:hover
     color: white
@@ -102,11 +106,15 @@ body
     font-weight: 200
 
 #footer-image
-  display: inline-block
-  display: inline-block
   padding: 30px
   width: 100%
   max-width: 300px
+  @media screen and (min-width: $small)
+    display: inline-block
+  @media screen and (max-width: $small)
+    align-items: center
+    display: block
+    margin: 0 auto
 
 #footer-text
   padding: 30px
