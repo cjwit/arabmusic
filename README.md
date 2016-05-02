@@ -10,7 +10,6 @@ Next Up
 * Put the add event/collection button somewhere better
 * CFP/Notices section on resources page
 * Remove Arabesque ensemble
-* Icon fonts for social networks
 * Change Arabic to Arab throughout
 
 
