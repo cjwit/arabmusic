@@ -9,7 +9,6 @@ Next Up
 * EventForm and AddCollection currently redirect, it would be better if they just forced render (probably a state/props issue)
 * Put the add event/collection button somewhere better
 * CFP/Notices section on resources page
-* Remove Arabesque ensemble
 * Change Arabic to Arab throughout
 
 

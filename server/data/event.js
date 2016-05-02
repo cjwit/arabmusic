@@ -5,7 +5,9 @@ var eventSchema = mongoose.Schema({
     description: { type: String, required: true },
     date: { type: Date, required: true },
     tags: Array,
-    owner: { type: String, required: true }
+    owner: { type: String, required: true },
+    edited: Boolean,
+    editDate: Date
 });
 
 module.exports = mongoose.model('event', eventSchema);

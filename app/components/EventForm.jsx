@@ -28,7 +28,12 @@ module.exports = React.createClass({
 
     addEvent: function(e) {
         e.preventDefault();
-        actions.addEvent(this.state);
+        var info = this.state;
+        info.edited = false;
+        var now = new Date(Date.now());
+        info.editDate = now;
+        info.date = now;
+        actions.addEvent(info);
         window.location.href = '/events/'
     },
 

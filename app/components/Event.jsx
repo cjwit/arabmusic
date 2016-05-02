@@ -34,7 +34,10 @@ module.exports = React.createClass({
 
     editEvent: function(e) {
         e.preventDefault();
-        actions.editEvent(this.state.info);
+        var info = this.state.info;
+        info.edited = true;
+        info.editDate = new Date(Date.now());
+        actions.editEvent(info);
         this.setState({ editing: false });
     },
 
@@ -141,6 +144,10 @@ module.exports = React.createClass({
 
                     <div className = 'event-description'>
                         { info.description }
+                        { info.edited ?
+                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                            : null
+                        }
                     </div>
                     { info.tags.length > 0 ?
                         <div className = 'event-tags'>
