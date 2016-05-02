@@ -27,6 +27,11 @@ module.exports = React.createClass({
             info.item.link = 'http://' + info.item.link;
         }
 
+        info.edited = false;
+        var now = new Date(Date.now());
+        info.editDate = now;
+        info.date = now;
+
         actions.addItem(info);
 
         // reset the item form

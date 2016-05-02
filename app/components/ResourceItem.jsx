@@ -30,9 +30,12 @@ module.exports = React.createClass({
 
     editItem: function(e) {
         e.preventDefault();
+        var info = this.state.info;
+        info.edited = true;
+        info.editDate = new Date(Date.now());
         var payload = {
             collectionID: this.props.collectionID,
-            item: this.state.info
+            item: info
         }
         actions.editItem(payload)
         this.setState({ editing: false });
@@ -49,6 +52,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.props.info;
+        info.editDate = new Date(info.editDate);
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         if (this.state.editing) {
@@ -115,6 +119,10 @@ module.exports = React.createClass({
 
                     <span className = 'item-content'>
                         { info.description }
+                        { info.edited ?
+                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                            : null
+                        }
                     </span>
 
                     { info.author !== '' ?

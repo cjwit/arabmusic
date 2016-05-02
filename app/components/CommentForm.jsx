@@ -17,7 +17,11 @@ module.exports = React.createClass({
     addComment: function(e) {
         e.preventDefault();
         comment = this.state.comment
-        comment.date = new Date(Date.now());
+        comment.edited = false;
+        var now = new Date(Date.now());
+        comment.editDate = now;
+        comment.date = now;
+
         comment.id = Guid.raw();
         this.setState({ comment: comment })
         postActions.addComment(this.state);

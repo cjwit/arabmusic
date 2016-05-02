@@ -32,7 +32,9 @@ function editPost(req, res) {
             title: info.title,
             content: info.content,
             tags: info.tags,
-            comments: info.comments
+            comments: info.comments,
+            edited: info.edited,
+            editDate: info.editDate
         }};
     Post.update(query, update, function (err, updated) {
         if (err) res.send(err);
@@ -62,7 +64,9 @@ function editComment(req, res) {
     var query = { '_id': req.body.discussionID,
                   'comments.comment.id': req.body.comment.id };
     var update = { $set: {
-                   'comments.$.comment.content': req.body.comment.content }}
+                   'comments.$.comment.content': req.body.comment.content,
+                   'comments.$.comment.edited': req.body.comment.edited,
+                   'comments.$.comment.editDate': req.body.comment.editDate,}}
     Post.findOneAndUpdate(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
@@ -76,7 +80,9 @@ function deleteComment(req, res) {
             author: req.body.comment.author,
             date: req.body.comment.date,
             content: req.body.comment.content,
-            id: req.body.comment.id
+            id: req.body.comment.id,
+            edited: req.body.comment.edited,
+            editDate: req.body.comment.editDate
         }
     }
     var id = req.body.discussionID;

@@ -5,7 +5,14 @@ module.exports = React.createClass({
     getInitialState: function() {
         return ({
             editing: false,
-            info: this.props.info
+            info: {
+                author: this.props.info.author,
+                content: this.props.info.content,
+                date: new Date(this.props.info.date),
+                editDate: new Date(this.props.info.editDate),
+                edited: this.props.info.edited,
+                id: this.props.info.id
+            }
         })
     },
 
@@ -30,9 +37,12 @@ module.exports = React.createClass({
 
     editComment: function(e) {
         e.preventDefault();
+        var info = this.state.info;
+        info.edited = true;
+        info.editDate = new Date(Date.now());
         var payload = {
             discussionID: this.props.discussionID,
-            comment: this.state.info
+            comment: info
         }
         console.log(payload);
         actions.editComment(payload)
@@ -50,7 +60,7 @@ module.exports = React.createClass({
 
     render: function() {
         var info = this.state.info;
-        info.date = new Date(info.date);
+        console.log(info);
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
 
         if (this.state.editing) {
@@ -96,6 +106,10 @@ module.exports = React.createClass({
 
                     <span className = 'comment-content'>
                         { info.content }
+                        { info.edited ?
+                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                            : null
+                        }
                     </span>
 
                 </div>

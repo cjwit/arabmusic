@@ -30,7 +30,9 @@ function editEvent(req, res) {
             location: info.location,
             description: info.description,
             date: new Date(info.date),
-            tags: info.tags
+            tags: info.tags,
+            edited: info.edited,
+            editDate: info.editDate
         }};
     Event.update(query, update, function (err, updated) {
         if (err) res.send(err);

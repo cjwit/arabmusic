@@ -21,7 +21,12 @@ module.exports = React.createClass({
 
     addCollection: function(e) {
         e.preventDefault();
-        actions.addCollection(this.state);
+        var info = this.state;
+        info.edited = false;
+        var now = new Date(Date.now());
+        info.editDate = now;
+        info.date = now;
+        actions.addCollection(info);
         window.location.href = '/resources/'
     },
 

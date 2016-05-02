@@ -32,7 +32,9 @@ function editCollection(req, res) {
             title: info.title,
             description: info.description,
             tags: info.tags,
-            items: info.items
+            items: info.items,
+            edited: info.edited,
+            editDate: info.editDate
         }};
     Resource.update(query, update, function (err, updated) {
         if (err) res.send(err);

@@ -23,13 +23,15 @@ module.exports = React.createClass({
 
     addPost: function(e) {
         e.preventDefault();
-        this.setState({
-            date: new Date(Date.now())
-        })
-        actions.addPost(this.state);
+        var info = this.state;
+        info.edited = false;
+        var now = new Date(Date.now());
+        info.editDate = now;
+        info.date = now;
+        actions.addPost(info);
         this.setState({
             title: "",
-            date: new Date(Date.now()),
+            date: now,
             content: "",
             tags: []
         })

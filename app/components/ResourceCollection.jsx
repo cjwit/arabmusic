@@ -11,7 +11,8 @@ module.exports = React.createClass({
                 title: this.props.info.title,
                 description: this.props.info.description,
                 tags: this.props.info.tags,
-
+                edited: this.props.info.edited,
+                editDate: new Date(this.props.info.editDate)
             }
         })
     },
@@ -21,6 +22,8 @@ module.exports = React.createClass({
         var info = this.state.info;
         info.items = this.props.info.items;
         info.id = this.props.info._id;
+        info.edited = true;
+        info.editDate = new Date(Date.now());
         actions.editCollection(info);
         this.setState({ editing: false });
     },
@@ -131,6 +134,11 @@ module.exports = React.createClass({
                     }
                     <div className = 'collection-description'>
                         { info.description }
+                        { info.edited ?
+                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                            : null
+                        }
+
                     </div>
                     { info.tags.length > 0 ?
                         <div className = 'resource-tags'>

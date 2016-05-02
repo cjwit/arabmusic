@@ -13,7 +13,9 @@ module.exports = React.createClass({
                 date: new Date(this.props.info.date),
                 tags: this.props.info.tags,
                 owner: this.props.info.owner,
-                id: this.props.info._id
+                id: this.props.info._id,
+                edited: this.props.info.edited,
+                editDate: new Date(this.props.info.editDate)
             }
         })
     },
@@ -101,6 +103,7 @@ module.exports = React.createClass({
     render: function() {
         var info = this.state.info;
         var id = info.id;
+        console.log(info.edited, info.editDate)
         var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
         var tagString = '';
         info.tags.map(function(tag, index) {

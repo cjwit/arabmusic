@@ -12,7 +12,9 @@ module.exports = React.createClass({
                 author: this.props.info.author,
                 content: this.props.info.content,
                 date: new Date(this.props.info.date),
-                tags: this.props.info.tags
+                tags: this.props.info.tags,
+                edited: this.props.info.edited,
+                editDate: new Date(this.props.info.editDate)
             }
         })
     },
@@ -22,6 +24,9 @@ module.exports = React.createClass({
         var info = this.state.info;
         info.comments = this.props.info.comments;
         info.id = this.props.info._id;
+        info.edited = true;
+        info.editDate = new Date(Date.now());
+
         actions.editPost(info);
         this.setState({ editing: false });
     },
@@ -153,6 +158,11 @@ module.exports = React.createClass({
                     </p>
                     <div className = 'discussion-content'>
                         { info.content }
+                        { info.edited ?
+                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                            : null
+                        }
+
                     </div>
                     { info.tags.length > 0 ?
                         <div className = 'discussion-tags'>

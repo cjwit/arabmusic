@@ -5,7 +5,9 @@ var postSchema = mongoose.Schema({
     content: { type: String, required: true },
     date: { type: Date, required: true },
     tags: Array,
-    comments: Array
+    comments: Array,
+    edited: Boolean,
+    editDate: Date
 });
 
 module.exports = mongoose.model('post', postSchema);
