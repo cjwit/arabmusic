@@ -96,7 +96,6 @@ module.exports = React.createClass({
         var items = [];
         if (info.items.length > 0) {
             info.items.forEach(function(item, index) {
-                console.log('ResourceCollection', item.item)
                 items.push(<ResourceItem info = { item.item } collectionID = { id } key = { 'item' + index }/>)
             });
         }

@@ -19,6 +19,7 @@ module.exports = React.createClass({
         var info = this.state.info;
         info.edited = this.props.info.edited;
         info.editDate = new Date(this.props.info.editDate);
+        info.id = this.props.info.id;
 
         var payload = {
             collectionID: this.props.collectionID,
