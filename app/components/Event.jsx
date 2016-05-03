@@ -101,12 +101,15 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var info = this.state.info;
-        var id = info.id;
-        var eventPage = Boolean(window.location.pathname.match(/^\/events\//));
+        var state = this.state.info;
+        var props = this.props.info;
+        var id = props.id;
+        var eventPage = Boolean(window.location.pathname.match(/^\/events\/\w/));
+
+        // set tags
         var tagString = '';
-        info.tags.map(function(tag, index) {
-            if (index === info.tags.length - 1) {
+        props.tags.map(function(tag, index) {
+            if (index === props.tags.length - 1) {
                 tagString += tag;
             } else {
                 tagString += tag + ', ';
@@ -117,13 +120,13 @@ module.exports = React.createClass({
             return (
                 <div className = 'event' id = { id }>
                     <span className = 'event-name'>
-                        { info.name }:&nbsp;
+                        { props.name }:&nbsp;
                     </span>
 
-                    { info.location ? <span className = 'event-place'>{ info.location },&nbsp;</span> : null }
+                    { props.location ? <span className = 'event-place'>{ props.location },&nbsp;</span> : null }
 
                     <span className = 'event-date'>
-                        { info.date.toLocaleDateString() }
+                        { new Date(props.date).toLocaleDateString() }
                     </span>
                         { !eventPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
@@ -145,13 +148,13 @@ module.exports = React.createClass({
                     <br />
 
                     <div className = 'event-description'>
-                        { info.description }
-                        { info.edited ?
-                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                        { props.description }
+                        { props.edited ?
+                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }
                     </div>
-                    { info.tags.length > 0 ?
+                    { props.tags.length > 0 ?
                         <div className = 'event-tags'>
                             <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;
                             { tagString }
@@ -165,7 +168,7 @@ module.exports = React.createClass({
             var tagButtons = [];
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
             allTags.map(function(tag, index) {
-                var preChecked = (info.tags.indexOf(tag) !== -1)
+                var preChecked = (state.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
                            onChange = { this.toggleTag }
@@ -185,7 +188,7 @@ module.exports = React.createClass({
                                    id="name"
                                    name = 'name'
                                    placeholder="Title"
-                                   defaultValue = { info.name }
+                                   defaultValue = { props.name }
                                    onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
@@ -194,7 +197,7 @@ module.exports = React.createClass({
                                    id="location"
                                    name = 'location'
                                    placeholder="City"
-                                   defaultValue = { info.location }
+                                   defaultValue = { props.location }
                                    onChange = { this.handleInputChange } />
                             <p className="help-block">Use the description to provide more details</p>
                         </div>
@@ -212,7 +215,7 @@ module.exports = React.createClass({
                                       id="description"
                                       name = 'description'
                                       placeholder="Details and contact information"
-                                      defaultValue = { info.description }
+                                      defaultValue = { props.description }
                                       onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
