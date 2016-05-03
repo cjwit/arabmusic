@@ -13,8 +13,9 @@ module.exports = React.createClass({
     },
 
     render: function() {
+        var today = new Date(Date.now());
         var events = this.props.events.filter(function(event) {
-            return moment(event.date).isSameOrAfter(new Date(Date.now()));
+            return event.date >= today || event.date.toDateString() == today.toDateString();
         }).sort(function(a, b) {
             return a.date - b.date;
         }).splice(0, 5);
