@@ -32,27 +32,27 @@ module.exports = React.createClass({
                 <Navbar active = 'resources' login = { login }/>
                 <ResourceHeader />
 
-                { login ?
-                    <div className = 'holder text-center'>
-                        <button id = 'addCollectionFormToggle'
-                            className = 'btn btn-default'
-                            onClick = { this.toggleForm } >Add a New Collection
-                        </button>
-                    </div> :
-                    <div className = 'holder'>
-                        <p className = 'text-center'>
-                            Login to add a collection
-                        </p>
-                    </div>
-                }
-
                 { this.state.showForm ? <AddCollection /> : null }
 
                 <div className = 'container'>
                     <div className = 'row'>
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
-                                <h1>Resource Collections</h1>
+                                <h1>
+                                    { login ?
+                                        <button id = 'addCollectionFormToggle'
+                                            className = 'btn btn-default pull-right'
+                                            onClick = { this.toggleForm } >Create a Collection
+                                        </button>
+                                        :
+                                        <button id = 'addCollectionFormToggle'
+                                            className = 'btn btn-default pull-right'>
+                                            Login to Create a Collection
+                                        </button>
+                                    }
+
+                                    Resource Collections
+                                </h1>
                                 <ResourceList resources = { resources } />
                             </div>
                         </div>

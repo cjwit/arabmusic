@@ -111,6 +111,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   border-bottom: 1px solid;
   padding-bottom: 10px; }
+  h1 button, h2 button, h3 button, h4 button, h5 button, h6 button {
+    font-family: 'Raleway', sans-serif; }
 
 @media screen and (max-width: 992px) {
   .spacer {

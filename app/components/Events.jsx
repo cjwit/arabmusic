@@ -43,27 +43,27 @@ module.exports = React.createClass({
                 <Navbar active = 'events' login = { login }/>
                 <EventHeader />
 
-                { login ?
-                    <div className = 'holder text-center'>
-                        <button id = 'addEventFormToggle'
-                            className = 'btn btn-default'
-                            onClick = { this.toggleForm } >Add an Event
-                        </button>
-                    </div> :
-                    <div className = 'holder'>
-                        <p className = 'text-center'>
-                            Login to add an event
-                        </p>
-                    </div>
-                }
-
                 { this.state.showForm ? <EventForm /> : null }
 
                 <div id = 'currentEvents' className = 'container'>
                     <div className = 'row'>
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
-                                <h1>Upcoming Events</h1>
+                                <h1>
+                                    { login ?
+                                        <button id = 'addEventFormToggle'
+                                            className = 'btn btn-default pull-right'
+                                            onClick = { this.toggleForm } >
+                                            Add an Event
+                                        </button>
+                                        :
+                                        <button id = 'addEventFormToggle'
+                                            className = 'btn btn-default pull-right' >
+                                            Login to Add and Event
+                                        </button>
+                                    }
+                                    Upcoming Events
+                                </h1>
                                 <EventList events = { upcoming } />
                             </div>
                         </div>
