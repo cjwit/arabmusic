@@ -33,7 +33,6 @@ module.exports = React.createClass({
         var now = new Date(Date.now());
         info.editDate = now;
         actions.addEvent(info);
-        window.location.href = '/events/'
     },
 
     handleInputChange: function(e) {

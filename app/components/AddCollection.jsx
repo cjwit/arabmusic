@@ -27,7 +27,6 @@ module.exports = React.createClass({
         info.editDate = now;
         info.date = now;
         actions.addCollection(info);
-        window.location.href = '/resources/'
     },
 
     handleInputChange: function(e) {

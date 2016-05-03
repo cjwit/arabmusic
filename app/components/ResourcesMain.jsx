@@ -12,6 +12,10 @@ module.exports = React.createClass({
         };
     },
 
+    componentWillReceiveProps: function() {
+        this.setState({ showForm: false })
+    },
+
     toggleForm: function() {
         this.setState({ showForm: !this.state.showForm })
         return;

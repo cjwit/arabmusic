@@ -6,7 +6,6 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * EventForm and AddCollection currently redirect, it would be better if they just forced render (probably a state/props issue)
-* Cancel buttons for edits render new state (they don't wait for new props). Could pull form info from state and displayed info from props...
 * Put the add event/collection button somewhere better
 * CFP/Notices section on resources page
 * Change Arabic to Arab throughout
