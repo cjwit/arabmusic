@@ -133,7 +133,7 @@ module.exports = React.createClass({
                     }
                     <div className = 'collection-description'>
                         { props.description }
-                        { props.edited ?
+                        { props.edited && collectionPage ?
                             <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }

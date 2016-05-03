@@ -102,7 +102,7 @@ module.exports = React.createClass({
 
     render: function() {
         var props = this.props.info;
-        var id = props.id;
+        var id = props._id;
         var eventPage = Boolean(window.location.pathname.match(/^\/events\/\w/));
 
         // set tags
@@ -148,7 +148,7 @@ module.exports = React.createClass({
 
                     <div className = 'event-description'>
                         { props.description }
-                        { props.edited ?
+                        { props.edited && eventPage ?
                             <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }

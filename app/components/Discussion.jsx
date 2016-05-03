@@ -156,7 +156,7 @@ module.exports = React.createClass({
                     </p>
                     <div className = 'discussion-content'>
                         { props.content }
-                        { props.edited ?
+                        { props.edited && discussionPage ?
                             <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }

@@ -104,7 +104,7 @@ module.exports = React.createClass({
 
                     <span className = 'comment-content'>
                         { props.content }
-                        { props.edited ?
+                        { props.edited && discussionPage ?
                             <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }

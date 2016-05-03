@@ -63,9 +63,7 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var info = this.state.info;
-        info.edited = this.props.info.edited,
-        info.editDate = new Date(this.props.info.editDate)
+        var props = this.props.info;
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         if (this.state.editing) {
@@ -78,7 +76,7 @@ module.exports = React.createClass({
                                    id="title"
                                    name = 'title'
                                    placeholder="Title"
-                                   defaultValue = { info.title }
+                                   defaultValue = { props.title }
                                    onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
@@ -86,14 +84,14 @@ module.exports = React.createClass({
                                    id="link"
                                    name = 'link'
                                    placeholder="Link"
-                                   defaultValue = { info.link || 'http://' }
+                                   defaultValue = { props.link || 'http://' }
                                    onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <textarea className="form-control" rows = "3"
                                       id="description"
                                       name = 'description'
-                                      defaultValue = { info.description }
+                                      defaultValue = { props.description }
                                       onChange = { this.handleInputChange } />
                         </div>
                         <button type="submit" className="btn btn-default">Submit</button>&nbsp;
@@ -104,14 +102,14 @@ module.exports = React.createClass({
         } else {
             return (
                 <div className = 'item'>
-                    { info.link === "" ?
+                    { props.link === "" ?
                         <span className = 'item-title'>
-                            { info.title }:&nbsp;
+                            { props.title }:&nbsp;
                         </span>
                         :
-                        <a href = { info.link} target = "_blank">
+                        <a href = { props.link} target = "_blank">
                             <span className = 'item-title'>
-                                { info.title }:&nbsp;
+                                { props.title }:&nbsp;
                             </span>
                         </a>
                     }
@@ -132,15 +130,15 @@ module.exports = React.createClass({
 
 
                     <span className = 'item-content'>
-                        { info.description }
-                        { info.author !== '' ?
+                        { props.description }
+                        { props.author !== '' ?
                             <span className = 'item-author'>
-                                &nbsp;(Added by { info.author })
+                                &nbsp;(Added by { props.author })
                             </span> : null
                         }
 
-                        { info.edited ?
-                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                        { props.edited && collectionPage ?
+                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }
                     </span>
