@@ -45,7 +45,7 @@ module.exports = React.createClass({
 
     openForm: function() {
         this.setState({ editing: true })
-        var info = this.state.info
+        var date = new Date(this.props.info.date)
 
         // wait for rendering to complete
         var toggleTag = this.toggleTag;
@@ -60,7 +60,7 @@ module.exports = React.createClass({
                 datePicker.datetimepicker({
                     format: "MM/DD/YYYY"
                 })
-                datePicker.data('DateTimePicker').date(info.date)
+                datePicker.data('DateTimePicker').date(date)
             });
         })
     },
