@@ -88,21 +88,20 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var info = this.state.info;
-        var id = this.props.info._id;
-        info.items = this.props.info.items;
+        var props = this.props.info;
+        var id = props._id;
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         var items = [];
-        if (info.items.length > 0) {
-            info.items.forEach(function(item, index) {
+        if (props.items.length > 0) {
+            props.items.forEach(function(item, index) {
                 items.push(<ResourceItem info = { item.item } collectionID = { id } key = { 'item' + index }/>)
             });
         }
 
         var tagString = '';
-        info.tags.map(function(tag, index) {
-            if (index === info.tags.length - 1) {
+        props.tags.map(function(tag, index) {
+            if (index === props.tags.length - 1) {
                 tagString += tag;
             } else {
                 tagString += tag + ', ';
@@ -113,7 +112,7 @@ module.exports = React.createClass({
             return (
                 <div className = 'collection' id = { id }>
                     <span className = 'collection-title'>
-                        { info.title }:&nbsp;
+                        { props.title }:&nbsp;
                     </span>
 
                     { !collectionPage ?
@@ -133,14 +132,14 @@ module.exports = React.createClass({
                         </div>
                     }
                     <div className = 'collection-description'>
-                        { info.description }
-                        { info.edited ?
-                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                        { props.description }
+                        { props.edited ?
+                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }
 
                     </div>
-                    { info.tags.length > 0 ?
+                    { props.tags.length > 0 ?
                         <div className = 'resource-tags'>
                             <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;
                             { tagString }
@@ -155,7 +154,7 @@ module.exports = React.createClass({
             var tagButtons = [];
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
             allTags.map(function(tag, index) {
-                var preChecked = (info.tags.indexOf(tag) !== -1)
+                var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
                            onChange = { this.toggleTag }
@@ -175,14 +174,14 @@ module.exports = React.createClass({
                                    id="title"
                                    name = 'title'
                                    placeholder="Title"
-                                   defaultValue = { info.title }
+                                   defaultValue = { props.title }
                                    onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <textarea className="form-control" rows = "3"
                                       id="description"
                                       name = 'description'
-                                      defaultValue = { info.description }
+                                      defaultValue = { props.description }
                                       onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
