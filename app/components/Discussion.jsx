@@ -33,7 +33,7 @@ module.exports = React.createClass({
 
     openForm: function() {
         this.setState({ editing: true })
-        var info = this.state.info
+        var date = this.props.info.date
 
         // wait for rendering to complete
         var toggleTag = this.toggleTag;
@@ -48,7 +48,7 @@ module.exports = React.createClass({
                 datePicker.datetimepicker({
                     format: "MM/DD/YYYY"
                 })
-                datePicker.data('DateTimePicker').date(info.date)
+                datePicker.data('DateTimePicker').date(date)
             });
         })
     },
@@ -105,20 +105,19 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var info = this.state.info;
-        info.comments = this.props.info.comments;
-        var id = this.props.info._id;
+        var props = this.props.info;
+        var id = props._id;
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
 
         var comments = [];
-        if (info.comments.length > 0) {
-            info.comments.forEach(function(c, index) {
+        if (props.comments.length > 0) {
+            props.comments.forEach(function(c, index) {
                 comments.push(<Comment info = { c.comment } discussionID = { id } key = { 'comment' + index }/>)
             });
         }
         var tagString = '';
-        info.tags.map(function(tag, index) {
-            if (index === info.tags.length - 1) {
+        props.tags.map(function(tag, index) {
+            if (index === props.tags.length - 1) {
                 tagString += tag;
             } else {
                 tagString += tag + ', ';
@@ -126,11 +125,10 @@ module.exports = React.createClass({
         })
 
         if (!this.state.editing) {
-
             return (
                 <div className = 'discussion' id = { id }>
                     <span className = 'discussion-title'>
-                        { info.title }:&nbsp;
+                        { props.title }:&nbsp;
                     </span>
                     { !discussionPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
@@ -150,28 +148,26 @@ module.exports = React.createClass({
                     }
                     <p>
                         <span className = 'discussion-author'>
-                            { info.author },&nbsp;
+                            { props.author },&nbsp;
                         </span>
                         <span className = 'discussion-date'>
-                            { info.date.toLocaleDateString() }
+                            { props.date.toLocaleDateString() }
                         </span>
                     </p>
                     <div className = 'discussion-content'>
-                        { info.content }
-                        { info.edited ?
-                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                        { props.content }
+                        { props.edited ?
+                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }
-
                     </div>
-                    { info.tags.length > 0 ?
+                    { props.tags.length > 0 ?
                         <div className = 'discussion-tags'>
                             <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;
                             { tagString }
                         </div>
                         : null
                     }
-
                     { comments }
                 </div>
             )
@@ -179,7 +175,7 @@ module.exports = React.createClass({
             var tagButtons = [];
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
             allTags.map(function(tag, index) {
-                var preChecked = (info.tags.indexOf(tag) !== -1)
+                var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
                            onChange = { this.toggleTag }
@@ -199,14 +195,14 @@ module.exports = React.createClass({
                                    id="title"
                                    name = 'title'
                                    placeholder="Title"
-                                   defaultValue = { info.title }
+                                   defaultValue = { props.title }
                                    onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <textarea className="form-control" rows = "3"
                                       id="content"
                                       name = 'content'
-                                      defaultValue = { info.content }
+                                      defaultValue = { props.content }
                                       onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">

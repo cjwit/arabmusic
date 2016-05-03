@@ -101,7 +101,6 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var state = this.state.info;
         var props = this.props.info;
         var id = props.id;
         var eventPage = Boolean(window.location.pathname.match(/^\/events\/\w/));
@@ -168,7 +167,7 @@ module.exports = React.createClass({
             var tagButtons = [];
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
             allTags.map(function(tag, index) {
-                var preChecked = (state.tags.indexOf(tag) !== -1)
+                var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
                            onChange = { this.toggleTag }

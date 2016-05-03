@@ -58,7 +58,7 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var info = this.state.info;
+        var props = this.props.info;
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
 
         if (this.state.editing) {
@@ -70,7 +70,7 @@ module.exports = React.createClass({
                             <textarea className="form-control" rows = "3"
                                       id="content"
                                       name = 'content'
-                                      defaultValue = { info.content }
+                                      defaultValue = { props.content }
                                       onChange = { this.handleInputChange } />
                         </div>
                         <button type="submit" className="btn btn-default">Submit</button>&nbsp;
@@ -83,10 +83,10 @@ module.exports = React.createClass({
             return (
                 <div className = 'comment'>
                     <span className = 'comment-author'>
-                        { info.author },&nbsp;
+                        { props.author },&nbsp;
                     </span>
                     <span className = 'comment-date'>
-                        { info.date.toLocaleDateString() }:&nbsp;
+                        { new Date(props.date).toLocaleDateString() }:&nbsp;
                     </span>
 
                     { discussionPage ?
@@ -103,9 +103,9 @@ module.exports = React.createClass({
                     }
 
                     <span className = 'comment-content'>
-                        { info.content }
-                        { info.edited ?
-                            <p>(Edited on { info.editDate.toLocaleDateString() })</p>
+                        { props.content }
+                        { props.edited ?
+                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }
                     </span>
