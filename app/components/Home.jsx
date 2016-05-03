@@ -35,7 +35,7 @@ module.exports = React.createClass({
                         </div>
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
-                                <h1>Upcoming Arabic Music Events</h1>
+                                <h1>Upcoming Arab Music Events</h1>
                                 <EventList events = { events } login = { login } />
                             </div>
                         </div>
