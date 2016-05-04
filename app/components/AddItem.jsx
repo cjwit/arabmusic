@@ -15,6 +15,12 @@ module.exports = React.createClass({
         };
     },
 
+    componentDidMount: function () {
+        // validation setup
+        var submit = $('#submit');
+        submit.prop('disabled', true)
+    },
+
     addItem: function(e) {
         e.preventDefault();
         item = this.state.item
@@ -48,6 +54,39 @@ module.exports = React.createClass({
         var item = this.state.item;
         item[name] = value;
         this.setState({item: item});
+
+        // validate element to set class
+        var element = $("#" + name);
+        var condition = false;
+        switch (name) {
+            case "title":
+                condition = value.length > 1;
+                break;
+            case "description":
+                condition = value.length > 1;
+                break;
+            default:
+                break;
+        }
+        if (condition) {
+            element.parent().removeClass('has-error').addClass('has-success')
+        } else {
+            element.parent().removeClass('has-success').addClass('has-error')
+        }
+        this.validateForm();
+    },
+
+    validateForm: function() {
+        // set submit button
+        var submit = $('#submit'),
+            title = this.state.item.title.length > 1,
+            description = this.state.item.description.length > 1,
+            valid = title && description;
+        if (valid) {
+            submit.prop('disabled', false);
+        } else {
+            submit.prop('disabled', true);
+        }
     },
 
     render: function() {
@@ -62,6 +101,7 @@ module.exports = React.createClass({
                                placeholder="Title"
                                value = { this.state.item.title }
                                onChange = { this.handleInputChange } />
+                               <p className="help-block">Required</p>
                     </div>
                     <div className="form-group">
                         <label className = 'control-label' HTMLfor="title">Link</label>
@@ -89,10 +129,10 @@ module.exports = React.createClass({
                                   placeholder="You can change the size of this box by dragging the lower-right corner."
                                   value = { this.state.item.description }
                                   onChange = { this.handleInputChange } />
-                              <p className="help-block">Include publication details, links, and other useful information.</p>
+                              <p className="help-block">Include publication details, links, and other useful information (Required)</p>
 
                     </div>
-                    <button type="submit" className="btn btn-default">Submit</button>
+                    <button id = "submit" type="submit" className="btn btn-default">Submit</button>
                 </form>
             </div>
         )

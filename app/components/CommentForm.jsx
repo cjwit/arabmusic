@@ -14,6 +14,12 @@ module.exports = React.createClass({
         };
     },
 
+    componentDidMount: function () {
+        // validation setup
+        var submit = $('#submit');
+        submit.prop('disabled', true)
+    },
+
     addComment: function(e) {
         e.preventDefault();
         comment = this.state.comment
@@ -38,6 +44,35 @@ module.exports = React.createClass({
         var comment = this.state.comment;
         comment[name] = value;
         this.setState({comment: comment});
+
+        // validate element to set class
+        var element = $("#" + name);
+        var condition = false;
+        switch (name) {
+            case "content":
+                condition = value.length > 1;
+                break;
+            default:
+                break;
+        }
+        if (condition) {
+            element.parent().removeClass('has-error').addClass('has-success')
+        } else {
+            element.parent().removeClass('has-success').addClass('has-error')
+        }
+        this.validateForm();
+    },
+
+    validateForm: function() {
+        // set submit button
+        var submit = $('#submit'),
+            content = this.state.comment.content.length > 1,
+            valid = content;
+        if (valid) {
+            submit.prop('disabled', false);
+        } else {
+            submit.prop('disabled', true);
+        }
     },
 
     render: function() {
@@ -63,7 +98,7 @@ module.exports = React.createClass({
                                   value = { this.state.comment.content }
                                   onChange = { this.handleInputChange } />
                     </div>
-                    <button type="submit" className="btn btn-default">Submit</button>
+                    <button id = "submit" type="submit" className="btn btn-default">Submit</button>
                 </form>
             </div>
         )
