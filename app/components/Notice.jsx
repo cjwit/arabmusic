@@ -75,7 +75,6 @@ module.exports = React.createClass({
     deleteNotice: function(e) {
         e.preventDefault();
         actions.deleteNotice(this.props.info._id)
-
         // redirect if on detail page
         var path = window.location.pathname;
         var split = path.split('/')

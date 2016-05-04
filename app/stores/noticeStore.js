@@ -30,7 +30,7 @@ var NoticeStore = function() {
     }
 
     var deleteNotice = function(notice) {
-        noticeService.editNotice(notice).then(function(res) {
+        noticeService.deleteNotice(notice).then(function(res) {
             console.log(res);
             triggerListeners();
         });
