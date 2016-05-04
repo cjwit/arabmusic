@@ -8,6 +8,7 @@ var compress = require('compression');
 var eventController = require('./controllers/eventController');
 var postController = require('./controllers/postController');
 var resourceController = require('./controllers/resourceController');
+var noticeController = require('./controllers/noticeController');
 
 // requests
 var app = express();
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use("/api/events", eventController);
 app.use("/api/posts", postController);
 app.use("/api/resources", resourceController);
+app.use("/api/notices", noticeController);
 
 // page routing
 app.get('/*', function(req, res) {

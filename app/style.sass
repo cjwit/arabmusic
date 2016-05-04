@@ -71,13 +71,15 @@ body
   background-image: url('./images/ud-dark.jpg')
 
 #addEventForm,
-#addCollectionForm
+#addCollectionForm,
+#addNoticeForm
   padding-top: 70px
 
 #editPostForm,
 #editCollectionForm,
 #editItemForm,
-#editCommentForm
+#editCommentForm,
+#editNoticeForm
   padding: 20px
   border: 1px solid $primary4
   color: $primary4
@@ -215,12 +217,14 @@ a:visited
 /* lists */
 .event,
 .discussion,
-.collection
+.collection,
+.notice
   padding-bottom: 20px
 
 .event-name,
 .discussion-title,
-.collection-title
+.collection-title,
+.notice-name
   text-transform: uppercase
   font-weight: 700
   padding-top: 0px
@@ -233,25 +237,30 @@ a:visited
 
 .event-name:first-child,
 .discussion-title:first-child,
-.collection-title
+.collection-title,
+.notice-name
   padding-top: 0px
 
 .event-place,
 .event-date,
-.discussion-author
+.discussion-author,
+.notice-location,
+.notice-date
   font-weight: 400
   color: $tertiary4
 
 
 .event-description,
 .discussion-content,
-.collection-description
+.collection-description,
+.notice-description
   font-size: 0.8em
   padding-bottom: 0px
 
 .event-tags,
 .discussion-tags,
-.resource-tags
+.resource-tags,
+.notice-tags
   font-size: 0.6em
   font-weight: 400
   color: $textlight
@@ -287,7 +296,8 @@ a:visited
 .list
   .event-description,
   .discussion-content,
-  .collection-description
+  .collection-description,
+  .notice-description
     overflow: hidden
     text-overflow: ellipsis
     display: -webkit-box
@@ -298,7 +308,8 @@ a:visited
 
   .event-tags,
   .discussion-tags,
-  .resource-tags
+  .resource-tags,
+  .notice-tags
     margin-bottom: 10px
 
   .comment,

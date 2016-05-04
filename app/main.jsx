@@ -9,11 +9,13 @@ var Events = require('./components/Events.jsx');
 var EventPage = require('./components/EventPage.jsx');
 var ResourcesMain = require('./components/ResourcesMain.jsx');
 var ResourcePage = require('./components/ResourcePage.jsx');
+var NoticePage = require('./components/NoticePage.jsx');
 
 // stores
 var eventsStore = require('./stores/eventsStore');
 var postsStore = require('./stores/postsStore');
 var resourceStore = require('./stores/resourceStore');
+var noticeStore = require('./stores/noticeStore');
 var Dummy = require('./dummycontent.js');
 
 // Get content from database
@@ -38,6 +40,13 @@ var getResourcesCallback = function(_resources) {
 }
 resourceStore.onChange(getResourcesCallback);
 
+var notices = [];
+var getNoticesCallback = function(_notices) {
+    notices = _notices;
+    render();
+}
+noticeStore.onChange(getNoticesCallback);
+
 var login = Dummy.login;
 
 // functions to manipulate data
@@ -50,6 +59,12 @@ function dateEvents() {
 function dateDiscussions() {
     discussions.map(function(post) {
         post.date = new Date(post.date);
+    })
+}
+
+function dateNotices() {
+    notices.map(function(notice) {
+        notice.eventDate = new Date(notice.eventDate);
     })
 }
 
@@ -97,6 +112,9 @@ function render() {
                 break;
             case 'resources':
                 renderResourcePage(id);
+                break
+            case 'notices':
+                renderNoticePage(id);
                 break
         }
     }
@@ -147,6 +165,7 @@ function renderEventPage(id) {
 function renderResources() {
     ReactDOM.render(<ResourcesMain
         resources = { resources }
+        notices = { notices }
         login = { login }
         />, document.getElementById('container'));
 }
@@ -159,6 +178,13 @@ function renderResourcePage(id) {
         />, document.getElementById('container'));
 }
 
+function renderNoticePage(id) {
+    var notice = findItem(notices, id);
+    ReactDOM.render(<NoticePage
+        info = { notice }
+        login = { login }
+        />, document.getElementById('container'));
+}
 
 // initial rendering
 render();

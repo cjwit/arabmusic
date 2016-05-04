@@ -46,13 +46,15 @@ body {
   background-image: url("./images/ud-dark.jpg"); }
 
 #addEventForm,
-#addCollectionForm {
+#addCollectionForm,
+#addNoticeForm {
   padding-top: 70px; }
 
 #editPostForm,
 #editCollectionForm,
 #editItemForm,
-#editCommentForm {
+#editCommentForm,
+#editNoticeForm {
   padding: 20px;
   border: 1px solid #2c3e45;
   color: #2c3e45;
@@ -196,12 +198,14 @@ a:visited {
 /* lists */
 .event,
 .discussion,
-.collection {
+.collection,
+.notice {
   padding-bottom: 20px; }
 
 .event-name,
 .discussion-title,
-.collection-title {
+.collection-title,
+.notice-name {
   text-transform: uppercase;
   font-weight: 700;
   padding-top: 0px;
@@ -214,24 +218,29 @@ a:visited {
 
 .event-name:first-child,
 .discussion-title:first-child,
-.collection-title {
+.collection-title,
+.notice-name {
   padding-top: 0px; }
 
 .event-place,
 .event-date,
-.discussion-author {
+.discussion-author,
+.notice-location,
+.notice-date {
   font-weight: 400;
   color: #183334; }
 
 .event-description,
 .discussion-content,
-.collection-description {
+.collection-description,
+.notice-description {
   font-size: 0.8em;
   padding-bottom: 0px; }
 
 .event-tags,
 .discussion-tags,
-.resource-tags {
+.resource-tags,
+.notice-tags {
   font-size: 0.6em;
   font-weight: 400;
   color: white;
@@ -268,7 +277,8 @@ a:visited {
 
 .list .event-description,
 .list .discussion-content,
-.list .collection-description {
+.list .collection-description,
+.list .notice-description {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -279,7 +289,8 @@ a:visited {
 
 .list .event-tags,
 .list .discussion-tags,
-.list .resource-tags {
+.list .resource-tags,
+.list .notice-tags {
   margin-bottom: 10px; }
 
 .list .comment,
