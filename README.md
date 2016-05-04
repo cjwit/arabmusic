@@ -5,13 +5,12 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Delete Notices does not work, check other functions
 * Form validation
 
 Eventually:
 * SAMR page with link to email list
 * Pagination for lists
-* Filter by tags
+* Filter by tags, sorting buttons
 * Login functionality
     * Only admins can delete resource collections
     * Member info pages that collect authored materials
