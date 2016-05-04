@@ -24,6 +24,10 @@ module.exports = React.createClass({
         $('#tags :input').change(function() {
             toggleTag(this.name);
         })
+
+        // validation setup
+        var submit = $('#submit');
+        submit.prop('disabled', true)
     },
 
     addEvent: function(e) {
@@ -43,11 +47,49 @@ module.exports = React.createClass({
         } else {
             var value = e.target.value;
         }
-
         var state = this.state;
         state[name] = value;
-
         this.setState(state);
+
+        // validate element to set class
+        var element = $("#" + name);
+        var condition = false;
+        switch (name) {
+            case "name":
+                condition = value.length > 1;
+                break;
+            case "date":
+                condition = typeof value === 'object';
+                break;
+            case "location":
+                condition = value.length > 1;
+                break;
+            case "description":
+                condition = value.length > 1;
+                break;
+            default:
+                break;
+        }
+        if (condition) {
+            element.parent().removeClass('has-error').addClass('has-success')
+        } else {
+            element.parent().removeClass('has-success').addClass('has-error')
+        }
+        this.validateForm();
+    },
+
+    validateForm: function() {
+        // set submit button
+        var submit = $('#submit'),
+            name = this.state.name.length > 1,
+            location = this.state.location.length > 1,
+            description = this.state.description.length > 1,
+            valid = name && location && date && description;
+        if (valid) {
+            submit.prop('disabled', false);
+        } else {
+            submit.prop('disabled', true);
+        }
     },
 
     toggleTag: function(name) {
@@ -86,6 +128,7 @@ module.exports = React.createClass({
                                        placeholder="Title"
                                        value = { this.state.name }
                                        onChange = { this.handleInputChange } />
+                                <p className="help-block">Required</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="location">City, State or Province, and Country</label>
@@ -95,7 +138,7 @@ module.exports = React.createClass({
                                        placeholder="City"
                                        value = { this.state.location }
                                        onChange = { this.handleInputChange } />
-                                <p className="help-block">Use the description to provide more details</p>
+                                   <p className="help-block">Use the description to provide more details (Required)</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="date">Date of the event</label>
@@ -103,7 +146,7 @@ module.exports = React.createClass({
                                        id="date"
                                        name = 'date'
                                        onBlur = { this.handleInputChange } />
-                                <p className="help-block">Use the description to provide times</p>
+                                   <p className="help-block">Use the description to provide times, defaults to today</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="description">Some information, including a contact for anyone who has more questions</label>
@@ -113,6 +156,7 @@ module.exports = React.createClass({
                                           placeholder="Details and contact information"
                                           value = { this.state.description }
                                           onChange = { this.handleInputChange } />
+                                      <p className="help-block">Required</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label'>Select Tags</label>
@@ -121,7 +165,7 @@ module.exports = React.createClass({
                                 </div>
                             </div>
 
-                            <button type="submit" className="btn btn-default">Submit</button>
+                            <button id = "submit" type="submit" className="btn btn-default">Submit</button>
                         </form>
                     </div>
                 </div>
