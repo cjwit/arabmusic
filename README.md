@@ -5,7 +5,6 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Form validation
 
 Eventually:
 * SAMR page with link to email list
