@@ -158,7 +158,7 @@ module.exports = React.createClass({
                                         Filter
                                     </a>
                                 </div>
-                                <div id = "resourceTags">
+                                <div id = "resourceTags" className = 'btn-group' data-toggle='buttons'>
                                     { tagButtons }
                                 </div>
 
@@ -201,7 +201,7 @@ module.exports = React.createClass({
                                     </a>
                                 </div>
 
-                                <div id = "noticeTags">
+                                <div id = "noticeTags" className = 'btn-group' data-toggle='buttons'>
                                     { tagButtons }
                                 </div>
 
