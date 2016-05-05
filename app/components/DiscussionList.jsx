@@ -13,6 +13,10 @@ module.exports = React.createClass({
         $("#previousPage").addClass("disabled");
     },
 
+    componentWillReceiveProps: function() {
+        this.setState({ startIndex: 0 });
+    },
+
     previous: function() {
         var previous = $("#previousPage"),
             next = $("#nextPage"),

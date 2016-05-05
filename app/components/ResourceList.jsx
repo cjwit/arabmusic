@@ -6,11 +6,15 @@ module.exports = React.createClass({
         return ({
             listings: 5,
             startIndex: 0
-        })
+        });
     },
 
     componentDidMount: function() {
         $("#previousPage").addClass("disabled");
+    },
+
+    componentWillReceiveProps: function() {
+        this.setState({ startIndex: 0 });
     },
 
     previous: function() {
