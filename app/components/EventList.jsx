@@ -68,6 +68,7 @@ module.exports = React.createClass({
                     <nav>
                       <ul className="pager">
                         <li className = "disabled" id = "previousPage"><a onClick = { this.previous }>Previous</a></li>
+                        1 of 3
                         <li id = "nextPage"><a onClick = { this.next }>Next</a></li>
                       </ul>
                     </nav>
