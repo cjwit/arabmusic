@@ -13,6 +13,20 @@ module.exports = {
         return sorted;
     },
 
+    sortByDate: function(list) {
+        var sorted = list.sort(function(a, b) {
+            return a.date - b.date;
+        })
+        return sorted;
+    },
+
+    sortByDateDescending: function(list) {
+        var sorted = list.sort(function(a, b) {
+            return b.date - a.date;
+        })
+        return sorted;
+    },
+
     sortByName: function(list) {
         var sorted = list.sort(function(a, b) {
             var nameA = a.name.toUpperCase();
@@ -49,6 +63,12 @@ module.exports = {
                 break;
             case "title":
                 sorted = this.sortByTitle(list);
+                break;
+            case "date":
+                sorted = this.sortByDate(list);
+                break;
+            case "dateDescending":
+                sorted = this.sortByDateDescending(list);
                 break;
             case "name":
                 sorted = this.sortByName(list);
