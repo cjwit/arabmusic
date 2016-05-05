@@ -86,6 +86,10 @@ body {
 .help-block {
   font-size: 0.7em; }
 
+.pager li {
+  font-size: 0.7em;
+  margin: 5px; }
+
 #footer {
   background-color: #2c3e45;
   color: white;
