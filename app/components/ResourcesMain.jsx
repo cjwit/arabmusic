@@ -144,7 +144,7 @@ module.exports = React.createClass({
 
                                     Resource Collections
                                 </h1>
-                                <div className = 'btn-group' role = 'group' aria-label='...'>
+                                <div className = 'btn-group sort-filter' role = 'group' aria-label='...'>
                                     <a id = "edit" onClick = { this.setResourceSort } className = 'btn btn-default btn-xs'>
                                         <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
                                         Last Edit
@@ -158,7 +158,7 @@ module.exports = React.createClass({
                                         Filter
                                     </a>
                                 </div>
-                                <div id = "resourceTags" data-toggle='buttons'>
+                                <div id = "resourceTags" className = 'filter-tags' data-toggle='buttons'>
                                     { tagButtons }
                                 </div>
 
@@ -182,7 +182,7 @@ module.exports = React.createClass({
 
                                     Notices
                                 </h1>
-                                <div className = 'btn-group' role = 'group' aria-label='...'>
+                                <div className = 'btn-group sort-filter' role = 'group' aria-label='...'>
                                     <a id = "edit" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
                                         <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
                                         Last Edit
@@ -201,7 +201,7 @@ module.exports = React.createClass({
                                     </a>
                                 </div>
 
-                                <div id = "noticeTags" data-toggle='buttons'>
+                                <div id = "noticeTags" className = 'filter-tags' data-toggle='buttons'>
                                     { tagButtons }
                                 </div>
 
