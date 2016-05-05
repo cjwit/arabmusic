@@ -127,7 +127,7 @@ module.exports = React.createClass({
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label'>Select Tags</label>
-                                <div id = 'tags' class = 'btn-group' data-toggle='buttons'>
+                                <div id = 'tags' data-toggle='buttons'>
                                     { tagButtons }
                                 </div>
                             </div>

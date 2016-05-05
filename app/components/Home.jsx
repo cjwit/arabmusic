@@ -19,6 +19,11 @@ module.exports = React.createClass({
         }).sort(function(a, b) {
             return a.date - b.date;
         }).splice(0, 5);
+
+        var discussions = this.props.discussions.sort(function(a, b) {
+            return b.date - a.date;
+        })
+
         var login = this.state.login;
 
         return (
@@ -30,7 +35,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>Recent Activity</h1>
-                                <DiscussionList discussions = { this.props.discussions } login = { login } />
+                                <DiscussionList discussions = { discussions } login = { login } />
                             </div>
                         </div>
                         <div className = 'col-md-6'>

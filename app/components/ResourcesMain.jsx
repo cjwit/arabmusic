@@ -6,12 +6,18 @@ var AddCollection = require('./AddCollection.jsx');
 var AddNotice = require('./AddNotice.jsx');
 var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
+var SortFilter = require('../actions/SortFilter.jsx');
+var tags = require('../tags.js');
 
 module.exports = React.createClass({
     getInitialState: function() {
         return {
             AddCollection: false,
-            AddNotice: false
+            AddNotice: false,
+            resourceSort: 'edit',
+            noticeSort: 'edit',
+            resourceFilter: [],
+            noticeFilter: []
         };
     },
 
@@ -20,6 +26,63 @@ module.exports = React.createClass({
             AddCollection: false,
             AddNotice: false
         })
+    },
+
+    componentDidMount: function () {
+        var toggleResourceTag = this.toggleResourceTag;
+        $('#resourceTags :input').change(function() {
+            toggleResourceTag(this.name);
+        })
+        var toggleNoticeTag = this.toggleNoticeTag;
+        $('#noticeTags :input').change(function() {
+            toggleNoticeTag(this.name);
+        })
+
+        // hide filters and set handlers
+        $("#resourceTags").hide();
+        $("#resourceFilter").click(function(){
+            $("#resourceTags").slideToggle();
+        })
+        $("#noticeTags").hide();
+        $("#noticeFilter").click(function(){
+            $("#noticeTags").slideToggle();
+        })
+    },
+
+    toggleResourceTag: function(name) {
+        var tags = this.state.resourceFilter;
+        var index = tags.indexOf(name)
+        if (index === -1) {
+            tags.push(name);
+        } else {
+            tags.splice(index, 1);
+        }
+        this.setState({
+            resourceFilter: tags
+        })
+    },
+
+    toggleNoticeTag: function(name) {
+        var tags = this.state.noticeFilter;
+        var index = tags.indexOf(name)
+        if (index === -1) {
+            tags.push(name);
+        } else {
+            tags.splice(index, 1);
+        }
+        this.setState({
+            noticeFilter: tags
+        })
+    },
+
+    setResourceSort: function(e) {
+        var setting = e.target.id;
+        this.setState({ resourceSort: setting })
+    },
+
+    setNoticeSort: function(e) {
+        var setting = e.target.id;
+        this.setState({ noticeSort: setting })
     },
 
     toggleCollection: function() {
@@ -39,10 +102,18 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        // sort alphabetically and split in half between two lists
-        var resources = this.props.resources;
-        var notices = this.props.notices;
+        var resources = SortFilter.sortAndFilter(this.props.resources, this.state.resourceFilter, this.state.resourceSort);
+        var notices = SortFilter.sortAndFilter(this.props.notices, this.state.noticeFilter, this.state.noticeSort);
         var login = this.props.login;
+
+        var tagButtons = [];
+        var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+        allTags.map(function(tag, index) {
+            tagButtons.push(
+                <label className = 'tag btn btn-default btn-xs' onChange = { this.toggleResourceTag } key = { 'check' + tag }>
+                    <input type = 'checkbox' name = { tag } autocomplete='off' /> { tag }
+                </label>)
+        });
 
         return (
             <div>
@@ -71,6 +142,24 @@ module.exports = React.createClass({
 
                                     Resource Collections
                                 </h1>
+                                <div className = 'btn-group sort-filter' role = 'group' aria-label='...'>
+                                    <a id = "edit" onClick = { this.setResourceSort } className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
+                                        Last Edit
+                                    </a>
+                                    <a id = "title" onClick = { this.setResourceSort } className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
+                                        Title
+                                    </a>
+                                    <a id = "resourceFilter" className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-tag" aria-hidden="true"></span>&nbsp;
+                                        Filter
+                                    </a>
+                                </div>
+                                <div id = "resourceTags" className = 'filter-tags' data-toggle='buttons'>
+                                    { tagButtons }
+                                </div>
+
                                 <ResourceList resources = { resources } />
                             </div>
                         </div>
@@ -91,6 +180,29 @@ module.exports = React.createClass({
 
                                     Notices
                                 </h1>
+                                <div className = 'btn-group sort-filter' role = 'group' aria-label='...'>
+                                    <a id = "edit" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
+                                        Last Edit
+                                    </a>
+                                    <a id = "name" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
+                                        Title
+                                    </a>
+                                    <a id = "eventDate" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
+                                        Event Date
+                                    </a>
+                                    <a id = "noticeFilter" className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-tag" aria-hidden="true"></span>&nbsp;
+                                        Filter
+                                    </a>
+                                </div>
+
+                                <div id = "noticeTags" className = 'filter-tags' data-toggle='buttons'>
+                                    { tagButtons }
+                                </div>
+
                                 <NoticeList notices = { notices } />
                             </div>
                         </div>
