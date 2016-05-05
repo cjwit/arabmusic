@@ -5,8 +5,7 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Pagination for lists
-* Filter by tags, sorting buttons
+* Pagination for lists (home should only display a few posts and events)
 
 Eventually:
 * SAMR page with link to email list
