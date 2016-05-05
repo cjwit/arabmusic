@@ -144,12 +144,16 @@ module.exports = React.createClass({
                                 <p className="help-block">Use the description to provide more details</p>
                             </div>
                             <div className="form-group">
-                                <label className = 'control-label' HTMLfor="eventDate">Date of the event</label>
+                                <label className = 'control-label' HTMLfor="eventDate">Deadline or date of the event</label>
                                 <input type="text" className="form-control"
                                        id="eventDate"
                                        name = 'eventDate'
                                        onBlur = { this.handleInputChange } />
-                                <p className="help-block">Use the description to provide times, or leave blank</p>
+                                <p className="help-block">
+                                    This date will be used for sorting: 
+                                    if there is a deadline, provide it here and give any other important dates
+                                    in the description below
+                                </p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="description">Some information, including a contact for anyone who has more questions</label>

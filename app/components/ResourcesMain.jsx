@@ -15,7 +15,7 @@ module.exports = React.createClass({
             AddCollection: false,
             AddNotice: false,
             resourceSort: 'edit',
-            noticeSort: 'edit',
+            noticeSort: 'eventDate',
             resourceFilter: [],
             noticeFilter: []
         };

@@ -59,11 +59,7 @@ module.exports = React.createClass({
         var notices = incomingListings.slice(startIndex, endIndex);
 
         var noticeList = [];
-
-        // move this sort
-        notices.sort(function(a, b) {
-            return b.date - a.date;
-        }).map(function (notice, index) {
+        notices.map(function (notice, index) {
             noticeList.push(<Notice info = { notice } key = { 'notice' + index } />)
         });
         return (
