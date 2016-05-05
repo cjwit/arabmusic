@@ -4,7 +4,7 @@ var Event = require('./Event.jsx');
 module.exports = React.createClass({
     getInitialState: function() {
         return ({
-            listings: 3,
+            listings: 5,
             startIndex: 0
         })
     },

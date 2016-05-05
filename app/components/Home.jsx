@@ -18,7 +18,7 @@ module.exports = React.createClass({
             return event.date >= today || event.date.toDateString() == today.toDateString();
         }).sort(function(a, b) {
             return a.date - b.date;
-        }).splice(0, 5);
+        });
 
         var discussions = this.props.discussions.sort(function(a, b) {
             return b.date - a.date;
