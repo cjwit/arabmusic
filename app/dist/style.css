@@ -86,7 +86,8 @@ body {
 .help-block {
   font-size: 0.7em; }
 
-.pager li {
+.pager li,
+.currentPage {
   font-size: 0.7em;
   margin: 5px; }
 

@@ -4,7 +4,7 @@ var Event = require('./Event.jsx');
 module.exports = React.createClass({
     getInitialState: function() {
         return ({
-            listings: 5,
+            listings: 3,
             startIndex: 0
         })
     },
@@ -52,7 +52,9 @@ module.exports = React.createClass({
         var incomingListings = this.props.events,
             incomingLength = incomingListings.length,
             startIndex = this.state.startIndex,
-            endIndex = startIndex + this.state.listings;
+            endIndex = startIndex + this.state.listings,
+            currentPage = startIndex / this.state.listings + 1,
+            totalPages = Math.floor(incomingLength / this.state.listings) + 1;
 
         var events = incomingListings.slice(startIndex, endIndex);
 
@@ -67,9 +69,9 @@ module.exports = React.createClass({
                     incomingLength > this.state.listings ?
                     <nav>
                       <ul className="pager">
-                        <li className = "disabled" id = "previousPage"><a onClick = { this.previous }>Previous</a></li>
-                        1 of 3
-                        <li id = "nextPage"><a onClick = { this.next }>Next</a></li>
+                        <li className = "disabled" id = "previousPage"><a onClick = { this.previous }>&larr;</a></li>
+                        <span className = "currentPage">Page { currentPage } of { totalPages }</span>
+                        <li id = "nextPage"><a onClick = { this.next }>&rarr;</a></li>
                       </ul>
                     </nav>
                     : null
