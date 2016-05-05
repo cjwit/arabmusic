@@ -1,4 +1,25 @@
 module.exports = {
+    getRecentCommentDate: function(post) {
+        var date = new Date(0);
+        post.comments.forEach(function(c) {
+            var commentDate = new Date(c.comment.date)
+            if (commentDate > date) {
+                date = commentDate
+            }
+        });
+        return date;
+    },
+
+    sortByCommentDate: function(list) {
+        var getRecentCommentDate = this.getRecentCommentDate;
+        list = list.sort(function(a, b) {
+            var aComment = getRecentCommentDate(a);
+            var bComment = getRecentCommentDate(b);
+            return bComment - aComment;
+        });
+        return list;
+    },
+
     sortByEdit: function(list) {
         var sorted = list.sort(function(a, b) {
             return new Date(b.editDate) - new Date(a.editDate);
@@ -41,6 +62,20 @@ module.exports = {
         return sorted;
     },
 
+    sortByAuthor: function(list) {
+        var sorted = list.sort(function(a, b) {
+            var nameA = a.content.toUpperCase();
+            var nameB = b.content.toUpperCase();
+            if (nameA < nameB) {
+                return -1;
+            } else if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+        return sorted;
+    },
+
     sortByTitle: function(list) {
         var sorted = list.sort(function(a, b) {
             var titleA = a.title.toUpperCase();
@@ -70,11 +105,17 @@ module.exports = {
             case "dateDescending":
                 sorted = this.sortByDateDescending(list);
                 break;
+            case "author":
+                sorted = this.sortByAuthor(list);
+                break;
             case "name":
                 sorted = this.sortByName(list);
                 break;
             case "eventDate":
                 sorted = this.sortByEventDate(list);
+                break;
+            case "commentDate":
+                sorted = this.sortByCommentDate(list);
                 break;
         }
         return sorted;
