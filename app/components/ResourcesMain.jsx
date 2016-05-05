@@ -102,10 +102,8 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var filteredResources = SortFilter.filterBy(this.props.resources, this.state.resourceFilter);
-        var resources = SortFilter.getSorted(filteredResources, this.state.resourceSort);
-        var filteredNotices = SortFilter.filterBy(this.props.notices, this.state.noticeFilter);
-        var notices = SortFilter.getSorted(filteredNotices, this.state.noticeSort);
+        var resources = SortFilter.sortAndFilter(this.props.resources, this.state.resourceFilter, this.state.resourceSort);
+        var notices = SortFilter.sortAndFilter(this.props.notices, this.state.noticeFilter, this.state.noticeSort);
         var login = this.props.login;
 
         var tagButtons = [];

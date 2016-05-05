@@ -94,5 +94,10 @@ module.exports = {
             return keep;
         })
         return filtered;
+    },
+
+    sortAndFilter: function(list, tags, sortBy) {
+        var filtered = this.filterBy(list, tags);
+        return this.getSorted(filtered, sortBy);
     }
 }

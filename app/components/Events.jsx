@@ -96,10 +96,8 @@ module.exports = React.createClass({
         })
 
         // sort and filter
-        var filteredUpcoming = SortFilter.filterBy(upcomingRaw, this.state.upcomingFilter);
-        var upcoming = SortFilter.getSorted(filteredUpcoming, this.state.upcomingSort);
-        var filteredPrevious = SortFilter.filterBy(previousRaw, this.state.previousFilter);
-        var previous = SortFilter.getSorted(filteredPrevious, this.state.previousSort);
+        var upcoming = SortFilter.sortAndFilter(upcomingRaw, this.state.upcomingFilter, this.state.upcomingSort);
+        var previous = SortFilter.sortAndFilter(previousRaw, this.state.previousFilter, this.state.previousSort);
         var login = this.props.login;
 
         var tagButtons = [];
