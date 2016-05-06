@@ -128,7 +128,7 @@ module.exports = React.createClass({
                     {
                         props.link === "" ?
                         <span className = 'notice-name'>
-                            { props.name }:&nbsp;
+                            { props.name }&nbsp;
                         </span>
                         :
                         <a href = { props.link } target = "_blank">

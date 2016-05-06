@@ -119,7 +119,7 @@ module.exports = React.createClass({
             return (
                 <div className = 'event' id = { id }>
                     <span className = 'event-name'>
-                        { props.name }:&nbsp;
+                        { props.name }&nbsp;
                     </span>
 
                     { props.location ? <span className = 'event-place'>{ props.location },&nbsp;</span> : null }

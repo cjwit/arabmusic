@@ -112,7 +112,7 @@ module.exports = React.createClass({
             return (
                 <div className = 'collection' id = { id }>
                     <span className = 'collection-title'>
-                        { props.title }:&nbsp;
+                        { props.title }&nbsp;
                     </span>
 
                     { !collectionPage ?

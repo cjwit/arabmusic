@@ -128,8 +128,15 @@ module.exports = React.createClass({
             return (
                 <div className = 'discussion' id = { id }>
                     <span className = 'discussion-title'>
-                        { props.title }:&nbsp;
+                        { props.title }&nbsp;
                     </span>
+                    <span className = 'discussion-author'>
+                        { props.author },&nbsp;
+                    </span>
+                    <span className = 'discussion-date'>
+                        { props.date.toLocaleDateString() }
+                    </span>
+                    
                     { !discussionPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
                             <a href= { '/discussions/' + id } className = 'btn btn-default'>
@@ -146,14 +153,7 @@ module.exports = React.createClass({
                             </a>
                         </div>
                     }
-                    <p>
-                        <span className = 'discussion-author'>
-                            { props.author },&nbsp;
-                        </span>
-                        <span className = 'discussion-date'>
-                            { props.date.toLocaleDateString() }
-                        </span>
-                    </p>
+
                     <div className = 'discussion-content'>
                         { props.content }
                         { props.edited && discussionPage ?
