@@ -24,7 +24,9 @@ module.exports = React.createClass({
                         <li className= { active === 'resources' ? 'navlink active' : 'navlink' } id = 'resources'><a href="/resources">Resources and Notices</a></li>
                         <li className= { active === 'directory' ? 'navlink active' : 'navlink' } id = 'directory'><a href="/directory">Directory</a></li>
                         <li className= { active === 'samr' ? 'navlink active' : 'navlink' } id = 'samr'><a href="/samr">SAMR</a></li>
-                        <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="/login">{ login ? 'Log Out' : 'Sign Up / Login' }</a></li>
+                    </ul>
+                    <ul className = "nav navbar-nav navbar-right">
+                        <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'login'><a href="/user">{ login ? 'Accunt Home' : 'Sign Up or Login' }</a></li>
                       </ul>
                     </div>
                 </div>

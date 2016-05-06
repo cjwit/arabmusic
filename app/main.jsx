@@ -10,6 +10,7 @@ var EventPage = require('./components/EventPage.jsx');
 var ResourcesMain = require('./components/ResourcesMain.jsx');
 var ResourcePage = require('./components/ResourcePage.jsx');
 var NoticePage = require('./components/NoticePage.jsx');
+var User = require('./components/User.jsx');
 
 // stores
 var eventsStore = require('./stores/eventsStore');
@@ -47,6 +48,7 @@ var getNoticesCallback = function(_notices) {
 }
 noticeStore.onChange(getNoticesCallback);
 
+// should return a user name or null, may rename "username"
 var login = Dummy.login;
 
 // functions to manipulate data
@@ -100,6 +102,9 @@ function render() {
                 break;
             case 'resources':
                 renderResources();
+                break;
+            case 'user':
+                renderUser();
                 break;
         }
     } else {
@@ -166,6 +171,13 @@ function renderResources() {
     ReactDOM.render(<ResourcesMain
         resources = { resources }
         notices = { notices }
+        login = { login }
+        />, document.getElementById('container'));
+}
+
+function renderUser() {
+    // filter discussions, events, resources, and notices for member's contributions
+    ReactDOM.render(<User
         login = { login }
         />, document.getElementById('container'));
 }
