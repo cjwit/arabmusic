@@ -41,11 +41,13 @@ module.exports = React.createClass({
             startIndex = this.state.startIndex,
             listings = this.state.listings;
 
-        startIndex += listings;
-        this.setState({ startIndex: startIndex })
-
+        if (startIndex + listings < this.props.discussions.length) {
+            startIndex += listings
+            this.setState({ startIndex: startIndex })
+        };
+        
         previous.removeClass("disabled")
-        if (startIndex + listings >= this.props.events.length) {
+        if (startIndex + listings >= this.props.discussions.length) {
             next.addClass("disabled");
         } else {
             next.removeClass("disabled");
