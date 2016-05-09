@@ -24,14 +24,19 @@ module.exports = React.createClass({
         }(document, 'script', 'facebook-jssdk'));
     },
 
+    // use this functionality to inform the application who the user is
+    // perhaps this API call could be the element that is moved elsewhere (service?)
     testAPI: function() {
         console.log('Welcome! Fetching your info... ');
         FB.api('/me', function(response) {
+            // response object is name and ID.. this could be how to connect to the database
             console.log('Successful login for', response.name);
+            console.log(response);
             document.getElementById('status').innerHTML = '<a>' + response.name + '</a>';
         });
     },
 
+    // use this to send info through the application
     statusChangeCallback: function(response) {
         console.log('statusChangeCallback');
         console.log(response);
