@@ -46,6 +46,7 @@ passport.use(new FacebookStrategy({
         callbackURL: process.env.FB_CALLBACK_URL
     },
     function(accessToken, refreshToken, profile, done) {
+        console.log(profile);
         User.findOne({
             'facebook.id': profile.id
         }, function(err, user) {
@@ -74,7 +75,9 @@ passport.use(new FacebookStrategy({
 ));
 
 // page routing
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook',
+    passport.authenticate('facebook', { scope: ['email', 'public_profile']})
+);
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         successRedirect: '/user',

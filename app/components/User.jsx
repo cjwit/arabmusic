@@ -7,14 +7,8 @@ var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-        }
-    },
-
     render: function() {
         var login = this.props.login;
-
         return (
             <div>
                 <Navbar active = 'user' login = { login }/>
@@ -24,7 +18,7 @@ module.exports = React.createClass({
                             <div className = 'holder'>
                                 <h1>Edit My Information</h1>
                                 <p>
-                                    <a href="/auth/facebook">Login with Facebook</a>
+                                    <a href="/auth/facebook">Login with Facebook (Passport.js)</a>
                                 </p>
                                 <p>
                                     <a href="/logout">Log Out</a>
