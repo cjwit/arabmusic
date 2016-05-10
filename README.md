@@ -5,10 +5,12 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
+* Find or create based on email instead of service ID? Allows for multiple services
 * Login functionality
     * Only admins can delete resource collections
     * Member info pages that collect authored materials
     * Civility and IP disclaimer
+    * We only keep publicly available Facebook info...
 
 Eventually:
 * SAMR page with link to email list
