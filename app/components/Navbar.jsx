@@ -26,30 +26,23 @@ module.exports = React.createClass({
     },
 
     apiCallback: function(response) {
-        // response object is name, ID, email, picture (at response.picture.data.url)..
-        // this could be how to connect to the database
-        console.log('\nSuccessful login for', response.name);
-        console.log(response);
         var loginObject = {
             name: response.name,
             id: response.id,
             email: response.email,
             photo: response.picture.data.url
         }
-        console.log(loginObject);
         actions.login(loginObject);
     },
 
-    // use this functionality to inform the application who the user is
-    // perhaps this API call could be the element that is moved elsewhere (service?)
-    // use this to send info through the application
+    // callback is happening before FB.login and FB.logout are done
     statusChangeCallback: function(response) {
-        console.log('\nstatusChangeCallback called');
-        console.log(response);
         var photo;
         if (response.status === 'connected') {
+            // apiCallback fires early
             FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
         } else {
+            // and so does this logout call
             actions.logout();
         }
     },
@@ -78,6 +71,7 @@ module.exports = React.createClass({
         } else {
             photo = login.user.photo;
         }
+        console.log("\nnavbar render");
         console.log(login);
 
         return (
