@@ -24,11 +24,11 @@ module.exports = React.createClass({
             return b.date - a.date;
         })
 
-        var login = this.state.login;
+        var login = this.props.login;
 
         return (
             <div>
-                <Navbar active = 'home' login = { this.state.login }/>
+                <Navbar active = 'home' login = { login }/>
                 <About />
                 <div className = 'container'>
                     <div className = 'row'>

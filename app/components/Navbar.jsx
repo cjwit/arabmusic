@@ -2,12 +2,6 @@ var React = require('react');
 var actions = require('../actions/loginActions');
 
 module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-            login: this.props.login
-        }
-    },
-
     componentDidMount: function() {
         window.fbAsyncInit = function() {
             FB.init({
@@ -84,6 +78,7 @@ module.exports = React.createClass({
         } else {
             photo = login.user.photo;
         }
+        console.log(login);
 
         return (
             <div className="navbar navbar-fixed-top navbar-default">
