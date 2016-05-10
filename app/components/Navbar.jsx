@@ -1,10 +1,10 @@
 var React = require('react');
+var actions = require('../actions/loginActions');
 
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            login: this.props.login,
-            photo: ""
+            login: this.props.login
         }
     },
 
@@ -34,34 +34,29 @@ module.exports = React.createClass({
     apiCallback: function(response) {
         // response object is name, ID, email, picture (at response.picture.data.url)..
         // this could be how to connect to the database
-        console.log('Successful login for', response.name);
+        console.log('\nSuccessful login for', response.name);
         console.log(response);
-        this.setState({
-            login: true,
+        var loginObject = {
+            name: response.name,
+            id: response.id,
+            email: response.email,
             photo: response.picture.data.url
-        })
+        }
+        console.log(loginObject);
+        actions.login(loginObject);
     },
 
     // use this functionality to inform the application who the user is
     // perhaps this API call could be the element that is moved elsewhere (service?)
-    testAPI: function() {
-        var setState = this.setState;
-        console.log('\ntestAPI: Welcome! Fetching your info... ');
-        FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
-    },
-
     // use this to send info through the application
     statusChangeCallback: function(response) {
         console.log('\nstatusChangeCallback called');
         console.log(response);
         var photo;
         if (response.status === 'connected') {
-            this.testAPI();
+            FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
         } else {
-            this.setState({
-                login: false,
-                photo: ""
-             });
+            actions.logout();
         }
     },
 
@@ -81,7 +76,15 @@ module.exports = React.createClass({
 
     render: function() {
         var active = this.props.active;
-        var login = this.state.login;
+        var login = this.props.login;
+        var photo;
+
+        if (login.status === false) {
+            photo = null;
+        } else {
+            photo = login.user.photo;
+        }
+
         return (
             <div className="navbar navbar-fixed-top navbar-default">
                 <div className="container-fluid">
@@ -104,13 +107,17 @@ module.exports = React.createClass({
                         <li className= { active === 'samr' ? 'navlink active' : 'navlink' } id = 'samr'><a href="/samr">SAMR</a></li>
                     </ul>
                     <ul className = "nav navbar-nav navbar-right">
-                        <li className= 'navlink' id = 'login'><a href="#" onClick = { login ? this.logout : this.login }>{ login ? 'Log Out' : 'Log In (FB)' }</a></li>
-                        <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
-                            <a href="/user" id = 'status'>
-                                { this.state.photo === "" ? null : <img className = 'profile-pic' src = { this.state.photo } /> }
-                            </a>
-                        </li>
-                      </ul>
+                        <li className= 'navlink' id = 'login'><a href="#" onClick = { login.status ? this.logout : this.login }>{ login.status ? 'Log Out' : 'Log In (FB)' }</a></li>
+                        { login.status ?
+                            <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
+                                <a href="/user" id = 'status'>
+                                    { photo === null ? 'Home' : <img className = 'profile-pic' src = { photo } /> }
+                                </a>
+                            </li>
+                            :
+                            null
+                        }
+                        </ul>
                     </div>
                 </div>
             </div>

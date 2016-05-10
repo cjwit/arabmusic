@@ -18,6 +18,7 @@ var postsStore = require('./stores/postsStore');
 var resourceStore = require('./stores/resourceStore');
 var noticeStore = require('./stores/noticeStore');
 var userStore = require('./stores/userStore');
+var loginStore = require('./stores/loginStore');
 
 // Get content from database
 var events = [];
@@ -58,7 +59,17 @@ userStore.onChange(getUsersCallback);
 // should return a user name or null, may rename "username"
 // could find a better place to load the FBSDK, perhaps in the loginStore itself
 // then the loginStore FB functions should work
-var login = true;
+
+// object { status: Boolean, user: userObject }
+var login = {
+    status: false,
+    user: null
+}
+var getLoginCallback = function(_login) {
+    login = _login;
+    render();
+}
+loginStore.onChange(getLoginCallback);
 
 // functions to manipulate data
 function dateEvents() {

@@ -14,6 +14,7 @@ var postController = require('./controllers/postController');
 var resourceController = require('./controllers/resourceController');
 var noticeController = require('./controllers/noticeController');
 var userController = require('./controllers/userController');
+var loginController = require('./controllers/loginController');
 
 // requests
 var app = express();
@@ -28,6 +29,7 @@ app.use("/api/posts", postController);
 app.use("/api/resources", resourceController);
 app.use("/api/notices", noticeController);
 app.use("/api/user", userController);
+app.use("/api/login", loginController);
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));

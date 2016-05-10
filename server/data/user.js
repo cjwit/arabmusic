@@ -5,6 +5,7 @@ var userSchema = mongoose.Schema({
     provider: String,
     facebook: Object,
     date: Date,
+    photo: String,
     tags: Array,
     description: String,
     edited: Boolean,
