@@ -93,10 +93,10 @@ function findItem(list, id) {
 }
 
 function render() {
+    // check user and login status
     console.log('\nfrom main: users, login')
     console.log(users)
     console.log(login)
-
 
     var path = window.location.pathname;
     var split = path.split('/')
