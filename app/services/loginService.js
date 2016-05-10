@@ -5,7 +5,8 @@ var resourceURL = location.protocol + '//' + location.host + '/api/login/';
 module.exports = {
     login: function(loginObject) {
         var Promise = promise.Promise;
-
+        console.log(loginObject);
+        console.log(resourceURL + loginObject.id);
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + loginObject.id,
