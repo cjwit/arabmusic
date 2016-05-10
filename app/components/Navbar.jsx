@@ -3,7 +3,8 @@ var React = require('react');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            login: this.props.login
+            login: this.props.login,
+            photo: ""
         }
     },
 
@@ -38,7 +39,10 @@ module.exports = React.createClass({
             // response object is name and ID.. this could be how to connect to the database
             console.log('Successful login for', response.name);
             console.log(response);
-            document.getElementById('status').innerHTML = response.name;
+            this.setState({
+                login: true,
+                photo: response.picture.data.url
+            })
         });
     },
 
@@ -46,19 +50,14 @@ module.exports = React.createClass({
     statusChangeCallback: function(response) {
         console.log('\nstatusChangeCallback called');
         console.log(response);
-        var login = this.state.login;
         if (response.status === 'connected') {
             this.testAPI();
-            login = true;
-        } else if (response.status === 'not_authorized') {
-            document.getElementById('status').innerHTML = 'Logged out of app';
-            login = false;
         } else {
-            document.getElementById('status').innerHTML = 'Logged out of FB';
-            login = false;
+            this.setState({
+                login: false,
+                photo: ""
+             });
         }
-        console.log(response.status)
-        this.setState({ login: login });
     },
 
     checkLoginState: function() {
@@ -101,7 +100,11 @@ module.exports = React.createClass({
                     </ul>
                     <ul className = "nav navbar-nav navbar-right">
                         <li className= 'navlink' id = 'login'><a href="#" onClick = { login ? this.logout : this.login }>{ login ? 'Log Out' : 'Log In (FB)' }</a></li>
-                        <li className= { active === 'user' ? 'navlink active' : 'navlink' }><a href="/user" id = 'status'>Home</a></li>
+                        <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
+                            <a href="/user" id = 'status'>
+                                { this.state.photo === "" ? 'Home' : <img src = { this.state.photo } /> }
+                            </a>
+                        </li>
                       </ul>
                     </div>
                 </div>
