@@ -31,25 +31,30 @@ module.exports = React.createClass({
         }(document, 'script', 'facebook-jssdk'));
     },
 
+    apiCallback: function(response) {
+        // response object is name, ID, email, picture (at response.picture.data.url)..
+        // this could be how to connect to the database
+        console.log('Successful login for', response.name);
+        console.log(response);
+        this.setState({
+            login: true,
+            photo: response.picture.data.url
+        })
+    },
+
     // use this functionality to inform the application who the user is
     // perhaps this API call could be the element that is moved elsewhere (service?)
     testAPI: function() {
+        var setState = this.setState;
         console.log('\ntestAPI: Welcome! Fetching your info... ');
-        FB.api('/me', { fields: 'name,email,picture' }, function(response) {
-            // response object is name and ID.. this could be how to connect to the database
-            console.log('Successful login for', response.name);
-            console.log(response);
-            this.setState({
-                login: true,
-                photo: response.picture.data.url
-            })
-        });
+        FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
     },
 
     // use this to send info through the application
     statusChangeCallback: function(response) {
         console.log('\nstatusChangeCallback called');
         console.log(response);
+        var photo;
         if (response.status === 'connected') {
             this.testAPI();
         } else {
@@ -102,7 +107,7 @@ module.exports = React.createClass({
                         <li className= 'navlink' id = 'login'><a href="#" onClick = { login ? this.logout : this.login }>{ login ? 'Log Out' : 'Log In (FB)' }</a></li>
                         <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
                             <a href="/user" id = 'status'>
-                                { this.state.photo === "" ? 'Home' : <img src = { this.state.photo } /> }
+                                { this.state.photo === "" ? null : <img className = 'profile-pic' src = { this.state.photo } /> }
                             </a>
                         </li>
                       </ul>
