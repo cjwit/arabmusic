@@ -4,8 +4,11 @@ var userSchema = mongoose.Schema({
     email: String,
     provider: String,
     facebook: Object,
+    date: Date,
     tags: Array,
     description: String,
+    edited: Boolean,
+    editDate: Date,
     accessToken: String,
     refreshToken: String
 });

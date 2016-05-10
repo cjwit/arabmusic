@@ -3,8 +3,8 @@ var User = require('../data/user');
 var _ = require('underscore');
 
 var router = require('express').Router();
-router.route('/:id/').get(getUser);
-router.route('/').get(getUsers);
+router.route('/:id').post(editUser).delete(deleteUser);
+router.route('/').get(getUsers).post(addUser);
 
 function getUsers(req, res) {
     User.find(function (err, users) {
@@ -13,12 +13,40 @@ function getUsers(req, res) {
     });
 }
 
-function getUser(req, res) {
-    var id = req.params.id;
-    User.find({ 'facebook.id': id }, function(err, user) {
+function addUser(req, res) {
+    var user = new User(_.extend({}, req.body));
+    User.save(function (err) {
         if (err) res.send(err);
         else res.json(user);
-    })
+    });
+}
+
+function editUser(req, res) {
+    var id = req.params.id;
+    var info = req.body;
+    var query = { _id: id },
+        update = { $set: {
+            name: info.name,
+            email: info.email,
+            provider: info.provider,
+            date: new Date(info.date),
+            tags: info.tags,
+            description: info.description,
+            edited: info.edited,
+            editDate: info.editDate
+        }};
+    User.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
+    });
+}
+
+function deleteUser(req, res) {
+    var id = req.params.id;
+    User.remove({ _id: id }, function (err, removed) {
+        if (err) res.send(err);
+        else res.json(removed);
+    });
 }
 
 module.exports = router;
