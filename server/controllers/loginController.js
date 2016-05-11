@@ -21,11 +21,7 @@ function login(req, res) {
         joined: new Date(Date.now()),
         editDate: new Date(Date.now())
     };
-    console.log('\nquery', query)
-    console.log('\nforCreate', forCreate)
-
     User.findOneOrCreate(query, forCreate, function (err, user) {
-        console.log("First try,", user)
         if (err) res.send(err);
         else res.json(user);
     });
