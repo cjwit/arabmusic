@@ -26,7 +26,6 @@ module.exports = React.createClass({
     },
 
     apiCallback: function(response) {
-        console.log('Good to see you,', response.name, '... calling actions.login()')
         var loginObject = {
             name: response.name,
             id: response.id,
@@ -56,10 +55,9 @@ module.exports = React.createClass({
 
     loginCallback: function(response) {
         if (response.authResponse) {
-            console.log('Welcome! Fetching info');
             FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
         } else {
-            console.log('user cancelled login');
+            console.log('FB login failed or cancelled');
         }
     },
 
@@ -68,7 +66,7 @@ module.exports = React.createClass({
     },
 
     logout: function() {
-        FB.logout(this.checkLoginState());
+        FB.logout(actions.logout());
     },
 
     render: function() {
@@ -81,8 +79,6 @@ module.exports = React.createClass({
         } else {
             photo = login.user.photo;
         }
-        console.log("\nnavbar render");
-        console.log(login);
 
         return (
             <div className="navbar navbar-fixed-top navbar-default">
@@ -106,7 +102,13 @@ module.exports = React.createClass({
                         <li className= { active === 'samr' ? 'navlink active' : 'navlink' } id = 'samr'><a href="/samr">SAMR</a></li>
                     </ul>
                     <ul className = "nav navbar-nav navbar-right">
-                        <li className= 'navlink' id = 'login'><a href="#" onClick = { login.status ? this.logout : this.login }>{ login.status ? 'Log Out' : 'Log In (FB)' }</a></li>
+
+                        <li className= 'navlink' id = 'login'>
+                            <a href="#" onClick = { login.status ? this.logout : this.login }>
+                                <span className="glyphicon zocial-facebook"></span>{ login.status ? ' logout' : ' login' }
+                            </a>
+                        </li>
+
                         { login.status ?
                             <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
                                 <a href="/user" id = 'status'>
