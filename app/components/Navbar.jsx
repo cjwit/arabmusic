@@ -91,15 +91,13 @@ module.exports = React.createClass({
 
                         <li className= 'navlink' id = 'login'>
                             <a href="#" onClick = { login.status ? this.logout : this.login }>
-                                <span className="glyphicon zocial-facebook"></span>{ login.status ? ' logout' : ' login' }
+                                <span className="glyphicon zocial-facebook login-glyph"></span> { login.status ? 'logout' : 'login' }
                             </a>
                         </li>
 
                         { login.status ?
                             <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
-                                <a href="/user" id = 'status'>
-                                    { photo === null ? 'Home' : <img className = 'profile-pic' src = { photo } /> }
-                                </a>
+                                <a href="/user" id = { photo === null ? '' : 'profile-pic'}>{ photo === null ? 'Home' : <img src = { photo } /> }</a>
                             </li>
                             :
                             null
