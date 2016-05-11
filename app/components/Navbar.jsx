@@ -12,7 +12,11 @@ module.exports = React.createClass({
             });
 
             FB.getLoginStatus(function(response) {
-                this.statusChangeCallback(response);
+                if (response.status === 'connected') {
+                    this.loginCallback(response)
+                } else {
+                    actions.logout();
+                }
             }.bind(this));
         }.bind(this);
 
@@ -33,24 +37,6 @@ module.exports = React.createClass({
             photo: response.picture.data.url
         }
         actions.login(loginObject);
-    },
-
-    // callback is happening before FB.login and FB.logout are done
-    statusChangeCallback: function(response) {
-        var photo;
-        if (response.status === 'connected') {
-            // apiCallback fires early
-            FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
-        } else {
-            // and so does this logout call
-            actions.logout();
-        }
-    },
-
-    checkLoginState: function() {
-        FB.getLoginStatus(function(response) {
-            this.statusChangeCallback(response);
-        }.bind(this));
     },
 
     loginCallback: function(response) {
