@@ -128,14 +128,14 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>
-                                    { login ?
+                                    { login.status ?
                                         <button id = 'addCollectionFormToggle'
                                             className = 'btn btn-default pull-right'
                                             onClick = { this.toggleCollection } >Create a Collection
                                         </button>
                                         :
                                         <button id = 'addCollectionFormToggle'
-                                            className = 'btn btn-default pull-right'>
+                                            className = 'btn btn-default pull-right disabled'>
                                             Login to Create a Collection
                                         </button>
                                     }
@@ -166,14 +166,14 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>
-                                    { login ?
+                                    { login.status ?
                                         <button id = 'addNoticeFormToggle'
                                             className = 'btn btn-default pull-right'
                                             onClick = { this.toggleNotice } >Post a Notice
                                         </button>
                                         :
                                         <button id = 'addNoticeFormToggle'
-                                            className = 'btn btn-default pull-right'>
+                                            className = 'btn btn-default pull-right disabled'>
                                             Login to Post a Notice
                                         </button>
                                     }

@@ -6,8 +6,8 @@ var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
     render: function() {
-        var info = this.props.info,
-            login = this.props.login;
+        var info = this.props.info;
+        var login = this.props.login;
 
         console.log('eventPage', login);
 

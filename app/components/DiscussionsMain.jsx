@@ -10,7 +10,6 @@ var tags = require('../tags.js');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            login: this.props.login,
             postSort: 'dateDescending',
             postFilter: []
         };
@@ -61,7 +60,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Navbar active = 'discussions' login = { this.state.login }/>
+                <Navbar active = 'discussions' login = { this.props.login }/>
                 <DiscussionHeader />
                 <div id = 'subContainer' className = 'container'>
                     <div className = 'row holder'>
