@@ -14,6 +14,7 @@ Next Up
 
 Eventually:
 * Remove SAMR page
+* Split resources and notices pages
 * Blog on Medium
 * Terms of Use
     * Civility and IP disclaimer
