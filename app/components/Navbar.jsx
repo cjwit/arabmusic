@@ -96,12 +96,13 @@ module.exports = React.createClass({
                         </li>
 
                         { login.status ?
-                            <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
+                            <li className = { active === 'user' ? 'navlink active' : 'navlink' }>
                                 { photo === null ?
-                                    <a href="/user">Home</a>
+                                    <a className = 'hidden-xs' href="/user">Home</a>
                                     :
-                                    <a href="/user" id = 'profile-pic'><img src = { photo } /></a>
+                                    <a className = 'hidden-xs' href="/user" id = 'profile-pic'><img src = { photo } /></a>
                                 }
+                                <a className = 'visible-xs-block' href="/user">Home</a>
                             </li>
                             :
                             null
