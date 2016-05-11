@@ -26,6 +26,7 @@ module.exports = React.createClass({
     },
 
     apiCallback: function(response) {
+        console.log('Good to see you,', response.name, '... calling actions.login()')
         var loginObject = {
             name: response.name,
             id: response.id,
@@ -53,8 +54,17 @@ module.exports = React.createClass({
         }.bind(this));
     },
 
+    loginCallback: function(response) {
+        if (response.authResponse) {
+            console.log('Welcome! Fetching info');
+            FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
+        } else {
+            console.log('user cancelled login');
+        }
+    },
+
     login: function() {
-        FB.login(this.checkLoginState(), { scope: 'email,public_profile' });
+        FB.login(this.loginCallback, { scope: 'email,public_profile' });
     },
 
     logout: function() {
