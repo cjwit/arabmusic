@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-// components
 var Home = require('./components/Home.jsx');
 var DiscussionsMain = require('./components/DiscussionsMain.jsx');
 var DiscussionPage = require('./components/DiscussionPage.jsx');
@@ -12,7 +11,6 @@ var ResourcePage = require('./components/ResourcePage.jsx');
 var NoticePage = require('./components/NoticePage.jsx');
 var User = require('./components/User.jsx');
 
-// stores
 var eventsStore = require('./stores/eventsStore');
 var postsStore = require('./stores/postsStore');
 var resourceStore = require('./stores/resourceStore');
@@ -20,6 +18,7 @@ var noticeStore = require('./stores/noticeStore');
 var userStore = require('./stores/userStore');
 var loginStore = require('./stores/loginStore');
 
+// #########################
 // Get content from database
 var events = [];
 var getEventsCallback = function(_events) {
@@ -56,21 +55,14 @@ var getUsersCallback = function(_users) {
 }
 userStore.onChange(getUsersCallback);
 
-// should return a user name or null, may rename "username"
-// could find a better place to load the FBSDK, perhaps in the loginStore itself
-// then the loginStore FB functions should work
-
-// object { status: Boolean, user: userObject }
-var login = {
-    status: false,
-    user: null
-}
+var login = { status: false, user: null }
 var getLoginCallback = function(_login) {
     login = _login;
     render();
 }
 loginStore.onChange(getLoginCallback);
 
+// ############################
 // functions to manipulate data
 function dateEvents() {
     events.map(function(event) {
@@ -97,12 +89,14 @@ function findItem(list, id) {
             item = i;
         }
     })
-    if (item.hasOwnProperty('date')) {
+    if (item.date !== undefined) {
         item.date = new Date(item.date);
     }
     return item
 }
 
+// ################
+// render functions
 function render() {
     var path = window.location.pathname;
     var split = path.split('/')
@@ -181,6 +175,7 @@ function renderEvents() {
 
 function renderEventPage(id) {
     var event = findItem(events, id);
+    console.log('renderEventPage', login)
     ReactDOM.render(<EventPage
         info = { event }
         login = { login }
@@ -218,5 +213,6 @@ function renderNoticePage(id) {
         />, document.getElementById('container'));
 }
 
+// #################
 // initial rendering
 render();

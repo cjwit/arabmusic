@@ -60,13 +60,14 @@ module.exports = React.createClass({
             startIndex = this.state.startIndex,
             endIndex = startIndex + this.state.listings,
             currentPage = startIndex / this.state.listings + 1,
-            totalPages = Math.floor(incomingLength / this.state.listings) + 1;
+            totalPages = Math.floor(incomingLength / this.state.listings) + 1,
+            login = this.props.login;
 
         var events = incomingListings.slice(startIndex, endIndex);
 
         var eventList = [];
         events.map(function (event, index) {
-            eventList.push(<Event info = { event } key = { "event" + index } />)
+            eventList.push(<Event info = { event } key = { "event" + index } login = { login }/>)
         });
         return (
             <div className = 'list'>

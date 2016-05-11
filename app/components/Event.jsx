@@ -102,7 +102,34 @@ module.exports = React.createClass({
 
     render: function() {
         var props = this.props.info;
-        var id = props._id;
+        var eventID = props._id;
+
+        // create owner management buttons if necessary
+        var ownerID = "",
+            myEvent = false;
+
+        if (this.props.login.status === true) {
+            ownerID = this.props.login.user._id;
+        }
+
+        if (ownerID !== "" && ownerID === props.owner) {
+            myEvent = true;
+        }
+
+        var ownerButtons = null;
+        if (myEvent === true) {
+            ownerButtons = <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                <a onClick = { this.openForm } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <a onClick = { this.deleteEvent } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            </div>
+        }
+
+        console.log('ownerButtons', ownerButtons)
+
         var eventPage = Boolean(window.location.pathname.match(/^\/events\/\w/));
 
         // set tags
@@ -117,7 +144,7 @@ module.exports = React.createClass({
 
         if (!this.state.editing) {
             return (
-                <div className = 'event' id = { id }>
+                <div className = 'event' id = { eventID }>
                     <span className = 'event-name'>
                         { props.name }&nbsp;
                     </span>
@@ -130,19 +157,12 @@ module.exports = React.createClass({
                         { !eventPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
 
-                            <a href = { '/events/' + id } role = 'button' className = 'btn btn-default'>
+                            <a href = { '/events/' + eventID } role = 'button' className = 'btn btn-default'>
                                 <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                             </a>
                         </div>
                             :
-                        <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a onClick = { this.openForm } role = 'button' className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <a onClick = { this.deleteEvent } role = 'button' className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        <div className = 'pull-right'>{ ownerButtons }</div>
                     }
                     <br />
 
@@ -179,7 +199,7 @@ module.exports = React.createClass({
                     </label>)
             });
             return (
-                <div className = 'event' id = { id }>
+                <div className = 'event' id = { eventID }>
                     <form onSubmit = { this.editEvent } id = 'editEventForm'>
                         <div className="form-group">
                             <label className = 'control-label' HTMLfor="name">Title of the event</label>

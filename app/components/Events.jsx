@@ -121,7 +121,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>
-                                    { login ?
+                                    { login.status ?
                                         <button id = 'addEventFormToggle'
                                             className = 'btn btn-default pull-right'
                                             onClick = { this.toggleForm } >
@@ -129,7 +129,7 @@ module.exports = React.createClass({
                                         </button>
                                         :
                                         <button id = 'addEventFormToggle'
-                                            className = 'btn btn-default pull-right' >
+                                            className = 'btn btn-default pull-right disabled' >
                                             Login to Add and Event
                                         </button>
                                     }
@@ -158,7 +158,7 @@ module.exports = React.createClass({
                                     { tagButtons }
                                 </div>
 
-                                <EventList events = { upcoming } />
+                                <EventList events = { upcoming } login = { login }/>
                             </div>
                         </div>
                         <div className = 'col-md-6'>
@@ -187,7 +187,7 @@ module.exports = React.createClass({
                                     { tagButtons }
                                 </div>
 
-                                <EventList events = { previous } />
+                                <EventList events = { previous } login = { login }/>
                             </div>
                         </div>
                     </div>
