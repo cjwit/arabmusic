@@ -128,8 +128,6 @@ module.exports = React.createClass({
             </div>
         }
 
-        console.log('ownerButtons', ownerButtons)
-
         var eventPage = Boolean(window.location.pathname.match(/^\/events\/\w/));
 
         // set tags
