@@ -97,7 +97,11 @@ module.exports = React.createClass({
 
                         { login.status ?
                             <li className= { active === 'user' ? 'navlink active' : 'navlink' }>
-                                <a href="/user" id = { photo === null ? '' : 'profile-pic'}>{ photo === null ? 'Home' : <img src = { photo } /> }</a>
+                                { photo === null ?
+                                    <a href="/user">Home</a>
+                                    :
+                                    <a href="/user" id = 'profile-pic'><img src = { photo } /></a>
+                                }
                             </li>
                             :
                             null
