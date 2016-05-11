@@ -107,7 +107,8 @@ module.exports = React.createClass({
         // create owner management buttons if necessary
         var ownerID = "",
             myEvent = false;
-
+        console.log(this.props.login);
+        
         if (this.props.login.status === true) {
             ownerID = this.props.login.user._id;
         }

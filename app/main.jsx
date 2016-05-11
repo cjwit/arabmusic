@@ -151,6 +151,7 @@ function renderHome() {
 
 function renderDiscussions() {
     dateDiscussions();
+    console.log('rendering DiscussionsMain', login)
     ReactDOM.render(<DiscussionsMain
         discussions = { discussions }
         login = { login }
@@ -158,6 +159,7 @@ function renderDiscussions() {
 }
 
 function renderDiscussionPage(id) {
+    console.log('rendering DiscussionPage', login)
     var post = findItem(discussions, id);
     ReactDOM.render(<DiscussionPage
         info = { post }
@@ -167,6 +169,7 @@ function renderDiscussionPage(id) {
 
 function renderEvents() {
     dateEvents();
+    console.log('rendering Events', login)
     ReactDOM.render(<Events
         events = { events }
         login = { login }
@@ -175,7 +178,7 @@ function renderEvents() {
 
 function renderEventPage(id) {
     var event = findItem(events, id);
-    console.log('renderEventPage', login)
+    console.log('rendering EventPage', login)
     ReactDOM.render(<EventPage
         info = { event }
         login = { login }
