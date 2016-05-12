@@ -191,9 +191,13 @@ function renderResources() {
 
 function renderUser() {
     // filter discussions, events, resources, and notices for member's contributions
-    ReactDOM.render(<User
-        login = { login }
-        />, document.getElementById('container'));
+    // wait to render until all fields are populated
+    if (events.length > 0) {
+        ReactDOM.render(<User
+            login = { login }
+            events = { events }
+            />, document.getElementById('container'));
+    }
 }
 
 function renderResourcePage(id) {

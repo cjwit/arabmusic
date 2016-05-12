@@ -9,6 +9,20 @@ var Footer = require('./Footer.jsx');
 module.exports = React.createClass({
     render: function() {
         var login = this.props.login;
+        var events = this.props.events;
+        var userEvents = [];
+        var name, email, id;
+
+        if (login.status === true) {
+            name = login.user.name;
+            email = login.user.email;
+            id = login.user._id;
+
+            userEvents = events.filter(function(e) {
+                return e.owner === id;
+            })
+        }
+
         return (
             <div>
                 <Navbar active = 'user' login = { login }/>
@@ -16,12 +30,14 @@ module.exports = React.createClass({
                     <div className = 'row'>
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
-                                <h1>Edit My Information</h1>
+                                <h1>My Information</h1>
+                                <ul>
+                                    <li>Name: { name }</li>
+                                    <li>Email: { email }</li>
+                                    <li>ID: { id }</li>
+                                </ul>
                                 <p>
-                                    <a href="/auth/facebook">Login with Facebook (Passport.js)</a>
-                                </p>
-                                <p>
-                                    <a href="/logout">Log Out</a>
+                                    Ways to edit my info
                                 </p>
                             </div>
                         </div>
@@ -31,6 +47,7 @@ module.exports = React.createClass({
                             </div>
                             <div className = 'holder'>
                                 <h1>My Events</h1>
+                                <EventList login = { login } events = { userEvents }/>
                             </div>
                             <div className = 'holder'>
                                 <h1>My Notices</h1>
