@@ -13,6 +13,8 @@ module.exports = React.createClass({
                 date: new Date(this.props.info.date),
                 tags: this.props.info.tags,
                 owner: this.props.info.owner,
+                contactName: this.props.info.contactName,
+                contactEmail: this.props.info.contactEmail,
                 id: this.props.info._id,
                 edited: this.props.info.edited,
                 editDate: new Date(this.props.info.editDate)
@@ -39,6 +41,7 @@ module.exports = React.createClass({
         var info = this.state.info;
         info.edited = true;
         info.editDate = new Date(Date.now());
+        console.log(info);
         actions.editEvent(info);
         this.setState({ editing: false });
     },
@@ -141,6 +144,7 @@ module.exports = React.createClass({
         })
 
         if (!this.state.editing) {
+            var contactLink = "mailto:" + props.contactEmail + "?subject=" + props.name;
             return (
                 <div className = 'event' id = { eventID }>
                     <span className = 'event-name'>
@@ -169,6 +173,18 @@ module.exports = React.createClass({
                         { props.edited && eventPage ?
                             <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
+                        }
+                    </div>
+                    <div className = 'event-contact'>
+                        { props.contactName !== undefined && props.contactName !== "" ?
+                            <p>Contact: { props.contactName }&nbsp;
+                                { props.contactEmail !== "" ?
+                                <a href={ contactLink }>{ props.contactEmail }</a>
+                                :
+                                null }
+                            </p>
+                        :
+                        null
                         }
                     </div>
                     { props.tags.length > 0 ?
@@ -227,12 +243,28 @@ module.exports = React.createClass({
                             <p className="help-block">Use the description to provide times</p>
                         </div>
                         <div className="form-group">
-                            <label className = 'control-label' HTMLfor="description">Some information, including a contact for anyone who has more questions</label>
+                            <label className = 'control-label' HTMLfor="description">Some information about the event</label>
                             <textarea className="form-control" rows = "3"
                                       id="description"
                                       name = 'description'
-                                      placeholder="Details and contact information"
+                                      placeholder="Details"
                                       defaultValue = { props.description }
+                                      onChange = { this.handleInputChange } />
+                        </div>
+                        <div className="form-group">
+                            <label className = 'control-label' HTMLfor="description">Contact name</label>
+                            <input type = "text" className="form-control"
+                                      id="contactName"
+                                      name = 'contactName'
+                                      defaultValue = { props.contactName }
+                                      onChange = { this.handleInputChange } />
+                        </div>
+                        <div className="form-group">
+                            <label className = 'control-label' HTMLfor="description">Contact email</label>
+                            <input type = "text" className="form-control"
+                                      id="contactEmail"
+                                      name = 'contactEmail'
+                                      defaultValue = { props.contactEmail }
                                       onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">

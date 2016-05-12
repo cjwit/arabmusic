@@ -114,7 +114,7 @@ module.exports = React.createClass({
                 <Navbar active = 'events' login = { login }/>
                 <EventHeader />
 
-                { this.state.showForm ? <EventForm /> : null }
+                { this.state.showForm ? <EventForm login = { login }/> : null }
 
                 <div id = 'currentEvents' className = 'container'>
                     <div className = 'row'>

@@ -31,6 +31,8 @@ function editEvent(req, res) {
             description: info.description,
             date: new Date(info.date),
             tags: info.tags,
+            contactName: info.contactName,
+            contactEmail: info.contactEmail,
             edited: info.edited,
             editDate: info.editDate
         }};

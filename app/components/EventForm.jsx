@@ -10,7 +10,9 @@ module.exports = React.createClass({
             date: new Date(Date.now()),
             description: "",
             tags: [],
-            owner: "Evan the Event Adder"           // get from login
+            owner: this.props.login.user._id,
+            contactName: this.props.login.user.name,
+            contactEmail: this.props.login.user.email           // get from login
         };
     },
 
@@ -67,6 +69,8 @@ module.exports = React.createClass({
             case "description":
                 condition = value.length > 1;
                 break;
+            case "contactEmail":
+                condition = value.length === 0 || value.indexOf('@') !== -1;
             default:
                 break;
         }
@@ -149,7 +153,7 @@ module.exports = React.createClass({
                                    <p className="help-block">Use the description to provide times, defaults to today</p>
                             </div>
                             <div className="form-group">
-                                <label className = 'control-label' HTMLfor="description">Some information, including a contact for anyone who has more questions</label>
+                                <label className = 'control-label' HTMLfor="description">Description of the event</label>
                                 <textarea className="form-control" rows = "3"
                                           id="description"
                                           name = 'description'
@@ -157,6 +161,26 @@ module.exports = React.createClass({
                                           value = { this.state.description }
                                           onChange = { this.handleInputChange } />
                                       <p className="help-block">Required</p>
+                            </div>
+                            <div className="form-group">
+                                <label className = 'control-label' HTMLfor="description">Contact name</label>
+                                <input type = "text" className="form-control"
+                                          id="contactName"
+                                          name = 'contactName'
+                                          placeholder= { this.state.contactName }
+                                          value = { this.state.contactName }
+                                          onChange = { this.handleInputChange } />
+                                      <p className="help-block">This is drawn from your login information, but you are free to change it</p>
+                            </div>
+                            <div className="form-group">
+                                <label className = 'control-label' HTMLfor="description">Contact email</label>
+                                <input type = "text" className="form-control"
+                                          id="contactEmail"
+                                          name = 'contactEmail'
+                                          placeholder= { this.state.contactEmail }
+                                          value = { this.state.contactEmail }
+                                          onChange = { this.handleInputChange } />
+                                      <p className="help-block">This is drawn from your login information, but you are free to change it</p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label'>Select Tags</label>

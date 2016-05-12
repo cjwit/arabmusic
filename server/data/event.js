@@ -6,6 +6,8 @@ var eventSchema = mongoose.Schema({
     date: { type: Date, required: true },
     tags: Array,
     owner: { type: String, required: true },
+    contactName: String,
+    contactEmail: String,
     edited: Boolean,
     editDate: Date
 });

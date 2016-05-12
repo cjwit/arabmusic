@@ -334,3 +334,6 @@ a:visited {
   line-height: 1.2;
   max-height: 2.4;
   margin-bottom: 8px; }
+
+.list .event-contact {
+  display: none; }
