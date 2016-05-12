@@ -169,9 +169,9 @@ module.exports = React.createClass({
                     <br />
 
                     <div className = 'event-description'>
-                        { props.description }
+                        { props.description } &nbsp;
                         { props.edited && eventPage ?
-                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
+                            <span>(Edited on { new Date(props.editDate).toLocaleDateString() })</span>
                             : null
                         }
                     </div>
