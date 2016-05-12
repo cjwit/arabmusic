@@ -20,47 +20,41 @@ var loginStore = require('./stores/loginStore');
 
 // #########################
 // Get content from database
+var login = { status: false, user: null }
+var getLoginCallback = function(_login) {
+    login = _login;
+    render();
+}
+
 var events = [];
 var getEventsCallback = function(_events) {
     events = _events;
     render();
 }
-eventsStore.onChange(getEventsCallback);
 
 var discussions = [];
 var getPostsCallback = function(_discussions) {
     discussions = _discussions;
     render();
 }
-postsStore.onChange(getPostsCallback);
 
 var resources = [];
 var getResourcesCallback = function(_resources) {
     resources = _resources;
     render();
 }
-resourceStore.onChange(getResourcesCallback);
 
 var notices = [];
 var getNoticesCallback = function(_notices) {
     notices = _notices;
     render();
 }
-noticeStore.onChange(getNoticesCallback);
 
 var users = [];
 var getUsersCallback = function(_users) {
     users = _users;
     render();
 }
-userStore.onChange(getUsersCallback);
-
-var login = { status: false, user: null }
-var getLoginCallback = function(_login) {
-    login = _login;
-    render();
-}
-loginStore.onChange(getLoginCallback);
 
 // ############################
 // functions to manipulate data
@@ -120,6 +114,7 @@ function render() {
             case 'user':
                 renderUser();
                 break;
+            // add default error case
         }
     } else {
         switch (folder) {
@@ -135,6 +130,7 @@ function render() {
             case 'notices':
                 renderNoticePage(id);
                 break
+            // add default error case
         }
     }
 }
@@ -151,7 +147,6 @@ function renderHome() {
 
 function renderDiscussions() {
     dateDiscussions();
-    console.log('rendering DiscussionsMain', login)
     ReactDOM.render(<DiscussionsMain
         discussions = { discussions }
         login = { login }
@@ -159,17 +154,17 @@ function renderDiscussions() {
 }
 
 function renderDiscussionPage(id) {
-    console.log('rendering DiscussionPage', login)
-    var post = findItem(discussions, id);
-    ReactDOM.render(<DiscussionPage
-        info = { post }
-        login = { login }
-        />, document.getElementById('container'));
+    if (discussions.length > 0) {
+        var post = findItem(discussions, id);
+        ReactDOM.render(<DiscussionPage
+            info = { post }
+            login = { login }
+            />, document.getElementById('container'));
+    }
 }
 
 function renderEvents() {
     dateEvents();
-    console.log('rendering Events', login)
     ReactDOM.render(<Events
         events = { events }
         login = { login }
@@ -177,12 +172,13 @@ function renderEvents() {
 }
 
 function renderEventPage(id) {
-    var event = findItem(events, id);
-    console.log('rendering EventPage', login)
-    ReactDOM.render(<EventPage
-        info = { event }
-        login = { login }
-        />, document.getElementById('container'));
+    if (events.length > 0) {
+        var event = findItem(events, id);
+        ReactDOM.render(<EventPage
+            info = { event }
+            login = { login }
+            />, document.getElementById('container'));
+    }
 }
 
 function renderResources() {
@@ -201,20 +197,33 @@ function renderUser() {
 }
 
 function renderResourcePage(id) {
-    var collection = findItem(resources, id);
-    ReactDOM.render(<ResourcePage
-        info = { collection }
-        login = { login }
-        />, document.getElementById('container'));
+    if (resources.length > 0) {
+        var collection = findItem(resources, id);
+        ReactDOM.render(<ResourcePage
+            info = { collection }
+            login = { login }
+            />, document.getElementById('container'));
+    }
 }
 
 function renderNoticePage(id) {
-    var notice = findItem(notices, id);
-    ReactDOM.render(<NoticePage
-        info = { notice }
-        login = { login }
-        />, document.getElementById('container'));
+    if (notices.length > 0) {
+        var notice = findItem(notices, id);
+        ReactDOM.render(<NoticePage
+            info = { notice }
+            login = { login }
+            />, document.getElementById('container'));
+    }
 }
+
+// ################
+// set up listeners
+loginStore.onChange(getLoginCallback);
+eventsStore.onChange(getEventsCallback);
+postsStore.onChange(getPostsCallback);
+resourceStore.onChange(getResourcesCallback);
+noticeStore.onChange(getNoticesCallback);
+userStore.onChange(getUsersCallback);
 
 // #################
 // initial rendering

@@ -9,7 +9,6 @@ var LoginStore = function() {
     }
 
     var getUser = function(cb) {
-        console.log('getUser', currentUser);
         cb(currentUser);
     }
 

@@ -9,7 +9,7 @@ module.exports = React.createClass({
         var info = this.props.info;
         var login = this.props.login;
 
-        console.log('eventPage', login);
+//        console.log('eventPage', login);
 
         return (
             <div>
