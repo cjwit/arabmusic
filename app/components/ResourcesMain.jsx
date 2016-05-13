@@ -120,8 +120,8 @@ module.exports = React.createClass({
                 <Navbar active = 'resources' login = { login }/>
                 <ResourceHeader />
 
-                { this.state.AddCollection ? <AddCollection /> : null }
-                { this.state.AddNotice ? <AddNotice /> : null }
+                { this.state.AddCollection ? <AddCollection login = { login }/> : null }
+                { this.state.AddNotice ? <AddNotice login = { login }/> : null }
 
                 <div className = 'container'>
                     <div className = 'row'>
@@ -160,7 +160,7 @@ module.exports = React.createClass({
                                     { tagButtons }
                                 </div>
 
-                                <ResourceList resources = { resources } />
+                                <ResourceList resources = { resources } login = { login }/>
                             </div>
                         </div>
                         <div className = 'col-md-6'>
@@ -203,7 +203,7 @@ module.exports = React.createClass({
                                     { tagButtons }
                                 </div>
 
-                                <NoticeList notices = { notices } />
+                                <NoticeList notices = { notices } login = { login }/>
                             </div>
                         </div>
                     </div>

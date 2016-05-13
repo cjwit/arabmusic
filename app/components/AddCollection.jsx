@@ -7,7 +7,10 @@ module.exports = React.createClass({
         return {
             title: "",
             description: "",
+            date: new Date(Date.now()),
             tags: [],
+            owner: this.props.login.user._id,
+            ownerName: this.props.login.user.name,
             items: []
         };
     },
@@ -46,10 +49,10 @@ module.exports = React.createClass({
         var condition = false;
         switch (name) {
             case "title":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "description":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             default:
                 break;
@@ -65,8 +68,8 @@ module.exports = React.createClass({
     validateForm: function() {
         // set submit button
         var submit = $('#submit'),
-            title = this.state.title.length > 1,
-            description = this.state.description.length > 1,
+            title = this.state.title.length > 0,
+            description = this.state.description.length > 0,
             valid = title && description;
         if (valid) {
             submit.prop('disabled', false);
@@ -113,7 +116,16 @@ module.exports = React.createClass({
                                        value = { this.state.title }
                                        onChange = { this.handleInputChange } />
                                 <p className="help-block">Required</p>
-
+                            </div>
+                            <div className="form-group">
+                                <label className = 'control-label' HTMLfor="author">Author</label>
+                                <input type="text" className="form-control"
+                                       id="ownerName"
+                                       name = 'ownerName'
+                                       placeholder="Author"
+                                       value = { this.state.ownerName }
+                                       disabled />
+                                <p className="help-block">Log out and back in again to change authorship.</p>
                             </div>
                             <div className="form-group">
                                 <textarea className="form-control" rows = "3"

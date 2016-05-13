@@ -3,7 +3,10 @@ var resourceSchema = mongoose.Schema({
     title: { type: String, required: true },
     description: String,
     tags: Array,
+    owner: { type: String, required: true },
+    ownerName: { type: String, required: true },
     items: Array,
+    date: Date,
     edited: Boolean,
     editDate: Date
 });

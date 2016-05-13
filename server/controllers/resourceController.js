@@ -33,6 +33,8 @@ function editCollection(req, res) {
             description: info.description,
             tags: info.tags,
             items: info.items,
+            owner: info.owner,
+            ownerName: info.ownerName,
             edited: info.edited,
             editDate: info.editDate
         }};
@@ -65,7 +67,8 @@ function editItem(req, res) {
                   'items.item.id': req.body.item.id };
     var update = { $set: {
                    'items.$.item.title': req.body.item.title,
-                   'items.$.item.author': req.body.item.author,
+                   'items.$.item.ownerName': req.body.item.ownerName,
+                   'items.$.item.owner': req.body.item.owner,
                    'items.$.item.link': req.body.item.link,
                    'items.$.item.description': req.body.item.description,
                    'items.$.item.edited': req.body.item.edited,

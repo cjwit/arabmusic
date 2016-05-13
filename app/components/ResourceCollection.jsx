@@ -11,6 +11,8 @@ module.exports = React.createClass({
                 title: this.props.info.title,
                 description: this.props.info.description,
                 tags: this.props.info.tags,
+                owner: this.props.info.owner,
+                ownerName: this.props.info.ownerName,
                 edited: this.props.info.edited,
                 editDate: new Date(this.props.info.editDate)
             }
@@ -89,13 +91,39 @@ module.exports = React.createClass({
 
     render: function() {
         var props = this.props.info;
+        var login = this.props.login;
         var id = props._id;
+
+        // create owner management buttons
+        var userID = "",
+            myCollection = false;
+
+        if (this.props.login.status === true) {
+            userID = this.props.login.user._id;
+        }
+
+        if (userID !== "" && userID === props.owner) {
+            myCollection = true;
+        }
+
+        var ownerButtons = null;
+        if (myCollection === true) {
+            ownerButtons = <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                <a onClick = { this.openForm } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <a onClick = { this.deleteCollection } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            </div>
+        }
+
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         var items = [];
         if (props.items.length > 0) {
             props.items.forEach(function(item, index) {
-                items.push(<ResourceItem info = { item.item } collectionID = { id } key = { 'item' + index }/>)
+                items.push(<ResourceItem info = { item.item } collectionID = { id } key = { 'item' + index } login = { login }/>)
             });
         }
 
@@ -114,22 +142,15 @@ module.exports = React.createClass({
                     <span className = 'collection-title'>
                         { props.title }&nbsp;
                     </span>
-
                     { !collectionPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a href= { '/resources/' + id } className = 'btn btn-default'>
+
+                            <a href = { '/resources/' + id } role = 'button' className = 'btn btn-default'>
                                 <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                             </a>
                         </div>
                             :
-                        <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a onClick = { this.openForm } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <a onClick = { this.deleteCollection } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        <div className = 'pull-right'>{ ownerButtons }</div>
                     }
                     <div className = 'collection-description'>
                         { props.description }

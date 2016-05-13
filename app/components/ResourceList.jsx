@@ -60,13 +60,14 @@ module.exports = React.createClass({
             startIndex = this.state.startIndex,
             endIndex = startIndex + this.state.listings,
             currentPage = startIndex / this.state.listings + 1,
-            totalPages = Math.floor(incomingLength / this.state.listings) + 1;
+            totalPages = Math.floor(incomingLength / this.state.listings) + 1,
+            login = this.props.login;
 
         var resources = incomingListings.slice(startIndex, endIndex);
 
         var collectionList = [];
         resources.map(function (collection, index) {
-            collectionList.push(<ResourceCollection info = { collection } key = { 'collection' + index } />)
+            collectionList.push(<ResourceCollection info = { collection } key = { 'collection' + index } login = { login }/>)
         });
         return (
             <div className = 'list'>

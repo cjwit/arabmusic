@@ -58,19 +58,23 @@ module.exports = React.createClass({
         var condition = false;
         switch (name) {
             case "name":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "date":
                 condition = typeof value === 'object';
                 break;
             case "location":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "description":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "contactEmail":
-                condition = value.length === 0 || value.indexOf('@') !== -1;
+                var hasAt = value.indexOf('@') !== -1;
+                var hasDot = value.indexOf('.') !== -1;
+                var notEmpty = value.length > 0;
+                condition = hasAt && hasDot && notEmpty;
+                break;
             default:
                 break;
         }
@@ -85,9 +89,11 @@ module.exports = React.createClass({
     validateForm: function() {
         // set submit button
         var submit = $('#submit'),
-            name = this.state.name.length > 1,
-            location = this.state.location.length > 1,
-            description = this.state.description.length > 1,
+            name = this.state.name.length > 0,
+            location = this.state.location.length > 0,
+            description = this.state.description.length > 0,
+
+            // allowing submit with invalid email
             valid = name && location && date && description;
         if (valid) {
             submit.prop('disabled', false);

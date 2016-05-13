@@ -41,7 +41,6 @@ module.exports = React.createClass({
         var info = this.state.info;
         info.edited = true;
         info.editDate = new Date(Date.now());
-        console.log(info);
         actions.editEvent(info);
         this.setState({ editing: false });
     },
@@ -157,15 +156,15 @@ module.exports = React.createClass({
                         { new Date(props.date).toLocaleDateString() }
                     </span>
                         { !eventPage ?
-                        <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                            <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
 
-                            <a href = { '/events/' + eventID } role = 'button' className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                            :
-                        <div className = 'pull-right'>{ ownerButtons }</div>
-                    }
+                                <a href = { '/events/' + eventID } role = 'button' className = 'btn btn-default'>
+                                    <span className="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                                :
+                            <div className = 'pull-right'>{ ownerButtons }</div>
+                        }
                     <br />
 
                     <div className = 'event-description'>

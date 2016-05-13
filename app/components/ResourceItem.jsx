@@ -8,7 +8,6 @@ module.exports = React.createClass({
             info: {
                 title: this.props.info.title,
                 link: this.props.info.link,
-                author: this.props.info.author,
                 description: this.props.info.description
             }
         })
@@ -17,8 +16,6 @@ module.exports = React.createClass({
     deleteItem: function(e) {
         e.preventDefault();
         var info = this.state.info;
-        info.edited = this.props.info.edited;
-        info.editDate = new Date(this.props.info.editDate);
         info.id = this.props.info.id;
 
         var payload = {
@@ -41,10 +38,17 @@ module.exports = React.createClass({
     editItem: function(e) {
         e.preventDefault();
         var info = this.state.info;
-        info.edited = true;
+
+        // add unchanged info
         info.date = new Date(this.props.info.date);
-        info.editDate = new Date(Date.now());
         info.id = this.props.info.id;
+        info.ownerName = this.props.info.ownerName;
+        info.owner = this.props.info.owner;
+
+        // update edit data
+        info.edited = true;
+        info.editDate = new Date(Date.now());
+
         var payload = {
             collectionID: this.props.collectionID,
             item: info
@@ -63,7 +67,31 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var props = this.props.info;
+        var props = this.props.info,
+            login = this.props.login,
+            userID = "",
+            myItem = false;
+
+        if (login.status === true) {
+            userID = login.user._id;
+        }
+
+        if (userID !== "" && userID === props.owner) {
+            myItem = true;
+        }
+
+        var ownerButtons = null;
+        if (myItem === true) {
+            ownerButtons = <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                <a onClick = { this.openForm } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <a onClick = { this.deleteItem } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            </div>
+        }
+
         var collectionPage = Boolean(window.location.pathname.match(/^\/resources\/\w/));
 
         if (this.state.editing) {
@@ -116,14 +144,7 @@ module.exports = React.createClass({
 
                     {
                         collectionPage ?
-                            <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                                <a onClick = { this.openForm } className = 'btn btn-default'>
-                                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </a>
-                                <a onClick = { this.deleteItem } className = 'btn btn-default'>
-                                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </a>
-                            </div>
+                            <div className = 'pull-right'>{ ownerButtons }</div>
                         :
                             null
                     }
@@ -131,9 +152,9 @@ module.exports = React.createClass({
 
                     <span className = 'item-content'>
                         { props.description }
-                        { props.author !== '' ?
+                        { props.ownerName !== '' ?
                             <span className = 'item-author'>
-                                &nbsp;(Added by { props.author })
+                                &nbsp;(Added by { props.ownerName })
                             </span> : null
                         }
 

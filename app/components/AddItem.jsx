@@ -9,8 +9,7 @@ module.exports = React.createClass({
             item: {
                 title: "",
                 description: "",
-                link: "http://",
-                author: "Tester McTestFace"      // get from login
+                link: "http://"
             }
         };
     },
@@ -23,12 +22,21 @@ module.exports = React.createClass({
 
     addItem: function(e) {
         e.preventDefault();
-        item = this.state.item
+        var state = this.state;
+        var item = state.item;
+
+        // set item information
         item.id = Guid.raw();
         item.edited = false;
+
+        // set dates
         var now = new Date(Date.now());
         item.editDate = now;
         item.date = now;
+
+        // set user info
+        item.owner = this.props.login.user._id;
+        item.ownerName = this.props.login.user.name;
 
         // check link format
         if (item.link === "http://") {
@@ -37,8 +45,9 @@ module.exports = React.createClass({
             item.link = 'http://' + item.link;
         }
 
-        this.setState({ item: item })
-        actions.addItem(this.state);
+        // process item
+        state.item = item;
+        actions.addItem(state);
 
         // reset the item form
         item.title = "";
@@ -60,14 +69,21 @@ module.exports = React.createClass({
         var condition = false;
         switch (name) {
             case "title":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "description":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
+            case "ownerName":
+                condition = value.length > 0;
+                break;
+            case "link":
+                condition = true;
             default:
                 break;
         }
+
+        // should not be validating link at all
         if (condition) {
             element.parent().removeClass('has-error').addClass('has-success')
         } else {
@@ -79,9 +95,11 @@ module.exports = React.createClass({
     validateForm: function() {
         // set submit button
         var submit = $('#submit'),
-            title = this.state.item.title.length > 1,
-            description = this.state.item.description.length > 1,
-            valid = title && description;
+            title = this.state.item.title.length > 0,
+            description = this.state.item.description.length > 0,
+            loggedIn = this.props.login.status,
+            valid = title && description && ownerName && loggedIn;
+
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -90,6 +108,7 @@ module.exports = React.createClass({
     },
 
     render: function() {
+        var userName = (this.props.login.status ? this.props.login.user.name : "")
         return (
             <div id = 'addItemForm'>
                 <form onSubmit = { this.addItem } >
@@ -114,13 +133,12 @@ module.exports = React.createClass({
                     <div className="form-group">
                         <label className = 'control-label' HTMLfor="author">Author</label>
                         <input type="text" className="form-control"
-                               id="author"
-                               name = 'author'
-                               placeholder="Author"
-                               value = { this.state.item.author }
-                               onChange = { this.handleInputChange }
+                               id="ownerName"
+                               name = 'ownerName'
+                               placeholder= ""
+                               value = { userName }
                                disabled />
-                        <p className="help-block">Log out and back in again to change authorship.</p>
+                        <p className="help-block">Log in to change authorship.</p>
                     </div>
                     <div className="form-group">
                         <textarea className="form-control" rows = "3"
@@ -132,7 +150,7 @@ module.exports = React.createClass({
                               <p className="help-block">Include publication details, links, and other useful information (Required)</p>
 
                     </div>
-                    <button id = "submit" type="submit" className="btn btn-default">Submit</button>
+                    <button id = "submit" type="submit" className="btn btn-default" disabled='true'>{ this.props.login.status ? 'Submit' : 'Log in to add an item' }</button>
                 </form>
             </div>
         )

@@ -92,13 +92,13 @@ module.exports = {
     },
 
     // object {collectionID, item}
-    deleteItem: function (commentObject) {
+    deleteItem: function (itemObject) {
         var Promise = promise.Promise;
         var itemURL = resourceURL + 'items/delete/'
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: itemURL,
-                data: JSON.stringify(commentObject),
+                data: JSON.stringify(itemObject),
                 method: "POST",
                 dataType: 'json',
                 contentType: 'application/json',
