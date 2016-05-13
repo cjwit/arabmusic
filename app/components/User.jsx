@@ -8,9 +8,13 @@ var Footer = require('./Footer.jsx');
 
 module.exports = React.createClass({
     render: function() {
-        var login = this.props.login;
-        var events = this.props.events;
-        var userEvents = [];
+        var login = this.props.login,
+            events = this.props.events,
+            resources = this.props.resources;
+
+        var userEvents = [],
+            userResources = [];
+
         var name, email, id;
 
         if (login.status === true) {
@@ -20,6 +24,16 @@ module.exports = React.createClass({
 
             userEvents = events.filter(function(e) {
                 return e.owner === id;
+            })
+            userResources = resources.filter(function(r) {
+                var mine = false;
+                if (r.owner === id) { mine = true }
+                r.items.forEach(function(i) {
+                    if (i.item.owner === id) {
+                        mine = true;
+                    }
+                })
+                return mine;
             })
         }
 
@@ -53,7 +67,8 @@ module.exports = React.createClass({
                                 <h1>My Notices</h1>
                             </div>
                             <div className = 'holder'>
-                                <h1>My Collections and Items</h1>
+                                <h1>My Collections and Item Contributions</h1>
+                                <ResourceList login = { login } resources = { userResources }/>
                             </div>
                         </div>
                     </div>
