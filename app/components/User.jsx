@@ -10,9 +10,11 @@ module.exports = React.createClass({
     render: function() {
         var login = this.props.login,
             events = this.props.events,
-            resources = this.props.resources;
+            resources = this.props.resources,
+            notices = this.props.notices;
 
         var userEvents = [],
+            userNotices = [],
             userResources = [];
 
         var name, email, id;
@@ -24,6 +26,9 @@ module.exports = React.createClass({
 
             userEvents = events.filter(function(e) {
                 return e.owner === id;
+            })
+            userNotices = notices.filter(function(n) {
+                return n.owner === id;
             })
             userResources = resources.filter(function(r) {
                 var mine = false;
@@ -65,6 +70,7 @@ module.exports = React.createClass({
                             </div>
                             <div className = 'holder'>
                                 <h1>My Notices</h1>
+                                <NoticeList login = { login } notices = { userNotices }/>
                             </div>
                             <div className = 'holder'>
                                 <h1>My Collections and Item Contributions</h1>

@@ -11,7 +11,7 @@ Next Up
     * Posts, Comments
     * Submit button only validates after key entry
 * Member info pages that collect authored materials
-    * Posts, Comments, Notices
+    * Posts, Comments
     * Edit user information
 * Return to form validation, optional items should not validate
 

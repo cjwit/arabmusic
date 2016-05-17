@@ -192,11 +192,12 @@ function renderResources() {
 function renderUser() {
     // filter discussions, events, resources, and notices for member's contributions
     // wait to render until all fields are populated
-    if (events.length > 0 && resources.length > 0) {
+    if (events.length > 0 && resources.length > 0 && notices.length > 0) {
         ReactDOM.render(<User
             login = { login }
             events = { events }
             resources = { resources }
+            notices = { notices }
             />, document.getElementById('container'));
     }
 }
