@@ -13,7 +13,8 @@ module.exports = React.createClass({
                 link: this.props.info.link,
                 postDate: new Date(this.props.info.postDate),
                 owner: this.props.info.owner,
-                eventDate: new Date(this.props.info.eventDate),
+                ownerName: this.props.info.ownerName,
+                date: new Date(this.props.info.date),
                 tags: this.props.info.tags,
                 edited: this.props.info.edited,
                 editDate: new Date(this.props.info.editDate)
@@ -33,7 +34,7 @@ module.exports = React.createClass({
 
     openForm: function() {
         this.setState({ editing: true })
-        var date = new Date(this.props.info.eventDate)
+        var date = new Date(this.props.info.date)
 
         // wait for rendering to complete
         var toggleTag = this.toggleTag;
@@ -44,7 +45,7 @@ module.exports = React.createClass({
             })
 
             $(function () {
-                var datePicker = $('#eventDate');
+                var datePicker = $('#date');
                 datePicker.datetimepicker({
                     format: "MM/DD/YYYY"
                 })
@@ -71,10 +72,10 @@ module.exports = React.createClass({
         })
     },
 
-    // this may need to be edited to work with just the ID
     deleteNotice: function(e) {
         e.preventDefault();
         actions.deleteNotice(this.props.info._id)
+
         // redirect if on detail page
         var path = window.location.pathname;
         var split = path.split('/')
@@ -94,15 +95,24 @@ module.exports = React.createClass({
     handleInputChange: function(e) {
         e.preventDefault();
         var name = e.target.name;
-        if (name === 'eventDate') {
+
+        // check date
+        if (name === 'date') {
             var value = new Date(e.target.value);
         } else {
             var value = e.target.value;
         }
 
+        // check link format
+        if (name === 'link') {
+            value = e.target.value;
+            if (value.length > 0 && !value.match(/^http/)) {
+                value = "http://" + value;
+            }
+        }
+
         var info = this.state.info;
         info[name] = value;
-
         this.setState({
             info: info
         });
@@ -111,8 +121,34 @@ module.exports = React.createClass({
     render: function() {
         var props = this.props.info;
         var id = props._id;
+        var login = this.props.login;
         var noticePage = Boolean(window.location.pathname.match(/^\/notices\/\w/));
 
+        // create owner management buttons
+        var userID = "",
+            myNotice = false;
+
+        if (login.status === true) {
+            userID = login.user._id;
+        }
+
+        if (userID !== "" && userID === props.owner) {
+            myNotice = true;
+        }
+
+        var ownerButtons = null;
+        if (myNotice === true) {
+            ownerButtons = <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                <a onClick = { this.openForm } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <a onClick = { this.deleteNotice } role = 'button' className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            </div>
+        }
+
+        // create tag buttons
         var tagString = '';
         props.tags.map(function(tag, index) {
             if (index === props.tags.length - 1) {
@@ -144,20 +180,13 @@ module.exports = React.createClass({
                             </a>
                         </div>
                             :
-                        <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a onClick = { this.openForm } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <a onClick = { this.deleteNotice } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        <div className = 'pull-right'>{ ownerButtons }</div>
                     }
                     <p>
                         {
-                            props.eventDate !== null ?
+                            props.date !== null ?
                             <span className = 'notice-date'>
-                                { new Date(props.eventDate).toLocaleDateString() },&nbsp;
+                                { new Date(props.date).toLocaleDateString() },&nbsp;
                             </span>
                             :
                             null
@@ -232,8 +261,8 @@ module.exports = React.createClass({
                         </div>
                         <div className="form-group">
                             <input type="text" className="form-control"
-                                   id="eventDate"
-                                   name = "eventDate"
+                                   id="date"
+                                   name = "date"
                                    placeholder = "Event Date"
                                    onChange = { this.handleInputChange } />
                         </div>

@@ -9,15 +9,16 @@ module.exports = React.createClass({
             location: "",
             description: "",
             link: "http://",
-            eventDate: null,
+            date: new Date(Date.now()),
             tags: [],
-            owner: "Ned the Noticer"           // get from login
+            owner: this.props.login.user._id,
+            ownerName: this.props.login.user.name
         };
     },
 
     componentDidMount: function () {
         $(function () {
-            $('#eventDate').datetimepicker({
+            $('#date').datetimepicker({
                 format: "MM/DD/YYYY"
             })
         });
@@ -46,13 +47,14 @@ module.exports = React.createClass({
             info.link = "http://" + info.link;
         }
 
+        console.log('sending', info)
         actions.addNotice(info);
     },
 
     handleInputChange: function(e) {
         e.preventDefault();
         var name = e.target.name;
-        if (name === 'eventDate') {
+        if (name === 'date') {
             var value = new Date(e.target.value);
         } else {
             var value = e.target.value;
@@ -66,10 +68,10 @@ module.exports = React.createClass({
         var condition = false;
         switch (name) {
             case "name":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "description":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             default:
                 break;
@@ -85,8 +87,8 @@ module.exports = React.createClass({
     validateForm: function() {
         // set submit button
         var submit = $('#submit'),
-            name = this.state.name.length > 1,
-            description = this.state.description.length > 1,
+            name = this.state.name.length > 0,
+            description = this.state.description.length > 0,
             valid = name && description;
         if (valid) {
             submit.prop('disabled', false);
@@ -144,16 +146,29 @@ module.exports = React.createClass({
                                 <p className="help-block">Use the description to provide more details</p>
                             </div>
                             <div className="form-group">
-                                <label className = 'control-label' HTMLfor="eventDate">Deadline or date of the event</label>
+                                <label className = 'control-label' HTMLfor="date">Deadline or date of the event</label>
                                 <input type="text" className="form-control"
-                                       id="eventDate"
-                                       name = 'eventDate'
+                                       id="date"
+                                       name = 'date'
                                        onBlur = { this.handleInputChange } />
                                 <p className="help-block">
-                                    This date will be used for sorting: 
+                                    This date will be used for sorting:
                                     if there is a deadline, provide it here and give any other important dates
                                     in the description below
                                 </p>
+                            </div>
+                            <div className="form-group">
+                                <label className = 'control-label' HTMLfor="author">Author</label>
+                                <input type="text" className="form-control"
+                                       id="ownerName"
+                                       name = 'ownerName'
+                                       placeholder="Author"
+                                       value = { this.state.ownerName }
+                                       disabled />
+                                   <p className="help-block">
+                                       Log out and back in again to change ownership. This will not be posted, but only the owner can make edits later.
+                                       Provide contact information in the description.
+                                   </p>
                             </div>
                             <div className="form-group">
                                 <label className = 'control-label' HTMLfor="description">Some information, including a contact for anyone who has more questions</label>

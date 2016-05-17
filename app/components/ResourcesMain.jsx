@@ -15,7 +15,7 @@ module.exports = React.createClass({
             AddCollection: false,
             AddNotice: false,
             resourceSort: 'edit',
-            noticeSort: 'eventDate',
+            noticeSort: 'date',
             resourceFilter: [],
             noticeFilter: []
         };
@@ -189,7 +189,7 @@ module.exports = React.createClass({
                                         <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
                                         Title
                                     </a>
-                                    <a id = "eventDate" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
+                                    <a id = "date" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
                                         <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
                                         Event Date
                                     </a>

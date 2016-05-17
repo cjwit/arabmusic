@@ -6,13 +6,14 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Item owner buttons within individual item pages
-    * Posts, Comments, Notices
+    * Posts, Comments
 * Forms create new items based on correct author name and attach logged in ID as owner
-    * Posts, Comments, Notices
+    * Posts, Comments
     * Submit button only validates after key entry
 * Member info pages that collect authored materials
     * Posts, Comments, Notices
     * Edit user information
+* Return to form validation, optional items should not validate
 
 Eventually:
 * Only admins can delete resource collections (set as an array in a process.env variable?)

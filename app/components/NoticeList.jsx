@@ -60,13 +60,14 @@ module.exports = React.createClass({
             startIndex = this.state.startIndex,
             endIndex = startIndex + this.state.listings,
             currentPage = startIndex / this.state.listings + 1,
-            totalPages = Math.floor(incomingLength / this.state.listings) + 1;
+            totalPages = Math.floor(incomingLength / this.state.listings) + 1,
+            login = this.props.login;
 
         var notices = incomingListings.slice(startIndex, endIndex);
 
         var noticeList = [];
         notices.map(function (notice, index) {
-            noticeList.push(<Notice info = { notice } key = { 'notice' + index } />)
+            noticeList.push(<Notice info = { notice } key = { 'notice' + index } login = { login }/>)
         });
         return (
             <div className = 'list'>

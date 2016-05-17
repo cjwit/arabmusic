@@ -62,6 +62,7 @@ module.exports = React.createClass({
         })
     },
 
+    // change this later to delete based only on ID
     deleteCollection: function(e) {
         e.preventDefault();
         var info = this.state.info;

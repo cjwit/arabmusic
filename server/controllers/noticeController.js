@@ -30,7 +30,7 @@ function editNotice(req, res) {
             location: info.location,
             description: info.description,
             link: info.link,
-            eventDate: info.eventDate,
+            date: info.date,
             tags: info.tags,
             edited: info.edited,
             editDate: info.editDate

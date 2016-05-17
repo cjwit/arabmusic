@@ -5,7 +5,7 @@ var noticeSchema = mongoose.Schema({
     description: { type: String, required: true },
     link: String,
     postDate: Date,
-    eventDate: Date,
+    date: Date,
     tags: Array,
     owner: { type: String, required: true },
     edited: Boolean,
