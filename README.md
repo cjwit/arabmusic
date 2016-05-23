@@ -5,11 +5,8 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Fix user page
+* Member info page to display and edit user info
 * Submit button only validates after key entry
-* Member info pages that collect authored materials
-    * Posts, Comments
-    * Edit user information
 * Return to form validation, optional items should not validate
 
 Eventually:
