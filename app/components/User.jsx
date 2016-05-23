@@ -11,10 +11,12 @@ module.exports = React.createClass({
         var login = this.props.login,
             events = this.props.events,
             resources = this.props.resources,
+            posts = this.props.discussions,
             notices = this.props.notices;
 
         var userEvents = [],
             userNotices = [],
+            userPosts = [],
             userResources = [];
 
         var name, email, id;
@@ -29,6 +31,18 @@ module.exports = React.createClass({
             })
             userNotices = notices.filter(function(n) {
                 return n.owner === id;
+            })
+            userPosts = posts.filter(function(p) {
+                var myPost = false;
+                if (p.owner === id) {
+                    myPost = true;
+                }
+                p.comments.map(function(c) {
+                    if (c.comment.owner === id) {
+                        myPost = true;
+                    }
+                })
+                return myPost;
             })
             userResources = resources.filter(function(r) {
                 var mine = false;
@@ -63,6 +77,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>My Posts and Comments</h1>
+                                <DiscussionList login = { login } discussions = { userPosts } />
                             </div>
                             <div className = 'holder'>
                                 <h1>My Events</h1>

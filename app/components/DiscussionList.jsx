@@ -55,6 +55,7 @@ module.exports = React.createClass({
     },
 
     render: function() {
+        console.log('rendering discussions')
         var incomingListings = this.props.discussions,
             incomingLength = incomingListings.length,
             startIndex = this.state.startIndex,
