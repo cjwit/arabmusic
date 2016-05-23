@@ -6,10 +6,11 @@ module.exports = React.createClass({
     getInitialState: function() {
         return {
             title: "",
-            author: "Tester McTesty", // Grab from username
             date: new Date(Date.now()),
             content: "",
             tags: [],
+            ownerName: "",
+            owner: "",
             comments: []
         };
     },
@@ -25,6 +26,16 @@ module.exports = React.createClass({
         submit.prop('disabled', true)
     },
 
+    componentWillReceiveProps: function(newProps) {
+        if (newProps.login.status === true) {
+            this.setState({
+                owner: newProps.login.user._id,
+                ownerName: newProps.login.user.name
+            })
+            $('#author').attr('value', newProps.login.user.name)
+        }
+    },
+
     addPost: function(e) {
         e.preventDefault();
         var info = this.state;
@@ -32,6 +43,7 @@ module.exports = React.createClass({
         var now = new Date(Date.now());
         info.editDate = now;
         info.date = now;
+        console.log(info)
         actions.addPost(info);
         this.setState({
             title: "",
@@ -54,10 +66,10 @@ module.exports = React.createClass({
         var condition = false;
         switch (name) {
             case "title":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             case "content":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             default:
                 break;
@@ -73,9 +85,9 @@ module.exports = React.createClass({
     validateForm: function() {
         // set submit button
         var submit = $('#submit'),
-            title = this.state.title.length > 1,
-            content = this.state.content.length > 1,
-            valid = title && content;
+            title = this.state.title.length > 0,
+            content = this.state.content.length > 0,
+            valid = title && content && this.props.login.status;
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -125,8 +137,6 @@ module.exports = React.createClass({
                                id="author"
                                name = 'author'
                                placeholder="Author"
-                               value = { this.state.author }
-                               onChange = { this.handleInputChange }
                                disabled />
                         <p className="help-block">Log out and back in again to change authorship.</p>
                     </div>

@@ -48,6 +48,7 @@ module.exports = React.createClass({
 
     render: function() {
         var discussions = SortFilter.sortAndFilter(this.props.discussions, this.state.postFilter, this.state.postSort);
+        var login = this.props.login;
 
         var tagButtons = [];
         var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
@@ -60,7 +61,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Navbar active = 'discussions' login = { this.props.login }/>
+                <Navbar active = 'discussions' login = { login }/>
                 <DiscussionHeader />
                 <div id = 'subContainer' className = 'container'>
                     <div className = 'row holder'>
@@ -96,7 +97,7 @@ module.exports = React.createClass({
                                 { tagButtons }
                             </div>
 
-                            <DiscussionList discussions = { discussions } />
+                            <DiscussionList discussions = { discussions } login = { login } />
                         </div>
                     </div>
                 </div>

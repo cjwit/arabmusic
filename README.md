@@ -5,11 +5,7 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Item owner buttons within individual item pages
-    * Posts, Comments
-* Forms create new items based on correct author name and attach logged in ID as owner
-    * Posts, Comments
-    * Submit button only validates after key entry
+* Submit button only validates after key entry
 * Member info pages that collect authored materials
     * Posts, Comments
     * Edit user information

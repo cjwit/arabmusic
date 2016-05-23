@@ -6,7 +6,8 @@ module.exports = React.createClass({
         return ({
             editing: false,
             info: {
-                author: this.props.info.author,
+                ownerName: this.props.info.ownerName,
+                owner: this.props.info.owner,
                 content: this.props.info.content,
                 date: new Date(this.props.info.date),
                 editDate: new Date(this.props.info.editDate),
@@ -58,7 +59,32 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var props = this.props.info;
+        var props = this.props.info,
+            login = this.props.login,
+            userID = "",
+            myComment = false;
+
+
+        if (login.status === true) {
+            userID = login.user._id;
+        }
+
+        if (userID !== "" && userID === props.owner) {
+            myComment = true;
+        }
+
+        var ownerButtons = null;
+        if (myComment === true) {
+            ownerButtons = <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                <a onClick = { this.openForm } className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <a onClick = { this.deleteComment } className = 'btn btn-default'>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            </div>
+        }
+
         var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
 
         if (this.state.editing) {
@@ -83,22 +109,14 @@ module.exports = React.createClass({
             return (
                 <div className = 'comment'>
                     <span className = 'comment-author'>
-                        { props.author },&nbsp;
+                        { props.ownerName },&nbsp;
                     </span>
                     <span className = 'comment-date'>
                         { new Date(props.date).toLocaleDateString() }:&nbsp;
                     </span>
 
                     { discussionPage ?
-
-                        <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a onClick = { this.openForm } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <a onClick = { this.deleteComment } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        ownerButtons
                         : null
                     }
 

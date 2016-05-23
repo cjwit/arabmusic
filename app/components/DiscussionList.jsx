@@ -45,7 +45,7 @@ module.exports = React.createClass({
             startIndex += listings
             this.setState({ startIndex: startIndex })
         };
-        
+
         previous.removeClass("disabled")
         if (startIndex + listings >= this.props.discussions.length) {
             next.addClass("disabled");
@@ -60,13 +60,14 @@ module.exports = React.createClass({
             startIndex = this.state.startIndex,
             endIndex = startIndex + this.state.listings,
             currentPage = startIndex / this.state.listings + 1,
-            totalPages = Math.floor(incomingLength / this.state.listings) + 1;
+            totalPages = Math.floor(incomingLength / this.state.listings) + 1,
+            login = this.props.login;
 
         var discussions = incomingListings.slice(startIndex, endIndex);
 
         var discussionList = [];
         discussions.map(function (discussion, index) {
-            discussionList.push(<Discussion info = { discussion } key = { 'discussion' + index } />)
+            discussionList.push(<Discussion info = { discussion } key = { 'discussion' + index } login = { login } />)
         });
         return (
             <div className = 'list'>

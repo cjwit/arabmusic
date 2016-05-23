@@ -9,7 +9,8 @@ module.exports = React.createClass({
             editing: false,
             info: {
                 title: this.props.info.title,
-                author: this.props.info.author,
+                ownerName: this.props.info.ownerName,
+                owner: this.props.info.owner,
                 content: this.props.info.content,
                 date: new Date(this.props.info.date),
                 tags: this.props.info.tags,
@@ -29,6 +30,22 @@ module.exports = React.createClass({
 
         actions.editPost(info);
         this.setState({ editing: false });
+    },
+
+    deletePost: function(e) {
+        e.preventDefault();
+        var info = this.state.info;
+        info.id = this.props.info._id;
+        actions.deletePost(info)
+
+        // redirect if on detail page
+        var path = window.location.pathname;
+        var split = path.split('/')
+        var folder = split[1]
+        var id = split[2] || null
+        if (id != null) {
+            window.location.href = '/' + folder;
+        }
     },
 
     openForm: function() {
@@ -71,22 +88,6 @@ module.exports = React.createClass({
         })
     },
 
-    deletePost: function(e) {
-        e.preventDefault();
-        var info = this.state.info;
-        info.id = this.props.info._id;
-        actions.deletePost(info)
-
-        // redirect if on detail page
-        var path = window.location.pathname;
-        var split = path.split('/')
-        var folder = split[1]
-        var id = split[2] || null
-        if (id != null) {
-            window.location.href = '/' + folder;
-        }
-    },
-
     handleInputChange: function(e) {
         e.preventDefault();
         var name = e.target.name;
@@ -105,14 +106,38 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var props = this.props.info;
-        var id = props._id;
-        var discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
+        var props = this.props.info,
+            id = props._id,
+            login = this.props.login,
+            userID = "",
+            myPost = false,
+            discussionPage = Boolean(window.location.pathname.match(/^\/discussions\/\w/));
+
+        if (login.status === true) {
+            userID = login.user._id;
+        }
+
+        if (userID !== "" && userID === props.owner) {
+            myPost = true;
+        }
+
+        var ownerButtons = null;
+        if (myPost === true) {
+            ownerButtons =
+                <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                    <a onClick = { this.openForm } className = 'btn btn-default'>
+                        <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    <a onClick = { this.deletePost } className = 'btn btn-default'>
+                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                </div>
+        }
 
         var comments = [];
         if (props.comments.length > 0) {
             props.comments.forEach(function(c, index) {
-                comments.push(<Comment info = { c.comment } discussionID = { id } key = { 'comment' + index }/>)
+                comments.push(<Comment info = { c.comment } discussionID = { id } key = { 'comment' + index } login = { login } />)
             });
         }
         var tagString = '';
@@ -131,12 +156,12 @@ module.exports = React.createClass({
                         { props.title }&nbsp;
                     </span>
                     <span className = 'discussion-author'>
-                        { props.author },&nbsp;
+                        { props.ownerName },&nbsp;
                     </span>
                     <span className = 'discussion-date'>
                         { props.date.toLocaleDateString() }
                     </span>
-                    
+
                     { !discussionPage ?
                         <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
                             <a href= { '/discussions/' + id } className = 'btn btn-default'>
@@ -144,14 +169,7 @@ module.exports = React.createClass({
                             </a>
                         </div>
                             :
-                        <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                            <a onClick = { this.openForm } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <a onClick = { this.deletePost } className = 'btn btn-default'>
-                                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        ownerButtons
                     }
 
                     <div className = 'discussion-content'>

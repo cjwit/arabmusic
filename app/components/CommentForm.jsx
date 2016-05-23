@@ -7,7 +7,8 @@ module.exports = React.createClass({
         return {
             discussionID: this.props.info._id,
             comment: {
-                author: "Tester's Big Brother", // Grab from username
+                ownerName: "",
+                owner: "",
                 date: new Date(Date.now()),
                 content: ""
             }
@@ -18,6 +19,16 @@ module.exports = React.createClass({
         // validation setup
         var submit = $('#submit');
         submit.prop('disabled', true)
+    },
+
+    componentWillReceiveProps: function(newProps) {
+        if (newProps.login.status === true) {
+            var comment = this.state.comment;
+            comment.owner = newProps.login.user._id;
+            comment.ownerName = newProps.login.user.name
+            this.setState({ comment: comment });
+            $('#author').attr('value', newProps.login.user.name)
+        }
     },
 
     addComment: function(e) {
@@ -50,7 +61,7 @@ module.exports = React.createClass({
         var condition = false;
         switch (name) {
             case "content":
-                condition = value.length > 1;
+                condition = value.length > 0;
                 break;
             default:
                 break;
@@ -66,8 +77,8 @@ module.exports = React.createClass({
     validateForm: function() {
         // set submit button
         var submit = $('#submit'),
-            content = this.state.comment.content.length > 1,
-            valid = content;
+            content = this.state.comment.content.length > 0,
+            valid = content && this.props.login.status;
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -80,12 +91,12 @@ module.exports = React.createClass({
             <div id = 'addCommentForm'>
                 <form onSubmit = { this.addComment } >
                     <div className="form-group">
-                        <label className = 'control-label' HTMLfor="author">Comment</label>
+                        <label className = 'control-label' HTMLfor="ownerName">Comment</label>
                         <input type="text" className="form-control"
-                               id="author"
-                               name = 'author'
+                               id="ownerName"
+                               name = 'ownerName'
                                placeholder="Author"
-                               value = { this.state.comment.author }
+                               value = { this.state.comment.ownerName }
                                onChange = { this.handleInputChange }
                                disabled />
                         <p className="help-block">Log out and back in again to change authorship.</p>
