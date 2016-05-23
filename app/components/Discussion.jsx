@@ -116,7 +116,6 @@ module.exports = React.createClass({
         if (login.status === true) {
             userID = login.user._id;
         }
-
         if (userID !== "" && userID === props.owner) {
             myPost = true;
         }
@@ -149,6 +148,7 @@ module.exports = React.createClass({
             }
         })
 
+
         if (!this.state.editing) {
             return (
                 <div className = 'discussion' id = { id }>
@@ -159,7 +159,7 @@ module.exports = React.createClass({
                         { props.ownerName },&nbsp;
                     </span>
                     <span className = 'discussion-date'>
-                        { props.date.toLocaleDateString() }
+                        { new Date(props.date).toLocaleDateString() }
                     </span>
 
                     { !discussionPage ?

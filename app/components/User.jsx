@@ -11,12 +11,12 @@ module.exports = React.createClass({
         var login = this.props.login,
             events = this.props.events,
             resources = this.props.resources,
-            posts = this.props.discussions,
+            discussions = this.props.discussions,
             notices = this.props.notices;
 
         var userEvents = [],
             userNotices = [],
-            userPosts = [],
+            userDiscussions = [],
             userResources = [];
 
         var name, email, id;
@@ -32,7 +32,7 @@ module.exports = React.createClass({
             userNotices = notices.filter(function(n) {
                 return n.owner === id;
             })
-            userPosts = posts.filter(function(p) {
+            userDiscussions = discussions.filter(function(p) {
                 var myPost = false;
                 if (p.owner === id) {
                     myPost = true;
@@ -73,11 +73,15 @@ module.exports = React.createClass({
                                     Ways to edit my info
                                 </p>
                             </div>
+                            <div className = 'holder'>
+                                <h1>My Collections and Item Contributions</h1>
+                                <ResourceList login = { login } resources = { userResources }/>
+                            </div>
                         </div>
                         <div className = 'col-md-6'>
                             <div className = 'holder'>
                                 <h1>My Posts and Comments</h1>
-                                <DiscussionList login = { login } discussions = { userPosts } />
+                                <DiscussionList login = { login } discussions = { userDiscussions }/>
                             </div>
                             <div className = 'holder'>
                                 <h1>My Events</h1>
@@ -87,15 +91,10 @@ module.exports = React.createClass({
                                 <h1>My Notices</h1>
                                 <NoticeList login = { login } notices = { userNotices }/>
                             </div>
-                            <div className = 'holder'>
-                                <h1>My Collections and Item Contributions</h1>
-                                <ResourceList login = { login } resources = { userResources }/>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <Footer />
-
             </div>
         )
     }

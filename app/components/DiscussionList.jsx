@@ -55,7 +55,6 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        console.log('rendering discussions')
         var incomingListings = this.props.discussions,
             incomingLength = incomingListings.length,
             startIndex = this.state.startIndex,
@@ -65,7 +64,6 @@ module.exports = React.createClass({
             login = this.props.login;
 
         var discussions = incomingListings.slice(startIndex, endIndex);
-
         var discussionList = [];
         discussions.map(function (discussion, index) {
             discussionList.push(<Discussion info = { discussion } key = { 'discussion' + index } login = { login } />)
