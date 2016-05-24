@@ -5,16 +5,17 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Member info page to display and edit user info
-* Submit button only validates after key entry
-* Return to form validation, optional items should not validate
+* Split resources and notices pages
+* Google login
+    * Find or create based on email instead of service ID? Allows for multiple services
+* Validation issues
+    * Submit button only validates after key entry
+    * Return to form validation, optional items should not validate
 
 Eventually:
-* Only admins can delete resource collections (set as an array in a process.env variable?)
-* Find or create based on email instead of service ID? Allows for multiple services
-* Remove SAMR page
-* Split resources and notices pages
+* Member info page to display and edit user info
 * Directory displays information on each member
+* Only admins can delete resource collections (set as an array in a process.env variable?)
 * Blog on Medium
 * Terms of Use
     * Civility and IP disclaimer

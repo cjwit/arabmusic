@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var compress = require('compression');
 var passport = require('passport');
-// var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('./data/user.js');
 
@@ -21,9 +20,6 @@ var app = express();
 app.use(compress())
 app.use(express.static(path.join(__dirname, "../app/dist")));
 app.use(bodyParser.json());
-// app.use(session({ secret: 'keyboard cat' }));
-// app.use(passport.initialize());
-// app.use(passport.session());
 app.use("/api/events", eventController);
 app.use("/api/posts", postController);
 app.use("/api/resources", resourceController);
