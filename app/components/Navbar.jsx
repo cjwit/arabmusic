@@ -5,7 +5,8 @@ module.exports = React.createClass({
     componentDidMount: function() {
         window.fbAsyncInit = function() {
             FB.init({
-                appId      : '503327943125203',
+                appId      : '509714599153204', // local version
+                // appId      : '503327943125203', // deployed version
                 cookie     : true,
                 xfbml      : true,
                 version    : 'v2.6'
