@@ -56,6 +56,14 @@ module.exports = React.createClass({
         FB.logout(actions.logout());
     },
 
+    onSignIn: function(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+    },
+
     render: function() {
         var active = this.props.active;
         var login = this.props.login;
@@ -93,6 +101,9 @@ module.exports = React.createClass({
                             <a href="#" onClick = { login.status ? this.logout : this.login }>
                                 <span className="glyphicon zocial-facebook login-glyph"></span> { login.status ? 'logout' : 'login' }
                             </a>
+                        </li>
+                        <li>
+                            <div className="g-signin2" data-onsuccess="onSignIn"></div>
                         </li>
 
                         { login.status ?
