@@ -3,6 +3,7 @@ var actions = require('../actions/loginActions');
 
 module.exports = React.createClass({
     componentDidMount: function() {
+        // Facebook login setup
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '509714599153204', // local version
@@ -28,6 +29,36 @@ module.exports = React.createClass({
             js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+
+        // Google login setup
+        var googleUser = {};
+        var _this = this;
+        var startApp = function() {
+            gapi.load('auth2', function(){
+                // Retrieve the singleton for the GoogleAuth library and set up the client.
+                auth2 = gapi.auth2.init({
+                    client_id: '579992199870-7pa868n4fmu2p7eof8mftosigfsdh8d1.apps.googleusercontent.com',
+                    cookiepolicy: 'single_host_origin',
+                    // Request scopes in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+                attachSignin(document.getElementById('googleLogin'));
+            });
+        };
+
+        function attachSignin(element) {
+            console.log(element.id);
+            auth2.attachClickHandler(element, {}, function(googleUser) {
+                document.getElementById('googleLogin')
+                    .innerText = "Signed in: " + googleUser.getBasicProfile().getName();
+                // test for sucessful profile info
+                _this.googleGetInfo(googleUser);
+            }, function(error) {
+                alert(JSON.stringify(error, undefined, 2));
+            });
+        }
+        startApp();
+
     },
 
     apiCallback: function(response) {
@@ -56,12 +87,21 @@ module.exports = React.createClass({
         FB.logout(actions.logout());
     },
 
-    onSignIn: function(googleUser) {
+    googleGetInfo: function(googleUser) {
         var profile = googleUser.getBasicProfile();
         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
+    },
+
+    googleLogout: function() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+        document.getElementById('googleLogin')
+            .innerText = "G login"
     },
 
     render: function() {
@@ -103,7 +143,8 @@ module.exports = React.createClass({
                             </a>
                         </li>
                         <li>
-                            <div className="g-signin2" data-onsuccess="onSignIn"></div>
+                            <a id = 'googleLogin'>G login</a>
+                            <a id = 'googleLogout' onClick = { this.googleLogout }>G logout</a>
                         </li>
 
                         { login.status ?

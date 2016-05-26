@@ -7,6 +7,10 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 Next Up
 * Split resources and notices pages
 * Google login
+    * Buttons:
+        * When logged out: G and F logins.          Hide F logout, G logout, User
+        * When logged in with F: F logout, User     Hide G login, G logout, F login
+        * When logged in with G: G logout, User     Hide F login, F logout, G login
     * Find or create based on email instead of service ID? Allows for multiple services
 * Validation issues
     * Submit button only validates after key entry
