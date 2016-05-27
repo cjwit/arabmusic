@@ -42,14 +42,13 @@ module.exports = React.createClass({
                     // Request scopes in addition to 'profile' and 'email'
                     //scope: 'additional_scope'
                 });
-                attachSignin(document.getElementById('googleLogin'));
+                attachSignin(document.getElementById('googleLoginButton'));
             });
         };
 
         function attachSignin(element) {
-            console.log(element.id);
             auth2.attachClickHandler(element, {}, function(googleUser) {
-                document.getElementById('googleLogin')
+                document.getElementById('googleLoginButton')
                     .innerText = "Signed in: " + googleUser.getBasicProfile().getName();
                 // test for sucessful profile info
                 _this.googleGetInfo(googleUser);
@@ -97,22 +96,59 @@ module.exports = React.createClass({
 
     googleLogout: function() {
         var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
+        // actions.logout() set as callback
+        auth2.signOut(actions.logout()).then(function () {
             console.log('User signed out.');
         });
-        document.getElementById('googleLogin')
-            .innerText = "G login"
     },
 
     render: function() {
         var active = this.props.active;
         var login = this.props.login;
-        var photo;
+        var userHomeLink = null,
+            facebookLoginButton = null,
+            facebookLogoutButton = null,
+            googleLoginButton = null,
+            googleLogoutButton = null;
 
-        if (login.status === false) {
-            photo = null;
+        if (login.status === true) {
+            switch (login.user.provider) {
+                case 'facebook':
+                    facebookLogoutButton =
+                        <li className= 'navlink' id = 'facebookLogoutButton'>
+                            <a href="#" onClick = { this.logout }>
+                                <span className="glyphicon zocial-facebook login-glyph"></span> logout
+                            </a>
+                        </li>
+                    break;
+                case 'google':
+                    googleLogoutButton =
+                        <li>
+                            <a id = 'googleLogoutButton' onClick = { this.googleLogout }>G logout</a>
+                        </li>
+                    break;
+            }
+            var photo = login.user.photo || null;
+            userHomeLink =
+                    <li className = { active === 'user' ? 'navlink active' : 'navlink' }>
+                        { photo === null ?
+                            <a className = 'hidden-xs' href="/user">Home</a>
+                            :
+                            <a className = 'hidden-xs' href="/user" id = 'profile-pic'><img src = { photo } /></a>
+                        }
+                        <a className = 'visible-xs-block' href="/user">Home</a>
+                    </li>
         } else {
-            photo = login.user.photo;
+            facebookLoginButton =
+                <li className= 'navlink' id = 'facebookLoginButton'>
+                    <a href="#" onClick = { this.login }>
+                        <span className="glyphicon zocial-facebook login-glyph"></span> login
+                    </a>
+                </li>
+            googleLoginButton =
+                <li>
+                    <a id = 'googleLoginButton'>G login</a>
+                </li>
         }
 
         return (
@@ -129,36 +165,18 @@ module.exports = React.createClass({
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                      <ul className="nav navbar-nav">
-                        <li className= { active === 'discussions' ? 'navlink active' : 'navlink' } id = 'discussions' ><a href="/discussions">Talk</a></li>
-                        <li className= { active === 'events' ? 'navlink active' : 'navlink' } id = 'events'><a href="/events">Events</a></li>
-                        <li className= { active === 'resources' ? 'navlink active' : 'navlink' } id = 'resources'><a href="/resources">Resources and Notices</a></li>
-                        <li className= { active === 'directory' ? 'navlink active' : 'navlink' } id = 'directory'><a href="/directory">Directory (not yet built)</a></li>
-                    </ul>
-                    <ul className = "nav navbar-nav navbar-right">
-
-                        <li className= 'navlink' id = 'login'>
-                            <a href="#" onClick = { login.status ? this.logout : this.login }>
-                                <span className="glyphicon zocial-facebook login-glyph"></span> { login.status ? 'logout' : 'login' }
-                            </a>
-                        </li>
-                        <li>
-                            <a id = 'googleLogin'>G login</a>
-                            <a id = 'googleLogout' onClick = { this.googleLogout }>G logout</a>
-                        </li>
-
-                        { login.status ?
-                            <li className = { active === 'user' ? 'navlink active' : 'navlink' }>
-                                { photo === null ?
-                                    <a className = 'hidden-xs' href="/user">Home</a>
-                                    :
-                                    <a className = 'hidden-xs' href="/user" id = 'profile-pic'><img src = { photo } /></a>
-                                }
-                                <a className = 'visible-xs-block' href="/user">Home</a>
-                            </li>
-                            :
-                            null
-                        }
+                        <ul className="nav navbar-nav">
+                            <li className= { active === 'discussions' ? 'navlink active' : 'navlink' } id = 'discussions' ><a href="/discussions">Talk</a></li>
+                            <li className= { active === 'events' ? 'navlink active' : 'navlink' } id = 'events'><a href="/events">Events</a></li>
+                            <li className= { active === 'resources' ? 'navlink active' : 'navlink' } id = 'resources'><a href="/resources">Resources and Notices</a></li>
+                            <li className= { active === 'directory' ? 'navlink active' : 'navlink' } id = 'directory'><a href="/directory">Directory (not yet built)</a></li>
+                        </ul>
+                        <ul id = "loginStuff" className = "nav navbar-nav navbar-right">
+                            { facebookLoginButton }
+                            { facebookLogoutButton }
+                            { googleLoginButton }
+                            { googleLogoutButton }
+                            { userHomeLink }
                         </ul>
                     </div>
                 </div>
