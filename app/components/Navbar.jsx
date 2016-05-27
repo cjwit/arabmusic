@@ -130,7 +130,9 @@ module.exports = React.createClass({
                 case 'google':
                     googleLogoutButton =
                         <li>
-                            <a id = 'googleLogoutButton' onClick = { this.googleLogout }>G logout</a>
+                            <a id = 'googleLogoutButton' onClick = { this.googleLogout }>
+                                <span className="glyphicon zocial-google login-glyph"></span> logout
+                            </a>
                         </li>
                     break;
             }
@@ -153,7 +155,9 @@ module.exports = React.createClass({
                 </li>
             googleLoginButton =
                 <li>
-                    <a id = 'googleLoginButton'>G login</a>
+                    <a id = 'googleLoginButton'>
+                        <span className="glyphicon zocial-google login-glyph"></span> login
+                    </a>
                 </li>
         }
 
