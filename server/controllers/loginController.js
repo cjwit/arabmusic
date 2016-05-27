@@ -3,18 +3,18 @@ var User = require('../data/user');
 var _ = require('underscore');
 
 var router = require('express').Router();
-router.route('/:id').post(login);
+router.route('/').post(login);
 
 function login(req, res) {
-    var id = req.params.id;
+    // update if using a different provider than previous
     var info = req.body;
-    var query = { facebookID: id };
+    var query = { email: info.email };
     var forCreate = {
         name: info.name,
         email: info.email,
         photo: info.photo,
-        provider: 'facebook',
-        facebookID: id,
+        provider: info.provider,
+        providerID: info.providerID,
         tags: [],
         description: "",
         edited: false,

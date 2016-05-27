@@ -11,7 +11,8 @@ Next Up
         * When logged out: G and F logins.          Hide F logout, G logout, User
         * When logged in with F: F logout, User     Hide G login, G logout, F login
         * When logged in with G: G logout, User     Hide F login, F logout, G login
-    * Find or create based on email instead of service ID? Allows for multiple services
+    * Login controller should update database if user chooses a different login mode
+    * Use token with Google login
 * Validation issues
     * Submit button only validates after key entry
     * Return to form validation, optional items should not validate

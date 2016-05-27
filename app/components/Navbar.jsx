@@ -51,7 +51,7 @@ module.exports = React.createClass({
                 document.getElementById('googleLoginButton')
                     .innerText = "Signed in: " + googleUser.getBasicProfile().getName();
                 // test for sucessful profile info
-                _this.googleGetInfo(googleUser);
+                _this.registerGoogleUser(googleUser);
             }, function(error) {
                 alert(JSON.stringify(error, undefined, 2));
             });
@@ -63,8 +63,9 @@ module.exports = React.createClass({
     apiCallback: function(response) {
         var loginObject = {
             name: response.name,
-            id: response.id,
+            providerID: response.id,
             email: response.email,
+            provider: 'facebook',
             photo: response.picture.data.url
         }
         actions.login(loginObject);
@@ -84,21 +85,26 @@ module.exports = React.createClass({
 
     logout: function() {
         FB.logout(actions.logout());
+        console.log('User signed out (Facebook).')
     },
 
-    googleGetInfo: function(googleUser) {
+    registerGoogleUser: function(googleUser) {
         var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        var loginObject = {
+            name: profile.getName(),
+            providerID: profile.getId(),    // change to use token
+            email: profile.getEmail(),
+            provider: 'google',
+            photo: profile.getImageUrl()
+        }
+        actions.login(loginObject);
     },
 
     googleLogout: function() {
         var auth2 = gapi.auth2.getAuthInstance();
         // actions.logout() set as callback
         auth2.signOut(actions.logout()).then(function () {
-            console.log('User signed out.');
+            console.log('User signed out (Google).');
         });
     },
 
@@ -134,7 +140,7 @@ module.exports = React.createClass({
                         { photo === null ?
                             <a className = 'hidden-xs' href="/user">Home</a>
                             :
-                            <a className = 'hidden-xs' href="/user" id = 'profile-pic'><img src = { photo } /></a>
+                            <a className = 'hidden-xs' href="/user" id = 'profile-pic'><img className = 'img-responsive' src = { photo } /></a>
                         }
                         <a className = 'visible-xs-block' href="/user">Home</a>
                     </li>

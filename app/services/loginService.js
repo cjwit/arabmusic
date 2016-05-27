@@ -7,7 +7,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + loginObject.id,
+                url: resourceURL,
                 data: JSON.stringify(loginObject),
                 method: "POST",
                 dataType: 'json',
