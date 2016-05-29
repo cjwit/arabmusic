@@ -31,6 +31,10 @@ module.exports = React.createClass({
         }(document, 'script', 'facebook-jssdk'));
 
         // Google login setup
+        this.googleLoginSetup();
+    },
+
+    googleLoginSetup: function() {
         var googleUser = {};
         var _this = this;
         var startApp = function() {
@@ -57,7 +61,6 @@ module.exports = React.createClass({
             });
         }
         startApp();
-
     },
 
     apiCallback: function(response) {
@@ -80,6 +83,7 @@ module.exports = React.createClass({
     },
 
     login: function() {
+        this.googleLogout();
         FB.login(this.loginCallback, { scope: 'email,public_profile' });
     },
 
@@ -89,23 +93,25 @@ module.exports = React.createClass({
     },
 
     registerGoogleUser: function(googleUser) {
-        var profile = googleUser.getBasicProfile();
+        // does not reconnect login after google logout
+        this.logout();
+        var token = googleUser.getAuthResponse().id_token;
+        console.log(token)
         var loginObject = {
-            name: profile.getName(),
-            providerID: profile.getId(),    // change to use token
-            email: profile.getEmail(),
+            token: token,
             provider: 'google',
-            photo: profile.getImageUrl()
         }
         actions.login(loginObject);
     },
 
     googleLogout: function() {
         var auth2 = gapi.auth2.getAuthInstance();
-        // actions.logout() set as callback
-        auth2.signOut(actions.logout()).then(function () {
-            console.log('User signed out (Google).');
-        });
+        auth2.signOut(actions.logout())
+            .then(function () {
+                console.log('User signed out (Google).');
+            });
+        // still not allowing re-login after logout
+        this.googleLoginSetup();
     },
 
     render: function() {
