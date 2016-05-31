@@ -61,7 +61,7 @@ module.exports = React.createClass({
                 <Navbar active = 'user' login = { login }/>
                 <div className = 'container'>
                     <div className = 'row'>
-                        <div className = 'col-md-6'>
+                        <div className = 'col-md-4'>
                             <div className = 'holder'>
                                 <h1>My Information</h1>
                                 <ul>
@@ -73,12 +73,8 @@ module.exports = React.createClass({
                                     Ways to edit my info
                                 </p>
                             </div>
-                            <div className = 'holder'>
-                                <h1>My Collections and Item Contributions</h1>
-                                <ResourceList login = { login } resources = { userResources }/>
-                            </div>
                         </div>
-                        <div className = 'col-md-6'>
+                        <div className = 'col-md-8'>
                             <div className = 'holder'>
                                 <h1>My Posts and Comments</h1>
                                 <DiscussionList login = { login } discussions = { userDiscussions }/>
@@ -90,6 +86,10 @@ module.exports = React.createClass({
                             <div className = 'holder'>
                                 <h1>My Notices</h1>
                                 <NoticeList login = { login } notices = { userNotices }/>
+                            </div>
+                            <div className = 'holder'>
+                                <h1>My Collections and Item Contributions</h1>
+                                <ResourceList login = { login } resources = { userResources }/>
                             </div>
                         </div>
                     </div>
