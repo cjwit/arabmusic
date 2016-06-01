@@ -65,7 +65,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-4'>
                             <div className = 'holder'>
                                 <h1>My Information</h1>
-                                <UserInfo login = { login } />
+                                { login.status ? <UserInfo login = { login } /> : "Loading..." }
                             </div>
                         </div>
                         <div className = 'col-md-8'>
