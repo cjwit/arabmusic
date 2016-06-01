@@ -211,6 +211,10 @@ h1, h2, h3, h4, h5, h6 {
   #profile-pic img {
     height: 50px; }
 
+.user-pic {
+  padding: 0px 5px 5px 0px;
+  height: 50px; }
+
 .login-glyph {
   font-size: 0.8em; }
 
@@ -232,13 +236,15 @@ a:visited {
 .event,
 .discussion,
 .collection,
-.notice {
+.notice,
+.user {
   padding-bottom: 20px; }
 
 .event-name,
 .discussion-title,
 .collection-title,
-.notice-name {
+.notice-name,
+.user-name {
   text-transform: uppercase;
   font-weight: 700;
   padding-top: 0px;
@@ -263,6 +269,11 @@ a:visited {
   font-weight: 400;
   color: #183334; }
 
+.user-email {
+  font-weight: 400;
+  color: #183334;
+  margin-bottom: 5px; }
+
 .event-description,
 .discussion-content,
 .collection-description,
@@ -270,10 +281,16 @@ a:visited {
   font-size: 0.8em;
   padding-bottom: 0px; }
 
+.user-description {
+  font-size: 0.8em;
+  padding-bottom: 0px;
+  line-height: 1.2; }
+
 .event-tags,
 .discussion-tags,
 .resource-tags,
-.notice-tags {
+.notice-tags,
+.user-tags {
   font-size: 0.6em;
   font-weight: 400;
   color: white;

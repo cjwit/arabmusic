@@ -1,4 +1,5 @@
 var React = require('react');
+var UserInfo = require('./UserInfo.jsx');
 var EventList = require('./EventList.jsx');
 var DiscussionList = require('./DiscussionList.jsx');
 var ResourceList = require('./ResourceList.jsx');
@@ -64,14 +65,7 @@ module.exports = React.createClass({
                         <div className = 'col-md-4'>
                             <div className = 'holder'>
                                 <h1>My Information</h1>
-                                <ul>
-                                    <li>Name: { name }</li>
-                                    <li>Email: { email }</li>
-                                    <li>ID: { id }</li>
-                                </ul>
-                                <p>
-                                    Ways to edit my info
-                                </p>
+                                <UserInfo login = { login } />
                             </div>
                         </div>
                         <div className = 'col-md-8'>

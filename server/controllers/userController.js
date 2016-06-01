@@ -22,19 +22,20 @@ function addUser(req, res) {
 }
 
 function editUser(req, res) {
-    var id = req.params.id;
     var info = req.body;
-    var query = { _id: id },
+    var query = { _id: info.id },
         update = { $set: {
             name: info.name,
             email: info.email,
+            photo: info.photo,
             provider: info.provider,
-            date: new Date(info.date),
-            tags: info.tags,
             description: info.description,
+            joined: new Date(info.date),
+            tags: info.tags,
             edited: info.edited,
             editDate: info.editDate
         }};
+    console.log(info);
     User.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
