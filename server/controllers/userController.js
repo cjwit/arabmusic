@@ -35,7 +35,6 @@ function editUser(req, res) {
             edited: info.edited,
             editDate: info.editDate
         }};
-    console.log(info);
     User.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);

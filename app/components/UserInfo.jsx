@@ -32,12 +32,8 @@ module.exports = React.createClass({
 
     deleteUser: function(e) {
         e.preventDefault();
-        var info = this.state.info;
-        info.id = this.props.info._id;
-        actions.deleteUser(info)
-
-        // redirect if on detail page
-        window.location.href = '/';
+        actions.deleteUser(this.props.login.user._id)
+        // window.location.href = '/';
     },
 
     openForm: function() {
@@ -82,21 +78,17 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var props = this.props.login.user,
-            id = props._id,
-            login = this.props.login;
-
         // set a placeholder if not logged in
-        if (login.status === true) {
-            userID = login.user._id;
+        var login = this.props.login;
+        if (login.status === false) {
+            return (
+                <div>Loading...</div>
+            )
         }
 
-        var ownerButtons =
-            <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
-                <a onClick = { this.openForm } className = 'btn btn-default'>
-                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                </a>
-            </div>
+        var userID = login.user._id,
+            props = login.user,
+            id = props._id;
 
         var tagString = '';
         props.tags.map(function(tag, index) {
@@ -110,14 +102,18 @@ module.exports = React.createClass({
         if (!this.state.editing) {
             return (
                 <div className = 'user' id = { id }>
-                    { ownerButtons }
+                    <div className = 'btn-group pull-right' role = 'group' aria-label='...'>
+                        <a onClick = { this.openForm } className = 'btn btn-default'>
+                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </div>
                     <div className = 'user-name'>
                         { props.name }
                     </div>
                     <div className = 'user-email'>
                         { props.email }
                     </div>
-                    { props.photo === "" ? null : <img className = 'img-responsive pull-left user-pic' src = { props.photo } /> }
+                    { props.photo === "" ? null : <img className = 'img-responsive user-pic' src = { props.photo } /> }
                     <div className = 'user-description'>
                         { props.description }
                         { props.edited ?

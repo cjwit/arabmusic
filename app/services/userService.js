@@ -46,11 +46,11 @@ module.exports = {
         });
     },
 
-    deleteUser: function(user) {
+    deleteUser: function(userID) {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + user._id,
+                url: resourceURL + userID,
                 method: "DELETE",
                 dataType: 'json',
                 success: resolve,
