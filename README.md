@@ -5,16 +5,16 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
+* Member info page to display and edit user info
+    * Does not update on load
 * Split resources and notices pages
 * Google login
     * Login controller should update database if user chooses a different login mode
-    * Use token with Google login
 * Validation issues
     * Submit button only validates after key entry
     * Return to form validation, optional items should not validate
 
 Eventually:
-* Member info page to display and edit user info
 * Directory displays information on each member
 * Only admins can delete resource collections (set as an array in a process.env variable?)
 * Blog on Medium

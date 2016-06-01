@@ -33,7 +33,7 @@ module.exports = React.createClass({
     deleteUser: function(e) {
         e.preventDefault();
         actions.deleteUser(this.props.login.user._id)
-        // window.location.href = '/';
+        window.location.href = '/';
     },
 
     openForm: function() {
@@ -41,7 +41,6 @@ module.exports = React.createClass({
         // wait for rendering to complete
         var toggleTag = this.toggleTag;
         window.requestAnimationFrame(function() {
-            // set up form
             $('#tags :input').change(function() {
                 toggleTag(this.name);
             })
@@ -78,14 +77,8 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        // set a placeholder if not logged in
+        // component does not load until login is set up
         var login = this.props.login;
-        if (login.status === false) {
-            return (
-                <div>Loading...</div>
-            )
-        }
-
         var userID = login.user._id,
             props = login.user,
             id = props._id;
