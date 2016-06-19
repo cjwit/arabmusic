@@ -26,6 +26,7 @@ module.exports = React.createClass({
         info.id = this.props.login.user._id;
         info.edited = true;
         info.editDate = new Date(Date.now());
+
         actions.editUser(info);
         this.setState({ editing: false });
     },
@@ -62,7 +63,7 @@ module.exports = React.createClass({
         }
         this.setState({
             info: info
-        })
+        });
     },
 
     handleInputChange: function(e) {
@@ -90,8 +91,7 @@ module.exports = React.createClass({
             } else {
                 tagString += tag + ', ';
             }
-        })
-
+        });
         if (!this.state.editing) {
             return (
                 <div className = 'user' id = { id }>
@@ -101,20 +101,20 @@ module.exports = React.createClass({
                         </a>
                     </div>
                     <div className = 'user-name'>
-                        { props.name }
+                        { this.state.info.name }
                     </div>
                     <div className = 'user-email'>
-                        { props.email }
+                        { this.state.info.email }
                     </div>
                     { props.photo === "" ? null : <img className = 'img-responsive user-pic' src = { props.photo } /> }
                     <div className = 'user-description'>
-                        { props.description }
-                        { props.edited ?
+                        { this.state.info.description }
+                        { this.state.info.edited ?
                             <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
                             : null
                         }
                     </div>
-                    { props.tags.length > 0 ?
+                    { this.state.info.tags.length > 0 ?
                         <div className = 'user-tags'>
                             <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;
                             { tagString }
@@ -123,7 +123,7 @@ module.exports = React.createClass({
                     }
                     <div className = 'user-description'>
                         <strong>
-                            Click the pencil icon to edit and add a description. You can also add tags and change your photo URL.
+                            Click the pencil icon to add or edit your information. You can also add tags and change your photo URL.
                         </strong>
                     </div>
                 </div>

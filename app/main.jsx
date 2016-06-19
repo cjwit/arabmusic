@@ -190,7 +190,6 @@ function renderResources() {
 }
 
 function renderUser() {
-    console.log(login.status);
     if (events.length > 0 && resources.length > 0 && notices.length > 0 && discussions.length > 0) {
         ReactDOM.render(<User
             login = { login }
