@@ -6,7 +6,11 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Member info page to display and edit user info
-    * Does not update on load
+    * What happens when there is no picture?
+* Directory does not load
+    * Stuck on Loading...
+    * Errors when using if statement in main.jsx
+    * Listing needs CSS (steal from events)
 * Split resources and notices pages
 * Google login
     * Login controller should update database if user chooses a different login mode

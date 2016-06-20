@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 var Home = require('./components/Home.jsx');
 var DiscussionsMain = require('./components/DiscussionsMain.jsx');
 var DiscussionPage = require('./components/DiscussionPage.jsx');
+var Directory = require('./components/Directory.jsx');
 var Events = require('./components/Events.jsx');
 var EventPage = require('./components/EventPage.jsx');
 var ResourcesMain = require('./components/ResourcesMain.jsx');
@@ -114,6 +115,8 @@ function render() {
             case 'user':
                 renderUser();
                 break;
+            case 'directory':
+                renderDirectory();
             // add default error case
         }
     } else {
@@ -161,6 +164,15 @@ function renderDiscussionPage(id) {
             login = { login }
             />, document.getElementById('container'));
     }
+}
+
+function renderDirectory() {
+//    if (users.length > 0) {
+        ReactDOM.render(<Directory
+            users = { users }
+            login = { login }
+            />, document.getElementById('container'));
+//    }
 }
 
 function renderEvents() {
