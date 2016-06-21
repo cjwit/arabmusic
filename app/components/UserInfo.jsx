@@ -1,5 +1,6 @@
 var React = require('react');
 var actions = require('../actions/UserActions');
+var loginActions = require('../actions/loginActions');
 var tags = require('../tags.js');
 
 module.exports = React.createClass({
@@ -33,6 +34,17 @@ module.exports = React.createClass({
 
     deleteUser: function(e) {
         e.preventDefault();
+        var provider = this.props.login.user.provider;
+        if (provider === 'google') {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut(loginActions.logout())
+                .then(function () {
+                    console.log('User signed out (Google).');
+                });
+        } else if (provider === 'facebook') {
+            FB.logout(loginActions.logout());
+            console.log('User signed out (Facebook).')
+        }
         actions.deleteUser(this.props.login.user._id)
         window.location.href = '/';
     },

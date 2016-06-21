@@ -22,7 +22,7 @@ module.exports = React.createClass({
                     { props.description }
                 </span>
                     { props.tags.length > 0 ?
-                        <div>
+                        <div className = 'directory-interests'>
                             <span className = 'directory-description'>Interests:&nbsp;</span>
                             <div className = 'directory-tags'>
                                 <span className = 'glyphicon glyphicon-tag' aria-hidden = 'true'></span>&nbsp;

@@ -18,8 +18,6 @@ module.exports = React.createClass({
             });
         }
 
-        console.log('rendering (numUsers, userList)', numUsers, userList);
-
         return (
             <div>
                 <Navbar active = 'directory' login = { login } />
