@@ -135,7 +135,9 @@ module.exports = React.createClass({
                     }
                     <div className = 'user-description'>
                         <strong>
-                            Click the pencil icon to add or edit your information. You can also add tags and change your photo URL.
+                            <p>
+                                Click the pencil icon to add or edit your displayed name, interests, and other information.
+                            </p>
                         </strong>
                     </div>
                 </div>
@@ -203,6 +205,14 @@ module.exports = React.createClass({
                         <button className="btn btn-warning" onClick = { this.closeForm }>Cancel</button>&nbsp;
                         <button className="btn btn-danger" onClick = { this.deleteUser }>Delete your account</button>
                     </form>
+                    <div className="user-description">
+                        <strong>
+                            <p></p>
+                            <p>
+                                Note: Deleting your user information DOES NOT remove your posted content. You can edit or delete your posts using the buttons on the individual page for each one.
+                            </p>
+                        </strong>
+                    </div>
                 </div>
             )
         }
