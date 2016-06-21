@@ -167,12 +167,12 @@ function renderDiscussionPage(id) {
 }
 
 function renderDirectory() {
-//    if (users.length > 0) {
+    if (users.length > 0) {
         ReactDOM.render(<Directory
             users = { users }
             login = { login }
             />, document.getElementById('container'));
-//    }
+    }
 }
 
 function renderEvents() {

@@ -237,14 +237,16 @@ a:visited {
 .discussion,
 .collection,
 .notice,
-.user {
+.user,
+.directory-listing {
   padding-bottom: 20px; }
 
 .event-name,
 .discussion-title,
 .collection-title,
 .notice-name,
-.user-name {
+.user-name,
+.directory-name {
   text-transform: uppercase;
   font-weight: 700;
   padding-top: 0px;
@@ -277,7 +279,8 @@ a:visited {
 .event-description,
 .discussion-content,
 .collection-description,
-.notice-description {
+.notice-description,
+.directory-description {
   font-size: 0.8em;
   padding-bottom: 0px; }
 
@@ -290,7 +293,8 @@ a:visited {
 .discussion-tags,
 .resource-tags,
 .notice-tags,
-.user-tags {
+.user-tags,
+.directory-tags {
   font-size: 0.6em;
   font-weight: 400;
   color: white;
