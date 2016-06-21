@@ -8,12 +8,8 @@ module.exports = React.createClass({
         return ({
             editing: false,
             info: {
-                name: this.props.login.user.name,
-                email: this.props.login.user.email,
-                photo: this.props.login.user.photo,
                 provider: this.props.login.user.provider,
                 description: this.props.login.user.description,
-                joined: new Date(this.props.login.user.joined),
                 tags: this.props.login.user.tags,
                 edited: this.props.login.user.edited,
                 editDate: new Date(this.props.login.user.editDate)
@@ -24,6 +20,10 @@ module.exports = React.createClass({
     editUser: function(e) {
         e.preventDefault();
         var info = this.state.info;
+        info.name = this.props.login.user.name;
+        info.email = this.props.login.user.email;
+        info.joined = new Date(this.props.login.user.joined);
+        info.photo = this.props.login.user.photo;
         info.id = this.props.login.user._id;
         info.edited = true;
         info.editDate = new Date(Date.now());
@@ -113,18 +113,13 @@ module.exports = React.createClass({
                         </a>
                     </div>
                     <div className = 'user-name'>
-                        { this.state.info.name }
+                        { this.props.login.user.name }
                     </div>
                     <div className = 'user-email'>
-                        { this.state.info.email }
+                        { this.props.login.user.email }
                     </div>
-                    { props.photo === "" ? null : <img className = 'img-responsive user-pic' src = { props.photo } /> }
                     <div className = 'user-description'>
                         { this.state.info.description }
-                        { this.state.info.edited ?
-                            <p>(Edited on { new Date(props.editDate).toLocaleDateString() })</p>
-                            : null
-                        }
                     </div>
                     { this.state.info.tags.length > 0 ?
                         <div className = 'user-tags'>
@@ -160,33 +155,14 @@ module.exports = React.createClass({
             return (
                 <div className = 'user' id = { id }>
                     <form onSubmit = { this.editUser } id = 'editUserForm'>
-                        <div className="form-group">
-                            <label className = 'control-label' HTMLfor="name">Edit Your Post</label>
-                            <input type="text" className="form-control"
-                                   id="name"
-                                   name = 'name'
-                                   placeholder="Name"
-                                   defaultValue = { props.name }
-                                   onChange = { this.handleInputChange } />
+
+                        <div className = 'user-name'>
+                            { this.props.login.user.name }
                         </div>
-                        <div className="form-group">
-                            <label className = 'control-label' HTMLfor="email">Email</label>
-                            <input type="text" className="form-control"
-                                   id="email"
-                                   name = 'email'
-                                   placeholder="Email"
-                                   defaultValue = { props.email }
-                                   onChange = { this.handleInputChange } />
+                        <div className = 'user-email'>
+                            { this.props.login.user.email }
                         </div>
-                        <div className="form-group">
-                            <label className = 'control-label' HTMLfor="name">Photo URL (from { props.provider })</label>
-                            <input type="text" className="form-control"
-                                   id="photo"
-                                   name = 'photo'
-                                   placeholder="Photo URL"
-                                   defaultValue = { props.photo }
-                                   onChange = { this.handleInputChange } />
-                        </div>
+
                         <div className="form-group">
                             <label className = 'control-label' HTMLfor="description">Provide a short description of yourself</label>
                             <textarea className="form-control" rows = "3"
@@ -196,12 +172,13 @@ module.exports = React.createClass({
                                       onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
+                            <label className = 'control-label' HTMLfor="description">Select your interests</label>
                             <div id = 'tags' class = 'btn-group' data-toggle='buttons'>
                                 { tagButtons }
                             </div>
                         </div>
 
-                        <button className="btn btn-default">Submit</button>&nbsp;
+                        <button className="btn btn-primary">Save</button>&nbsp;
                         <button className="btn btn-warning" onClick = { this.closeForm }>Cancel</button>&nbsp;
                         <button className="btn btn-danger" onClick = { this.deleteUser }>Delete your account</button>
                     </form>
