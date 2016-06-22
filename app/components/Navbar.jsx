@@ -31,34 +31,58 @@ module.exports = React.createClass({
         }(document, 'script', 'facebook-jssdk'));
 
         // Google login setup
+        console.log('calling googleLoginSetup')
         this.googleLoginSetup();
     },
 
     googleLoginSetup: function() {
+        console.log('setting up google login. login status:', this.props.login.status);
         var googleUser = {};
         var _this = this;
+        var auth2;
+
         var startApp = function() {
             gapi.load('auth2', function(){
-                // Retrieve the singleton for the GoogleAuth library and set up the client.
                 auth2 = gapi.auth2.init({
-                    client_id: '579992199870-7pa868n4fmu2p7eof8mftosigfsdh8d1.apps.googleusercontent.com',
-                    cookiepolicy: 'single_host_origin'
+                    client_id: '579992199870-7pa868n4fmu2p7eof8mftosigfsdh8d1.apps.googleusercontent.com'
                 });
-                attachSignin(document.getElementById('googleLoginButton'));
+                var googleAuth = gapi.auth2.getAuthInstance();
+                if (googleAuth.isSignedIn.get()) {
+                    console.log('google is logged in, registering the user')
+                    this.registerGoogleUser();
+                } else {
+                    console.log('google is not logged in')
+                }
             });
         };
+        startApp();
+    },
 
-        function attachSignin(element) {
-            auth2.attachClickHandler(element, {}, function(googleUser) {
-                document.getElementById('googleLoginButton')
-                    .innerText = "Signed in: " + googleUser.getBasicProfile().getName();
-                // test for sucessful profile info
-                _this.registerGoogleUser(googleUser);
-            }, function(error) {
-                alert(JSON.stringify(error, undefined, 2));
+    registerGoogleUser: function() {
+        // does not reconnect login after google logout
+        var googleAuth = gapi.auth2.getAuthInstance(),
+            googleUser,
+            registerGoogleUserCallback = this.registerGoogleUserCallback;
+
+        if (googleAuth.isSignedIn.get()) {
+            googleUser = googleAuth.currentUser.get();
+            registerGoogleUserCallback(googleUser);
+        } else {
+            googleAuth.signIn().then(function() {
+                googleUser = googleAuth.currentUser.get();
+                registerGoogleUserCallback(googleUser);
             });
         }
-        startApp();
+    },
+
+    registerGoogleUserCallback: function(googleUser) {
+        console.log('signed in with', googleUser)
+        var token = googleUser.getAuthResponse().id_token;
+        var loginObject = {
+            token: token,
+            provider: 'google',
+        }
+        actions.login(loginObject);
     },
 
     apiCallback: function(response) {
@@ -81,25 +105,12 @@ module.exports = React.createClass({
     },
 
     login: function() {
-        this.googleLogout();
         FB.login(this.loginCallback, { scope: 'email,public_profile' });
     },
 
     logout: function() {
         FB.logout(actions.logout());
         console.log('User signed out (Facebook).')
-    },
-
-    registerGoogleUser: function(googleUser) {
-        // does not reconnect login after google logout
-        this.logout();
-        var token = googleUser.getAuthResponse().id_token;
-        console.log(googleUser)
-        var loginObject = {
-            token: token,
-            provider: 'google',
-        }
-        actions.login(loginObject);
     },
 
     googleLogout: function() {
@@ -159,7 +170,7 @@ module.exports = React.createClass({
                 </li>
             googleLoginButton =
                 <li>
-                    <a id = 'googleLoginButton'>
+                    <a id = 'googleLoginButton' onClick = { this.registerGoogleUser }>
                         <span className="glyphicon zocial-google login-glyph"></span> login
                     </a>
                 </li>
