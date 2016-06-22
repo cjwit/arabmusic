@@ -1,7 +1,6 @@
 var dispatcher = require('../dispatcher');
 
 module.exports = {
-    // called from the EventForm
     login: function(loginObject) {
         dispatcher.dispatch({
             object: loginObject,

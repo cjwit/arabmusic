@@ -42,9 +42,7 @@ module.exports = React.createClass({
                 // Retrieve the singleton for the GoogleAuth library and set up the client.
                 auth2 = gapi.auth2.init({
                     client_id: '579992199870-7pa868n4fmu2p7eof8mftosigfsdh8d1.apps.googleusercontent.com',
-                    cookiepolicy: 'single_host_origin',
-                    // Request scopes in addition to 'profile' and 'email'
-                    //scope: 'additional_scope'
+                    cookiepolicy: 'single_host_origin'
                 });
                 attachSignin(document.getElementById('googleLoginButton'));
             });
@@ -96,7 +94,7 @@ module.exports = React.createClass({
         // does not reconnect login after google logout
         this.logout();
         var token = googleUser.getAuthResponse().id_token;
-        console.log(token)
+        console.log(googleUser)
         var loginObject = {
             token: token,
             provider: 'google',
