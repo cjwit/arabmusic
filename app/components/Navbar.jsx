@@ -187,6 +187,7 @@ module.exports = React.createClass({
                             <li className= { active === 'directory' ? 'navlink active' : 'navlink' } id = 'directory'><a href="/directory">Directory</a></li>
                         </ul>
                         <ul id = "loginStuff" className = "nav navbar-nav navbar-right">
+                            <li className= 'navlink' id = 'bug'><a href="mailto:chris.witulski@gmail.com">Report a Bug</a></li>
                             { facebookLoginButton }
                             { facebookLogoutButton }
                             { googleLoginButton }

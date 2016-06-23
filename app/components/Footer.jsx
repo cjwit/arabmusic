@@ -19,6 +19,7 @@ module.exports = React.createClass({
                         <a href='https://www.youtube.com/user/soberlyintricate' target = '_blank'><span className="glyphicon zocial-youtube"></span></a>
                     </p>
                     <p>
+                        <span id = 'webmaster'>Email <a href = 'mailto:chris.witulski@gmail.com'>chris.witulski@gmail.com</a> with any questions or concerns regarding this page.</span><br/>
                         <span id = 'webmaster'>Website by <a href = 'http://cjwit.github.io' target = '_blank'>Christopher Witulski</a></span>
                     </p>
                 </div>
