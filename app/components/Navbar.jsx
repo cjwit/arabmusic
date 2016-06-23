@@ -40,6 +40,7 @@ module.exports = React.createClass({
         var googleUser = {};
         var _this = this;
         var auth2;
+        var registerGoogleUser = this.registerGoogleUser;
 
         var startApp = function() {
             gapi.load('auth2', function(){
@@ -47,12 +48,16 @@ module.exports = React.createClass({
                     client_id: '579992199870-7pa868n4fmu2p7eof8mftosigfsdh8d1.apps.googleusercontent.com'
                 });
                 var googleAuth = gapi.auth2.getAuthInstance();
-                if (googleAuth.isSignedIn.get()) {
-                    console.log('google is logged in, registering the user')
-                    this.registerGoogleUser();
-                } else {
-                    console.log('google is not logged in')
-                }
+                setTimeout(function () {
+                    console.log('waiting')
+                    if (googleAuth.isSignedIn.get()) {
+                        console.log('google is logged in, registering the user')
+                        registerGoogleUser();
+                    } else {
+                        console.log('google is not logged in')
+                    }
+                }, 2000);
+
             });
         };
         startApp();
@@ -96,7 +101,7 @@ module.exports = React.createClass({
         actions.login(loginObject);
     },
 
-    loginCallback: function(response) {
+    facebookLoginCallback: function(response) {
         if (response.authResponse) {
             FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
         } else {
@@ -104,11 +109,11 @@ module.exports = React.createClass({
         }
     },
 
-    login: function() {
-        FB.login(this.loginCallback, { scope: 'email,public_profile' });
+    facebookLogin: function() {
+        FB.login(this.facebookLoginCallback, { scope: 'email,public_profile' });
     },
 
-    logout: function() {
+    facebookLogout: function() {
         FB.logout(actions.logout());
         console.log('User signed out (Facebook).')
     },
@@ -133,24 +138,20 @@ module.exports = React.createClass({
             googleLogoutButton = null;
 
         if (login.status === true) {
-            switch (login.user.provider) {
-                case 'facebook':
-                    facebookLogoutButton =
-                        <li className= 'navlink' id = 'facebookLogoutButton'>
-                            <a href="#" onClick = { this.logout }>
-                                <span className="glyphicon zocial-facebook login-glyph"></span> logout
-                            </a>
-                        </li>
-                    break;
-                case 'google':
-                    googleLogoutButton =
-                        <li>
-                            <a id = 'googleLogoutButton' onClick = { this.googleLogout }>
-                                <span className="glyphicon zocial-google login-glyph"></span> logout
-                            </a>
-                        </li>
-                    break;
-            }
+            // create logout buttons
+            facebookLogoutButton =
+                <li className= 'navlink' id = 'facebookLogoutButton'>
+                    <a href="#" onClick = { this.facebookLogout }>
+                        <span className="glyphicon zocial-facebook login-glyph"></span> logout
+                    </a>
+                </li>
+            googleLogoutButton =
+                <li>
+                    <a id = 'googleLogoutButton' onClick = { this.googleLogout }>
+                        <span className="glyphicon zocial-google login-glyph"></span> logout
+                    </a>
+                </li>
+
             var photo = login.user.photo || null;
             userHomeLink =
                     <li className = { active === 'user' ? 'navlink active' : 'navlink' }>
@@ -164,7 +165,7 @@ module.exports = React.createClass({
         } else {
             facebookLoginButton =
                 <li className= 'navlink' id = 'facebookLoginButton'>
-                    <a href="#" onClick = { this.login }>
+                    <a href="#" onClick = { this.facebookLogin }>
                         <span className="glyphicon zocial-facebook login-glyph"></span> login
                     </a>
                 </li>
