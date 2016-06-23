@@ -4,32 +4,8 @@ var actions = require('../actions/loginActions');
 module.exports = React.createClass({
     componentDidMount: function() {
         // Facebook login setup
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '509714599153204', // local version
-                // appId      : '503327943125203', // deployed version
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v2.6'
-            });
-
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    this.facebookLoginCallback(response)
-                } else {
-                    actions.logout();
-                }
-            }.bind(this));
-        }.bind(this);
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
+        this.facebookLoginSetup();
+        
         // Google login setup
         this.googleLoginSetup();
     },
@@ -84,6 +60,34 @@ module.exports = React.createClass({
             });
         // still not allowing re-login after logout
         this.googleLoginSetup();
+    },
+
+    facebookLoginSetup: function() {
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '509714599153204', // local version
+                // appId      : '503327943125203', // deployed version
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.6'
+            });
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    this.facebookLoginCallback(response)
+                } else {
+                    actions.logout();
+                }
+            }.bind(this));
+        }.bind(this);
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     },
 
     facebookApiCallback: function(response) {
