@@ -54,6 +54,9 @@ body {
 #resource-header {
   background-image: url("./images/ud-dark.jpg"); }
 
+#notice-header {
+  background-image: url("./images/drums.jpg"); }
+
 #addEventForm,
 #addCollectionForm,
 #addNoticeForm {

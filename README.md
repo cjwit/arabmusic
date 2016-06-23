@@ -9,6 +9,7 @@ Next Up
 * Validation issues
     * Submit button only validates after key entry
     * Return to form validation, optional items should not validate
+    * Notice form date
 
 Eventually:
 * Only admins can delete resource collections (set as an array in a process.env variable?)

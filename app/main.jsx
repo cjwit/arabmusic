@@ -9,6 +9,7 @@ var Events = require('./components/Events.jsx');
 var EventPage = require('./components/EventPage.jsx');
 var ResourcesMain = require('./components/ResourcesMain.jsx');
 var ResourcePage = require('./components/ResourcePage.jsx');
+var NoticesMain = require('./components/NoticesMain.jsx');
 var NoticePage = require('./components/NoticePage.jsx');
 var User = require('./components/User.jsx');
 
@@ -112,6 +113,9 @@ function render() {
             case 'resources':
                 renderResources();
                 break;
+            case 'notices':
+                renderNotices();
+                break;
             case 'user':
                 renderUser();
                 break;
@@ -196,6 +200,12 @@ function renderEventPage(id) {
 function renderResources() {
     ReactDOM.render(<ResourcesMain
         resources = { resources }
+        login = { login }
+        />, document.getElementById('container'));
+}
+
+function renderNotices() {
+    ReactDOM.render(<NoticesMain
         notices = { notices }
         login = { login }
         />, document.getElementById('container'));

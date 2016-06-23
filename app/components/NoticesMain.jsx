@@ -1,7 +1,7 @@
 var React = require('react');
-var ResourceList = require('./ResourceList.jsx');
-var ResourceHeader = require('./ResourceHeader.jsx');
-var AddCollection = require('./AddCollection.jsx');
+var NoticeList = require('./NoticeList.jsx');
+var NoticeHeader = require('./NoticeHeader.jsx');
+var AddNotice = require('./AddNotice.jsx');
 var Navbar = require('./Navbar.jsx');
 var Footer = require('./Footer.jsx');
 var SortFilter = require('../actions/SortFilter.jsx');
@@ -10,33 +10,33 @@ var tags = require('../tags.js');
 module.exports = React.createClass({
     getInitialState: function() {
         return {
-            AddCollection: false,
-            resourceSort: 'edit',
-            resourceFilter: [],
+            AddNotice: false,
+            noticeSort: 'date',
+            noticeFilter: []
         };
     },
 
     componentWillReceiveProps: function() {
         this.setState({
-            AddCollection: false
+            AddNotice: false
         })
     },
 
     componentDidMount: function () {
-        var toggleResourceTag = this.toggleResourceTag;
-        $('#resourceTags :input').change(function() {
-            toggleResourceTag(this.name);
+        var toggleNoticeTag = this.toggleNoticeTag;
+        $('#noticeTags :input').change(function() {
+            toggleNoticeTag(this.name);
         })
 
         // hide filters and set handlers
-        $("#resourceTags").hide();
-        $("#resourceFilter").click(function(){
-            $("#resourceTags").slideToggle();
+        $("#noticeTags").hide();
+        $("#noticeFilter").click(function(){
+            $("#noticeTags").slideToggle();
         })
     },
 
-    toggleResourceTag: function(name) {
-        var tags = this.state.resourceFilter;
+    toggleNoticeTag: function(name) {
+        var tags = this.state.noticeFilter;
         var index = tags.indexOf(name)
         if (index === -1) {
             tags.push(name);
@@ -44,25 +44,25 @@ module.exports = React.createClass({
             tags.splice(index, 1);
         }
         this.setState({
-            resourceFilter: tags
+            noticeFilter: tags
         })
     },
 
-    setResourceSort: function(e) {
+    setNoticeSort: function(e) {
         var setting = e.target.id;
-        this.setState({ resourceSort: setting })
+        this.setState({ noticeSort: setting })
     },
 
-    toggleCollection: function() {
+    toggleNotice: function() {
         this.setState({
-            AddNotice: false,
-            AddCollection: !this.state.AddCollection
+            AddCollection: false,
+            AddNotice: !this.state.AddNotice
         })
         return;
     },
 
     render: function() {
-        var resources = SortFilter.sortAndFilter(this.props.resources, this.state.resourceFilter, this.state.resourceSort);
+        var notices = SortFilter.sortAndFilter(this.props.notices, this.state.noticeFilter, this.state.noticeSort);
         var login = this.props.login;
 
         var tagButtons = [];
@@ -76,10 +76,10 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Navbar active = 'resources' login = { login }/>
-                <ResourceHeader />
+                <Navbar active = 'notices' login = { login }/>
+                <NoticeHeader />
 
-                { this.state.AddCollection ? <AddCollection login = { login }/> : null }
+                { this.state.AddNotice ? <AddNotice login = { login }/> : null }
 
                 <div className = 'container'>
                     <div className = 'row'>
@@ -87,38 +87,43 @@ module.exports = React.createClass({
                             <div className = 'holder'>
                                 <h1>
                                     { login.status ?
-                                        <button id = 'addCollectionFormToggle'
+                                        <button id = 'addNoticeFormToggle'
                                             className = 'btn btn-default pull-right'
-                                            onClick = { this.toggleCollection } >Create a Collection
+                                            onClick = { this.toggleNotice } >Post a Notice
                                         </button>
                                         :
-                                        <button id = 'addCollectionFormToggle'
+                                        <button id = 'addNoticeFormToggle'
                                             className = 'btn btn-default pull-right disabled'>
-                                            Login to Create a Collection
+                                            Login to Post a Notice
                                         </button>
                                     }
 
-                                    Resource Collections
+                                    Notices
                                 </h1>
                                 <div className = 'btn-group sort-filter' role = 'group' aria-label='...'>
-                                    <a id = "edit" onClick = { this.setResourceSort } className = 'btn btn-default btn-xs'>
+                                    <a id = "edit" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
                                         <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
                                         Last Edit
                                     </a>
-                                    <a id = "title" onClick = { this.setResourceSort } className = 'btn btn-default btn-xs'>
+                                    <a id = "name" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
                                         <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
                                         Title
                                     </a>
-                                    <a id = "resourceFilter" className = 'btn btn-default btn-xs'>
+                                    <a id = "date" onClick = { this.setNoticeSort } className = 'btn btn-default btn-xs'>
+                                        <span className="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>&nbsp;
+                                        Date
+                                    </a>
+                                    <a id = "noticeFilter" className = 'btn btn-default btn-xs'>
                                         <span className="glyphicon glyphicon-tag" aria-hidden="true"></span>&nbsp;
                                         Filter
                                     </a>
                                 </div>
-                                <div id = "resourceTags" className = 'filter-tags' data-toggle='buttons'>
+
+                                <div id = "noticeTags" className = 'filter-tags' data-toggle='buttons'>
                                     { tagButtons }
                                 </div>
 
-                                <ResourceList resources = { resources } login = { login }/>
+                                <NoticeList notices = { notices } login = { login }/>
                             </div>
                         </div>
                     </div>
