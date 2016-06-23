@@ -6,10 +6,6 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Split resources and notices pages
-* User page: error message if login status is false
-* Google login
-    * Login controller should update database if user chooses a different login mode
-    * Setting up navbar directly in index.html and rendering other pages underneath it may solve Google problems
 * Validation issues
     * Submit button only validates after key entry
     * Return to form validation, optional items should not validate
