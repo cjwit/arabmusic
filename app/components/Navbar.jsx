@@ -5,7 +5,7 @@ module.exports = React.createClass({
     componentDidMount: function() {
         // Facebook login setup
         this.facebookLoginSetup();
-        
+
         // Google login setup
         this.googleLoginSetup();
     },
@@ -65,8 +65,8 @@ module.exports = React.createClass({
     facebookLoginSetup: function() {
         window.fbAsyncInit = function() {
             FB.init({
-                appId      : '509714599153204', // local version
-                // appId      : '503327943125203', // deployed version
+                // appId      : '509714599153204', // local version
+                appId      : '503327943125203', // deployed version
                 cookie     : true,
                 xfbml      : true,
                 version    : 'v2.6'
