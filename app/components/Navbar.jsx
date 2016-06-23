@@ -48,39 +48,31 @@ module.exports = React.createClass({
                     client_id: '579992199870-7pa868n4fmu2p7eof8mftosigfsdh8d1.apps.googleusercontent.com'
                 });
                 var googleAuth = gapi.auth2.getAuthInstance();
-                setTimeout(function () {
-                    console.log('waiting')
+
+                // listen for changes to current user
+                googleAuth.currentUser.listen(function(user) {
                     if (googleAuth.isSignedIn.get()) {
                         console.log('google is logged in, registering the user')
-                        registerGoogleUser();
+                        registerGoogleUser(user);
                     } else {
                         console.log('google is not logged in')
                     }
-                }, 2000);
-
+                })
             });
         };
         startApp();
     },
 
-    registerGoogleUser: function() {
-        // does not reconnect login after google logout
-        var googleAuth = gapi.auth2.getAuthInstance(),
-            googleUser,
-            registerGoogleUserCallback = this.registerGoogleUserCallback;
-
-        if (googleAuth.isSignedIn.get()) {
+    googleLogin: function() {
+        var googleAuth = gapi.auth2.getAuthInstance();
+        var registerGoogleUser = this.registerGoogleUser;
+        googleAuth.signIn().then(function() {
             googleUser = googleAuth.currentUser.get();
-            registerGoogleUserCallback(googleUser);
-        } else {
-            googleAuth.signIn().then(function() {
-                googleUser = googleAuth.currentUser.get();
-                registerGoogleUserCallback(googleUser);
-            });
-        }
+            registerGoogleUser(googleUser);
+        });
     },
 
-    registerGoogleUserCallback: function(googleUser) {
+    registerGoogleUser: function(googleUser) {
         console.log('signed in with', googleUser)
         var token = googleUser.getAuthResponse().id_token;
         var loginObject = {
@@ -90,7 +82,17 @@ module.exports = React.createClass({
         actions.login(loginObject);
     },
 
-    apiCallback: function(response) {
+    googleLogout: function() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut(actions.logout())
+            .then(function () {
+                console.log('User signed out (Google).');
+            });
+        // still not allowing re-login after logout
+        this.googleLoginSetup();
+    },
+
+    facebookApiCallback: function(response) {
         var loginObject = {
             name: response.name,
             providerID: response.id,
@@ -103,7 +105,7 @@ module.exports = React.createClass({
 
     facebookLoginCallback: function(response) {
         if (response.authResponse) {
-            FB.api('/me', { fields: 'name,email,picture' }, this.apiCallback);
+            FB.api('/me', { fields: 'name,email,picture' }, this.facebookApiCallback);
         } else {
             console.log('FB login failed or cancelled');
         }
@@ -116,16 +118,6 @@ module.exports = React.createClass({
     facebookLogout: function() {
         FB.logout(actions.logout());
         console.log('User signed out (Facebook).')
-    },
-
-    googleLogout: function() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut(actions.logout())
-            .then(function () {
-                console.log('User signed out (Google).');
-            });
-        // still not allowing re-login after logout
-        this.googleLoginSetup();
     },
 
     render: function() {
@@ -171,7 +163,7 @@ module.exports = React.createClass({
                 </li>
             googleLoginButton =
                 <li>
-                    <a id = 'googleLoginButton' onClick = { this.registerGoogleUser }>
+                    <a id = 'googleLoginButton' onClick = { this.googleLogin }>
                         <span className="glyphicon zocial-google login-glyph"></span> login
                     </a>
                 </li>
