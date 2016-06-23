@@ -65,6 +65,11 @@ module.exports = React.createClass({
     // change this later to delete based only on ID
     deleteCollection: function(e) {
         e.preventDefault();
+        alert(
+            'At this time, only moderators can delete resource collections. If you would like to flag or delete this collection, email chris.witulski@gmail.com.'
+        );
+
+        /*
         var info = this.state.info;
         info.id = this.props.info._id;
         actions.deleteCollection(info)
@@ -77,6 +82,7 @@ module.exports = React.createClass({
         if (id != null) {
             window.location.href = '/' + folder;
         }
+        */
     },
 
     handleInputChange: function(e) {
