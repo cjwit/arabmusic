@@ -56,32 +56,42 @@ module.exports = React.createClass({
         // validate element to set class
         var element = $("#" + name);
         var condition = false;
+        var toValidate = false;
+
         switch (name) {
             case "name":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
             case "date":
-                condition = typeof value === 'object';
+                condition = $('#date').val().length > 0;
+                toValidate = true;
                 break;
             case "location":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
             case "description":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
             case "contactEmail":
                 var hasAt = value.indexOf('@') !== -1;
                 var hasDot = value.indexOf('.') !== -1;
                 var notEmpty = value.length > 0;
                 condition = hasAt && hasDot && notEmpty;
+                toValidate = true;
                 break;
             default:
                 break;
         }
-        if (condition) {
-            element.parent().removeClass('has-error').addClass('has-success')
-        } else {
-            element.parent().removeClass('has-success').addClass('has-error')
+
+        if (toValidate) {
+            if (condition) {
+                element.parent().removeClass('has-error').addClass('has-success')
+            } else {
+                element.parent().removeClass('has-success').addClass('has-error')
+            }
         }
         this.validateForm();
     },
@@ -92,9 +102,15 @@ module.exports = React.createClass({
             name = this.state.name.length > 0,
             location = this.state.location.length > 0,
             description = this.state.description.length > 0,
+            date = $('#date').val().length > 0;
+
+        var hasAt = $('#contactEmail').val().indexOf('@') !== -1;
+        var hasDot = $('#contactEmail').val().indexOf('.') !== -1;
+        var notEmpty = $('#contactEmail').val().length > 0;
+        var email = hasAt && hasDot && notEmpty;
 
             // allowing submit with invalid email
-            valid = name && location && date && description;
+        var valid = name && location && date && description && email;
         if (valid) {
             submit.prop('disabled', false);
         } else {

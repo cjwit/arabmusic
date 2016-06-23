@@ -66,20 +66,31 @@ module.exports = React.createClass({
         // validate element to set class
         var element = $("#" + name);
         var condition = false;
+        var toValidate = false;
+
         switch (name) {
             case "name":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
             case "description":
                 condition = value.length > 0;
+                toValidate = true;
+                break;
+            case "date":
+                condition = $('#date').val().length > 0;
+                toValidate = true;
                 break;
             default:
                 break;
         }
-        if (condition) {
-            element.parent().removeClass('has-error').addClass('has-success')
-        } else {
-            element.parent().removeClass('has-success').addClass('has-error')
+
+        if (toValidate) {
+            if (condition) {
+                element.parent().removeClass('has-error').addClass('has-success');
+            } else {
+                element.parent().removeClass('has-success').addClass('has-error');
+            }
         }
         this.validateForm();
     },
@@ -89,7 +100,9 @@ module.exports = React.createClass({
         var submit = $('#submit'),
             name = this.state.name.length > 0,
             description = this.state.description.length > 0,
-            valid = name && description;
+            date = $('#date').val().length > 0,
+            valid = name && description && date;
+            
         if (valid) {
             submit.prop('disabled', false);
         } else {

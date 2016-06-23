@@ -67,27 +67,32 @@ module.exports = React.createClass({
         // validate element to set class
         var element = $("#" + name);
         var condition = false;
+        var toValidate = false;
+
         switch (name) {
             case "title":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
             case "description":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
             case "ownerName":
                 condition = value.length > 0;
+                toValidate = true;
                 break;
-            case "link":
-                condition = true;
             default:
                 break;
         }
 
         // should not be validating link at all
-        if (condition) {
-            element.parent().removeClass('has-error').addClass('has-success')
-        } else {
-            element.parent().removeClass('has-success').addClass('has-error')
+        if (toValidate) {
+            if (condition) {
+                element.parent().removeClass('has-error').addClass('has-success')
+            } else {
+                element.parent().removeClass('has-success').addClass('has-error')
+            }
         }
         this.validateForm();
     },
