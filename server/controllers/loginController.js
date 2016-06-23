@@ -21,6 +21,7 @@ function getUser(user, res) {
         editDate: new Date(Date.now())
     };
     User.findOneOrCreate(query, forCreate, function (err, user) {
+        user.provider = forCreate.provider;
         if (err) res.send(err);
         else res.json(user);
     });

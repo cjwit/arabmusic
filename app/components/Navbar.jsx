@@ -15,7 +15,7 @@ module.exports = React.createClass({
 
             FB.getLoginStatus(function(response) {
                 if (response.status === 'connected') {
-                    this.loginCallback(response)
+                    this.facebookLoginCallback(response)
                 } else {
                     actions.logout();
                 }
@@ -31,12 +31,10 @@ module.exports = React.createClass({
         }(document, 'script', 'facebook-jssdk'));
 
         // Google login setup
-        console.log('calling googleLoginSetup')
         this.googleLoginSetup();
     },
 
     googleLoginSetup: function() {
-        console.log('setting up google login. login status:', this.props.login.status);
         var googleUser = {};
         var _this = this;
         var auth2;
@@ -52,10 +50,7 @@ module.exports = React.createClass({
                 // listen for changes to current user
                 googleAuth.currentUser.listen(function(user) {
                     if (googleAuth.isSignedIn.get()) {
-                        console.log('google is logged in, registering the user')
                         registerGoogleUser(user);
-                    } else {
-                        console.log('google is not logged in')
                     }
                 })
             });
@@ -73,7 +68,6 @@ module.exports = React.createClass({
     },
 
     registerGoogleUser: function(googleUser) {
-        console.log('signed in with', googleUser)
         var token = googleUser.getAuthResponse().id_token;
         var loginObject = {
             token: token,
@@ -131,18 +125,20 @@ module.exports = React.createClass({
 
         if (login.status === true) {
             // create logout buttons
-            facebookLogoutButton =
+            var facebookLogoutButton = login.user.provider === 'facebook' ?
                 <li className= 'navlink' id = 'facebookLogoutButton'>
                     <a href="#" onClick = { this.facebookLogout }>
                         <span className="glyphicon zocial-facebook login-glyph"></span> logout
                     </a>
                 </li>
-            googleLogoutButton =
+                : null;
+            googleLogoutButton = login.user.provider === 'google' ?
                 <li>
                     <a id = 'googleLogoutButton' onClick = { this.googleLogout }>
                         <span className="glyphicon zocial-google login-glyph"></span> logout
                     </a>
                 </li>
+                : null;
 
             var photo = login.user.photo || null;
             userHomeLink =
