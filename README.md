@@ -17,5 +17,4 @@ Eventually:
     * Civility and IP disclaimer
     * We only keep publicly available Facebook info...
     * Help with report bug link
-* Concat and uglify CSS and JS libraries
 * Make images responsive
