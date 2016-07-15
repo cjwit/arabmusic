@@ -5,10 +5,9 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Footer does not stretch all the way across the page
 * Terms of Use (in footer?)
     * Civility and IP disclaimer
-    * We only keep publicly available Facebook info...
+    * We only keep publicly available Facebook/Google info...
     * Help with report bug link
 
 Eventually:
@@ -19,3 +18,8 @@ Eventually:
     * We only keep publicly available Facebook info...
     * Help with report bug link
 * Make images responsive
+* Ready for production
+	* Set up real address, CNAME
+	* Remove console.logs from stores
+	* Remove console.logs from navbar logins
+	* Change React version to production, see [minified](https://fb.me/react-minification)
