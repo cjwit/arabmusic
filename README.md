@@ -47,6 +47,7 @@ Next Up
     * Help with report bug link
 	* Login… Submission process… Moderation… Copyright issues (permissions, material submission…)… "Code of conduct"
 * Check functionality of buttons (especially "this" references)
+* Check database to fix incorrect "Levant" tags
 * Set up development environment
 
 Eventually:

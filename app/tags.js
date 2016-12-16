@@ -1,7 +1,7 @@
 var tags = {
     geographic: [
         'North Africa',
-        'Lavant',
+        'Levant',
         'Gulf',
         'Mediterranean',
         'Iran',
@@ -27,6 +27,7 @@ var tags = {
     conceptual: [
         'Islam',
         'Sufism',
+		'Gender',
         'Mass Media',
         'Fundamentalism',
         'Politics',
