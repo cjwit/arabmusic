@@ -7,7 +7,6 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 Next Up
 * Gulp moves very very slowly
 * Directory goes to FAQ
-* Issues loading Talk, Directory
 * Email webmaster with postings
 * Events
 	* Add location as a entry below Location
@@ -15,9 +14,6 @@ Next Up
 * Directory
 	* Can this be sorted by Tag
 	* Allow user to change name, hide info
-* Tags
-	* Who gets to administer these? Could that be replace with a system where the user’s input consists of a few letters.. and then a list of suggestions from a “hidden” pool of tags becomes available? Listing all tags the way they are right now… won’t do it after a while when more and more tags are needed
-	* Spell Levant properly
 * Menu items
 	* Notices:
 		* Call for papers
