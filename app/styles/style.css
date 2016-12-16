@@ -366,3 +366,11 @@ a:visited {
 
 .list .event-contact {
   display: none; }
+
+.faq-question {
+  font-weight: 400; }
+
+.faq-answer {
+  display: none;
+  font-size: 0.8em;
+  padding-left: 20px; }

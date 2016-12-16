@@ -5,6 +5,9 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
+* Gulp moves very very slowly
+* Directory goes to FAQ
+* Issues loading Talk, Resource Collections, Notices, Directory
 * FAQ Section
 	* Terms of Use
     * Civility and IP disclaimer

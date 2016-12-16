@@ -12,6 +12,7 @@ var ResourcePage = require('./components/ResourcePage.jsx');
 var NoticesMain = require('./components/NoticesMain.jsx');
 var NoticePage = require('./components/NoticePage.jsx');
 var User = require('./components/User.jsx');
+var Faq = require('./components/FAQ.jsx');
 
 var eventsStore = require('./stores/eventsStore');
 var postsStore = require('./stores/postsStore');
@@ -121,6 +122,8 @@ function render() {
                 break;
             case 'directory':
                 renderDirectory();
+			case 'faq':
+	            renderFAQ();
             // add default error case
         }
     } else {
@@ -241,6 +244,12 @@ function renderNoticePage(id) {
             login = { login }
             />, document.getElementById('container'));
     }
+}
+
+function renderFAQ() {
+    ReactDOM.render(<Faq
+        login = { login }
+        />, document.getElementById('container'));
 }
 
 // ################

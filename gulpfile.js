@@ -17,6 +17,8 @@ var duration = require('gulp-duration'); // Time aspects of your gulp process
 var sass = require('gulp-sass');
 var concatCSS = require('gulp-concat-css');
 var uglifyCSS = require('gulp-uglifycss');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 // Configuration for Gulp
 var config = {
@@ -100,18 +102,26 @@ gulp.task('default', function() {
   });
 });
 
-/*
-gulp.task('finalize-scripts', function() {
+// Combine jQuery and other scripts into one file
+gulp.task('helperscripts', function() {
     return gulp.src(['app/lib/jquery/dist/jquery.min.js',
                      'app/lib/moment/moment.js',
                      'app/lib/bootstrap/dist/js/bootstrap.min.js',
-                     'app/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-                     'app/main.js'])
-        .pipe(concat('scripts.js'))
+                     'app/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+					 ])
+        .pipe(concat('helperscripts.js'))
         .pipe(gulp.dest('app/dist'))
         .pipe(uglify())
         .pipe(gulp.dest('app/dist'));
 });
+
+gulp.task('update-index', function() {
+    return gulp.src('app/index.html')
+        .pipe(gulp.dest('app/dist'));
+});
+
+
+/*
 
 // creates main.js
 gulp.task('bundle', function() {
@@ -123,11 +133,6 @@ gulp.task('bundle', function() {
         .pipe(source('main.js'))
         .pipe(gulp.dest('app'))
 })
-
-gulp.task('copy', function() {
-    return gulp.src('app/index.html')
-        .pipe(gulp.dest('app/dist'));
-});
 
 gulp.task('default', ['copy',
                       'bundle',
