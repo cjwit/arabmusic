@@ -67,9 +67,10 @@ module.exports = React.createClass({
 
         var tagButtons = [];
         var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+		var toggleNoticeTag = this.toggleNoticeTag
         allTags.map(function(tag, index) {
             tagButtons.push(
-                <label className = 'tag btn btn-default btn-xs' onChange = { this.toggleResourceTag } key = { 'check' + tag }>
+                <label className = 'tag btn btn-default btn-xs' onChange = { toggleNoticeTag } key = { 'check' + tag }>
                     <input type = 'checkbox' name = { tag } autocomplete='off' /> { tag }
                 </label>)
         });
