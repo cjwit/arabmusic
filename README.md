@@ -5,9 +5,6 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
-* Streamline gulpfile.js
-	* concatStyles not set up
-	* watching does not work
 * FAQ Section
 	* Terms of Use
     * Civility and IP disclaimer

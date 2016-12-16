@@ -45,6 +45,27 @@ function mapError(err) {
   }
 }
 
+// convert sass to css (revert to moving to soures instead of dist for production)
+gulp.task('styles', function() {
+    gulp.src('app/*.sass')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('app/styles'));
+	return gulp.src('app/styles/*.css')
+        .pipe(concatCSS('concatStyles.css'))
+        .pipe(gulp.dest('app/dist'))
+        .pipe(uglifyCSS())
+        .pipe(gulp.dest('app/dist'))
+		.pipe(notify({
+		  message: 'Generated file: <%= file.relative %>',
+		})) // Output the file being created
+});
+
+// watch sass conversion, run 'styles' on changes
+gulp.task('watch-sass', function() {
+    gulp.watch('app/*.sass', ['styles'])
+});
+
+
 // Completes the final file outputs
 function bundle(bundler) {
   var bundleTimer = duration('Javascript bundle time');
@@ -65,38 +86,6 @@ function bundle(bundler) {
     .pipe(livereload()); // Reload the view in the browser
 }
 
-// convert sass to css (revert to moving to soures instead of dist for production)
-gulp.task('styles', function() {
-    gulp.src('app/*.sass')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('app/styles'));
-	return gulp.src('app/styles/*.css')
-        .pipe(concatCSS('concatStyles.css'))
-        .pipe(gulp.dest('app/dist'))
-        .pipe(uglifyCSS())
-        .pipe(gulp.dest('app/dist'))
-		.pipe(notify({
-		  message: 'Generated file: <%= file.relative %>',
-		})) // Output the file being created
-
-});
-
-// watch sass conversion, run 'styles' on changes
-gulp.task('watch-sass', function() {
-    gulp.watch('app/*.sass', ['styles'])
-});
-
-// creates main.js
-gulp.task('bundle', function() {
-    return browserify({
-        entries: './app/main.jsx',
-        debug: true
-    }).transform(reactify)
-        .bundle()
-        .pipe(source('main.js'))
-        .pipe(gulp.dest('app'))
-})
-
 // Gulp task for build
 gulp.task('default', function() {
   //livereload.listen(); // Start livereload server, removed to stop watching
@@ -112,18 +101,6 @@ gulp.task('default', function() {
 });
 
 /*
-// convert sass to css
-gulp.task('styles', function() {
-    gulp.src('app/*.sass')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('app/styles'));
-});
-
-// watch sass conversion, run 'styles' on changes
-gulp.task('watch-sass', function() {
-    gulp.watch('app/*.sass', ['styles'])
-});
-
 gulp.task('finalize-scripts', function() {
     return gulp.src(['app/lib/jquery/dist/jquery.min.js',
                      'app/lib/moment/moment.js',
@@ -136,6 +113,16 @@ gulp.task('finalize-scripts', function() {
         .pipe(gulp.dest('app/dist'));
 });
 
+// creates main.js
+gulp.task('bundle', function() {
+    return browserify({
+        entries: './app/main.jsx',
+        debug: true
+    }).transform(reactify)
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('app'))
+})
 
 gulp.task('copy', function() {
     return gulp.src('app/index.html')
