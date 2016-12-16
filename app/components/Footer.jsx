@@ -20,7 +20,8 @@ module.exports = React.createClass({
                     </p>
                     <p>
                         <span id = 'webmaster'>Email <a href = 'mailto:chris.witulski@gmail.com'>chris.witulski@gmail.com</a> with any questions or concerns regarding this page.</span><br/>
-                        <span id = 'webmaster'>Website by <a href = 'http://cjwit.github.io' target = '_blank'>Christopher Witulski</a></span>
+                        <span id = 'webmaster'>Website by <a href = 'http://cjwit.github.io' target = '_blank'>Christopher Witulski</a></span><br/>
+						<span id = 'webmaster'><a href='https://arabesquefoundation.net/' target = '_blank'>© 2016 Arabesque Foundation for Arab Culture</a>, All Rights Reserved</span>
                     </p>
                 </div>
             </div>

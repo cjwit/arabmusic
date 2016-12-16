@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# Account information
+login.txt
+
 # Runtime data
 pids
 *.pid
