@@ -44,7 +44,8 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var users = SortFilter.sortAndFilter(this.props.users, this.state.filterUsers, this.state.sortMethod);
+		console.log('render directory')
+		var users = SortFilter.sortAndFilter(this.props.users, this.state.filterUsers, this.state.sortMethod);
         var login = this.props.login;
 
         var tagButtons = [];
