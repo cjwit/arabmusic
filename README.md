@@ -14,7 +14,7 @@ Next Up
 * Directory
 	* Can this be sorted by Tag
 	* Allow user to change name, hide info
-* Menu items
+* Menu items (add to homepage as tooltip?)
 	* Notices:
 		* Call for papers
 		* Call for submissions

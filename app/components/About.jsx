@@ -19,6 +19,38 @@ module.exports = React.createClass({
                         </p>
                     </div>
                 </div>
+				<div className = 'container'>
+					<div className = 'row'>
+						<div className = 'col-md-12 holder'>
+							<h2>Sections of this Site</h2>
+						</div>
+					</div>
+					<div className = 'row'>
+						<div className = 'col-md-6'>
+							<p className = "about-info">
+								The <strong>"Talk"</strong> page provides a space for questions and answers on topics related to Arab
+								music. Like Quora and other pages, these posts cite your real name, drawn from your login information. We ask that
+								you represent yourself and our community well.
+							</p>
+							<p className = "about-info">
+								The <strong>"Events"</strong> and <strong>"Directory"</strong> pages list news and information about the Arab music
+								community's members and activities.
+							</p>
+						</div>
+						<div className = 'col-md-6'>
+							<p className = "about-info">
+								The organization of this page allows for quick access to different types of material.
+								The <strong>"Resource Collections"</strong> and <strong>"Notices"</strong> tabs contain lists of community-generated collections and
+								announcements regarding calls for presentations, papers, or other submissions.
+							</p>
+							<p className = "about-info">
+								Finally, the <strong>"User"</strong> page, which you can find by clicking on your photo
+								after you log in, allows you to see your own posts, edit your
+								directiory information, and make your listing private.
+							</p>
+						</div>
+					</div>
+				</div>
                 <div className = 'container'>
                     <div className = 'row'>
                         <div className = 'col-md-10 col-md-offset-1 holder'>
@@ -36,43 +68,6 @@ module.exports = React.createClass({
                                 to join that community by posting to the forums, sharing news of your local events
                                 and other notices, and contributing to the collections of resources. If you have
                                 any questions or suggestions about this page, please find contact info below.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className = 'container'>
-                    <div className = 'row'>
-                        <div className = 'col-md-12 holder'>
-                            <h2>Sections of this Site</h2>
-                        </div>
-                    </div>
-                    <div className = 'row'>
-                        <div className = 'col-md-6'>
-                            <p className = "about-info">
-                                The <strong>"Talk"</strong> page provides a space for questions and answers on topics related to Arab
-                                music. Use this space for curteous and supportive answers to questions, debates,
-                                and other types of engagement with the wider community. Like Quora and other pages,
-                                these posts cite your real name, drawn from your login information. We ask that
-                                you represent yourself and our community well.
-                            </p>
-                            <p className = "about-info">
-                                The <strong>"Events"</strong> and <strong>"Directory"</strong> pages list news and information about the Arab music
-                                community's members and activities. Share what you are comfortable sharing and find
-                                new ways to connect with each other, in person or virtually.
-                            </p>
-                        </div>
-                        <div className = 'col-md-6'>
-                            <p className = "about-info">
-                                The organization of this page allows for quick access to different types of material.
-                                The <strong>"Resources and Notices"</strong> tab contains lists of community-generated collections as
-                                well as announcements regarding calls for presentations, papers, or other submissions.
-                                Many of these are academic, but not all. Log in to post your own announcements and
-                                contribute to collections.
-                            </p>
-                            <p className = "about-info">
-                                Finally, the <strong>"SAMR"</strong> page contains information on the Society for Arab Music Research,
-                                an academic organization dedicated to the study of this repertoire. Here you will find
-                                information on that organization and ways to connect with it.
                             </p>
                         </div>
                     </div>
