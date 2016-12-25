@@ -219,11 +219,13 @@ module.exports = React.createClass({
         } else {
             var tagButtons = [];
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+			var toggleTag = this.toggleTag;
+			
             allTags.map(function(tag, index) {
                 var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
-                           onChange = { this.toggleTag }
+                           onChange = { toggleTag }
                            key = { 'check' + tag }>
                         <input type = 'checkbox'
                                name = { tag }

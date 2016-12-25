@@ -60,6 +60,9 @@ module.exports = React.createClass({
                 toggleTag(this.name);
             })
 
+			/*
+			// MAY NOT BE NECESSARY, CAUSING ERROR
+
             $(function () {
                 var datePicker = $('#date');
                 datePicker.datetimepicker({
@@ -67,6 +70,7 @@ module.exports = React.createClass({
                 })
                 datePicker.data('DateTimePicker').date(date)
             });
+			*/
         })
     },
 
@@ -193,11 +197,13 @@ module.exports = React.createClass({
         } else {
             var tagButtons = [];
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+			var toggleTag = this.toggleTag;
+
             allTags.map(function(tag, index) {
                 var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
-                           onChange = { _this.toggleTag }
+                           onChange = { toggleTag }
                            key = { 'check' + tag }>
                         <input type = 'checkbox'
                                name = { tag }
@@ -207,7 +213,7 @@ module.exports = React.createClass({
             });
             return (
                 <div className = 'discussion' id = { id }>
-                    <form onSubmit = { _this.editPost } id = 'editPostForm'>
+                    <form onSubmit = { this.editPost } id = 'editPostForm'>
                         <div className="form-group">
                             <label className = 'control-label' HTMLfor="title">Edit Your Post</label>
                             <input type="text" className="form-control"
@@ -215,14 +221,14 @@ module.exports = React.createClass({
                                    name = 'title'
                                    placeholder="Title"
                                    defaultValue = { props.title }
-                                   onChange = { _this.handleInputChange } />
+                                   onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <textarea className="form-control" rows = "3"
                                       id="content"
                                       name = 'content'
                                       defaultValue = { props.content }
-                                      onChange = { _this.handleInputChange } />
+                                      onChange = { this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <div id = 'tags' class = 'btn-group' data-toggle='buttons'>
@@ -231,7 +237,7 @@ module.exports = React.createClass({
                         </div>
 
                         <button type="submit" className="btn btn-default">Submit</button>&nbsp;
-                        <button className="btn btn-danger" onClick = { _this.closeForm }>Cancel</button>
+                        <button className="btn btn-danger" onClick = { this.closeForm }>Cancel</button>
                     </form>
                 </div>
             )

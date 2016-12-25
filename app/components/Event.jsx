@@ -142,6 +142,8 @@ module.exports = React.createClass({
             }
         })
 
+		var _this = this;
+
         if (!this.state.editing) {
             var contactLink = "mailto:" + props.contactEmail + "?subject=" + props.name;
             return (
@@ -198,12 +200,13 @@ module.exports = React.createClass({
         } else {
 
             var tagButtons = [];
+			var toggleTag = this.toggleTag;
             var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
             allTags.map(function(tag, index) {
                 var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
-                           onChange = { this.toggleTag }
+                           onChange = { toggleTag }
                            key = { 'check' + tag }>
                         <input type = 'checkbox'
                                name = { tag }
