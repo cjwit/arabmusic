@@ -131,7 +131,7 @@ module.exports = React.createClass({
                     <div className = 'user-description'>
                         <strong>
                             <p>
-                                Click the pencil icon to add or edit your displayed name, interests, and other information.
+                                Click the pencil icon to add or edit your name, interests, and other information.
                             </p>
                         </strong>
                     </div>

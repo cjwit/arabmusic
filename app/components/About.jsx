@@ -47,14 +47,13 @@ module.exports = React.createClass({
 								<div className = 'col-md-3'>
 									<p className = "about-info">
 										The <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "Events could include academic conferences, concerts, workshops, or other gatherings and activities that would interest the community."> EVENTS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
-										and <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "The directory only lists information that you allow when you log in using Facebook or Google. You can edit that information from the User tab, after you log in."> DIRECTORY <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
-										pages list news and information about the Arab music community's members and activities.
+										page list news and information about gatherings and activities within the Arab music community.
 									</p>
 								</div>
 								<div className = 'col-md-3'>
 									<p className = "about-info">
 										Finally, the <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "You can edit your public directory information from here. If you prefer that your information does not appear in the directory, use this page to make it private."> USER <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span> page, which you can find by clicking on your photo
-										after you log in, allows you to see your own posts, edit your directiory information, and make your listing private.
+										after you log in, allows you to easily see all of your own posts to the website as a whole.
 									</p>
 								</div>
 							</div>
