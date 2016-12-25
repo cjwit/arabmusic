@@ -102,7 +102,7 @@ module.exports = React.createClass({
             description = this.state.description.length > 0,
             date = $('#date').val().length > 0,
             valid = name && description && date;
-            
+
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -126,9 +126,11 @@ module.exports = React.createClass({
     render: function() {
         var tagButtons = [];
         var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
+		var toggleTag = this.toggleTag;
+
         allTags.map(function(tag, index) {
             tagButtons.push(
-                <label className = 'tag btn btn-default btn-xs' onChange = { this.toggleTag } key = { 'check' + tag }>
+                <label className = 'tag btn btn-default btn-xs' onChange = { toggleTag } key = { 'check' + tag }>
                     <input type = 'checkbox' name = { tag } autocomplete='off' /> { tag }
                 </label>)
         });
