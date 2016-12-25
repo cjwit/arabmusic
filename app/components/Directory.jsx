@@ -44,13 +44,10 @@ module.exports = React.createClass({
     },
 
     render: function() {
-		console.log('render directory')
 		var users = SortFilter.sortAndFilter(this.props.users, this.state.filterUsers, this.state.sortMethod);
         var login = this.props.login;
 
-		console.log('returning directory', users, login);
 		var toggleFilterTag = this.toggleFilterTag;
-
         var tagButtons = [];
         var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
         allTags.map(function(tag, index) {

@@ -16,6 +16,11 @@ Next Up
     * Help with report bug link
 	* Login… Submission process… Moderation… Copyright issues (permissions, material submission…)… "Code of conduct"
 * Check functionality of buttons (especially "this" references)
+	* Edit post, comment (delete works) [Discussion.jsx 199, 68]
+	* Edit event
+	* Edit notice
+	* Render FAQ log, login store logs
+
 * Set up development environment
 
 Eventually:

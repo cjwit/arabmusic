@@ -16,7 +16,6 @@ module.exports = React.createClass({
 	},
 
     render: function() {
-		console.log('render FAQ');
         var login = this.props.login;
 
         return (
