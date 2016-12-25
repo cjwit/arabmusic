@@ -122,9 +122,10 @@ function render() {
                 break;
             case 'directory':
                 renderDirectory();
-			case 'faq':
+				break;
+			case 'faq-page':
 	            renderFAQ();
-            // add default error case
+				break;
         }
     } else {
         switch (folder) {
