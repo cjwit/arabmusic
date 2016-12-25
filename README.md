@@ -14,28 +14,6 @@ Next Up
 * Directory
 	* Can this be sorted by Tag
 	* Allow user to change name, hide info
-* Menu items (add to homepage as tooltip?)
-	* Notices:
-		* Call for papers
-		* Call for submissions
-		* SEM panels
-		* Grant opportunities
-		* Job and internship postings
-		* Book announcements
-	* Events:
-		* Academic conferences
-		* Concerts
-		* Workshops
-	* Resources:
-		* Links to allied organizations (AMAR, MESA, etc.)
-		* Article/paper database
-		* Bibliographies
-		* Discographies
-		* Filmographies
-		* Audio files
-		* Video files/links
-		* Fieldwork photos
-		* Source language materials
 * FAQ Section
 	* Terms of Use
     * Civility and IP disclaimer

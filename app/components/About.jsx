@@ -1,7 +1,12 @@
 var React = require('react');
 
 module.exports = React.createClass({
-    render: function() {
+	componentDidMount: function () {
+        // tooltip setup
+        $("[data-toggle='tooltip']").tooltip();
+    },
+
+	render: function() {
         return (
             <div>
                 <div id = 'about-header' className = 'head'>
@@ -28,27 +33,27 @@ module.exports = React.createClass({
 								<div className = 'col-md-3'>
 									<p className = "about-info">
 										The organization of this page allows for quick access to different types of materials.
-										The <span id = "resources-info" className = "more-info"> RESOURCE COLLECTIONS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
-										and <span id = "notices-info" className = "more-info"> NOTICES <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										The <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "Some examples of resources that you can post or find here include links to allied organizations (AMAR, MESA, etc.); disco-, filmo-, and bibliographies; links to multimedia resources like videos, fieldwork photos, and audio collections; and source language materials."> RESOURCE COLLECTIONS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										and <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "Notices might include calls for papers, panels, submissions, or chapters; news about panels at upcomiming conferences; grant, job, and internship postings; or book announcements."> NOTICES <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
 										tabs contain lists of community-generated collections and news.
 									</p>
 								</div>
 								<div className = 'col-md-3'>
 									<p className = "about-info">
-										The <span id = "talk-info" className = "more-info"> TALK <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										The <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "This site operates as an open forum, though moderators retain the right to remove posts. See the FAQ for more information."> TALK <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
 									 	page provides a space for questions and answers on topics related to Arab music.
 									</p>
 								</div>
 								<div className = 'col-md-3'>
 									<p className = "about-info">
-										The <span id = "events-info" className = "more-info"> EVENTS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
-										and <span id = "directory-info" className = "more-info"> DIRECTORY <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										The <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "Events could include academic conferences, concerts, workshops, or other gatherings and activities that would interest the community."> EVENTS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										and <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "The directory only lists information that you allow when you log in using Facebook or Google. You can edit that information from the User tab, after you log in."> DIRECTORY <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
 										pages list news and information about the Arab music community's members and activities.
 									</p>
 								</div>
 								<div className = 'col-md-3'>
 									<p className = "about-info">
-										Finally, the <span id = "notices-info" className = "more-info"> USER </span> page, which you can find by clicking on your photo
+										Finally, the <span className = "more-info" data-toggle = "tooltip" data-placement = "bottom" title = "You can edit your public directory information from here. If you prefer that your information does not appear in the directory, use this page to make it private."> USER <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span> page, which you can find by clicking on your photo
 										after you log in, allows you to see your own posts, edit your directiory information, and make your listing private.
 									</p>
 								</div>
