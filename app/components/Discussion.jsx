@@ -148,6 +148,7 @@ module.exports = React.createClass({
             }
         })
 
+		var _this = this;
 
         if (!this.state.editing) {
             return (
@@ -196,7 +197,7 @@ module.exports = React.createClass({
                 var preChecked = (props.tags.indexOf(tag) !== -1)
                 tagButtons.push(
                     <label className = { preChecked ? 'tag btn btn-default btn-xs active' : 'tag btn btn-default btn-xs' }
-                           onChange = { this.toggleTag }
+                           onChange = { _this.toggleTag }
                            key = { 'check' + tag }>
                         <input type = 'checkbox'
                                name = { tag }
@@ -206,7 +207,7 @@ module.exports = React.createClass({
             });
             return (
                 <div className = 'discussion' id = { id }>
-                    <form onSubmit = { this.editPost } id = 'editPostForm'>
+                    <form onSubmit = { _this.editPost } id = 'editPostForm'>
                         <div className="form-group">
                             <label className = 'control-label' HTMLfor="title">Edit Your Post</label>
                             <input type="text" className="form-control"
@@ -214,14 +215,14 @@ module.exports = React.createClass({
                                    name = 'title'
                                    placeholder="Title"
                                    defaultValue = { props.title }
-                                   onChange = { this.handleInputChange } />
+                                   onChange = { _this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <textarea className="form-control" rows = "3"
                                       id="content"
                                       name = 'content'
                                       defaultValue = { props.content }
-                                      onChange = { this.handleInputChange } />
+                                      onChange = { _this.handleInputChange } />
                         </div>
                         <div className="form-group">
                             <div id = 'tags' class = 'btn-group' data-toggle='buttons'>
@@ -230,7 +231,7 @@ module.exports = React.createClass({
                         </div>
 
                         <button type="submit" className="btn btn-default">Submit</button>&nbsp;
-                        <button className="btn btn-danger" onClick = { this.closeForm }>Cancel</button>
+                        <button className="btn btn-danger" onClick = { _this.closeForm }>Cancel</button>
                     </form>
                 </div>
             )

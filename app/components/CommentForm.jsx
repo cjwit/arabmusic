@@ -33,7 +33,7 @@ module.exports = React.createClass({
 
     addComment: function(e) {
         e.preventDefault();
-        comment = this.state.comment
+        var comment = this.state.comment
         comment.edited = false;
         var now = new Date(Date.now());
         comment.editDate = now;
