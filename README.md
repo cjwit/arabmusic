@@ -6,8 +6,8 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Email webmaster with postings
+	* Earliest steps working in eventController
 * Events
-	* Add location as a entry below Location
 	* Can u add a field for a URL in the “events” section
 * FAQ Section
 	* Terms of Use
@@ -15,12 +15,6 @@ Next Up
     * We only keep publicly available Facebook/Google info...
     * Help with report bug link
 	* Login… Submission process… Moderation… Copyright issues (permissions, material submission…)… "Code of conduct"
-* Check functionality of buttons (especially "this" references)
-	* Edit post, comment (delete works) [Discussion.jsx 199, 68]
-	* Edit event
-	* Edit notice
-
-* Set up development environment
 
 Eventually:
 * Directory

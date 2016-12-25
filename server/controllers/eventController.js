@@ -6,11 +6,43 @@ var router = require('express').Router();
 router.route('/:id').post(editEvent).delete(deleteEvent);
 router.route('/').get(getEvents).post(addEvent);
 
+// nodemailer
+var nodemailer = require('nodemailer');
+var smtpConfig = {
+	host: 'smtp.gmail.com',
+	port: 465,
+	secure: true,
+	auth: {
+		user: 'amr.notify@gmail.com',
+		pass: process.env.EMAIL_PASSWORD
+	}
+};
+var transporter = nodemailer.createTransport(smtpConfig);
+transporter.verify(function(err, success) {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log('Email server ready...');
+	}
+})
+
+// App functions
 function getEvents(req, res) {
     Event.find(function (err, events) {
         if (err) res.send(err);
         else res.json(events);
     });
+
+	var mailData = {
+		from: 'amr.notify@gmail.com',
+		to: 'chris.witulski@gmail.com',
+		subject: '[AMR] Update',
+		text: 'Someone looked for events.'
+	}
+
+	console.log('Prepping email...');
+	transporter.sendMail(mailData);
+	console.log('Sent email...');
 }
 
 function addEvent(req, res) {

@@ -24,6 +24,7 @@
     "jquery": "^2.2.3",
     "mongoose": "^4.4.13",
     "mongoose-find-one-or-create": "^0.2.0",
+    "nodemailer": "^2.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "react": "^15.0.1",
