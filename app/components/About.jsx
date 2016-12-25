@@ -4,50 +4,55 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div>
-                <div id = 'about-header' className = 'head row'>
-                    <div className = 'col-md-8 col-md-offset-2 holder'>
-                        <h1>Arab Music Research</h1>
-                        <p>
-                            Welcome to the online home of the Arab music community. This page serves
-                            lovers of the Arab world's wealth of music as a place where they can come together
-                            to share news, conversation, and resources.
-                        </p>
-                        <p>
-                            Thanks to the support of the Arabesque Foundation for Arab Culture, this site can
-                            serve listeners, performers, scholars, and any others who desire to explore
-                            these sounds.
-                        </p>
-                    </div>
+                <div id = 'about-header' className = 'head'>
+					<div className = 'row'>
+						<div className = 'col-md-8 col-md-offset-2 holder'>
+							<h1>Arab Music Research</h1>
+							<p>
+								Welcome to the online home of the Arab music community. This page serves
+								lovers of the Arab world's wealth of music as a place where they can come together
+								to share news, conversation, and resources.
+							</p>
+							<p>
+								Thanks to the support of the Arabesque Foundation for Arab Culture, this site can
+								serve listeners, performers, scholars, and any others who desire to explore
+								these sounds.
+							</p>
+						</div>
+					</div>
                 </div>
 				<div className = 'container'>
 					<div className = 'row'>
 						<div className = 'col-md-12 holder'>
-							<h2>Sections of this Site</h2>
-						</div>
-					</div>
-					<div className = 'row'>
-						<div className = 'col-md-6'>
-							<p className = "about-info">
-								The <strong>"Talk"</strong> page provides a space for questions and answers on topics related to Arab
-								music. Like Quora and other pages, these posts cite your real name, drawn from your login information. We ask that
-								you represent yourself and our community well.
-							</p>
-							<p className = "about-info">
-								The <strong>"Events"</strong> and <strong>"Directory"</strong> pages list news and information about the Arab music
-								community's members and activities.
-							</p>
-						</div>
-						<div className = 'col-md-6'>
-							<p className = "about-info">
-								The organization of this page allows for quick access to different types of material.
-								The <strong>"Resource Collections"</strong> and <strong>"Notices"</strong> tabs contain lists of community-generated collections and
-								announcements regarding calls for presentations, papers, or other submissions.
-							</p>
-							<p className = "about-info">
-								Finally, the <strong>"User"</strong> page, which you can find by clicking on your photo
-								after you log in, allows you to see your own posts, edit your
-								directiory information, and make your listing private.
-							</p>
+							<div className = 'row'>
+								<div className = 'col-md-3'>
+									<p className = "about-info">
+										The organization of this page allows for quick access to different types of materials.
+										The <span id = "resources-info" className = "more-info"> RESOURCE COLLECTIONS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										and <span id = "notices-info" className = "more-info"> NOTICES <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										tabs contain lists of community-generated collections and news.
+									</p>
+								</div>
+								<div className = 'col-md-3'>
+									<p className = "about-info">
+										The <span id = "talk-info" className = "more-info"> TALK <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+									 	page provides a space for questions and answers on topics related to Arab music.
+									</p>
+								</div>
+								<div className = 'col-md-3'>
+									<p className = "about-info">
+										The <span id = "events-info" className = "more-info"> EVENTS <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										and <span id = "directory-info" className = "more-info"> DIRECTORY <span className="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> </span>
+										pages list news and information about the Arab music community's members and activities.
+									</p>
+								</div>
+								<div className = 'col-md-3'>
+									<p className = "about-info">
+										Finally, the <span id = "notices-info" className = "more-info"> USER </span> page, which you can find by clicking on your photo
+										after you log in, allows you to see your own posts, edit your directiory information, and make your listing private.
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
