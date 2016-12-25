@@ -19,7 +19,6 @@ Next Up
 	* Edit post, comment (delete works) [Discussion.jsx 199, 68]
 	* Edit event
 	* Edit notice
-	* Render FAQ log, login store logs
 
 * Set up development environment
 
