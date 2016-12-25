@@ -48,14 +48,18 @@ module.exports = React.createClass({
 		var users = SortFilter.sortAndFilter(this.props.users, this.state.filterUsers, this.state.sortMethod);
         var login = this.props.login;
 
+		console.log('returning directory', users, login);
+		var toggleFilterTag = this.toggleFilterTag;
+
         var tagButtons = [];
         var allTags = tags.geographic.concat(tags.musical).concat(tags.conceptual);
         allTags.map(function(tag, index) {
             tagButtons.push(
-                <label className = 'tag btn btn-default btn-xs' onChange = { this.toggleFilterTag } key = { 'check' + tag }>
+                <label className = 'tag btn btn-default btn-xs' onChange = { toggleFilterTag } key = { 'check' + tag }>
                     <input type = 'checkbox' name = { tag } autocomplete='off' /> { tag }
                 </label>)
         });
+
 
         return (
             <div>
