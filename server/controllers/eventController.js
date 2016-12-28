@@ -61,10 +61,10 @@ function editEvent(req, res) {
     var info = req.body;
 
 	mailData.subject = '[AMR] Event edited';
-	mailData.text = event.owner + ' updated an event called ' + event.name + '\r\n' +
-		'Date: ' + event.date.toLocaleString() + '\r\n' +
-		'Location: ' + event.location + '\r\n' +
-		'Description: ' + event.description + '\r\n' +
+	mailData.text = info.owner + ' updated an event called ' + info.name + '\r\n' +
+		'Date: ' + info.date.toLocaleString() + '\r\n' +
+		'Location: ' + info.location + '\r\n' +
+		'Description: ' + info.description + '\r\n' +
 		'Other information may be available on the site.'
 	transporter.sendMail(mailData);
 
