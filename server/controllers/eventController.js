@@ -44,7 +44,7 @@ function addEvent(req, res) {
 
 	mailData.subject = '[AMR] Event created';
 	mailData.text = 'New event called ' + event.name + '\r\n' +
-		'Date: ' + event.date.toLocaleDateString() + '\r\n' +
+		'Date: ' + event.date + '\r\n' +
 		'Location: ' + event.location + '\r\n' +
 		'Description: ' + event.description + '\r\n' +
 		'Owner ID: ' + event.owner + '\r\n' +
@@ -63,7 +63,7 @@ function editEvent(req, res) {
 
 	mailData.subject = '[AMR] Event edited';
 	mailData.text = info.name + ' updated.' + '\r\n' +
-		'Date: ' + info.date.toLocaleDateString() + '\r\n' +
+		'Date: ' + info.date + '\r\n' +
 		'Location: ' + info.location + '\r\n' +
 		'Description: ' + info.description + '\r\n' +
 		'Owner ID: ' + info.owner + '\r\n' +
