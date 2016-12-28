@@ -93,7 +93,7 @@ function deleteEvent(req, res) {
     var id = req.params.id;
 
 	mailData.subject = '[AMR] Event deleted';
-	mailData.text = info.owner + ' deleted event ID ' + id;
+	mailData.text = 'An event was deleted. ID: ' + id;
 	transporter.sendMail(mailData);
 
     Event.remove({ _id: id }, function (err, removed) {
