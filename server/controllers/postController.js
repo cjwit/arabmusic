@@ -66,10 +66,10 @@ function editPost(req, res) {
 
 	mailData.subject = '[AMR] Post edited';
 	mailData.text = 'New post' + '\r\n' +
-		'Date: ' + post.date + '\r\n' +
-		'Title: ' + post.title + '\r\n' +
-		'Content: ' + post.content + '\r\n' +
-		'Owner Name: ' + post.ownerName + '\r\n' +
+		'Date: ' + info.date + '\r\n' +
+		'Title: ' + info.title + '\r\n' +
+		'Content: ' + info.content + '\r\n' +
+		'Owner Name: ' + info.ownerName + '\r\n' +
 		'Other information may be available on the site.' + '\r\n' +
 		'http://www.arabmusicresearch.org/discussions/' + id;
 	transporter.sendMail(mailData);
@@ -122,19 +122,22 @@ function addComment(req, res) {
 }
 
 function editComment(req, res) {
-    var query = { '_id': req.body.discussionID,
-                  'comments.comment.id': req.body.comment.id };
+	var id = req.body.discussionID;
+	var comment = req.body.comment;
+
+    var query = { '_id': id,
+                  'comments.comment.id': comment.id };
     var update = { $set: {
-                   'comments.$.comment.content': req.body.comment.content,
-                   'comments.$.comment.edited': req.body.comment.edited,
-                   'comments.$.comment.editDate': req.body.comment.editDate }}
+                   'comments.$.comment.content': comment.content,
+                   'comments.$.comment.edited': comment.edited,
+                   'comments.$.comment.editDate': comment.editDate }}
 
 	mailData.subject = '[AMR] Comment edited';
 		mailData.text = 'Comment edit' + '\r\n' +
-			'Content: ' + req.body.comment.content + '\r\n' +
-			'Owner Name: ' + req.body.comment.ownerName + '\r\n' +
+			'Content: ' + comment.content + '\r\n' +
+			'Owner Name: ' + comment.ownerName + '\r\n' +
 			'Other information may be available on the site.' + '\r\n' +
-			'http://www.arabmusicresearch.org/discussions/' + req.body.discussionID;
+			'http://www.arabmusicresearch.org/discussions/' + id;
 	transporter.sendMail(mailData);
 
 	Post.findOneAndUpdate(query, update, function (err, updated) {
@@ -150,7 +153,7 @@ function deleteComment(req, res) {
 
 	mailData.subject = '[AMR] Comment deleted';
 	mailData.text = 'An comment was deleted from the following post.' + '\r\n' +
-		'http://www.arabmusicresearch.org/discussions/' + req.body.discussionID;
+		'http://www.arabmusicresearch.org/discussions/' + id;
 	transporter.sendMail(mailData);
 
     Post.update(query, update, function (err, updated) {
