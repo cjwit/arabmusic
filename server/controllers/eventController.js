@@ -43,10 +43,11 @@ function addEvent(req, res) {
     var event = new Event(_.extend({}, req.body));
 
 	mailData.subject = '[AMR] Event created';
-	mailData.text = event.owner + ' created an event called ' + event.name + '\r\n' +
-		'Date: ' + event.date.toLocaleString() + '\r\n' +
+	mailData.text = 'New event called ' + event.name + '\r\n' +
+		'Date: ' + event.date.toLocaleDateString() + '\r\n' +
 		'Location: ' + event.location + '\r\n' +
 		'Description: ' + event.description + '\r\n' +
+		'Owner ID: ' + event.owner + '\r\n' +
 		'Other information may be available on the site.'
 	transporter.sendMail(mailData);
 
@@ -61,11 +62,13 @@ function editEvent(req, res) {
     var info = req.body;
 
 	mailData.subject = '[AMR] Event edited';
-	mailData.text = info.owner + ' updated an event called ' + info.name + '\r\n' +
-		'Date: ' + info.date.toLocaleString() + '\r\n' +
+	mailData.text = info.name + ' updated.' + '\r\n' +
+		'Date: ' + info.date.toLocaleDateString() + '\r\n' +
 		'Location: ' + info.location + '\r\n' +
 		'Description: ' + info.description + '\r\n' +
-		'Other information may be available on the site.'
+		'Owner ID: ' + info.owner + '\r\n' +
+		'Other information may be available on the site.' + '\r\n' +
+		'http://www.arabmusicresearch.org/events/' + id;
 	transporter.sendMail(mailData);
 
     var query = { _id: id },
