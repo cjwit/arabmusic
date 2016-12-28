@@ -44,7 +44,7 @@ function addEvent(req, res) {
 
 	mailData.subject = '[AMR] Event created';
 	mailData.text = event.owner + ' created an event called ' + event.name + '\r\n' +
-		'Date: ' + event.date.toLocalString() + '\r\n' +
+		'Date: ' + event.date.toLocaleString() + '\r\n' +
 		'Location: ' + event.location + '\r\n' +
 		'Description: ' + event.description + '\r\n' +
 		'Other information may be available on the site.'
