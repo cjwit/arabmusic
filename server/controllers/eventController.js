@@ -26,27 +26,30 @@ transporter.verify(function(err, success) {
 	}
 })
 
+var mailData = {
+	from: 'amr.notify@gmail.com',
+	to: 'chris.witulski@gmail.com'
+}
+
 // App functions
 function getEvents(req, res) {
     Event.find(function (err, events) {
         if (err) res.send(err);
         else res.json(events);
     });
-
-	var mailData = {
-		from: 'amr.notify@gmail.com',
-		to: 'chris.witulski@gmail.com',
-		subject: '[AMR] Update',
-		text: 'Someone looked for events.'
-	}
-
-	console.log('Prepping email...');
-	transporter.sendMail(mailData);
-	console.log('Sent email...');
 }
 
 function addEvent(req, res) {
     var event = new Event(_.extend({}, req.body));
+
+	mailData.subject = '[AMR] Event created';
+	mailData.text = event.owner + ' created an event called ' + event.name + '\r\n' +
+		'Date: ' + event.date.toLocalString() + '\r\n' +
+		'Location: ' + event.location + '\r\n' +
+		'Description: ' + event.description + '\r\n' +
+		'Other information may be available on the site.'
+	transporter.sendMail(mailData);
+
     event.save(function (err) {
         if (err) res.send(err);
         else res.json(event);
@@ -56,6 +59,15 @@ function addEvent(req, res) {
 function editEvent(req, res) {
     var id = req.params.id;
     var info = req.body;
+
+	mailData.subject = '[AMR] Event edited';
+	mailData.text = event.owner + ' updated an event called ' + event.name + '\r\n' +
+		'Date: ' + event.date.toLocalString() + '\r\n' +
+		'Location: ' + event.location + '\r\n' +
+		'Description: ' + event.description + '\r\n' +
+		'Other information may be available on the site.'
+	transporter.sendMail(mailData);
+
     var query = { _id: id },
         update = { $set: {
             name: info.name,
@@ -76,6 +88,11 @@ function editEvent(req, res) {
 
 function deleteEvent(req, res) {
     var id = req.params.id;
+
+	mailData.subject = '[AMR] Event deleted';
+	mailData.text = info.owner + ' deleted event ID ' + id;
+	transporter.sendMail(mailData);
+
     Event.remove({ _id: id }, function (err, removed) {
         if (err) res.send(err);
         else res.json(removed);
