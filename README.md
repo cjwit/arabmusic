@@ -6,7 +6,8 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Email webmaster with postings
-	* Earliest steps working in eventController
+	* Finish email functions in resource, user.
+	* Add other emails
 * Events
 	* Can u add a field for a URL in the “events” section
 * FAQ Section
