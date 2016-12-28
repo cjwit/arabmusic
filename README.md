@@ -8,6 +8,8 @@ Next Up
 * Email webmaster with postings
 	* Finish email functions in resource, user.
 	* Add other emails
+	* hichamchami@gmail.com
+	* Change AMR to [AMR.org]
 * Events
 	* Can u add a field for a URL in the “events” section
 * FAQ Section
