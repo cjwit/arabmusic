@@ -9,6 +9,32 @@ router.route('/items/edit/').post(editItem);
 router.route('/:id').post(editCollection).delete(deleteCollection);
 router.route('/').get(getResources).post(addCollection);
 
+// nodemailer
+var nodemailer = require('nodemailer');
+var smtpConfig = {
+	host: 'smtp.gmail.com',
+	port: 465,
+	secure: true,
+	auth: {
+		user: 'amr.notify@gmail.com',
+		pass: process.env.EMAIL_PASSWORD
+	}
+};
+var transporter = nodemailer.createTransport(smtpConfig);
+transporter.verify(function(err, success) {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log('Email server ready...');
+	}
+})
+
+var mailData = {
+	from: 'amr.notify@gmail.com',
+	to: 'chris.witulski@gmail.com'
+}
+
+// App functions
 function getResources(req, res) {
     Resource.find(function (err, resources) {
         if (err) res.send(err);
@@ -18,6 +44,14 @@ function getResources(req, res) {
 
 function addCollection(req, res) {
     var collection = new Resource(_.extend({}, req.body));
+
+	mailData.subject = '[AMR] New resource collection';
+	mailData.text = 'New resource collection' + '\r\n' +
+		'Title: ' + collection.title + '\r\n' +
+		'Owner Name: ' + collection.ownerName + '\r\n' +
+		'Other information may be available on the site.'
+	transporter.sendMail(mailData);
+
     collection.save(function (err) {
         if (err) res.send(err);
         else res.json(collection);
@@ -38,6 +72,15 @@ function editCollection(req, res) {
             edited: info.edited,
             editDate: info.editDate
         }};
+
+	mailData.subject = '[AMR] Resource collection edited';
+	mailData.text = 'Resource collection edited' + '\r\n' +
+		'Title: ' + collection.title + '\r\n' +
+		'Owner Name: ' + collection.ownerName + '\r\n' +
+		'Other information may be available on the site.' + '\r\n' +
+		'http://www.arabmusicresearch.org/resources/' + id;
+	transporter.sendMail(mailData);
+
     Resource.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
@@ -46,6 +89,11 @@ function editCollection(req, res) {
 
 function deleteCollection(req, res) {
     var id = req.params.id;
+
+	mailData.subject = '[AMR] Resource collection deleted';
+	mailData.text = 'A resource collection was deleted. ID: ' + id;
+	transporter.sendMail(mailData);
+
     Resource.remove({ _id: id }, function (err, removed) {
         if (err) res.send(err);
         else res.json(removed);
@@ -54,8 +102,18 @@ function deleteCollection(req, res) {
 
 function addItem(req, res) {
     var id = req.body.collectionID;
+	var item = req.body.item;
     var query = { _id: id },
-        update = { $push: { items: req.body }}
+        update = { $push: { items: req.body }};
+
+	mailData.subject = '[AMR] New resource item';
+	mailData.text = 'New resource item' + '\r\n' +
+		'Title: ' + item.title + '\r\n' +
+		'Description: ' + item.description + '\r\n' +
+		'Other information may be available on the site.' + '\r\n' +
+		'http://www.arabmusicresearch.org/resources/' + id;
+	transporter.sendMail(mailData);
+
     Resource.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
@@ -73,8 +131,18 @@ function editItem(req, res) {
                    'items.$.item.description': req.body.item.description,
                    'items.$.item.edited': req.body.item.edited,
                    'items.$.item.date': req.body.item.date,
-                   'items.$.item.editDate': req.body.item.editDate }}
-    Resource.findOneAndUpdate(query, update, { upsert: true, 'new': true }, function (err, updated) {
+                   'items.$.item.editDate': req.body.item.editDate }};
+	var item = req.body.item;
+
+	mailData.subject = '[AMR] Resource item edited';
+   	mailData.text = 'Resource item edited' + '\r\n' +
+   		'Title: ' + item.title + '\r\n' +
+   		'Description: ' + item.description + '\r\n' +
+   		'Other information may be available on the site.' + '\r\n' +
+   		'http://www.arabmusicresearch.org/resources/' + id;
+   	transporter.sendMail(mailData);
+
+	Resource.findOneAndUpdate(query, update, { upsert: true, 'new': true }, function (err, updated) {
         if (err) res.send(err);
         else {
             res.json(updated);
@@ -85,7 +153,14 @@ function editItem(req, res) {
 function deleteItem(req, res) {
     var query = { _id: req.body.collectionID },
         update = { $pull: { items: {'item.id': req.body.item.id }}}
-    Resource.update(query, update, function (err, updated) {
+	var id = req.body.collectionID;
+
+	mailData.subject = '[AMR] Resource item deleted';
+	mailData.text = 'A resource item was deleted from the following collection.' + '\r\n' +
+		'http://www.arabmusicresearch.org/resources/' + id;
+	transporter.sendMail(mailData);
+
+	Resource.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
     })
