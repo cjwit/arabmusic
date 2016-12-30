@@ -75,8 +75,8 @@ function editCollection(req, res) {
 
 	mailData.subject = '[AMR] Resource collection edited';
 	mailData.text = 'Resource collection edited' + '\r\n' +
-		'Title: ' + collection.title + '\r\n' +
-		'Owner Name: ' + collection.ownerName + '\r\n' +
+		'Title: ' + info.title + '\r\n' +
+		'Owner Name: ' + info.ownerName + '\r\n' +
 		'Other information may be available on the site.' + '\r\n' +
 		'http://www.arabmusicresearch.org/resources/' + id;
 	transporter.sendMail(mailData);
@@ -133,6 +133,7 @@ function editItem(req, res) {
                    'items.$.item.date': req.body.item.date,
                    'items.$.item.editDate': req.body.item.editDate }};
 	var item = req.body.item;
+	var id = req.body.collectionID;
 
 	mailData.subject = '[AMR] Resource item edited';
    	mailData.text = 'Resource item edited' + '\r\n' +
