@@ -34,7 +34,7 @@ function getNotices(req, res) {
 function addNotice(req, res) {
     var notice = new Notice(_.extend({}, req.body));
 
-	mailData.subject = '[AMR] Notice created';
+	mailData.subject = '[AMR.org] Notice created';
 	mailData.text = 'New notice called ' + notice.name + '\r\n' +
 		'Description: ' + notice.description + '\r\n' +
 		'Owner ID: ' + notice.owner + '\r\n' +
@@ -51,7 +51,7 @@ function editNotice(req, res) {
     var id = req.params.id;
     var info = req.body;
 
-	mailData.subject = '[AMR] Notice edited';
+	mailData.subject = '[AMR.org] Notice edited';
 	mailData.text = 'Notice edited.' + '\r\n' +
 		'Name: ' + info.name + '\r\n' +
 		'Description: ' + info.description + '\r\n' +
@@ -80,7 +80,7 @@ function editNotice(req, res) {
 function deleteNotice(req, res) {
     var id = req.params.id;
 
-	mailData.subject = '[AMR] Notice deleted';
+	mailData.subject = '[AMR.org] Notice deleted';
 	mailData.text = 'A notice was deleted. ID: ' + id;
 	transporter.sendMail(mailData);
 

@@ -34,7 +34,7 @@ function getEvents(req, res) {
 function addEvent(req, res) {
     var event = new Event(_.extend({}, req.body));
 
-	mailData.subject = '[AMR] Event created';
+	mailData.subject = '[AMR.org] Event created';
 	mailData.text = 'New event called ' + event.name + '\r\n' +
 		'Date: ' + event.date + '\r\n' +
 		'Location: ' + event.location + '\r\n' +
@@ -53,7 +53,7 @@ function editEvent(req, res) {
     var id = req.params.id;
     var info = req.body;
 
-	mailData.subject = '[AMR] Event edited';
+	mailData.subject = '[AMR.org] Event edited';
 	mailData.text = info.name + ' updated.' + '\r\n' +
 		'Date: ' + info.date + '\r\n' +
 		'Location: ' + info.location + '\r\n' +
@@ -84,7 +84,7 @@ function editEvent(req, res) {
 function deleteEvent(req, res) {
     var id = req.params.id;
 
-	mailData.subject = '[AMR] Event deleted';
+	mailData.subject = '[AMR.org] Event deleted';
 	mailData.text = 'An event was deleted. ID: ' + id;
 	transporter.sendMail(mailData);
 

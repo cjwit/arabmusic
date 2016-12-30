@@ -37,7 +37,7 @@ function getResources(req, res) {
 function addCollection(req, res) {
     var collection = new Resource(_.extend({}, req.body));
 
-	mailData.subject = '[AMR] New resource collection';
+	mailData.subject = '[AMR.org] New resource collection';
 	mailData.text = 'New resource collection' + '\r\n' +
 		'Title: ' + collection.title + '\r\n' +
 		'Owner Name: ' + collection.ownerName + '\r\n' +
@@ -65,7 +65,7 @@ function editCollection(req, res) {
             editDate: info.editDate
         }};
 
-	mailData.subject = '[AMR] Resource collection edited';
+	mailData.subject = '[AMR.org] Resource collection edited';
 	mailData.text = 'Resource collection edited' + '\r\n' +
 		'Title: ' + info.title + '\r\n' +
 		'Owner Name: ' + info.ownerName + '\r\n' +
@@ -82,7 +82,7 @@ function editCollection(req, res) {
 function deleteCollection(req, res) {
     var id = req.params.id;
 
-	mailData.subject = '[AMR] Resource collection deleted';
+	mailData.subject = '[AMR.org] Resource collection deleted';
 	mailData.text = 'A resource collection was deleted. ID: ' + id;
 	transporter.sendMail(mailData);
 
@@ -98,7 +98,7 @@ function addItem(req, res) {
     var query = { _id: id },
         update = { $push: { items: req.body }};
 
-	mailData.subject = '[AMR] New resource item';
+	mailData.subject = '[AMR.org] New resource item';
 	mailData.text = 'New resource item' + '\r\n' +
 		'Title: ' + item.title + '\r\n' +
 		'Description: ' + item.description + '\r\n' +
@@ -127,7 +127,7 @@ function editItem(req, res) {
 	var item = req.body.item;
 	var id = req.body.collectionID;
 
-	mailData.subject = '[AMR] Resource item edited';
+	mailData.subject = '[AMR.org] Resource item edited';
    	mailData.text = 'Resource item edited' + '\r\n' +
    		'Title: ' + item.title + '\r\n' +
    		'Description: ' + item.description + '\r\n' +
@@ -148,7 +148,7 @@ function deleteItem(req, res) {
         update = { $pull: { items: {'item.id': req.body.item.id }}}
 	var id = req.body.collectionID;
 
-	mailData.subject = '[AMR] Resource item deleted';
+	mailData.subject = '[AMR.org] Resource item deleted';
 	mailData.text = 'A resource item was deleted from the following collection.' + '\r\n' +
 		'http://www.arabmusicresearch.org/resources/' + id;
 	transporter.sendMail(mailData);

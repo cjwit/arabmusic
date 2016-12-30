@@ -37,7 +37,7 @@ function getPosts(req, res) {
 function addPost(req, res) {
     var post = new Post(_.extend({}, req.body));
 
-	mailData.subject = '[AMR] New post';
+	mailData.subject = '[AMR.org] New post';
 	mailData.text = 'New post' + '\r\n' +
 		'Date: ' + post.date + '\r\n' +
 		'Title: ' + post.title + '\r\n' +
@@ -56,7 +56,7 @@ function editPost(req, res) {
     var id = req.params.id;
     var info = req.body;
 
-	mailData.subject = '[AMR] Post edited';
+	mailData.subject = '[AMR.org] Post edited';
 	mailData.text = 'New post' + '\r\n' +
 		'Date: ' + info.date + '\r\n' +
 		'Title: ' + info.title + '\r\n' +
@@ -84,7 +84,7 @@ function editPost(req, res) {
 function deletePost(req, res) {
     var id = req.params.id;
 
-	mailData.subject = '[AMR] Post deleted';
+	mailData.subject = '[AMR.org] Post deleted';
 	mailData.text = 'An post was deleted. ID: ' + id;
 	transporter.sendMail(mailData);
 
@@ -99,7 +99,7 @@ function addComment(req, res) {
     var query = { _id: id },
         update = { $push: { comments: req.body }}
 
-		mailData.subject = '[AMR] New comment';
+		mailData.subject = '[AMR.org] New comment';
 		mailData.text = 'New comment' + '\r\n' +
 			'Content: ' + req.body.comment.content + '\r\n' +
 			'Owner Name: ' + req.body.comment.ownerName + '\r\n' +
@@ -124,7 +124,7 @@ function editComment(req, res) {
                    'comments.$.comment.edited': comment.edited,
                    'comments.$.comment.editDate': comment.editDate }}
 
-	mailData.subject = '[AMR] Comment edited';
+	mailData.subject = '[AMR.org] Comment edited';
 		mailData.text = 'Comment edit' + '\r\n' +
 			'Content: ' + comment.content + '\r\n' +
 			'Owner Name: ' + comment.ownerName + '\r\n' +
@@ -143,7 +143,7 @@ function deleteComment(req, res) {
     var query = { _id: id },
         update = { $pull: { comments: {'comment.id': req.body.comment.id }}}
 
-	mailData.subject = '[AMR] Comment deleted';
+	mailData.subject = '[AMR.org] Comment deleted';
 	mailData.text = 'An comment was deleted from the following post.' + '\r\n' +
 		'http://www.arabmusicresearch.org/discussions/' + id;
 	transporter.sendMail(mailData);
