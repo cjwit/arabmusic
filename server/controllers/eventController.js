@@ -18,14 +18,6 @@ var smtpConfig = {
 	}
 };
 var transporter = nodemailer.createTransport(smtpConfig);
-transporter.verify(function(err, success) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log('Email server ready...');
-	}
-})
-
 var mailData = {
 	from: 'amr.notify@gmail.com',
 	to: process.env.EMAIL_TO
