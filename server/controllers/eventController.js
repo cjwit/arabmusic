@@ -28,7 +28,7 @@ transporter.verify(function(err, success) {
 
 var mailData = {
 	from: 'amr.notify@gmail.com',
-	to: 'chris.witulski@gmail.com'
+	to: process.env.EMAIL_TO
 }
 
 // App functions
