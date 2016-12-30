@@ -6,7 +6,6 @@ Development page is live at [https://whispering-sands-88923.herokuapp.com](https
 
 Next Up
 * Email webmaster with postings
-	* Finish email functions in user.
 	* Add other emails
 	* hichamchami@gmail.com
 	* Change AMR to [AMR.org]

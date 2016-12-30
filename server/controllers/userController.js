@@ -42,8 +42,8 @@ function getUsers(req, res) {
 function addUser(req, res) {
     var user = new User(_.extend({}, req.body));
 
-	mailData.subject = '[AMR] New post';
-	mailData.text = 'New post' + '\r\n' +
+	mailData.subject = '[AMR] New user';
+	mailData.text = 'New user' + '\r\n' +
 		'Name: ' + user.name + '\r\n' +
 		'Other information may be available on the site.'
 	transporter.sendMail(mailData);
