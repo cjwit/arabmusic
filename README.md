@@ -5,6 +5,8 @@
 Development page is live at [https://whispering-sands-88923.herokuapp.com](https://whispering-sands-88923.herokuapp.com).
 
 Next Up
+* Individual notice page shows "Resource Collection" in the navbar
+* Add HTML or basic formatting (markdown using marked?) to descriptions of events, discussions, and notices
 * Events
 	* URL field
 * FAQ Section
